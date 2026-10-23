@@ -1,0 +1,8 @@
+# tested on box: torch 2.14.1+cpu, transformers 5.20.2, faiss-cpu 1.15.1, opencv-python-headless 5.0.0.93, gradio 6.30.0
+torch>=2.1
+transformers>=4.45
+faiss-cpu>=1.8
+opencv-python-headless>=4.8
+numpy
+pillow
+gradio>=4.0
