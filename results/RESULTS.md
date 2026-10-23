@@ -29,11 +29,11 @@ Bộ truy vấn: `object` (58 crop đối tượng), `object_small` (35 crop có
 |---|---|---|---|---|
 | CLIP B/32 | object (58) | 0.931 / 0.932 | 0.897 / 0.919 | 0.897 / 0.919 |
 | CLIP B/32 | scene (30) | 0.967 / 0.983 | 1.000 / 1.000 | 1.000 / 1.000 |
-| DINOv2-small | object (58) | – | 0.983 / 0.971 | 0.983 / 0.971 |
+| DINOv2-small | object (58) | 0.966 / 0.963 | 0.983 / 0.971 | 0.983 / 0.971 |
 | DINOv2-small | scene (30) | 1.000 / 1.000 | 1.000 / 1.000 | 1.000 / 1.000 |
 | DINOv3 ViT-S/16 | object (58) | 0.983 / 0.971 | 1.000 / 0.980 | 1.000 / 0.980 |
 | DINOv3 ViT-S/16 | scene (30) | 0.967 / 0.983 | 1.000 / 1.000 | 1.000 / 1.000 |
-(DINOv2 object/frame: dòng log bị cắt, chưa ghi lại; xem results/dinov2_object.json.) R@10 = 1.0 ở mọi cấu hình vì chỉ có 10 video → chỉ số này bão hoà, không dùng để so sánh.
+R@10 = 1.0 ở mọi cấu hình vì chỉ có 10 video → chỉ số này bão hoà, không dùng để so sánh.
 
 ## Tốc độ (CPU 8 lõi dùng chung, load average 24–38 do agent khác → số chậm hơn thực tế nhiều)
 | Encoder | Index 73 khung × 14 crop | khung/s | ms/truy vấn (embed+search) |
