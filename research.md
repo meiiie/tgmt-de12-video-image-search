@@ -84,12 +84,14 @@ Quy ước: **[ĐÃ XÁC MINH]** = đã mở trang nguồn trong phiên 23/10/20
 | opencv-python-headless | 5.0.0.93 | đọc/ghi video | https://github.com/opencv/opencv-python |
 | Gradio | 6.30.0 | demo UI | https://github.com/gradio-app/gradio |
 | Baseline encoder | `openai/clip-vit-base-patch32` | baseline chuẩn, nhẹ | https://huggingface.co/openai/clip-vit-base-patch32 |
-| Instance encoder | `facebook/dinov2-small` (CLS ⊕ mean-patch, 768-d) | instance retrieval, không gated | https://huggingface.co/facebook/dinov2-small |
+| **Instance encoder (chính)** | `facebook/dinov3-vits16-pretrain-lvd1689m` (CLS ⊕ mean patch bỏ 4 register token, 768-d; tiền xử lý 224×224 ImageNet mean/std tự viết vì DINOv3ViTImageProcessor cần torchvision) | dense/instance feature SOTA, nhỏ chạy CPU; quyền HF đã được cấp | https://huggingface.co/facebook/dinov3-vits16-pretrain-lvd1689m ; https://github.com/facebookresearch/dinov3 |
+| Instance encoder (so sánh) | `facebook/dinov2-small` | stand-in không gated | https://huggingface.co/facebook/dinov2-small |
+| Region (SAM 3/3.1) | repo facebookresearch/sam3 commit 7f473cf (14/10/2026), checkpoint `facebook/sam3` (detector ảnh) / `facebook/sam3.1` (video multiplex); torchvision 0.29.1+cpu, timm, triton, pycocotools | phân đoạn theo khái niệm/exemplar | https://github.com/facebookresearch/sam3 |
 | Region CPU | lưới 2×2 + 3×3, overlap 25% (13 vùng/khung) | không cần GPU | tự cài |
 | Region GPU (tùy chọn, chưa test) | `google/owlv2-base-patch16-ensemble`, objectness top-8 | open-vocab, có trong Transformers | https://arxiv.org/abs/2306.09683 |
 | Dataset | DAVIS 2017 trainval 480p (CC BY 4.0) | GT thời gian từ mask; nhỏ | https://davischallenge.org/davis2017/code.html |
 
-**Thay đổi công nghệ**: bỏ open_clip_torch (xung đột torchvision với torch 2.14 trên box) → CLIP qua Transformers. DINOv3/SAM 3.1 chưa dùng (gated, cần HF token). Region trên CPU dùng lưới thay detector.
+**Thay đổi công nghệ**: (1) bỏ open_clip_torch (xung đột torchvision) → CLIP qua Transformers. (2) DINOv3 lúc đầu 403 → dùng DINOv2-small làm stand-in; sau khi được cấp quyền chuyển sang DINOv3 ViT-S/16 làm encoder chính, DINOv2 giữ để so sánh. (3) SAM 3 cài được trên CPU (vá device) nhưng OOM trên box → region trên CPU dùng lưới đa tỉ lệ; SAM 3/3.1 chuyển sang GPU Kaggle/Colab. (4) Mượn từ DigUp: lọc trùng aHash (`--dedup`), đoạn thời gian theo khung.
 
 ## 7. Kết quả
 Xem `results/RESULTS.md` (số thật, CPU box).

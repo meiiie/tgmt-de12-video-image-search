@@ -1,0 +1,42 @@
+{
+ "index": {
+  "model": "facebook/dinov2-small",
+  "fps": 1.0,
+  "regions": "grid",
+  "dedup": 0,
+  "frames": 73,
+  "vectors": 1022,
+  "index_sec": 224.5,
+  "frames_per_sec": 0.33,
+  "meta": null
+ },
+ "results": {
+  "frame": {
+   "R@1": 0.943,
+   "R@5": 1.0,
+   "R@10": 1.0,
+   "mAP@10": 0.971,
+   "top1_peak_in_GT": 0.943,
+   "ms/query": 3217.5,
+   "n_queries": 35
+  },
+  "region": {
+   "R@1": 0.971,
+   "R@5": 1.0,
+   "R@10": 1.0,
+   "mAP@10": 0.986,
+   "top1_peak_in_GT": 0.971,
+   "ms/query": 3216.7,
+   "n_queries": 35
+  },
+  "both": {
+   "R@1": 0.971,
+   "R@5": 1.0,
+   "R@10": 1.0,
+   "mAP@10": 0.986,
+   "top1_peak_in_GT": 0.971,
+   "ms/query": 3238.4,
+   "n_queries": 35
+  }
+ }
+}

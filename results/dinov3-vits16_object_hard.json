@@ -1,0 +1,42 @@
+{
+ "index": {
+  "model": "facebook/dinov3-vits16-pretrain-lvd1689m",
+  "fps": 1.0,
+  "regions": "grid",
+  "dedup": 0,
+  "frames": 73,
+  "vectors": 1022,
+  "index_sec": 944.4,
+  "frames_per_sec": 0.08,
+  "meta": null
+ },
+ "results": {
+  "frame": {
+   "R@1": 0.724,
+   "R@5": 0.983,
+   "R@10": 1.0,
+   "mAP@10": 0.814,
+   "top1_peak_in_GT": 0.707,
+   "ms/query": 10193.9,
+   "n_queries": 58
+  },
+  "region": {
+   "R@1": 0.759,
+   "R@5": 0.966,
+   "R@10": 0.983,
+   "mAP@10": 0.832,
+   "top1_peak_in_GT": 0.759,
+   "ms/query": 10193.7,
+   "n_queries": 58
+  },
+  "both": {
+   "R@1": 0.776,
+   "R@5": 0.966,
+   "R@10": 1.0,
+   "mAP@10": 0.844,
+   "top1_peak_in_GT": 0.776,
+   "ms/query": 10210.4,
+   "n_queries": 58
+  }
+ }
+}

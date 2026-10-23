@@ -1,0 +1,41 @@
+{
+ "index": {
+  "model": "openai/clip-vit-base-patch32",
+  "fps": 1.0,
+  "regions": "grid",
+  "frames": 73,
+  "vectors": 1022,
+  "index_sec": 265.3,
+  "frames_per_sec": 0.28,
+  "meta": null
+ },
+ "results": {
+  "frame": {
+   "R@1": 0.534,
+   "R@5": 0.793,
+   "R@10": 1.0,
+   "mAP@10": 0.659,
+   "top1_peak_in_GT": 0.431,
+   "ms/query": 7175.9,
+   "n_queries": 58
+  },
+  "region": {
+   "R@1": 0.293,
+   "R@5": 0.707,
+   "R@10": 1.0,
+   "mAP@10": 0.475,
+   "top1_peak_in_GT": 0.241,
+   "ms/query": 7174.5,
+   "n_queries": 58
+  },
+  "both": {
+   "R@1": 0.293,
+   "R@5": 0.741,
+   "R@10": 1.0,
+   "mAP@10": 0.478,
+   "top1_peak_in_GT": 0.241,
+   "ms/query": 7205.1,
+   "n_queries": 58
+  }
+ }
+}
