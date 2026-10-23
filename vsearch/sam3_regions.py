@@ -4,11 +4,21 @@ Usage: build_index(..., regions="sam3") -> boxes of all instances matching the p
 from PIL import Image
 
 class SAM3Regions:
-    def __init__(self, prompts=("object",), topk=8, min_score=0.3, device=None):
+    def __init__(self, prompts=("object",), topk=8, min_score=0.3, device=None, checkpoint_path=None):
         from sam3.model_builder import build_sam3_image_model
         from sam3.model.sam3_image_processor import Sam3Processor
         import torch; device = device or ("cuda" if torch.cuda.is_available() else "cpu")
-        self.proc = Sam3Processor(build_sam3_image_model(device=device)); self.prompts, self.k, self.th = prompts, topk, min_score
+        import os; checkpoint_path = checkpoint_path or os.environ.get("SAM3_CKPT")
+        model = build_sam3_image_model(device="cpu", load_from_HF=checkpoint_path is None)
+        self.load_info = {}
+        if checkpoint_path:  # works for sam3.pt and sam3.1_multiplex.pt: take 'detector.*' keys, report mismatch
+            ck = torch.load(checkpoint_path, map_location="cpu", weights_only=True); ck = ck.get("model", ck)
+            sd = {k.replace("detector.", "", 1): v for k, v in ck.items() if k.startswith("detector.")}
+            r = model.load_state_dict(sd, strict=False)
+            self.load_info = {"ckpt": os.path.basename(checkpoint_path), "detector_keys": len(sd), "missing": len(r.missing_keys), "unexpected": len(r.unexpected_keys), "missing_sample": r.missing_keys[:5]}
+            print("SAM3 load:", self.load_info); del ck, sd
+        model = model.to(device).eval()
+        self.proc = Sam3Processor(model); self.prompts, self.k, self.th = prompts, topk, min_score
     def __call__(self, img: Image.Image):
         state = self.proc.set_image(img); res = []
         for p in self.prompts:

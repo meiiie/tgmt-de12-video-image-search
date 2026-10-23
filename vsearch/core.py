@@ -75,7 +75,7 @@ class Embedder:
     def __init__(self, name="openai/clip-vit-base-patch32", device=None):
         self.name = name; self.dev = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.m = AutoModel.from_pretrained(name).to(self.dev).eval()
-        self.kind = "dino" if "dino" in name else "vl"
+        self.kind = "dino" if ("dino" in name.lower() or "dino" in getattr(self.m.config, "model_type", "")) else "vl"
         if self.kind == "dino":
             try: self.p = AutoImageProcessor.from_pretrained(name)
             except ImportError: self.p = SimpleDinoProcessor()  # DINOv3 processor needs torchvision (broken on box)
