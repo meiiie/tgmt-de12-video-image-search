@@ -1,5 +1,5 @@
 {
- "id": "meiiie/tgmt-de12-video-image-search",
+ "id": "holilihu/tgmt-de12-video-image-search",
  "title": "tgmt-de12-video-image-search",
  "code_file": "de12_kaggle.ipynb",
  "language": "python",
@@ -7,7 +7,7 @@
  "is_private": true,
  "enable_gpu": true,
  "enable_internet": true,
- "machine_shape": "NvidiaTeslaP100",
+ "machine_shape": "NvidiaTeslaT4",
  "dataset_sources": [],
  "competition_sources": [],
  "kernel_sources": [],
