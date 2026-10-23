@@ -24,3 +24,7 @@ python scripts/query.py --index data/idx_dinov3-vits16 --image q.jpg --mode both
 python app.py --index data/idx_dinov3-vits16 --videos data/davis_bench/videos
 ```
 Lưu ý box: torchvision của torch 2.14 hệ thống bị lệch → venv cài `torchvision==0.29.1+cpu --no-deps`. SAM 3 repo hard-code `device="cuda"` ở 4 file; bản clone `/workspace/tgmt/sam3` đã vá để chạy CPU (chậm).
+
+
+## Built with DINOv3
+Dự án này dùng DINOv3 (`facebook/dinov3-vits16-pretrain-lvd1689m`) của Meta, phát hành theo **DINOv3 License** (https://ai.meta.com/resources/models-and-libraries/dinov3-license/), không phải giấy phép mã nguồn mở thông thường: được dùng/sửa/phân phối (kể cả thương mại) nhưng khi phân phối trọng số hoặc sản phẩm phái sinh phải kèm bản license và ghi rõ "Built with DINOv3"; công bố kết quả phải ghi nhận việc dùng DINOv3; tuân thủ điều khoản kiểm soát thương mại. Repo này không phân phối trọng số DINOv3 (tải từ Hugging Face sau khi được Meta cấp quyền). Paper: https://arxiv.org/abs/2508.10104

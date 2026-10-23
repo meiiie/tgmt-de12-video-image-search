@@ -51,3 +51,7 @@ Phần FAISS search + merge chiếm < vài ms; gần như toàn bộ là thời 
 1. DINOv3 + index region (`both`) tốt nhất trên bộ khó: R@1 0.776 / mAP 0.844, so với baseline CLIP frame 0.534 / 0.659 (+24 điểm R@1).
 2. Với CLIP, crop vùng lưới **làm giảm** kết quả (embedding toàn cục bị nhiễu bởi crop cắt ngang); với DINO thì region giúp ở đối tượng nhỏ và bộ khó → chọn DINO cho region.
 3. Benchmark DAVIS còn dễ (cùng cảnh, ít video); cần thêm distractor/khác góc để phân biệt rõ hơn.
+
+
+## Built with DINOv3
+Dự án này dùng DINOv3 (`facebook/dinov3-vits16-pretrain-lvd1689m`) của Meta, phát hành theo **DINOv3 License** (https://ai.meta.com/resources/models-and-libraries/dinov3-license/), không phải giấy phép mã nguồn mở thông thường: được dùng/sửa/phân phối (kể cả thương mại) nhưng khi phân phối trọng số hoặc sản phẩm phái sinh phải kèm bản license và ghi rõ "Built with DINOv3"; công bố kết quả phải ghi nhận việc dùng DINOv3; tuân thủ điều khoản kiểm soát thương mại. Repo này không phân phối trọng số DINOv3 (tải từ Hugging Face sau khi được Meta cấp quyền). Paper: https://arxiv.org/abs/2508.10104

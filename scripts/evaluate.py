@@ -4,15 +4,26 @@ Reports Recall@{1,5,10} (any relevant in top-K), mAP@10, mean search latency."""
 import argparse, json, sys, os, time, numpy as np; sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from PIL import Image; from vsearch.core import Searcher
 ap = argparse.ArgumentParser(); ap.add_argument("--index", required=True); ap.add_argument("--queries", required=True)
-ap.add_argument("--modes", default="frame,region,both"); ap.add_argument("--tol", type=float, default=0.5); ap.add_argument("--out"); ap.add_argument("--max_area", type=float, default=1.0, help="only object queries with mask area fraction < this"); a = ap.parse_args()
+ap.add_argument("--modes", default="frame,region,both"); ap.add_argument("--tol", type=float, default=0.5); ap.add_argument("--out"); ap.add_argument("--max_area", type=float, default=1.0, help="only object queries with mask area fraction < this"); ap.add_argument("--rerank", default="", help="grid|sam3: re-rank top-20 with region proposals"); ap.add_argument("--videos", default=""); a = ap.parse_args()
 Q = [q for q in json.load(open(a.queries)) if q.get("area_frac", 0) < a.max_area]; S = Searcher(a.index); base = os.path.dirname(os.path.abspath(a.queries)); res = {}
+from vsearch.rerank import rerank
+PROP = None
+if a.rerank == "grid":
+    from vsearch.core import grid_regions; PROP = grid_regions
+elif a.rerank == "sam3":
+    from vsearch.sam3_regions import SAM3Regions; PROP = SAM3Regions()
 QV, QT = [], []
 for q in Q:
     img = Image.open(os.path.join(base, q["image"])).convert("RGB"); t = time.time(); QV.append(S.emb([img])); QT.append(time.time() - t)
 for mode in a.modes.split(","):
     R = {1: [], 5: [], 10: []}; APs = []; lat = []; PK = []
     for qi, q in enumerate(Q):
-        t = time.time(); segs = S.search(None, mode, 10, qvec=QV[qi]); lat.append(QT[qi] + time.time() - t)
+        t = time.time()
+        if a.rerank:
+            segs, _ = rerank(S, a.videos, None, PROP, mode, 20, 10, qvec=QV[qi])
+        else:
+            segs = S.search(None, mode, 10, qvec=QV[qi])
+        lat.append(QT[qi] + time.time() - t)
         used, rel = set(), []
         for s in segs:
             m = next((i for i, g in enumerate(q["gt"]) if i not in used and g["video"] == s["video"] and s["start"] <= g["end"] + a.tol and s["end"] >= g["start"] - a.tol), None)

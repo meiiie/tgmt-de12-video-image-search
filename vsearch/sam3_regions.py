@@ -1,13 +1,14 @@
-"""SAM 3.1 region proposals (GPU only; UNTESTED on box – no CUDA). Needs: git clone facebookresearch/sam3 && pip install -e .,
+"""SAM 3.1 region proposals (GPU only; box CPU run was OOM-killed (~7.2 GB RSS); intended for Kaggle GPU). Needs: git clone facebookresearch/sam3 && pip install -e .,
 HF_TOKEN with access to facebook/sam3 / facebook/sam3.1. API per repo README (image model + Sam3Processor + text prompt).
 Usage: build_index(..., regions="sam3") -> boxes of all instances matching the prompts, then embedded as region crops."""
 from PIL import Image
 
 class SAM3Regions:
-    def __init__(self, prompts=("object",), topk=8, min_score=0.3):
+    def __init__(self, prompts=("object",), topk=8, min_score=0.3, device=None):
         from sam3.model_builder import build_sam3_image_model
         from sam3.model.sam3_image_processor import Sam3Processor
-        self.proc = Sam3Processor(build_sam3_image_model()); self.prompts, self.k, self.th = prompts, topk, min_score
+        import torch; device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        self.proc = Sam3Processor(build_sam3_image_model(device=device)); self.prompts, self.k, self.th = prompts, topk, min_score
     def __call__(self, img: Image.Image):
         state = self.proc.set_image(img); res = []
         for p in self.prompts:
