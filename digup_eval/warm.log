@@ -1,0 +1,12 @@
+prewarm {'encoder': 'ready', 'id': 1, 'ok': True, 'vectors': 9}
+encoder ready after 24.5s ready
+'zebra in a video' wall 8841 ms ms= {'embed': 8824, 'search': 2} [('Tame_Zebra.webm', 0.748, None, {'duration': '19.7', 'frames': '6', 'sound_windows': '1'}), ('Zebra_Nairobi.webm', 0.721, None, {'duration': '8.4', 'frames': '2', 'sound_windows': '0'})]
+'a zebra eating grass' wall 11732 ms ms= {'embed': 11728, 'search': 0} []
+'zebra' wall 12324 ms ms= {'embed': 12318, 'search': 4} [('Tame_Zebra.webm', 0.778, None, {'duration': '19.7', 'frames': '6', 'sound_windows': '1'}), ('Zebra_Nairobi.webm', 0.754, None, {'duration': '8.4', 'frames': '2', 'sound_windows': '0'})]
+'a red car on a highway' wall 10111 ms ms= {'embed': 10110, 'search': 0} []
+'con ngựa vằn' wall 10572 ms ms= {'embed': 10545, 'search': 15} []
+'zebra in a video' wall 3 ms ms= {'embed': 0, 'search': 1} [('Tame_Zebra.webm', 0.748, None, {'duration': '19.7', 'frames': '6', 'sound_windows': '1'}), ('Zebra_Nairobi.webm', 0.721, None, {'duration': '8.4', 'frames': '2', 'sound_windows': '0'})]
+'a zebra eating grass' wall 1 ms ms= {'embed': 0, 'search': 0} []
+'zebra' wall 1 ms ms= {'embed': 0, 'search': 0} [('Tame_Zebra.webm', 0.778, None, {'duration': '19.7', 'frames': '6', 'sound_windows': '1'}), ('Zebra_Nairobi.webm', 0.754, None, {'duration': '8.4', 'frames': '2', 'sound_windows': '0'})]
+'a red car on a highway' wall 0 ms ms= {'embed': 0, 'search': 0} []
+'con ngựa vằn' wall 0 ms ms= {'embed': 0, 'search': 0} []

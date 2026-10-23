@@ -12,3 +12,16 @@ __pycache__/
 venv/
 runs/
 outputs/
+# DigUp eval artifacts (not committed)
+digup_eval/models/
+digup_eval/deb/
+digup_eval/DigUp/
+digup_eval/sample/
+digup_eval/index/
+*.deb
+*.gguf
+*.webm
+*.mkv
+*.mov
+*.faiss
+*.zip

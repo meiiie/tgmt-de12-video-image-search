@@ -1,0 +1,6 @@
+prewarm {'encoder': 'ready', 'id': 1, 'ok': True, 'vectors': 9}
+encoder ready after 19.4s ready
+'zebra' wall 9119 ms ms= {'embed': 9114, 'search': 4} []
+'animal with black and white stripes' wall 10607 ms ms= {'embed': 10605, 'search': 0} []
+'a red car on a highway' wall 9731 ms ms= {'embed': 9729, 'search': 0} []
+'a cat sleeping on a sofa' wall 10120 ms ms= {'embed': 10094, 'search': 19} []

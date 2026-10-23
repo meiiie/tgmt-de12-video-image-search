@@ -1,0 +1,25 @@
+{"bytes":309855456,"event":"file","from":"download","name":"embeddinggemma-2-Q8_0.gguf"}
+{"all_bytes":16375,"all_total":864676480,"bytes":16375,"event":"progress","name":"embeddinggemma-2-Q8_0.gguf","total":309855456}
+{"all_bytes":54293134,"all_total":864676480,"bytes":54293134,"event":"progress","name":"embeddinggemma-2-Q8_0.gguf","total":309855456}
+{"all_bytes":111810801,"all_total":864676480,"bytes":111810801,"event":"progress","name":"embeddinggemma-2-Q8_0.gguf","total":309855456}
+{"all_bytes":177174754,"all_total":864676480,"bytes":177174754,"event":"progress","name":"embeddinggemma-2-Q8_0.gguf","total":309855456}
+{"all_bytes":240590238,"all_total":864676480,"bytes":240590238,"event":"progress","name":"embeddinggemma-2-Q8_0.gguf","total":309855456}
+{"all_bytes":300321347,"all_total":864676480,"bytes":300321347,"event":"progress","name":"embeddinggemma-2-Q8_0.gguf","total":309855456}
+{"all_bytes":309855456,"all_total":864676480,"bytes":309855456,"event":"progress","name":"embeddinggemma-2-Q8_0.gguf","total":309855456}
+{"event":"verifying","name":"embeddinggemma-2-Q8_0.gguf"}
+{"bytes":554821024,"event":"file","from":"download","name":"mmproj-embeddinggemma-2-Q8_0.gguf"}
+{"all_bytes":309871831,"all_total":864676480,"bytes":16375,"event":"progress","name":"mmproj-embeddinggemma-2-Q8_0.gguf","total":554821024}
+{"all_bytes":362932218,"all_total":864676480,"bytes":53076762,"event":"progress","name":"mmproj-embeddinggemma-2-Q8_0.gguf","total":554821024}
+{"all_bytes":431889045,"all_total":864676480,"bytes":122033589,"event":"progress","name":"mmproj-embeddinggemma-2-Q8_0.gguf","total":554821024}
+{"all_bytes":510780606,"all_total":864676480,"bytes":200925150,"event":"progress","name":"mmproj-embeddinggemma-2-Q8_0.gguf","total":554821024}
+{"all_bytes":591114373,"all_total":864676480,"bytes":281258917,"event":"progress","name":"mmproj-embeddinggemma-2-Q8_0.gguf","total":554821024}
+{"all_bytes":668908809,"all_total":864676480,"bytes":359053353,"event":"progress","name":"mmproj-embeddinggemma-2-Q8_0.gguf","total":554821024}
+{"all_bytes":749116650,"all_total":864676480,"bytes":439261194,"event":"progress","name":"mmproj-embeddinggemma-2-Q8_0.gguf","total":554821024}
+{"all_bytes":821659920,"all_total":864676480,"bytes":511804464,"event":"progress","name":"mmproj-embeddinggemma-2-Q8_0.gguf","total":554821024}
+{"all_bytes":864676480,"all_total":864676480,"bytes":554821024,"event":"progress","name":"mmproj-embeddinggemma-2-Q8_0.gguf","total":554821024}
+{"event":"verifying","name":"mmproj-embeddinggemma-2-Q8_0.gguf"}
+{"event":"done","folder":"\/workspace\/tgmt\/de12\/digup_eval\/models"}
+
+real	0m10.779s
+user	0m5.013s
+sys	0m1.539s
