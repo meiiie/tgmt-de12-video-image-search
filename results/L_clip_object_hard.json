@@ -1,0 +1,24 @@
+{
+ "index": {
+  "model": "openai/clip-vit-base-patch32",
+  "fps": 1.0,
+  "regions": "none",
+  "dedup": 0,
+  "frames": 276,
+  "vectors": 276,
+  "index_sec": 1305.3,
+  "frames_per_sec": 0.21,
+  "meta": null
+ },
+ "results": {
+  "frame": {
+   "R@1": 0.19,
+   "R@5": 0.414,
+   "R@10": 0.621,
+   "mAP@10": 0.298,
+   "top1_peak_in_GT": 0.172,
+   "ms/query": 1593.4,
+   "n_queries": 58
+  }
+ }
+}

@@ -53,5 +53,16 @@ Phần FAISS search + merge chiếm < vài ms; gần như toàn bộ là thời 
 3. Benchmark DAVIS còn dễ (cùng cảnh, ít video); cần thêm distractor/khác góc để phân biệt rõ hơn.
 
 
+## Bộ lớn: 70 video (10 video val + 60 video distractor DAVIS 2017 train), 276 khung @1 fps
+Cùng 58 truy vấn; distractor không chứa đối tượng truy vấn. R@10 không còn bão hoà nhưng theo yêu cầu chỉ báo R@1, mAP@10.
+| Cấu hình | object_hard R@1 | object_hard mAP@10 | object R@1 | object mAP@10 |
+|---|---|---|---|---|
+| CLIP B/32 frame (baseline) | 0.190 | 0.298 | 0.862 | 0.876 |
+| DINOv3-S/16 frame | 0.552 | 0.644 | 0.862 | 0.907 |
+| DINOv3-S/16 region (grid) | 0.586 | 0.680 | 0.966 | 0.957 |
+| **DINOv3-S/16 frame+region** | **0.586** | **0.680** | **0.966** | **0.957** |
+Index (CPU box dùng chung, load ~26): CLIP frame 276 vector 1305 s; DINOv3 frame+grid 3864 vector 1237 s (~0.22 khung/s). Truy vấn: CLIP 138–1593 ms, DINOv3 127–220 ms (embed + FAISS + merge).
+Distractor licenses: results/licenses_distractors.md. SAM 3 region / re-rank trên bộ này: chưa chạy (cần GPU – kaggle/).
+
 ## Built with DINOv3
 Dự án này dùng DINOv3 (`facebook/dinov3-vits16-pretrain-lvd1689m`) của Meta, phát hành theo **DINOv3 License** (https://ai.meta.com/resources/models-and-libraries/dinov3-license/), không phải giấy phép mã nguồn mở thông thường: được dùng/sửa/phân phối (kể cả thương mại) nhưng khi phân phối trọng số hoặc sản phẩm phái sinh phải kèm bản license và ghi rõ "Built with DINOv3"; công bố kết quả phải ghi nhận việc dùng DINOv3; tuân thủ điều khoản kiểm soát thương mại. Repo này không phân phối trọng số DINOv3 (tải từ Hugging Face sau khi được Meta cấp quyền). Paper: https://arxiv.org/abs/2508.10104
