@@ -1,0 +1,22 @@
+== clip object
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 15565.75it/s]
+frame {'R@1': 0.931, 'R@5': 0.983, 'R@10': 1.0, 'mAP@10': 0.932, 'ms/query': 3619.3, 'n_queries': 58}
+region {'R@1': 0.897, 'R@5': 0.983, 'R@10': 1.0, 'mAP@10': 0.919, 'ms/query': 3620.2, 'n_queries': 58}
+both {'R@1': 0.897, 'R@5': 0.983, 'R@10': 1.0, 'mAP@10': 0.919, 'ms/query': 3628.0, 'n_queries': 58}
+== clip scene
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 26146.65it/s]
+frame {'R@1': 0.967, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.983, 'ms/query': 931.5, 'n_queries': 30}
+region {'R@1': 1.0, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 1.0, 'ms/query': 931.4, 'n_queries': 30}
+both {'R@1': 1.0, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 1.0, 'ms/query': 931.5, 'n_queries': 30}
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 52978.18it/s]
+{'model': 'facebook/dinov2-small', 'fps': 1.0, 'regions': 'grid', 'dedup': 0, 'frames': 73, 'vectors': 1022, 'index_sec': 224.5, 'frames_per_sec': 0.33}
+== dinov2 object
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 55734.11it/s]
+frame {'R@1': 0.966, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.963, 'top1_peak_in_GT': 0.966, 'ms/query': 5832.3, 'n_queries': 58}
+region {'R@1': 0.983, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.971, 'top1_peak_in_GT': 0.983, 'ms/query': 5833.0, 'n_queries': 58}
+both {'R@1': 0.983, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.971, 'top1_peak_in_GT': 0.983, 'ms/query': 5853.3, 'n_queries': 58}
+== dinov2 scene
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 50930.02it/s]
+frame {'R@1': 1.0, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 1.0, 'top1_peak_in_GT': 1.0, 'ms/query': 4206.9, 'n_queries': 30}
+region {'R@1': 1.0, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 1.0, 'top1_peak_in_GT': 1.0, 'ms/query': 4216.2, 'n_queries': 30}
+both {'R@1': 1.0, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 1.0, 'top1_peak_in_GT': 1.0, 'ms/query': 4235.7, 'n_queries': 30}

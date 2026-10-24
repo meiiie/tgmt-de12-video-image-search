@@ -1,0 +1,17 @@
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 22445.42it/s]
+{'model': 'openai/clip-vit-base-patch32', 'fps': 1.0, 'regions': 'none', 'dedup': 0, 'frames': 276, 'vectors': 276, 'index_sec': 1305.3, 'frames_per_sec': 0.21}
+Loading weights:   0%|          | 0/211 [00:00<?, ?it/s]Loading weights: 100%|██████████| 211/211 [00:00<00:00, 4287.37it/s]
+{'model': 'facebook/dinov3-vits16-pretrain-lvd1689m', 'fps': 1.0, 'regions': 'grid', 'dedup': 0, 'frames': 276, 'vectors': 3864, 'index_sec': 1237.0, 'frames_per_sec': 0.22}
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 34388.75it/s]
+frame {'R@1': 0.19, 'R@5': 0.414, 'R@10': 0.621, 'mAP@10': 0.298, 'top1_peak_in_GT': 0.172, 'ms/query': 1593.4, 'n_queries': 58}
+Loading weights:   0%|          | 0/211 [00:00<?, ?it/s]Loading weights: 100%|██████████| 211/211 [00:00<00:00, 9400.07it/s]
+frame {'R@1': 0.552, 'R@5': 0.793, 'R@10': 0.862, 'mAP@10': 0.644, 'top1_peak_in_GT': 0.552, 'ms/query': 219.7, 'n_queries': 58}
+region {'R@1': 0.586, 'R@5': 0.828, 'R@10': 0.914, 'mAP@10': 0.68, 'top1_peak_in_GT': 0.586, 'ms/query': 219.9, 'n_queries': 58}
+both {'R@1': 0.586, 'R@5': 0.828, 'R@10': 0.931, 'mAP@10': 0.68, 'top1_peak_in_GT': 0.586, 'ms/query': 220.2, 'n_queries': 58}
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 47929.40it/s]
+frame {'R@1': 0.862, 'R@5': 0.931, 'R@10': 0.983, 'mAP@10': 0.876, 'top1_peak_in_GT': 0.845, 'ms/query': 137.7, 'n_queries': 58}
+Loading weights:   0%|          | 0/211 [00:00<?, ?it/s]Loading weights: 100%|██████████| 211/211 [00:00<00:00, 9029.49it/s]
+frame {'R@1': 0.862, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.907, 'top1_peak_in_GT': 0.862, 'ms/query': 127.3, 'n_queries': 58}
+region {'R@1': 0.966, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.957, 'top1_peak_in_GT': 0.966, 'ms/query': 127.1, 'n_queries': 58}
+both {'R@1': 0.966, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.957, 'top1_peak_in_GT': 0.966, 'ms/query': 127.3, 'n_queries': 58}
+ALLDONE
