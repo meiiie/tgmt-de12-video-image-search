@@ -10,6 +10,14 @@ from vsearch.rerank import rerank
 PROP = None
 if a.rerank == "grid":
     from vsearch.core import grid_regions; PROP = grid_regions
+elif a.rerank == "samidx":  # re-use SAM 3 boxes stored in the index (region_sam) -> no extra SAM cost
+    _B = {}
+    for h in S.meta:
+        if h["kind"] == "region_sam": _B.setdefault((h["video"], round(h["t"], 3)), []).append(tuple(h["box"]))
+    class _P:
+        key = None
+        def __call__(self, fr): return _B.get(self.key, [])
+    PROP = _P()
 elif a.rerank == "sam3":
     from vsearch.sam3_regions import SAM3Regions; PROP = SAM3Regions()
 QV, QT = [], []

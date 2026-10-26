@@ -17,6 +17,7 @@ def rerank(searcher, video_dir, img, proposer, mode="both", k_in=20, k_out=10, q
         fr = read_frame(os.path.join(video_dir, s["video"]), s["peak_t"])
         if fr is None: continue
         key = (s["video"], round(s["peak_t"], 3))
+        if hasattr(proposer, "key"): proposer.key = key
         if key not in _CACHE: _CACHE[key] = proposer(fr)
         boxes = _CACHE[key]; n_props += len(boxes)
         if not boxes: continue

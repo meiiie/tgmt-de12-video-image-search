@@ -74,6 +74,9 @@ class Embedder:
     (dinov3 e.g. facebook/dinov3-vits16-pretrain-lvd1689m is gated: needs HF token + license acceptance)."""
     def __init__(self, name="openai/clip-vit-base-patch32", device=None):
         self.name = name; self.dev = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        if "embeddinggemma" in name.lower() or "eg2" in os.path.basename(str(name)).lower():  # EmbeddingGemma 2 (multimodal, Apache-2.0) via sentence-transformers
+            from sentence_transformers import SentenceTransformer
+            self.kind = "st"; self.m = SentenceTransformer(name, device=self.dev, model_kwargs={"dtype": torch.float32}); return
         self.m = AutoModel.from_pretrained(name).to(self.dev).eval()
         self.kind = "dino" if ("dino" in name.lower() or "dino" in getattr(self.m.config, "model_type", "")) else "vl"
         if self.kind == "dino":
@@ -82,6 +85,8 @@ class Embedder:
         else: self.p = AutoProcessor.from_pretrained(name)
     @torch.no_grad()
     def __call__(self, images, bs=32):
+        if self.kind == "st":
+            return np.asarray(self.m.encode([{"image": im.convert("RGB").resize((224, 224))} for im in images], batch_size=bs, normalize_embeddings=True), dtype="float32")
         out = []
         for i in range(0, len(images), bs):
             x = self.p(images=images[i:i+bs], return_tensors="pt"); x = {k: v.to(self.dev) for k, v in x.items()}
@@ -99,8 +104,10 @@ class Embedder:
 # ---------------- index ----------------
 def build_index(video_dir, out_dir, model="openai/clip-vit-base-patch32", fps=1.0, regions="grid", log=print, dedup=0):
     os.makedirs(out_dir, exist_ok=True); emb = Embedder(model)
-    if regions == "sam3":
-        from vsearch.sam3_regions import SAM3Regions; prop = SAM3Regions()
+    sam = None
+    if "sam3" in regions:
+        from vsearch.sam3_regions import SAM3Regions, masked_crop; sam = SAM3Regions(); prop = grid_regions if regions == "grid+sam3" else None
+        R_SAM = {"boxes": 0}
     else:
         prop = OWLv2Regions(device=emb.dev) if regions == "owlv2" else (grid_regions if regions == "grid" else None)
     vecs, meta, nf, t0 = [], [], 0, time.time()
@@ -110,14 +117,18 @@ def build_index(video_dir, out_dir, model="openai/clip-vit-base-patch32", fps=1.
             if prop:
                 for b in prop(img):
                     crops.append(img.crop(b)); m.append({"video": m[0]["video"], "t": m[0]["t"], "kind": "region", "box": b})
+            if sam:
+                for b, mk in zip(sam(img), sam.last_masks):
+                    crops.append(masked_crop(img, b, mk)); m.append({"video": m[0]["video"], "t": m[0]["t"], "kind": "region_sam", "box": list(b)}); R_SAM["boxes"] += 1
             vecs.append(emb(crops)); meta += m; nf += 1
     X = np.concatenate(vecs); dt = time.time() - t0
-    for kind in ("frame", "region"):
+    for kind in ("frame", "region", "region_sam"):
         ids = np.array([i for i, x in enumerate(meta) if x["kind"] == kind], dtype="int64")
         if len(ids) == 0: continue
         idx = faiss.IndexIDMap(faiss.IndexFlatIP(X.shape[1])); idx.add_with_ids(X[ids], ids)
         faiss.write_index(idx, f"{out_dir}/{kind}.faiss")
     stats = {"model": model, "fps": fps, "regions": regions, "dedup": dedup, "frames": nf, "vectors": len(meta), "index_sec": round(dt, 1), "frames_per_sec": round(nf/dt, 2)}
+    if sam: stats.update(sam_boxes=R_SAM["boxes"], sam_boxes_per_frame=round(R_SAM["boxes"]/max(1, nf), 2), sam_load=sam.load_info, sam_prompts=list(sam.prompts))
     json.dump({**stats, "meta": meta}, open(f"{out_dir}/meta.json", "w"))
     log(stats); return stats
 
@@ -126,12 +137,14 @@ class Searcher:
     def __init__(self, index_dir, embedder=None):
         self.d = json.load(open(f"{index_dir}/meta.json")); self.meta = self.d["meta"]
         self.emb = embedder or Embedder(self.d["model"])
-        self.idx = {k: faiss.read_index(f"{index_dir}/{k}.faiss") for k in ("frame", "region") if os.path.exists(f"{index_dir}/{k}.faiss")}
+        self.idx = {k: faiss.read_index(f"{index_dir}/{k}.faiss") for k in ("frame", "region", "region_sam") if os.path.exists(f"{index_dir}/{k}.faiss")}
 
     def search(self, img, mode="frame", k=10, topn=200, merge_gap=None, qvec=None):
         """mode: frame | region | both. Returns ranked segments [{video,start,end,peak_t,score,box}]."""
         q = qvec if qvec is not None else self.emb([img]); best = {}
-        for kind in (["frame", "region"] if mode == "both" else [mode]):
+        kinds = {"frame": ["frame"], "region": ["region"], "both": ["frame", "region"], "sam": ["region_sam"],
+                 "frame+sam": ["frame", "region_sam"], "fuse": ["frame", "region", "region_sam"]}[mode]
+        for kind in [k for k in kinds if k in self.idx]:
             D, I = self.idx[kind].search(q, min(topn, self.idx[kind].ntotal))
             for s, j in zip(D[0], I[0]):
                 h = self.meta[j]; key = (h["video"], h["t"])

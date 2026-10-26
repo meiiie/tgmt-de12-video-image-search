@@ -10,7 +10,8 @@
  "machine_shape": "NvidiaTeslaT4",
  "dataset_sources": [
   "holilihu/de7-weights",
-  "holilihu/de12-sam3-image"
+  "holilihu/de12-sam3-image",
+  "holilihu/de12-embeddinggemma2"
  ],
  "competition_sources": [],
  "kernel_sources": [],
