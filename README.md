@@ -192,7 +192,7 @@ Dự án này dùng DINOv3 (`facebook/dinov3-vits16-pretrain-lvd1689m`) của Me
 - DigUp, https://github.com/ARahim3/DigUp (MIT).
 
 ## Kết quả GPU (Kaggle T4, fp16, v2 — 26/10/2026)
-70 video, truy vấn hard: DINOv3 frame R@1 0.552 / mAP@10 0.642; +region grid 0.586 / 0.680 (~29 ms/truy vấn); SAM 3.1 region 0.000 / 0.000; SAM 3.1 re-rank top-20 0.586 / 0.680 (24.7 s/truy vấn, không cải thiện). SAM 3.1 hiện cho 0.0 box/frame (1.04 s/frame, 3.79 GB VRAM) — đang điều tra. Chi tiết: results/RESULTS.md, results/kaggle_v2_de12_results.json.
+70 video, truy vấn hard: DINOv3 frame R@1 0.552 / mAP@10 0.642; +region grid 0.586 / 0.680 (~25 ms/truy vấn). SAM 3 (v5, 12 prompt lớp, ngưỡng 0.3): 4.36 box/frame (2.633 s/frame, 4.73 GB VRAM); re-rank top-20 đạt 0.603 / 0.684 nhưng chậm thêm ~911 ms/truy vấn (936.6 ms tổng), các biến thể fusion đều kém hơn nên chỉ để tùy chọn. Chi tiết: results/RESULTS.md, results/kaggle_v7_de12_results.json.
 
 ## Quyết định cuối (v3, 26/10/2026)
 Pipeline chốt: **DINOv3 ViT-S/16 + region grid + FAISS** (Built with DINOv3). Trên T4 fp16 đạt: 70 video hard R@1 0.586 / mAP@10 0.680; 10 video hard 0.759 / 0.838; khoảng 25 ms/truy vấn.
