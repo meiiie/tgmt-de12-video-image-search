@@ -1,0 +1,629 @@
+{
+ "started": "2026-10-26 16:52:02 UTC",
+ "precision": "DINOv3 fp16 autocast; SAM 3 autocast fp16 (bf16 fallback)",
+ "stages": {
+  "nvidia_smi": {
+   "rc": 0,
+   "sec": 0.0,
+   "tail": "name, memory.total [MiB]\nTesla T4, 15360 MiB\nTesla T4, 15360 MiB\n"
+  },
+  "install": {
+   "rc": 0,
+   "sec": 219.3,
+   "tail": "f1647e8d0c1d280991f4d1b7d974c2704537fe66\nERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\nbigframes 2.48.0 requires google-cloud-bigquery-storage<3.0.0,>=2.30.0, which is not installed.\nbayesian-optimization 3.4.0 requires numpy>=2.1.3; python_full_version == \"3.13.*\", but you have numpy 1.26.4 which is incompatible.\nopencv-python-headless 4.14.0.94 requires numpy>=2; python_version >= \"3.9\", but you have numpy 1.26.4 which is incompatible.\nmne 1.13.2 requires numpy<3,>=2.1, but you have numpy 1.26.4 which is incompatible.\nopencv-python 4.14.0.94 requires numpy>=2; python_version >= \"3.9\", but you have numpy 1.26.4 which is incompatible.\nkaggle-environments 1.32.7 requires numpy>=2.0, but you have numpy 1.26.4 which is incompatible.\ncesium 0.12.4 requires numpy<3.0,>=2.0, but you have numpy 1.26.4 which is incompatible.\ndopamine-rl 4.1.2 requires gym<=0.25.2, but you have gym 0.26.2 which is incompatible.\ngradio 6.26.0 requires pillow<13.0,>=8.0, but you have pillow 13.0.0 which is incompatible.\ncupy-cuda12x 14.0.1 requires numpy<2.6,>=2.0, but you have numpy 1.26.4 which is incompatible.\nmoviepy 1.0.3 requires decorator<5.0,>=4.0.2, but you have decorator 5.3.1 which is incompatible.\nml-dtypes 0.6.0 requires numpy>=2.0.0, but you have numpy 1.26.4 which is incompatible.\nml-dtypes 0.6.0 requires numpy>=2.1.0; python_version >= \"3.13\", but you have numpy 1.26.4 which is incompatible.\ntobler 0.14.0 requires numpy>=2.0, but you have numpy 1.26.4 which is incompatible.\njax 0.11.1 requires numpy>=2.1, but you have numpy 1.26.4 which is incompatible.\nopencv-contrib-python 4.14.0.94 requires numpy>=2; python_version >= \"3.9\", but you have numpy 1.26.4 which is incompatible.\ndm-tree 0.1.10 requires numpy>=2.1.0; python_version >= \"3.13\", but you have numpy 1.26.4 which is incompatible.\njaxlib 0.11.1 requires numpy>=2.0, but you have numpy 1.26.4 which is incompatible.\nxarray-einstats 0.11.0 requires numpy>=2.0, but you have numpy 1.26.4 which is incompatible.\ntifffile 2026.8.23 requires numpy>=2.1, but you have numpy 1.26.4 which is incompatible.\npytensor 2.38.3 requires numpy>=2.0, but you have numpy 1.26.4 which is incompatible.\nshap 0.52.0 requires numpy>=2, but you have numpy 1.26.4 which is incompatible.\nrasterio 1.5.1 requires numpy>=2, but you have numpy 1.26.4 which is incompatible.\n"
+  },
+  "install_eg2": {
+   "rc": 0,
+   "sec": 52.7,
+   "tail": "5.20.2 6.2.0\n"
+  },
+  "data": {
+   "rc": 0,
+   "sec": 83.9,
+   "tail": "30 seqs -> 10 videos; 58 object queries, 30 scene queries\n58\n70 videos\n"
+  },
+  "sam_sanity_fp16": {
+   "rc": 0,
+   "sec": 43.5,
+   "tail": "SAM3 load: {'ckpt': 'sam3.pt', 'detector_keys': 1156, 'missing': 0, 'unexpected': 22, 'missing_sample': [], 'unexpected_sample': ['backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.weight', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.bias', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.weight', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.bias', 'backbone.vision_backbone.sam2_convs.0.conv_1x1.weight']}\n{'load_info': {'ckpt': 'sam3.pt', 'detector_keys': 1156, 'missing': 0, 'unexpected': 22, 'missing_sample': [], 'unexpected_sample': ['backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.weight', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.bias', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.weight', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.bias', 'backbone.vision_backbone.sam2_convs.0.conv_1x1.weight']}, 'precision': 'fp16', 'prompts': ['person', 'animal', 'dog', 'horse', 'cow', 'bird', 'car', 'bicycle', 'motorcycle', 'boat', 'ball', 'vehicle'], 'threshold': 0.3, 'official_truck': {'max_score': 0.865, 'n_ge_th': 1}, 'official_object': {'max_score': 0.075, 'n_ge_th': 0}, 'davis5_boxes': [5, 8, 6, 1, 8], 'davis5_s_per_frame': 2.348, 'ok': True}\n/tmp/sam3/sam3/model_builder.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  import pkg_resources\n/tmp/sam3/sam3/model/model_misc.py:71: UserWarning: Flash Attention is disabled as it requires a GPU with Ampere (8.0) CUDA capability.\n  OLD_GPU, USE_FLASH_ATTN, MATH_KERNEL_ON = get_sdpa_settings()\n/usr/local/lib/python3.13/dist-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\n"
+  },
+  "gpu_bench": {
+   "rc": 0,
+   "sec": 164.5,
+   "tail": "[00:02<00:06, 24.64it/s]\nLoading weights:  27%|\u2588\u2588\u258b       | 58/211 [00:03<00:05, 27.82it/s]\nLoading weights:  29%|\u2588\u2588\u2589       | 62/211 [00:03<00:05, 27.28it/s]\nLoading weights:  31%|\u2588\u2588\u2588\u258f      | 66/211 [00:03<00:05, 26.11it/s]\nLoading weights:  34%|\u2588\u2588\u2588\u258e      | 71/211 [00:03<00:05, 27.41it/s]\nLoading weights:  36%|\u2588\u2588\u2588\u258c      | 76/211 [00:03<00:04, 27.76it/s]\nLoading weights:  37%|\u2588\u2588\u2588\u258b      | 79/211 [00:04<00:05, 24.53it/s]\nLoading weights:  39%|\u2588\u2588\u2588\u2589      | 82/211 [00:04<00:05, 23.02it/s]\nLoading weights:  40%|\u2588\u2588\u2588\u2588      | 85/211 [00:04<00:06, 20.40it/s]\nLoading weights:  42%|\u2588\u2588\u2588\u2588\u258f     | 88/211 [00:04<00:05, 21.16it/s]\nLoading weights:  43%|\u2588\u2588\u2588\u2588\u258e     | 91/211 [00:04<00:06, 19.45it/s]\nLoading weights:  45%|\u2588\u2588\u2588\u2588\u258d     | 94/211 [00:04<00:05, 19.76it/s]\nLoading weights:  50%|\u2588\u2588\u2588\u2588\u2589     | 105/211 [00:04<00:02, 36.03it/s]\nLoading weights:  52%|\u2588\u2588\u2588\u2588\u2588\u258f    | 110/211 [00:05<00:02, 34.35it/s]\nLoading weights:  54%|\u2588\u2588\u2588\u2588\u2588\u258d    | 114/211 [00:05<00:04, 24.04it/s]\nLoading weights:  56%|\u2588\u2588\u2588\u2588\u2588\u258c    | 118/211 [00:05<00:03, 24.40it/s]\nLoading weights:  58%|\u2588\u2588\u2588\u2588\u2588\u258a    | 122/211 [00:05<00:03, 25.46it/s]\nLoading weights:  59%|\u2588\u2588\u2588\u2588\u2588\u2589    | 125/211 [00:05<00:03, 24.87it/s]\nLoading weights:  61%|\u2588\u2588\u2588\u2588\u2588\u2588    | 128/211 [00:06<00:03, 23.36it/s]\nLoading weights:  62%|\u2588\u2588\u2588\u2588\u2588\u2588\u258f   | 131/211 [00:06<00:03, 21.43it/s]\nLoading weights:  64%|\u2588\u2588\u2588\u2588\u2588\u2588\u258e   | 134/211 [00:06<00:03, 21.20it/s]\nLoading weights:  65%|\u2588\u2588\u2588\u2588\u2588\u2588\u258d   | 137/211 [00:06<00:03, 20.58it/s]\nLoading weights:  68%|\u2588\u2588\u2588\u2588\u2588\u2588\u258a   | 143/211 [00:06<00:02, 23.90it/s]\nLoading weights:  73%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e  | 154/211 [00:06<00:01, 37.44it/s]\nLoading weights:  75%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d  | 158/211 [00:07<00:01, 33.95it/s]\nLoading weights:  77%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b  | 163/211 [00:07<00:01, 26.07it/s]\nLoading weights:  79%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a  | 166/211 [00:07<00:01, 23.72it/s]\nLoading weights:  80%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588  | 169/211 [00:07<00:01, 23.49it/s]\nLoading weights:  85%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d | 179/211 [00:07<00:00, 33.88it/s]\nLoading weights:  87%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b | 183/211 [00:07<00:00, 32.41it/s]\nLoading weights:  89%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a | 187/211 [00:08<00:00, 29.85it/s]\nLoading weights:  91%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 | 191/211 [00:08<00:00, 27.31it/s]\nLoading weights:  92%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f| 194/211 [00:08<00:00, 25.84it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 211/211 [00:08<00:00, 25.01it/s]\n/tmp/sam3/sam3/model_builder.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  import pkg_resources\n/tmp/sam3/sam3/model/model_misc.py:71: UserWarning: Flash Attention is disabled as it requires a GPU with Ampere (8.0) CUDA capability.\n  OLD_GPU, USE_FLASH_ATTN, MATH_KERNEL_ON = get_sdpa_settings()\n/usr/local/lib/python3.13/dist-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\n"
+  },
+  "index_dinov3_large70": {
+   "rc": 0,
+   "sec": 813.5,
+   "tail": "SAM3 load: {'ckpt': 'sam3.pt', 'detector_keys': 1156, 'missing': 0, 'unexpected': 22, 'missing_sample': [], 'unexpected_sample': ['backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.weight', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.bias', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.weight', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.bias', 'backbone.vision_backbone.sam2_convs.0.conv_1x1.weight']}\n{'model': '/tmp/w/dinov3-vits16-pretrain-lvd1689m', 'fps': 1.0, 'regions': 'grid+sam3', 'dedup': 0, 'frames': 276, 'vectors': 4968, 'index_sec': 791.5, 'frames_per_sec': 0.35, 'sam_boxes': 1104, 'sam_boxes_per_frame': 4.0, 'sam_load': {'ckpt': 'sam3.pt', 'detector_keys': 1156, 'missing': 0, 'unexpected': 22, 'missing_sample': [], 'unexpected_sample': ['backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.weight', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.bias', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.weight', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.bias', 'backbone.vision_backbone.sam2_convs.0.conv_1x1.weight']}, 'sam_prompts': ['person', 'animal', 'dog', 'horse', 'cow', 'bird', 'car', 'bicycle', 'motorcycle', 'boat', 'ball', 'vehicle']}\n\nLoading weights:   0%|          | 0/211 [00:00<?, ?it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 211/211 [00:00<00:00, 2751.59it/s]\n/tmp/sam3/sam3/model_builder.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  import pkg_resources\n/tmp/sam3/sam3/model/model_misc.py:71: UserWarning: Flash Attention is disabled as it requires a GPU with Ampere (8.0) CUDA capability.\n  OLD_GPU, USE_FLASH_ATTN, MATH_KERNEL_ON = get_sdpa_settings()\n/usr/local/lib/python3.13/dist-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\n"
+  },
+  "index_eg2_large70": {
+   "rc": 1,
+   "sec": 1379.7,
+   "tail": "/it]\nLoading weights:  99%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 1360/1376 [21:58<00:16,  1.01s/it]\nLoading weights:  99%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 1361/1376 [21:58<00:14,  1.01it/s]\nLoading weights:  99%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 1363/1376 [22:09<00:22,  1.73s/it]\nLoading weights:  99%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 1364/1376 [22:13<00:23,  1.96s/it]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 1374/1376 [22:15<00:01,  1.18it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 1375/1376 [22:15<00:00,  1.26it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1376/1376 [22:40<00:00,  3.32s/it]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1376/1376 [22:40<00:00,  1.01it/s]\nTraceback (most recent call last):\n  File \"/tmp/de12/scripts/build_index.py\", line 6, in <module>\n    build_index(a.videos, a.out, a.model, a.fps, a.regions, dedup=a.dedup)\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/de12/vsearch/core.py\", line 106, in build_index\n    os.makedirs(out_dir, exist_ok=True); emb = Embedder(model)\n                                               ~~~~~~~~^^^^^^^\n  File \"/tmp/de12/vsearch/core.py\", line 79, in __init__\n    self.kind = \"st\"; self.m = SentenceTransformer(name, device=self.dev, model_kwargs={\"dtype\": torch.float32}); return\n                               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/eglib/sentence_transformers/util/decorators.py\", line 46, in wrapper\n    return func(*args, **kwargs)\n  File \"/tmp/eglib/sentence_transformers/sentence_transformer/model.py\", line 193, in __init__\n    super().__init__(\n    ~~~~~~~~~~~~~~~~^\n        model_name_or_path=model_name_or_path,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<13 lines>...\n        default_prompt_name=default_prompt_name,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/tmp/eglib/sentence_transformers/base/model.py\", line 256, in __init__\n    modules, self.module_kwargs = self._load_modules(\n                                  ~~~~~~~~~~~~~~~~~~^\n        model_name_or_path,\n        ^^^^^^^^^^^^^^^^^^^\n    ...<7 lines>...\n        config_kwargs=config_kwargs,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/tmp/eglib/sentence_transformers/base/model.py\", line 1211, in _load_modules\n    return self._load_config_modules(model_name_or_path, **load_kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/eglib/sentence_transformers/base/model.py\", line 1431, in _load_config_modules\n    module = module_class.load(\n        model_name_or_path,\n    ...<12 lines>...\n        **extra_load_kwargs,\n    )\n  File \"/tmp/eglib/sentence_transformers/base/modules/module.py\", line 173, in load\n    return cls(**config)\n  File \"/tmp/eglib/sentence_transformers/util/decorators.py\", line 46, in wrapper\n    return func(*args, **kwargs)\n  File \"/tmp/eglib/sentence_transformers/sentence_transformer/modules/pooling.py\", line 65, in wrapper\n    return func(*args, **kwargs)\nTypeError: Pooling.__init__() missing 1 required positional argument: 'embedding_dimension'\n"
+  },
+  "index_dinov3_small10": {
+   "rc": 0,
+   "sec": 223.0,
+   "tail": "SAM3 load: {'ckpt': 'sam3.pt', 'detector_keys': 1156, 'missing': 0, 'unexpected': 22, 'missing_sample': [], 'unexpected_sample': ['backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.weight', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.bias', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.weight', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.bias', 'backbone.vision_backbone.sam2_convs.0.conv_1x1.weight']}\n{'model': '/tmp/w/dinov3-vits16-pretrain-lvd1689m', 'fps': 1.0, 'regions': 'grid+sam3', 'dedup': 0, 'frames': 73, 'vectors': 1325, 'index_sec': 201.2, 'frames_per_sec': 0.36, 'sam_boxes': 303, 'sam_boxes_per_frame': 4.15, 'sam_load': {'ckpt': 'sam3.pt', 'detector_keys': 1156, 'missing': 0, 'unexpected': 22, 'missing_sample': [], 'unexpected_sample': ['backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.weight', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.bias', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.weight', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.bias', 'backbone.vision_backbone.sam2_convs.0.conv_1x1.weight']}, 'sam_prompts': ['person', 'animal', 'dog', 'horse', 'cow', 'bird', 'car', 'bicycle', 'motorcycle', 'boat', 'ball', 'vehicle']}\n\nLoading weights:   0%|          | 0/211 [00:00<?, ?it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 211/211 [00:00<00:00, 2741.44it/s]\n/tmp/sam3/sam3/model_builder.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  import pkg_resources\n/tmp/sam3/sam3/model/model_misc.py:71: UserWarning: Flash Attention is disabled as it requires a GPU with Ampere (8.0) CUDA capability.\n  OLD_GPU, USE_FLASH_ATTN, MATH_KERNEL_ON = get_sdpa_settings()\n/usr/local/lib/python3.13/dist-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\n"
+  },
+  "index_eg2_small10": {
+   "rc": 1,
+   "sec": 16.0,
+   "tail": "\nLoading weights:   0%|          | 0/1376 [00:00<?, ?it/s]\nLoading weights:  14%|\u2588\u258e        | 189/1376 [00:00<00:00, 1722.37it/s]\nLoading weights:  27%|\u2588\u2588\u258b       | 375/1376 [00:00<00:00, 1732.05it/s]\nLoading weights:  41%|\u2588\u2588\u2588\u2588      | 561/1376 [00:00<00:00, 1734.87it/s]\nLoading weights:  54%|\u2588\u2588\u2588\u2588\u2588\u258d    | 741/1376 [00:00<00:00, 1745.73it/s]\nLoading weights:  67%|\u2588\u2588\u2588\u2588\u2588\u2588\u258b   | 916/1376 [00:00<00:00, 882.58it/s] \nLoading weights:  92%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f| 1271/1376 [00:00<00:00, 1413.48it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1376/1376 [00:01<00:00, 1328.91it/s]\nTraceback (most recent call last):\n  File \"/tmp/de12/scripts/build_index.py\", line 6, in <module>\n    build_index(a.videos, a.out, a.model, a.fps, a.regions, dedup=a.dedup)\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/de12/vsearch/core.py\", line 106, in build_index\n    os.makedirs(out_dir, exist_ok=True); emb = Embedder(model)\n                                               ~~~~~~~~^^^^^^^\n  File \"/tmp/de12/vsearch/core.py\", line 79, in __init__\n    self.kind = \"st\"; self.m = SentenceTransformer(name, device=self.dev, model_kwargs={\"dtype\": torch.float32}); return\n                               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/eglib/sentence_transformers/util/decorators.py\", line 46, in wrapper\n    return func(*args, **kwargs)\n  File \"/tmp/eglib/sentence_transformers/sentence_transformer/model.py\", line 193, in __init__\n    super().__init__(\n    ~~~~~~~~~~~~~~~~^\n        model_name_or_path=model_name_or_path,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<13 lines>...\n        default_prompt_name=default_prompt_name,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/tmp/eglib/sentence_transformers/base/model.py\", line 256, in __init__\n    modules, self.module_kwargs = self._load_modules(\n                                  ~~~~~~~~~~~~~~~~~~^\n        model_name_or_path,\n        ^^^^^^^^^^^^^^^^^^^\n    ...<7 lines>...\n        config_kwargs=config_kwargs,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/tmp/eglib/sentence_transformers/base/model.py\", line 1211, in _load_modules\n    return self._load_config_modules(model_name_or_path, **load_kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/eglib/sentence_transformers/base/model.py\", line 1431, in _load_config_modules\n    module = module_class.load(\n        model_name_or_path,\n    ...<12 lines>...\n        **extra_load_kwargs,\n    )\n  File \"/tmp/eglib/sentence_transformers/base/modules/module.py\", line 173, in load\n    return cls(**config)\n  File \"/tmp/eglib/sentence_transformers/util/decorators.py\", line 46, in wrapper\n    return func(*args, **kwargs)\n  File \"/tmp/eglib/sentence_transformers/sentence_transformer/modules/pooling.py\", line 65, in wrapper\n    return func(*args, **kwargs)\nTypeError: Pooling.__init__() missing 1 required positional argument: 'embedding_dimension'\n"
+  },
+  "eval_large70_dinov3_object_hard": {
+   "rc": 0,
+   "sec": 11.6,
+   "tail": "frame {'R@1': 0.552, 'R@5': 0.793, 'R@10': 0.862, 'mAP@10': 0.642, 'top1_peak_in_GT': 0.552, 'ms/query': 24.6, 'n_queries': 58}\nregion {'R@1': 0.586, 'R@5': 0.828, 'R@10': 0.914, 'mAP@10': 0.679, 'top1_peak_in_GT': 0.586, 'ms/query': 25.5, 'n_queries': 58}\nboth {'R@1': 0.586, 'R@5': 0.828, 'R@10': 0.931, 'mAP@10': 0.68, 'top1_peak_in_GT': 0.586, 'ms/query': 25.9, 'n_queries': 58}\nsam {'R@1': 0.276, 'R@5': 0.517, 'R@10': 0.621, 'mAP@10': 0.369, 'top1_peak_in_GT': 0.276, 'ms/query': 24.9, 'n_queries': 58}\nframe+sam {'R@1': 0.448, 'R@5': 0.638, 'R@10': 0.707, 'mAP@10': 0.526, 'top1_peak_in_GT': 0.448, 'ms/query': 25.5, 'n_queries': 58}\nfuse {'R@1': 0.517, 'R@5': 0.672, 'R@10': 0.776, 'mAP@10': 0.582, 'top1_peak_in_GT': 0.517, 'ms/query': 26.8, 'n_queries': 58}\n\nLoading weights:   0%|          | 0/211 [00:00<?, ?it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 211/211 [00:00<00:00, 2778.18it/s]\n"
+  },
+  "eval_large70_dinov3_rerank_sam_top20_object_hard": {
+   "rc": 0,
+   "sec": 64.1,
+   "tail": "both {'R@1': 0.603, 'R@5': 0.793, 'R@10': 0.931, 'mAP@10': 0.684, 'top1_peak_in_GT': 0.603, 'ms/query': 936.6, 'n_queries': 58}\nrerank_stats {'unique_keyframes': 229, 'boxes_total': 925, 'boxes_per_keyframe': 4.04, 'keyframes_with_boxes': 225}\n\nLoading weights:   0%|          | 0/211 [00:00<?, ?it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 211/211 [00:00<00:00, 2678.35it/s]\n"
+  },
+  "eval_large70_dinov3_object": {
+   "rc": 0,
+   "sec": 11.8,
+   "tail": "frame {'R@1': 0.862, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.907, 'top1_peak_in_GT': 0.862, 'ms/query': 25.4, 'n_queries': 58}\nregion {'R@1': 0.966, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.957, 'top1_peak_in_GT': 0.966, 'ms/query': 26.3, 'n_queries': 58}\nboth {'R@1': 0.966, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.957, 'top1_peak_in_GT': 0.966, 'ms/query': 26.9, 'n_queries': 58}\nsam {'R@1': 0.776, 'R@5': 0.914, 'R@10': 0.914, 'mAP@10': 0.815, 'top1_peak_in_GT': 0.776, 'ms/query': 25.8, 'n_queries': 58}\nframe+sam {'R@1': 0.897, 'R@5': 0.983, 'R@10': 1.0, 'mAP@10': 0.922, 'top1_peak_in_GT': 0.897, 'ms/query': 26.4, 'n_queries': 58}\nfuse {'R@1': 0.948, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.948, 'top1_peak_in_GT': 0.948, 'ms/query': 27.8, 'n_queries': 58}\n\nLoading weights:   0%|          | 0/211 [00:00<?, ?it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 211/211 [00:00<00:00, 2752.68it/s]\n"
+  },
+  "eval_large70_dinov3_rerank_sam_top20_object": {
+   "rc": 0,
+   "sec": 63.7,
+   "tail": "both {'R@1': 0.966, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.957, 'top1_peak_in_GT': 0.966, 'ms/query': 927.0, 'n_queries': 58}\nrerank_stats {'unique_keyframes': 237, 'boxes_total': 983, 'boxes_per_keyframe': 4.15, 'keyframes_with_boxes': 235}\n\nLoading weights:   0%|          | 0/211 [00:00<?, ?it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 211/211 [00:00<00:00, 2811.53it/s]\n"
+  },
+  "eval_small10_dinov3_object_hard": {
+   "rc": 0,
+   "sec": 11.5,
+   "tail": "frame {'R@1': 0.69, 'R@5': 0.948, 'R@10': 1.0, 'mAP@10': 0.793, 'top1_peak_in_GT': 0.672, 'ms/query': 23.7, 'n_queries': 58}\nregion {'R@1': 0.759, 'R@5': 0.966, 'R@10': 0.983, 'mAP@10': 0.835, 'top1_peak_in_GT': 0.759, 'ms/query': 24.4, 'n_queries': 58}\nboth {'R@1': 0.759, 'R@5': 0.966, 'R@10': 1.0, 'mAP@10': 0.838, 'top1_peak_in_GT': 0.759, 'ms/query': 25.7, 'n_queries': 58}\nsam {'R@1': 0.534, 'R@5': 0.759, 'R@10': 0.845, 'mAP@10': 0.603, 'top1_peak_in_GT': 0.517, 'ms/query': 24.3, 'n_queries': 58}\nframe+sam {'R@1': 0.655, 'R@5': 0.879, 'R@10': 1.0, 'mAP@10': 0.731, 'top1_peak_in_GT': 0.621, 'ms/query': 24.5, 'n_queries': 58}\nfuse {'R@1': 0.741, 'R@5': 0.897, 'R@10': 1.0, 'mAP@10': 0.788, 'top1_peak_in_GT': 0.707, 'ms/query': 25.3, 'n_queries': 58}\n\nLoading weights:   0%|          | 0/211 [00:00<?, ?it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 211/211 [00:00<00:00, 2949.45it/s]\n"
+  },
+  "eval_small10_dinov3_rerank_sam_top20_object_hard": {
+   "rc": 0,
+   "sec": 39.6,
+   "tail": "both {'R@1': 0.759, 'R@5': 0.966, 'R@10': 1.0, 'mAP@10': 0.836, 'top1_peak_in_GT': 0.759, 'ms/query': 517.5, 'n_queries': 58}\nrerank_stats {'unique_keyframes': 72, 'boxes_total': 302, 'boxes_per_keyframe': 4.19, 'keyframes_with_boxes': 68}\n\nLoading weights:   0%|          | 0/211 [00:00<?, ?it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 211/211 [00:00<00:00, 2833.96it/s]\n"
+  },
+  "eval_small10_dinov3_object": {
+   "rc": 0,
+   "sec": 11.5,
+   "tail": "frame {'R@1': 0.983, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.971, 'top1_peak_in_GT': 0.983, 'ms/query': 24.9, 'n_queries': 58}\nregion {'R@1': 1.0, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.98, 'top1_peak_in_GT': 1.0, 'ms/query': 25.6, 'n_queries': 58}\nboth {'R@1': 1.0, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.98, 'top1_peak_in_GT': 1.0, 'ms/query': 25.9, 'n_queries': 58}\nsam {'R@1': 0.897, 'R@5': 0.914, 'R@10': 0.914, 'mAP@10': 0.882, 'top1_peak_in_GT': 0.897, 'ms/query': 25.4, 'n_queries': 58}\nframe+sam {'R@1': 0.966, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.96, 'top1_peak_in_GT': 0.966, 'ms/query': 25.7, 'n_queries': 58}\nfuse {'R@1': 0.983, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.971, 'top1_peak_in_GT': 0.983, 'ms/query': 26.6, 'n_queries': 58}\n\nLoading weights:   0%|          | 0/211 [00:00<?, ?it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 211/211 [00:00<00:00, 2754.22it/s]\n"
+  },
+  "eval_small10_dinov3_rerank_sam_top20_object": {
+   "rc": 0,
+   "sec": 39.2,
+   "tail": "both {'R@1': 1.0, 'R@5': 1.0, 'R@10': 1.0, 'mAP@10': 0.98, 'top1_peak_in_GT': 1.0, 'ms/query': 507.4, 'n_queries': 58}\nrerank_stats {'unique_keyframes': 72, 'boxes_total': 303, 'boxes_per_keyframe': 4.21, 'keyframes_with_boxes': 69}\n\nLoading weights:   0%|          | 0/211 [00:00<?, ?it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 211/211 [00:00<00:00, 2809.14it/s]\n"
+  }
+ },
+ "errors": [
+  "index_eg2_large70",
+  "index_eg2_small10",
+  "index meta data/small10_eg2: FileNotFoundError(2, 'No such file or directory')",
+  "index meta data/large70_eg2: FileNotFoundError(2, 'No such file or directory')"
+ ],
+ "weights": {
+  "sam31_ckpt_raw": "/tmp/w/sam31.pt",
+  "sam31_sha256_ok": true,
+  "sam3_ckpt_raw": "/tmp/w/sam3.pt",
+  "sam3_sha256_ok": true,
+  "dinov3": "/tmp/w/dinov3-vits16-pretrain-lvd1689m",
+  "dinov3_b": "/tmp/w/dinov3-vitb16-pretrain-lvd1689m",
+  "clip": null,
+  "dinov2": null,
+  "sam31_ckpt": "/tmp/w/sam31.pt",
+  "sam3_ckpt": "/tmp/w/sam3.pt",
+  "assemble_s": 93.6
+ },
+ "eg2_path": "/tmp/eg2",
+ "sam_sanity_tries": {
+  "fp16": {
+   "load_info": {
+    "ckpt": "sam3.pt",
+    "detector_keys": 1156,
+    "missing": 0,
+    "unexpected": 22,
+    "missing_sample": [],
+    "unexpected_sample": [
+     "backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.weight",
+     "backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.bias",
+     "backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.weight",
+     "backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.bias",
+     "backbone.vision_backbone.sam2_convs.0.conv_1x1.weight"
+    ]
+   },
+   "precision": "fp16",
+   "prompts": [
+    "person",
+    "animal",
+    "dog",
+    "horse",
+    "cow",
+    "bird",
+    "car",
+    "bicycle",
+    "motorcycle",
+    "boat",
+    "ball",
+    "vehicle"
+   ],
+   "threshold": 0.3,
+   "official_truck": {
+    "max_score": 0.865,
+    "n_ge_th": 1
+   },
+   "official_object": {
+    "max_score": 0.075,
+    "n_ge_th": 0
+   },
+   "davis5_boxes": [
+    5,
+    8,
+    6,
+    1,
+    8
+   ],
+   "davis5_s_per_frame": 2.348,
+   "ok": true
+  }
+ },
+ "sam_sanity": {
+  "load_info": {
+   "ckpt": "sam3.pt",
+   "detector_keys": 1156,
+   "missing": 0,
+   "unexpected": 22,
+   "missing_sample": [],
+   "unexpected_sample": [
+    "backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.weight",
+    "backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.bias",
+    "backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.weight",
+    "backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.bias",
+    "backbone.vision_backbone.sam2_convs.0.conv_1x1.weight"
+   ]
+  },
+  "precision": "fp16",
+  "prompts": [
+   "person",
+   "animal",
+   "dog",
+   "horse",
+   "cow",
+   "bird",
+   "car",
+   "bicycle",
+   "motorcycle",
+   "boat",
+   "ball",
+   "vehicle"
+  ],
+  "threshold": 0.3,
+  "official_truck": {
+   "max_score": 0.865,
+   "n_ge_th": 1
+  },
+  "official_object": {
+   "max_score": 0.075,
+   "n_ge_th": 0
+  },
+  "davis5_boxes": [
+   5,
+   8,
+   6,
+   1,
+   8
+  ],
+  "davis5_s_per_frame": 2.348,
+  "ok": true
+ },
+ "gpu_bench": {
+  "gpu": "Tesla T4",
+  "torch": "2.11.0+cu128",
+  "n_frames": 39,
+  "dinov3_vits16": {
+   "img_per_s": 138.4,
+   "peak_vram_gb": 0.25
+  },
+  "sam3_ckpt": "/tmp/w/sam3.pt",
+  "sam3_load_info": {
+   "ckpt": "sam3.pt",
+   "detector_keys": 1156,
+   "missing": 0,
+   "unexpected": 22,
+   "missing_sample": [],
+   "unexpected_sample": [
+    "backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.weight",
+    "backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.bias",
+    "backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.weight",
+    "backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.bias",
+    "backbone.vision_backbone.sam2_convs.0.conv_1x1.weight"
+   ]
+  },
+  "sam3_load_s": 11.5,
+  "sam3_image": {
+   "s_per_frame": 2.633,
+   "boxes_per_frame": 4.36,
+   "peak_vram_gb": 4.73
+  }
+ },
+ "index": {
+  "large70_d3": {
+   "model": "/tmp/w/dinov3-vits16-pretrain-lvd1689m",
+   "fps": 1.0,
+   "regions": "grid+sam3",
+   "dedup": 0,
+   "frames": 276,
+   "vectors": 4968,
+   "index_sec": 791.5,
+   "frames_per_sec": 0.35,
+   "sam_boxes": 1104,
+   "sam_boxes_per_frame": 4.0,
+   "sam_load": {
+    "ckpt": "sam3.pt",
+    "detector_keys": 1156,
+    "missing": 0,
+    "unexpected": 22,
+    "missing_sample": [],
+    "unexpected_sample": [
+     "backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.weight",
+     "backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.bias",
+     "backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.weight",
+     "backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.bias",
+     "backbone.vision_backbone.sam2_convs.0.conv_1x1.weight"
+    ]
+   },
+   "sam_prompts": [
+    "person",
+    "animal",
+    "dog",
+    "horse",
+    "cow",
+    "bird",
+    "car",
+    "bicycle",
+    "motorcycle",
+    "boat",
+    "ball",
+    "vehicle"
+   ]
+  },
+  "small10_d3": {
+   "model": "/tmp/w/dinov3-vits16-pretrain-lvd1689m",
+   "fps": 1.0,
+   "regions": "grid+sam3",
+   "dedup": 0,
+   "frames": 73,
+   "vectors": 1325,
+   "index_sec": 201.2,
+   "frames_per_sec": 0.36,
+   "sam_boxes": 303,
+   "sam_boxes_per_frame": 4.15,
+   "sam_load": {
+    "ckpt": "sam3.pt",
+    "detector_keys": 1156,
+    "missing": 0,
+    "unexpected": 22,
+    "missing_sample": [],
+    "unexpected_sample": [
+     "backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.weight",
+     "backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.bias",
+     "backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.weight",
+     "backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.bias",
+     "backbone.vision_backbone.sam2_convs.0.conv_1x1.weight"
+    ]
+   },
+   "sam_prompts": [
+    "person",
+    "animal",
+    "dog",
+    "horse",
+    "cow",
+    "bird",
+    "car",
+    "bicycle",
+    "motorcycle",
+    "boat",
+    "ball",
+    "vehicle"
+   ]
+  }
+ },
+ "eval": {
+  "large70/dinov3/object_hard": {
+   "frame": {
+    "R@1": 0.552,
+    "R@5": 0.793,
+    "R@10": 0.862,
+    "mAP@10": 0.642,
+    "top1_peak_in_GT": 0.552,
+    "ms/query": 24.6,
+    "n_queries": 58
+   },
+   "region": {
+    "R@1": 0.586,
+    "R@5": 0.828,
+    "R@10": 0.914,
+    "mAP@10": 0.679,
+    "top1_peak_in_GT": 0.586,
+    "ms/query": 25.5,
+    "n_queries": 58
+   },
+   "both": {
+    "R@1": 0.586,
+    "R@5": 0.828,
+    "R@10": 0.931,
+    "mAP@10": 0.68,
+    "top1_peak_in_GT": 0.586,
+    "ms/query": 25.9,
+    "n_queries": 58
+   },
+   "sam": {
+    "R@1": 0.276,
+    "R@5": 0.517,
+    "R@10": 0.621,
+    "mAP@10": 0.369,
+    "top1_peak_in_GT": 0.276,
+    "ms/query": 24.9,
+    "n_queries": 58
+   },
+   "frame+sam": {
+    "R@1": 0.448,
+    "R@5": 0.638,
+    "R@10": 0.707,
+    "mAP@10": 0.526,
+    "top1_peak_in_GT": 0.448,
+    "ms/query": 25.5,
+    "n_queries": 58
+   },
+   "fuse": {
+    "R@1": 0.517,
+    "R@5": 0.672,
+    "R@10": 0.776,
+    "mAP@10": 0.582,
+    "top1_peak_in_GT": 0.517,
+    "ms/query": 26.8,
+    "n_queries": 58
+   }
+  },
+  "large70/dinov3_rerank_sam_top20/object_hard": {
+   "both": {
+    "R@1": 0.603,
+    "R@5": 0.793,
+    "R@10": 0.931,
+    "mAP@10": 0.684,
+    "top1_peak_in_GT": 0.603,
+    "ms/query": 936.6,
+    "n_queries": 58
+   },
+   "rerank_stats": {
+    "unique_keyframes": 229,
+    "boxes_total": 925,
+    "boxes_per_keyframe": 4.04,
+    "keyframes_with_boxes": 225
+   }
+  },
+  "large70/dinov3/object": {
+   "frame": {
+    "R@1": 0.862,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "mAP@10": 0.907,
+    "top1_peak_in_GT": 0.862,
+    "ms/query": 25.4,
+    "n_queries": 58
+   },
+   "region": {
+    "R@1": 0.966,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "mAP@10": 0.957,
+    "top1_peak_in_GT": 0.966,
+    "ms/query": 26.3,
+    "n_queries": 58
+   },
+   "both": {
+    "R@1": 0.966,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "mAP@10": 0.957,
+    "top1_peak_in_GT": 0.966,
+    "ms/query": 26.9,
+    "n_queries": 58
+   },
+   "sam": {
+    "R@1": 0.776,
+    "R@5": 0.914,
+    "R@10": 0.914,
+    "mAP@10": 0.815,
+    "top1_peak_in_GT": 0.776,
+    "ms/query": 25.8,
+    "n_queries": 58
+   },
+   "frame+sam": {
+    "R@1": 0.897,
+    "R@5": 0.983,
+    "R@10": 1.0,
+    "mAP@10": 0.922,
+    "top1_peak_in_GT": 0.897,
+    "ms/query": 26.4,
+    "n_queries": 58
+   },
+   "fuse": {
+    "R@1": 0.948,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "mAP@10": 0.948,
+    "top1_peak_in_GT": 0.948,
+    "ms/query": 27.8,
+    "n_queries": 58
+   }
+  },
+  "large70/dinov3_rerank_sam_top20/object": {
+   "both": {
+    "R@1": 0.966,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "mAP@10": 0.957,
+    "top1_peak_in_GT": 0.966,
+    "ms/query": 927.0,
+    "n_queries": 58
+   },
+   "rerank_stats": {
+    "unique_keyframes": 237,
+    "boxes_total": 983,
+    "boxes_per_keyframe": 4.15,
+    "keyframes_with_boxes": 235
+   }
+  },
+  "small10/dinov3/object_hard": {
+   "frame": {
+    "R@1": 0.69,
+    "R@5": 0.948,
+    "R@10": 1.0,
+    "mAP@10": 0.793,
+    "top1_peak_in_GT": 0.672,
+    "ms/query": 23.7,
+    "n_queries": 58
+   },
+   "region": {
+    "R@1": 0.759,
+    "R@5": 0.966,
+    "R@10": 0.983,
+    "mAP@10": 0.835,
+    "top1_peak_in_GT": 0.759,
+    "ms/query": 24.4,
+    "n_queries": 58
+   },
+   "both": {
+    "R@1": 0.759,
+    "R@5": 0.966,
+    "R@10": 1.0,
+    "mAP@10": 0.838,
+    "top1_peak_in_GT": 0.759,
+    "ms/query": 25.7,
+    "n_queries": 58
+   },
+   "sam": {
+    "R@1": 0.534,
+    "R@5": 0.759,
+    "R@10": 0.845,
+    "mAP@10": 0.603,
+    "top1_peak_in_GT": 0.517,
+    "ms/query": 24.3,
+    "n_queries": 58
+   },
+   "frame+sam": {
+    "R@1": 0.655,
+    "R@5": 0.879,
+    "R@10": 1.0,
+    "mAP@10": 0.731,
+    "top1_peak_in_GT": 0.621,
+    "ms/query": 24.5,
+    "n_queries": 58
+   },
+   "fuse": {
+    "R@1": 0.741,
+    "R@5": 0.897,
+    "R@10": 1.0,
+    "mAP@10": 0.788,
+    "top1_peak_in_GT": 0.707,
+    "ms/query": 25.3,
+    "n_queries": 58
+   }
+  },
+  "small10/dinov3_rerank_sam_top20/object_hard": {
+   "both": {
+    "R@1": 0.759,
+    "R@5": 0.966,
+    "R@10": 1.0,
+    "mAP@10": 0.836,
+    "top1_peak_in_GT": 0.759,
+    "ms/query": 517.5,
+    "n_queries": 58
+   },
+   "rerank_stats": {
+    "unique_keyframes": 72,
+    "boxes_total": 302,
+    "boxes_per_keyframe": 4.19,
+    "keyframes_with_boxes": 68
+   }
+  },
+  "small10/dinov3/object": {
+   "frame": {
+    "R@1": 0.983,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "mAP@10": 0.971,
+    "top1_peak_in_GT": 0.983,
+    "ms/query": 24.9,
+    "n_queries": 58
+   },
+   "region": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "mAP@10": 0.98,
+    "top1_peak_in_GT": 1.0,
+    "ms/query": 25.6,
+    "n_queries": 58
+   },
+   "both": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "mAP@10": 0.98,
+    "top1_peak_in_GT": 1.0,
+    "ms/query": 25.9,
+    "n_queries": 58
+   },
+   "sam": {
+    "R@1": 0.897,
+    "R@5": 0.914,
+    "R@10": 0.914,
+    "mAP@10": 0.882,
+    "top1_peak_in_GT": 0.897,
+    "ms/query": 25.4,
+    "n_queries": 58
+   },
+   "frame+sam": {
+    "R@1": 0.966,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "mAP@10": 0.96,
+    "top1_peak_in_GT": 0.966,
+    "ms/query": 25.7,
+    "n_queries": 58
+   },
+   "fuse": {
+    "R@1": 0.983,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "mAP@10": 0.971,
+    "top1_peak_in_GT": 0.983,
+    "ms/query": 26.6,
+    "n_queries": 58
+   }
+  },
+  "small10/dinov3_rerank_sam_top20/object": {
+   "both": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "mAP@10": 0.98,
+    "top1_peak_in_GT": 1.0,
+    "ms/query": 507.4,
+    "n_queries": 58
+   },
+   "rerank_stats": {
+    "unique_keyframes": 72,
+    "boxes_total": 303,
+    "boxes_per_keyframe": 4.21,
+    "keyframes_with_boxes": 69
+   }
+  }
+ },
+ "skipped": [
+  "large70/eg2/object_hard (no index)",
+  "large70/eg2/object (no index)",
+  "small10/eg2/object_hard (no index)",
+  "small10/eg2/object (no index)"
+ ],
+ "finished": "2026-10-26 17:47:45 UTC"
+}

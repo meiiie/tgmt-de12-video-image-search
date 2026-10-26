@@ -1,0 +1,24 @@
+{
+ "index": {
+  "model": "/workspace/eg2",
+  "fps": 1.0,
+  "regions": "none",
+  "dedup": 0,
+  "frames": 73,
+  "vectors": 73,
+  "index_sec": 162.7,
+  "frames_per_sec": 0.45,
+  "meta": null
+ },
+ "results": {
+  "frame": {
+   "R@1": 0.983,
+   "R@5": 1.0,
+   "R@10": 1.0,
+   "mAP@10": 0.971,
+   "top1_peak_in_GT": 0.983,
+   "ms/query": 1379.3,
+   "n_queries": 58
+  }
+ }
+}
