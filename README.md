@@ -9,8 +9,8 @@ Pipeline: lấy mẫu khung (đều theo fps, tuỳ chọn lọc trùng **aHash*
 |---|---|
 | Pipeline CPU (lấy mẫu, lưới, DINOv3/DINOv2/CLIP, FAISS, gộp đoạn) | Chạy được, đã đo trên DAVIS 2017 (10 và 70 video) |
 | Demo Gradio `app.py` | Chạy thật trên CPU box (24/10/2026) |
-| SAM 3.1 trên CPU | Cài được (đã vá `device="cuda"`), nhưng bị OOM-kill (RSS ≈ 7.2 GB) → **chưa có số** |
-| SAM 3.1 region / re-rank trên GPU | Kernel Kaggle T4 đã chạy xong, **số đo (VRAM, tốc độ, R@1/mAP@10) đang chờ tải về** (API Kaggle trả HTTP 429) → **chưa xác định** |
+| SAM 3 trên CPU | Chạy được trên box (bf16 autocast, bỏ `pin_memory`): khoảng 4 s/ảnh với ảnh mẫu, 8–14 s/frame DAVIS với 12 prompt; ảnh mẫu truck.jpg với prompt "truck" cho score 0.859 (26/10/2026) |
+| SAM 3.1 / SAM 3 trên GPU | Đã có số: v2 và v3 cho 0 box/frame (nguyên nhân là prompt chung "object" + ngưỡng mặc định 0.5 của processor); v4 dùng prompt theo lớp. Xem results/RESULTS.md |
 | OWLv2 region | Có mã, **chưa test** |
 | EmbeddingGemma 2 | Chỉ đánh giá qua DigUp (truy vấn văn bản); **chưa tích hợp** vào pipeline của repo |
 

@@ -2,7 +2,7 @@
 - Generic prompt "object" scores ~0.02-0.08 (verified on box CPU with official truck.jpg: "truck" 0.863, "object" 0.079),
   so we use a concept vocabulary of DAVIS/COCO-like class names (DEFAULT_PROMPTS) instead.
 - Processor built with confidence_threshold=0.0 (its default 0.5 silently drops boxes); we filter with min_score ourselves.
-- Precision: fp32 by default (DE12_SAM_FP16=1 to use fp16 autocast); on CPU the repo needs bf16 autocast.
+- Precision: GPU autocast fp16 (DE12_SAM_DTYPE=bf16 alternative); pure fp32 fails (internal bf16 ops). CPU: bf16 autocast.
 __call__(img) -> list of xyxy boxes; self.last_masks holds the matching bool masks (HxW numpy) for masked crops."""
 import os, contextlib, numpy as np
 from PIL import Image
@@ -35,8 +35,8 @@ class SAM3Regions:
     def _ctx(self):
         import torch
         if self.dev == "cpu": return torch.autocast("cpu", dtype=torch.bfloat16)
-        if os.environ.get("DE12_SAM_FP16", "0") == "1": return torch.autocast("cuda", dtype=torch.float16)
-        return contextlib.nullcontext()
+        dt = os.environ.get("DE12_SAM_DTYPE", "fp16")  # pure fp32 is impossible: repo has internal bf16 ops (dtype mismatch in vitdet fc2, seen in v4)
+        return torch.autocast("cuda", dtype=torch.bfloat16 if dt == "bf16" else torch.float16)
     def raw(self, img, prompt):
         """max score + boxes for one prompt (used by the sanity check)."""
         import torch

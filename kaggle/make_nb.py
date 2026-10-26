@@ -8,9 +8,9 @@ with tarfile.open(fileobj=buf, mode="w:gz") as t:
         t.add(d, filter=lambda x: None if "__pycache__" in x.name else x)
 CODE = base64.b64encode(buf.getvalue()).decode()
 cells = [r'''import os, sys, io, base64, tarfile, json, time, subprocess, traceback, glob
-os.environ.update(HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1', DE12_FP16='1', DE12_SAM_FP16='0')
+os.environ.update(HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1', DE12_FP16='1')
 OUT='/kaggle/working/de12_results.json'; W0='/tmp/de12'; os.makedirs(W0, exist_ok=True); os.chdir(W0)
-R={'started':time.strftime('%Y-%m-%d %H:%M:%S UTC', time.gmtime()), 'precision':'DINOv3 fp16 autocast; SAM 3 fp32', 'stages':{}, 'errors':[]}
+R={'started':time.strftime('%Y-%m-%d %H:%M:%S UTC', time.gmtime()), 'precision':'DINOv3 fp16 autocast; SAM 3 autocast fp16 (bf16 fallback)', 'stages':{}, 'errors':[]}
 def save():
     json.dump(R, open(OUT+'.tmp','w'), indent=1); os.replace(OUT+'.tmp', OUT)
 def run(name, cmd, timeout=3000):
@@ -40,7 +40,7 @@ for p in glob.glob('/kaggle/input/**/eg2files__*', recursive=True):
     EG2='/tmp/eg2'
 R['eg2_path']=EG2
 run('install','pip -q install faiss-cpu pycocotools psutil && git clone -q https://github.com/facebookresearch/sam3.git /tmp/sam3 && pip -q install -e /tmp/sam3 && cd /tmp/sam3 && git rev-parse HEAD', 900)
-run('install_eg2','pip -q install --target /tmp/eglib "transformers>=5.20" "sentence-transformers>=6.2" && python -c "import sys;sys.path.insert(0,\'/tmp/eglib\');import transformers,sentence_transformers as s;print(transformers.__version__,s.__version__)"', 900)
+run('install_eg2','pip -q install --no-deps --target /tmp/eglib "transformers>=5.20" "sentence-transformers>=6.2" "huggingface_hub>=1.0" "tokenizers>=0.22" "safetensors>=0.6" && python -c "import sys;sys.path.insert(0,\'/tmp/eglib\');import transformers,sentence_transformers as s;print(transformers.__version__,s.__version__)"', 900)
 os.environ['SAM3_BPE']='/tmp/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz'
 print({k:(v['rc'],v['tail'][-200:]) for k,v in R['stages'].items() if k.startswith('install')})''',
 r'''run('data','wget -q https://data.vision.ee.ethz.ch/csergi/share/davis/DAVIS-2017-trainval-480p.zip -O /tmp/davis.zip && mkdir -p data && unzip -q /tmp/davis.zip -d data && rm /tmp/davis.zip && python scripts/prepare_davis.py && python scripts/make_hard_queries.py && python scripts/add_distractors.py', 1200)
@@ -51,7 +51,7 @@ SAN=["import json, glob, sys, os, time, torch; sys.path.insert(0, '.')",
  "from PIL import Image",
  "from vsearch.core import sample_frames",
  "from vsearch.sam3_regions import SAM3Regions",
- "sam = SAM3Regions(); out = {'load_info': sam.load_info, 'precision': 'fp32', 'prompts': list(sam.prompts), 'threshold': sam.th}",
+ "sam = SAM3Regions(); out = {'load_info': sam.load_info, 'precision': os.environ.get('DE12_SAM_DTYPE','fp16'), 'prompts': list(sam.prompts), 'threshold': sam.th}",
  "im = Image.open('/tmp/sam3/assets/images/truck.jpg').convert('RGB')",
  "out['official_truck'] = sam.raw(im, 'truck'); out['official_object'] = sam.raw(im, 'object')",
  "fr = [im for v in sorted(glob.glob('data/davis_bench_large/videos/*.mp4'))[:5] for _, im in list(sample_frames(v, 1.0))[:1]]",
@@ -59,9 +59,13 @@ SAN=["import json, glob, sys, os, time, torch; sys.path.insert(0, '.')",
  "out['ok'] = out['official_truck']['n_ge_th'] > 0 and sum(n) > 0",
  "json.dump(out, open('results/sanity.json', 'w'), indent=1); print(out)"]
 open('sanity.py','w').write(chr(10).join(SAN))
-run('sam_sanity','python sanity.py', 900)
-try: R['sam_sanity']=json.load(open('results/sanity.json'))
-except Exception as e: R['sam_sanity']={'ok':False,'error':repr(e)}
+R['sam_sanity_tries']={}
+for DT in ['fp16','bf16']:
+    os.environ['DE12_SAM_DTYPE']=DT; run('sam_sanity_'+DT,'python sanity.py', 900)
+    try: R['sam_sanity']=json.load(open('results/sanity.json')); os.remove('results/sanity.json')
+    except Exception as e: R['sam_sanity']={'ok':False,'error':repr(e)}
+    R['sam_sanity_tries'][DT]=R['sam_sanity']
+    if R['sam_sanity'].get('ok'): break
 SAM_OK=bool(R['sam_sanity'].get('ok')); save(); print(R['sam_sanity'])
 if not SAM_OK: R['errors'].append('SAM sanity failed -> SAM stages skipped (AMG fallback not available for SAM 3 image model in this repo)')
 run('gpu_bench','python scripts/gpu_bench.py', 900)
@@ -96,7 +100,7 @@ print(json.dumps(R['eval'], indent=1)[:4000]); print('errors', R['errors'], 'ski
 for f in os.listdir('/kaggle/working'):
     if f!='de12_results.json': subprocess.run(['rm','-rf','/kaggle/working/'+f])
 print(os.listdir('/kaggle/working'))''']
-nb = {"cells": [{"cell_type": "markdown", "metadata": {}, "source": ["# Đề 12 – Kaggle T4 v4: hybrid DINOv3 + SAM 3 (sam3.pt, fp32, class-vocabulary prompts, masked-crop region vectors) + EmbeddingGemma 2 baseline; 70 + 10 video. Built with DINOv3.\n", "Trọng số offline từ dataset private `holilihu/de7-weights`. Toàn bộ kết quả → 1 file `/kaggle/working/de12_results.json`; dữ liệu làm việc ở /tmp."]}] + \
+nb = {"cells": [{"cell_type": "markdown", "metadata": {}, "source": ["# Đề 12 – Kaggle T4 v5: hybrid DINOv3 + SAM 3 (sam3.pt, fp16/bf16 autocast, class-vocabulary prompts, masked-crop region vectors) + EmbeddingGemma 2 baseline; 70 + 10 video. Built with DINOv3.\n", "Trọng số offline từ dataset private `holilihu/de7-weights`. Toàn bộ kết quả → 1 file `/kaggle/working/de12_results.json`; dữ liệu làm việc ở /tmp."]}] + \
         [{"cell_type": "code", "metadata": {}, "execution_count": None, "outputs": [], "source": [c]} for c in cells],
       "metadata": {"kernelspec": {"name": "python3", "display_name": "Python 3", "language": "python"}}, "nbformat": 4, "nbformat_minor": 5}
 json.dump(nb, open("kaggle/de12_kaggle.ipynb", "w"), indent=1)
