@@ -12,3 +12,6 @@
 - 03:50 v7 prep. ROOT CAUSE of EG2 Pooling error: dataset de12-embeddinggemma2 stores `eg2files__1_Poolingconfig.json` (slash lost, no '@'), so kernel created /tmp/eg2/1_Poolingconfig.json and 1_Pooling/ had no config -> Pooling() without embedding_dimension. Not an ST version issue. Fix: remap 1_Poolingconfig.json->1_Pooling/config.json, 2_Normalizeconfig.json->2_Normalize/config.json.
   Box CPU test with EXACT kernel pins (--no-deps target): sentence-transformers 6.2.0, transformers 5.20.2, huggingface_hub 1.33.0, tokenizers 0.23.2, safetensors 0.8.0 (+ box torch 2.14.1+cpu, torchvision 0.29.1+cpu): load 3.7 s, 4 hard queries -> (4,768) fp32, 9.3 s/img CPU. OK.
   Kernel v7: scripts/build_index_cached.py (per-video npy/json cache in /kaggle/working/eg2_cache, resumable); EG2 indexing own cell (<=5400 s, frame-only large70+small10 first, then grid large70 if time); no SAM rerun; DINOv3 frame+grid rerun for same-run comparison; post-setup budget 100 min.
+- 03:40 v7 pushed (1 kernel running: de14-helmet).
+- 04:24 interrupted; v7 still RUNNING, watcher restarted (no re-push).
+- 04:33 v7 COMPLETE (49 min). EG2 frame 70-video hard R@1 0.948 mAP 0.951 vs DINOv3 0.586/0.680 -> default switched to EG2 (build_index default model/regions, README); DINOv3 selectable.

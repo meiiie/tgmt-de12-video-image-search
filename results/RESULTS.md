@@ -125,3 +125,19 @@ Nguồn: model card https://huggingface.co/google/embeddinggemma-2, blog https:/
 | 10 video hard | **0.983 / 0.971** (1379 ms/truy vấn, CPU) | 0.690 / 0.793 | 0.759 / 0.838 |
 | 10 video plain | **0.983 / 0.971** (2324 ms/truy vấn, CPU) | 0.983 / 0.971 | 1.000 / 0.980 |
 Đã kiểm tra rò rỉ: không thấy (notes/eg2_leakage_audit.md). Bộ 70 video chưa có số: cần kernel v6 (sentence-transformers==6.2.0); v5 hỏng vì `Pooling.__init__() missing 'embedding_dimension'` do bản sentence-transformers mới hơn.
+
+## Kaggle T4 v7 (27/10/2026): EmbeddingGemma 2 vs DINOv3, cùng một lần chạy
+Nguồn: `results/kaggle_v7_de12_results.json`. Kernel v7 chạy 49 phút (03:40–04:30 UTC+7). EG2 dùng fp32, ảnh resize 224, `sentence-transformers` 6.2.0. Lỗi Pooling ở v5/v6 là do dataset làm phẳng `1_Pooling/config.json` thành `1_Poolingconfig.json`, không phải do phiên bản; v7 đã sửa đường dẫn.
+
+| Bộ | Model / chế độ | R@1 | R@5 | R@10 | mAP@10 | ms/truy vấn | frame/s khi index |
+|---|---|---|---|---|---|---|---|
+| 70 video hard | DINOv3 frame+grid (`both`) | 0.586 | 0.828 | 0.931 | 0.680 | 24.5 | 10.0 |
+| 70 video hard | **EG2 frame** | **0.948** | 1.000 | 1.000 | **0.951** | 477 | 2.02 |
+| 70 video hard | EG2 frame+grid (`both`) | 0.810 | 0.948 | 0.966 | 0.842 | 509 | 0.15 |
+| 70 video thường | DINOv3 frame+grid | 0.966 | 1.000 | 1.000 | 0.957 | 25.7 | 10.0 |
+| 70 video thường | EG2 frame | 0.966 | 1.000 | 1.000 | 0.960 | 483 | 2.02 |
+| 70 video thường | EG2 frame+grid | 1.000 | 1.000 | 1.000 | 0.980 | 508 | 0.15 |
+| 10 video hard | DINOv3 frame+grid | 0.759 | 0.966 | 1.000 | 0.838 | 22.9 | 10.1 |
+| 10 video hard | EG2 frame | 0.983 | 1.000 | 1.000 | 0.971 | 485 | 1.96 |
+
+Quyết định: **EG2 chỉ frame là backbone mặc định** (thắng rõ trên 70 video hard). DINOv3 + grid vẫn chọn được (`--model facebook/dinov3-vits16-pretrain-lvd1689m --regions grid`), nhanh hơn khoảng 20 lần mỗi truy vấn. Lưới vùng làm EG2 kém đi trên bộ hard. SAM 3 re-rank vẫn là tuỳ chọn. Kết quả trên GPU khớp kết quả CPU trước đó trên 10 video (0.983/0.971). n=58 truy vấn, nên mỗi truy vấn tương đương 1.7 điểm R@1.

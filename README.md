@@ -1,4 +1,4 @@
-# Đề 12 – Tìm kiếm ảnh / đối tượng trong video (DINOv3 + FAISS, SAM 3.1 re-rank)
+# Đề 12 – Tìm kiếm ảnh / đối tượng trong video (EmbeddingGemma 2 mặc định, DINOv3 + grid tuỳ chọn, FAISS, SAM 3 re-rank)
 
 Đầu vào là **một ảnh truy vấn**, có thể là cả khung cảnh hoặc ảnh crop một đối tượng. Đầu ra là danh sách **(video nguồn, đoạn [start, end], thời điểm đỉnh, điểm)**. Bài toán tương ứng với *Instance Search* (TRECVID INS) / *known-item search* (VBS) ở quy mô nhỏ.
 
@@ -12,7 +12,7 @@ Pipeline: lấy mẫu khung (đều theo fps, tuỳ chọn lọc trùng **aHash*
 | SAM 3 trên CPU | Chạy được trên box (bf16 autocast, bỏ `pin_memory`): khoảng 4 s/ảnh với ảnh mẫu, 8–14 s/frame DAVIS với 12 prompt; ảnh mẫu truck.jpg với prompt "truck" cho score 0.859 (26/10/2026) |
 | SAM 3.1 / SAM 3 trên GPU | Đã có số: v2 và v3 cho 0 box/frame (nguyên nhân là prompt chung "object" + ngưỡng mặc định 0.5 của processor); v4 dùng prompt theo lớp. Xem results/RESULTS.md |
 | OWLv2 region | Có mã, **chưa test** |
-| EmbeddingGemma 2 | Chỉ đánh giá qua DigUp (truy vấn văn bản); **chưa tích hợp** vào pipeline của repo |
+| EmbeddingGemma 2 | **Backbone mặc định** từ 27/10/2026: Kaggle T4 v7, 70 video hard R@1 0.948 / mAP@10 0.951 so với DINOv3 frame+grid 0.586 / 0.680 (xem bảng v7 bên dưới) |
 
 ## Kết quả đo (box CPU 8 lõi dùng chung, 23/10/2026)
 Số gốc: `results/RESULTS.md`, `results/*.json`, `results/eval_log.txt`, `results/eval_large_log.txt`.
@@ -113,7 +113,9 @@ git clone https://github.com/facebookresearch/sam3 && (cd sam3 && git checkout 7
 wget https://data.vision.ee.ethz.ch/csergi/share/davis/DAVIS-2017-trainval-480p.zip && unzip DAVIS-2017-trainval-480p.zip -d data
 python scripts/prepare_davis.py && python scripts/make_hard_queries.py
 
-# 2. Lập chỉ mục (thêm --dedup 4 để lọc trùng aHash, --fps 0.333 để lấy 1 khung/3 s)
+# 2. Lập chỉ mục. Mặc định: EmbeddingGemma 2, chỉ frame (cần sentence-transformers 6.2.0, transformers 5.20.2, torchvision)
+python scripts/build_index.py --videos data/davis_bench/videos --out data/idx_eg2
+#    Tuỳ chọn nhanh hơn ~20x khi truy vấn: DINOv3 + lưới (thêm --dedup 4 để lọc trùng aHash, --fps 0.333 để lấy 1 khung/3 s)
 python scripts/build_index.py --videos data/davis_bench/videos --out data/idx_dinov3-vits16 \
   --model facebook/dinov3-vits16-pretrain-lvd1689m --regions grid
 
@@ -124,10 +126,27 @@ python scripts/query.py --index data/idx_dinov3-vits16 --image q.jpg --mode both
 python scripts/evaluate.py --index data/idx_dinov3-vits16 --queries data/davis_bench/queries_object_hard.json
 
 # 5. Demo Gradio
-python app.py --index data/idx_dinov3-vits16 --videos data/davis_bench/videos           # http://localhost:7860
+python app.py --index data/idx_eg2 --videos data/davis_bench/videos                    # mặc định EG2, http://localhost:7860
+python app.py --index data/idx_dinov3-vits16 --videos data/davis_bench/videos           # DINOv3 (backbone theo index)
 python app.py --index data/idx_dinov3-vits16 --videos data/davis_bench/videos --share   # Colab/Kaggle: link *.gradio.live
 ```
 `--regions` nhận `none | grid | owlv2 | sam3`. Toàn bộ bảng kết quả: `scripts/run_all_evals.sh` (10 video) và `scripts/run_large.sh` (70 video, distractor thêm bằng `scripts/add_distractors.py`).
+
+## Kaggle T4 v7 (27/10/2026): EmbeddingGemma 2 vs DINOv3, cùng một lần chạy
+Nguồn: `results/kaggle_v7_de12_results.json`. Kernel v7 chạy 49 phút (03:40–04:30 UTC+7). EG2 dùng fp32, ảnh resize 224, `sentence-transformers` 6.2.0. Lỗi Pooling ở v5/v6 là do dataset làm phẳng `1_Pooling/config.json` thành `1_Poolingconfig.json`, không phải do phiên bản; v7 đã sửa đường dẫn.
+
+| Bộ | Model / chế độ | R@1 | R@5 | R@10 | mAP@10 | ms/truy vấn | frame/s khi index |
+|---|---|---|---|---|---|---|---|
+| 70 video hard | DINOv3 frame+grid (`both`) | 0.586 | 0.828 | 0.931 | 0.680 | 24.5 | 10.0 |
+| 70 video hard | **EG2 frame** | **0.948** | 1.000 | 1.000 | **0.951** | 477 | 2.02 |
+| 70 video hard | EG2 frame+grid (`both`) | 0.810 | 0.948 | 0.966 | 0.842 | 509 | 0.15 |
+| 70 video thường | DINOv3 frame+grid | 0.966 | 1.000 | 1.000 | 0.957 | 25.7 | 10.0 |
+| 70 video thường | EG2 frame | 0.966 | 1.000 | 1.000 | 0.960 | 483 | 2.02 |
+| 70 video thường | EG2 frame+grid | 1.000 | 1.000 | 1.000 | 0.980 | 508 | 0.15 |
+| 10 video hard | DINOv3 frame+grid | 0.759 | 0.966 | 1.000 | 0.838 | 22.9 | 10.1 |
+| 10 video hard | EG2 frame | 0.983 | 1.000 | 1.000 | 0.971 | 485 | 1.96 |
+
+Quyết định: **EG2 chỉ frame là backbone mặc định** (thắng rõ trên 70 video hard). DINOv3 + grid vẫn chọn được (`--model facebook/dinov3-vits16-pretrain-lvd1689m --regions grid`), nhanh hơn khoảng 20 lần mỗi truy vấn. Lưới vùng làm EG2 kém đi trên bộ hard. SAM 3 re-rank vẫn là tuỳ chọn. Kết quả trên GPU khớp kết quả CPU trước đó trên 10 video (0.983/0.971). n=58 truy vấn, nên mỗi truy vấn tương đương 1.7 điểm R@1.
 
 ## Kaggle / Colab GPU
 - Colab/Kaggle: `notebooks/de12_colab.ipynb`, đặt `HF_TOKEN` qua Secrets.
