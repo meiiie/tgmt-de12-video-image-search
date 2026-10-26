@@ -20,9 +20,14 @@ class SAM3Regions:
         model = model.to(device).eval()
         self.proc = Sam3Processor(model); self.prompts, self.k, self.th = prompts, topk, min_score
     def __call__(self, img: Image.Image):
+        import torch, os, contextlib
+        fp16 = torch.cuda.is_available() and os.environ.get("DE12_FP16", "1") == "1"
+        with (torch.autocast("cuda", dtype=torch.float16) if fp16 else contextlib.nullcontext()), torch.inference_mode():
+            return self._call(img)
+    def _call(self, img):
         state = self.proc.set_image(img); res = []
         for p in self.prompts:
             out = self.proc.set_text_prompt(state=state, prompt=p)
-            for b, s in zip(out["boxes"].tolist(), out["scores"].tolist()):
+            for b, s in zip(out["boxes"].float().tolist(), out["scores"].float().tolist()):
                 if s >= self.th: res.append((s, tuple(int(v) for v in b)))  # xyxy pixels (verify in repo)
         return [b for _, b in sorted(res, reverse=True)[: self.k]]

@@ -86,6 +86,7 @@ class Embedder:
         for i in range(0, len(images), bs):
             x = self.p(images=images[i:i+bs], return_tensors="pt"); x = {k: v.to(self.dev) for k, v in x.items()}
             if self.kind == "dino":
+              with torch.autocast("cuda", dtype=torch.float16, enabled=(self.dev == "cuda" and os.environ.get("DE12_FP16", "1") == "1")):
                 h = self.m(pixel_values=x["pixel_values"]).last_hidden_state
                 nreg = getattr(self.m.config, "num_register_tokens", 0) or 0  # DINOv3 has 4 register tokens
                 f = torch.cat([h[:, 0], h[:, 1 + nreg:].mean(1)], -1)  # CLS + mean patch
