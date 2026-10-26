@@ -28,55 +28,48 @@ sys.path.insert(0, W0); os.makedirs('results', exist_ok=True)
 from vsearch.weights import discover
 t=time.time(); Wt = discover('/kaggle/input', '/tmp/w'); Wt['assemble_s']=round(time.time()-t,1)
 R['weights']={k:v for k,v in Wt.items() if k!='layout'}
-ok = Wt.get('dinov3') and Wt.get('sam3_ckpt') and Wt.get('sam3_sha256_ok', False)
+ok = Wt.get('dinov3')  # v7: SAM not rerun (numbers in v5)
 if not ok: R['errors'].append('weights missing / sha mismatch'); save(); raise SystemExit('stop')
 os.environ['DINOV3_PATH']=Wt['dinov3']; os.environ['SAM3_CKPT']=Wt.get('sam3_ckpt') or ''; os.environ['SAM3_STRICT']='1'
 run('nvidia_smi','nvidia-smi --query-gpu=name,memory.total --format=csv'); print(R['weights'])'''.replace('@@CODE@@', CODE),
-r'''# EG2 weights: flat 'eg2files__a@b' -> /tmp/eg2/a/b
-EG2=None
+r'''# EG2 weights: flat 'eg2files__a@b' -> /tmp/eg2/a/b. v7 FIX: dataset flattened '1_Pooling/config.json' as
+# '1_Poolingconfig.json' (no '@') -> Pooling got no config -> "missing embedding_dimension" in v5/v6.
+EG2=None; FIX={'1_Poolingconfig.json':'1_Pooling/config.json','2_Normalizeconfig.json':'2_Normalize/config.json'}
 for p in glob.glob('/kaggle/input/**/eg2files__*', recursive=True):
-    rel=os.path.basename(p).split('__',1)[1].replace('@','/'); d=os.path.join('/tmp/eg2',os.path.dirname(rel)); os.makedirs(d,exist_ok=True)
+    rel=os.path.basename(p).split('__',1)[1].replace('@','/'); rel=FIX.get(rel,rel); d=os.path.join('/tmp/eg2',os.path.dirname(rel)); os.makedirs(d,exist_ok=True)
     if not os.path.exists('/tmp/eg2/'+rel): os.symlink(p,'/tmp/eg2/'+rel)
     EG2='/tmp/eg2'
-R['eg2_path']=EG2
-run('install','pip -q install faiss-cpu pycocotools psutil && git clone -q https://github.com/facebookresearch/sam3.git /tmp/sam3 && pip -q install -e /tmp/sam3 && cd /tmp/sam3 && git rev-parse HEAD', 900)
-run('install_eg2','pip -q install --no-deps --target /tmp/eglib "transformers==5.20.2" "sentence-transformers==6.2.0" "huggingface_hub==1.33.0" "tokenizers==0.23.2" "safetensors==0.8.0" && python -c "import sys;sys.path.insert(0,\'/tmp/eglib\');import transformers,sentence_transformers as s;print(transformers.__version__,s.__version__)"', 900)
-os.environ['SAM3_BPE']='/tmp/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz'
-print({k:(v['rc'],v['tail'][-200:]) for k,v in R['stages'].items() if k.startswith('install')})''',
+R['eg2_path']=EG2; R['eg2_files']=sorted(os.path.relpath(x,'/tmp/eg2') for x in glob.glob('/tmp/eg2/**',recursive=True) if os.path.isfile(x)) if EG2 else []
+run('install','pip -q install faiss-cpu pycocotools psutil', 600)
+run('install_eg2','pip -q install --no-deps --target /tmp/eglib "transformers==5.20.2" "sentence-transformers==6.2.0" "huggingface_hub==1.33.0" "tokenizers==0.23.2" "safetensors==0.8.0" && python -c "import sys;sys.path.insert(0,\'/tmp/eglib\');import torch,torchvision,transformers,sentence_transformers as s;print(torch.__version__,torchvision.__version__,transformers.__version__,s.__version__)"', 900)
+EGENV='PYTHONPATH=/tmp/eglib TRANSFORMERS_VERBOSITY=error'
+run('eg2_smoke', EGENV+' python -c "import sys;sys.path.insert(0,\'.\');from vsearch.core import Embedder;from PIL import Image;e=Embedder(\'/tmp/eg2\');v=e([Image.new(\'RGB\',(224,224),(120,30,30))]);print(v.shape,float((v*v).sum()))"', 900)
+print({k:(v['rc'],v['tail'][-300:]) for k,v in R['stages'].items()})''',
 r'''run('data','wget -q https://data.vision.ee.ethz.ch/csergi/share/davis/DAVIS-2017-trainval-480p.zip -O /tmp/davis.zip && mkdir -p data && unzip -q /tmp/davis.zip -d data && rm /tmp/davis.zip && python scripts/prepare_davis.py && python scripts/make_hard_queries.py && python scripts/add_distractors.py', 1200)
 print(R['stages']['data']['rc'])''',
-r'''T0=time.time(); BUDGET=100*60
+r'''T0=time.time(); BUDGET=100*60  # all post-setup work; whole kernel < 2h
 def left(): return BUDGET-(time.time()-T0)
-SAN=["import json, glob, sys, os, time, torch; sys.path.insert(0, '.')",
- "from PIL import Image",
- "from vsearch.core import sample_frames",
- "from vsearch.sam3_regions import SAM3Regions",
- "sam = SAM3Regions(); out = {'load_info': sam.load_info, 'precision': os.environ.get('DE12_SAM_DTYPE','fp16'), 'prompts': list(sam.prompts), 'threshold': sam.th}",
- "im = Image.open('/tmp/sam3/assets/images/truck.jpg').convert('RGB')",
- "out['official_truck'] = sam.raw(im, 'truck'); out['official_object'] = sam.raw(im, 'object')",
- "fr = [im for v in sorted(glob.glob('data/davis_bench_large/videos/*.mp4'))[:5] for _, im in list(sample_frames(v, 1.0))[:1]]",
- "t = time.time(); n = [len(sam(f)) for f in fr]; out['davis5_boxes'] = n; out['davis5_s_per_frame'] = round((time.time()-t)/len(fr), 3)",
- "out['ok'] = out['official_truck']['n_ge_th'] > 0 and sum(n) > 0",
- "json.dump(out, open('results/sanity.json', 'w'), indent=1); print(out)"]
-open('sanity.py','w').write(chr(10).join(SAN))
-SAM_OK=False; R['note']='v6: EG2-only run (SAM results are in v5); DINOv3 grid rerun for same-run comparison'
-save(); print(R.get('gpu_bench'))''',
-r'''R['index']={}; R['eval']={}; R['skipped']=[]
+R['note']='v7: EG2 (fixed Pooling config path) vs DINOv3 frame+grid; SAM not rerun (v5)'; R['index']={}; R['eval']={}; R['skipped']=[]
 SETS={'large70':'data/davis_bench_large','small10':'data/davis_bench'}; D=os.environ['DINOV3_PATH']
-EGENV='PYTHONPATH=/tmp/eglib TRANSFORMERS_VERBOSITY=error'
-for sn,B in SETS.items():
-    reg='grid+sam3' if SAM_OK else 'grid'
-    run(f'index_dinov3_{sn}',f'python scripts/build_index.py --videos {B}/videos --out data/{sn}_d3 --model {D} --regions {reg}', 2400)
-    if EG2: run(f'index_eg2_{sn}',f'{EGENV} python scripts/build_index.py --videos {B}/videos --out data/{sn}_eg2 --model {EG2} --regions grid', 1500)
-for d in glob.glob('data/*_d3')+glob.glob('data/*_eg2'):
+for sn,B in SETS.items(): run(f'index_dinov3_{sn}',f'python scripts/build_index.py --videos {B}/videos --out data/{sn}_d3 --model {D} --regions grid', 900)
+save()''',
+r'''# EG2 indexing, own cell, <=5400 s total, per-video cache in /kaggle/working/eg2_cache (survives timeout; resumable)
+C='/kaggle/working/eg2_cache'; T1=time.time(); EG_LIMIT=5400
+def eg_left(): return min(EG_LIMIT-(time.time()-T1), left()-900)  # keep ~15 min for evals
+for sn,reg in [('large70','none'),('small10','none'),('large70','grid')]:
+    if not EG2 or R['stages'].get('eg2_smoke',{}).get('rc')!=0: R['skipped'].append('eg2 (no weights / smoke failed)'); break
+    if eg_left()<300: R['skipped'].append(f'index_eg2_{sn}_{reg} (time)'); continue
+    run(f'index_eg2_{sn}_{reg}', f'{EGENV} python scripts/build_index_cached.py --videos {SETS[sn]}/videos --out data/{sn}_eg2_{reg} --model {EG2} --regions {reg} --cache {C}/{sn}', int(eg_left()))
+    R['eg2_cached_videos_'+sn]=len(glob.glob(f'{C}/{sn}/*.json')); save()
+for d in sorted(glob.glob('data/*_d3')+glob.glob('data/*_eg2_*')):
     try: m=json.load(open(d+'/meta.json')); m.pop('meta',None); R['index'][os.path.basename(d)]=m
     except Exception as e: R['errors'].append(f'index meta {d}: {e!r}')
-save(); print(R['index'])''',
+save(); print(R['index'], R['skipped'])''',
 r'''for sn,B in SETS.items():
-  for Q in ['object_hard','object']:
-    jobs=[('dinov3', f'--index data/{sn}_d3 --modes '+('frame,region,both,sam,frame+sam,fuse' if SAM_OK else 'frame,region,both'), '')]
-    if SAM_OK: jobs.append(('dinov3_rerank_sam_top20', f'--index data/{sn}_d3 --modes both --rerank samidx --videos {B}/videos', ''))
-    if EG2: jobs.append(('eg2', f'--index data/{sn}_eg2 --modes frame,region,both', EGENV))
+  for Q in (['object_hard','object'] if sn=='large70' else ['object_hard']):
+    jobs=[('dinov3', f'--index data/{sn}_d3 --modes frame,region,both', ''),
+          ('eg2_frame', f'--index data/{sn}_eg2_none --modes frame', EGENV),
+          ('eg2_grid', f'--index data/{sn}_eg2_grid --modes frame,region,both', EGENV)]
     for tag,cmd,env in jobs:
         if not os.path.exists(cmd.split()[1]+'/meta.json'): R['skipped'].append(f'{sn}/{tag}/{Q} (no index)'); continue
         if left()<120: R['skipped'].append(f'{sn}/{tag}/{Q} (time)'); continue
@@ -89,7 +82,7 @@ print(json.dumps(R['eval'], indent=1)[:4000]); print('errors', R['errors'], 'ski
 for f in os.listdir('/kaggle/working'):
     if f!='de12_results.json': subprocess.run(['rm','-rf','/kaggle/working/'+f])
 print(os.listdir('/kaggle/working'))''']
-nb = {"cells": [{"cell_type": "markdown", "metadata": {}, "source": ["# Đề 12 – Kaggle T4 v6 (EG2 vs DINOv3, 70+10 video; SAM in v5): hybrid DINOv3 + SAM 3 (sam3.pt, fp16/bf16 autocast, class-vocabulary prompts, masked-crop region vectors) + EmbeddingGemma 2 baseline; 70 + 10 video. Built with DINOv3.\n", "Trọng số offline từ dataset private `holilihu/de7-weights`. Toàn bộ kết quả → 1 file `/kaggle/working/de12_results.json`; dữ liệu làm việc ở /tmp."]}] + \
+nb = {"cells": [{"cell_type": "markdown", "metadata": {}, "source": ["# Đề 12 – Kaggle T4 v7 (EG2 vs DINOv3, 70+10 video; EG2 Pooling-config fix; SAM in v5): hybrid DINOv3 + SAM 3 (sam3.pt, fp16/bf16 autocast, class-vocabulary prompts, masked-crop region vectors) + EmbeddingGemma 2 baseline; 70 + 10 video. Built with DINOv3.\n", "Trọng số offline từ dataset private `holilihu/de7-weights`. Toàn bộ kết quả → 1 file `/kaggle/working/de12_results.json`; dữ liệu làm việc ở /tmp."]}] + \
         [{"cell_type": "code", "metadata": {}, "execution_count": None, "outputs": [], "source": [c]} for c in cells],
       "metadata": {"kernelspec": {"name": "python3", "display_name": "Python 3", "language": "python"}}, "nbformat": 4, "nbformat_minor": 5}
 json.dump(nb, open("kaggle/de12_kaggle.ipynb", "w"), indent=1)
