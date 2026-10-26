@@ -66,3 +66,21 @@ Distractor licenses: results/licenses_distractors.md. SAM 3 region / re-rank tr�
 
 ## Built with DINOv3
 Dự án này dùng DINOv3 (`facebook/dinov3-vits16-pretrain-lvd1689m`) của Meta, phát hành theo **DINOv3 License** (https://ai.meta.com/resources/models-and-libraries/dinov3-license/), không phải giấy phép mã nguồn mở thông thường: được dùng/sửa/phân phối (kể cả thương mại) nhưng khi phân phối trọng số hoặc sản phẩm phái sinh phải kèm bản license và ghi rõ "Built with DINOv3"; công bố kết quả phải ghi nhận việc dùng DINOv3; tuân thủ điều khoản kiểm soát thương mại. Repo này không phân phối trọng số DINOv3 (tải từ Hugging Face sau khi được Meta cấp quyền). Paper: https://arxiv.org/abs/2508.10104
+
+## Kaggle GPU v2 (T4, fp16 autocast) — 26/10/2026, kernel v2 holilihu/tgmt-de12-video-image-search
+Nguồn: `results/kaggle_v2_de12_results.json` (1 file, 0 lỗi stage). Benchmark 70 video (276 frame @1 fps), 58 truy vấn/bộ. torch 2.11.0+cu128.
+
+| Bộ truy vấn | Cách | R@1 | mAP@10 | ms/truy vấn |
+|---|---|---|---|---|
+| hard | DINOv3 frame | 0.552 | 0.642 | 27.3 |
+| hard | DINOv3 region grid | 0.586 | 0.679 | 28.3 |
+| hard | DINOv3 frame+grid | 0.586 | 0.680 | 28.9 |
+| hard | DINOv3 region SAM 3.1 | 0.000 | 0.000 | 27.0 |
+| hard | frame+grid + SAM 3.1 re-rank top-20 | 0.586 | 0.680 | 24653 |
+| plain | DINOv3 frame | 0.862 | 0.907 | 28.3 |
+| plain | DINOv3 region grid / frame+grid | 0.966 | 0.957 | 29.2 / 29.8 |
+| plain | DINOv3 region SAM 3.1 | 0.000 | 0.000 | 28.4 |
+| plain | frame+grid + SAM 3.1 re-rank top-20 | 0.966 | 0.957 | 24657 |
+
+GPU: DINOv3 ViT-S/16 132.8 ảnh/s, VRAM đỉnh 0.25 GB; index grid 9.65 frame/s (3864 vector). SAM 3.1: nạp 17.4 s, 1.038 s/frame, VRAM đỉnh 3.79 GB, **0.0 box/frame** (prompt "object", ngưỡng 0.3); index SAM chỉ 281 vector / 276 frame. Nạp `detector.*` từ sam3.1_multiplex: 1166 key, thiếu 4 (`backbone.vision_backbone.convs.3.*`), thừa 36.
+**Kết luận:** SAM 3.1 (như đang nạp) gần như không trả về vùng nào, nên region SAM = 0 và re-rank không đổi kết quả so với grid; DINOv3 + grid vẫn tốt nhất (hard 0.586/0.680). Nghi do 4 key thiếu khi lấy detector từ checkpoint multiplex và/hoặc prompt chung "object"; cần thử checkpoint ảnh sam3.pt hoặc prompt/ngưỡng khác.

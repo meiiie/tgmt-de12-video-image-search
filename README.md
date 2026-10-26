@@ -171,3 +171,6 @@ Dự án này dùng DINOv3 (`facebook/dinov3-vits16-pretrain-lvd1689m`) của Me
 - M. Douze et al., "The Faiss library", arXiv:2401.08281, 2024.
 - J. Pont-Tuset et al., "The 2017 DAVIS Challenge on Video Object Segmentation", arXiv:1704.00675, 2017.
 - DigUp, https://github.com/ARahim3/DigUp (MIT).
+
+## Kết quả GPU (Kaggle T4, fp16, v2 — 26/10/2026)
+70 video, truy vấn hard: DINOv3 frame R@1 0.552 / mAP@10 0.642; +region grid 0.586 / 0.680 (~29 ms/truy vấn); SAM 3.1 region 0.000 / 0.000; SAM 3.1 re-rank top-20 0.586 / 0.680 (24.7 s/truy vấn, không cải thiện). SAM 3.1 hiện cho 0.0 box/frame (1.04 s/frame, 3.79 GB VRAM) — đang điều tra. Chi tiết: results/RESULTS.md, results/kaggle_v2_de12_results.json.
