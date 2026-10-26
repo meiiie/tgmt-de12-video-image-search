@@ -117,3 +117,11 @@ Lưu ý: trên GPU fp16, bộ 10 video hard đạt R@1 0.759, còn số 0.776 c�
 | 10 video plain | 1.000 / 0.980 | 0.897 / 0.882 | 0.966 / 0.960 | 0.983 / 0.971 | 1.000 / 0.980 |
 (R@1 / mAP@10.) Thời gian truy vấn: khoảng 25–27 ms khi chỉ dùng index. Re-rank tốn 936.6 ms/truy vấn (70 video hard) và 517.5 ms (10 video hard). Phần re-rank dùng lại box SAM đã lưu lúc index (229 keyframe duy nhất, 4.04 box/keyframe), nên thời gian chủ yếu là đọc frame và embed crop. Nếu phải chạy SAM mới cho từng keyframe thì cần thêm khoảng 2.6 s/keyframe.
 **Nhận xét:** re-rank SAM chỉ tăng R@1 trên 70 video hard từ 0.586 lên 0.603, tức thêm 1/58 truy vấn, kèm khoảng +0.9 s/truy vấn và chi phí index tăng khoảng 30 lần. Các bộ còn lại không đổi hoặc giảm. Vùng SAM thay cho grid thì kém hơn (vùng SAM theo lớp bỏ sót vật thể ngoài bộ prompt). Mặc định vẫn là DINOv3 + grid; re-rank SAM để làm tuỳ chọn.
+
+## EmbeddingGemma 2 (google/embeddinggemma-2) — box CPU, chỉ frame, bộ 10 video (27/10/2026)
+Nguồn: model card https://huggingface.co/google/embeddinggemma-2, blog https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/ (06/10/2026), tài liệu https://ai.google.dev/gemma/docs/embeddinggemma. Model đa phương thức (text/ảnh/video/âm thanh), 740M tham số, embedding 768 chiều, giấy phép Apache-2.0. Weights được đưa lên dataset private `holilihu/de12-embeddinggemma2`.
+| Truy vấn | EG2 frame R@1 / mAP@10 | DINOv3 frame | DINOv3 frame+grid |
+|---|---|---|---|
+| 10 video hard | **0.983 / 0.971** (1379 ms/truy vấn, CPU) | 0.690 / 0.793 | 0.759 / 0.838 |
+| 10 video plain | **0.983 / 0.971** (2324 ms/truy vấn, CPU) | 0.983 / 0.971 | 1.000 / 0.980 |
+Đã kiểm tra rò rỉ: không thấy (notes/eg2_leakage_audit.md). Bộ 70 video chưa có số: cần kernel v6 (sentence-transformers==6.2.0); v5 hỏng vì `Pooling.__init__() missing 'embedding_dimension'` do bản sentence-transformers mới hơn.
