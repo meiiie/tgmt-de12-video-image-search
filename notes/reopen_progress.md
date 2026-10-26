@@ -6,3 +6,4 @@
 - TODO: EG2 CPU numbers -> RESULTS.md/README tables, commit, report.
 - 01:10 Leakage audit (EG2 0.983 on 10-video hard): see notes/eg2_leakage_audit.md. Box "large70" EG2 numbers DISCARDED: box data/davis_bench_large has only 10 videos (distractors cleaned for disk) -> invalid.
 - 01:20 hybrid results written to README/RESULTS. Kernel v6 (EG2 70-video, pinned ST 6.2.0/transformers 5.20.2) prepared, NOT pushed: 2 kernels running (de7-sam31-v4, de14-helmet).
+- 01:25 EG2 10-video results committed; v6 auto-push watcher running (/workspace/tgmt/de12_v6_push.sh).
