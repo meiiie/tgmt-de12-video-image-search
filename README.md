@@ -178,3 +178,7 @@ Dự án này dùng DINOv3 (`facebook/dinov3-vits16-pretrain-lvd1689m`) của Me
 ## Quyết định cuối (v3, 26/10/2026)
 Pipeline chốt: **DINOv3 ViT-S/16 + region grid + FAISS** (Built with DINOv3). Trên T4 fp16 đạt: 70 video hard R@1 0.586 / mAP@10 0.680; 10 video hard 0.759 / 0.838; khoảng 25 ms/truy vấn.
 SAM 3.1 (v2) và SAM 3 `sam3.pt` (v3, nạp missing=0, unexpected=22) đều trả về 0 box/frame với prompt "object" ở ngưỡng 0.3, nên region SAM và re-rank không cải thiện được kết quả. SAM tốn khoảng 1.04 s/frame và 3.8 GB VRAM. Phần này được ghi là ablation âm; chi tiết ở results/RESULTS.md.
+
+## Hybrid DINOv3 + SAM 3 (Kaggle v5, 27/10/2026)
+Đã sửa lỗi SAM trả 0 box (nguyên nhân: prompt chung "object" + ngưỡng mặc định 0.5 của processor). SAM 3 hiện trả 4.0 box/frame (2.63 s/frame, 4.73 GB VRAM trên T4).
+Re-rank top-20 bằng SAM trên 70 video hard: R@1 **0.603** so với 0.586 (frame+grid), mAP@10 0.684 so với 0.680, nhưng thêm khoảng **+911 ms/truy vấn** (936.6 so với 25.9 ms). Bộ 10 video không cải thiện (0.759 so với 0.759). Bảng đầy đủ ở results/RESULTS.md; dữ liệu nguồn: results/kaggle_v5_de12_results.json.

@@ -103,3 +103,17 @@ Lưu ý: trên GPU fp16, bộ 10 video hard đạt R@1 0.759, còn số 0.776 c�
 - v3: SAM 3 `sam3.pt` nạp đủ, missing = 0, nhưng vẫn ra 0 box trên 5/5 frame. Như vậy lệch key **không** phải nguyên nhân chính. Giả thuyết chưa kiểm chứng: prompt chung "object" không phù hợp với detector theo khái niệm của SAM 3, cách đọc output/ngưỡng của `Sam3Processor`, hoặc fp16 autocast.
 - Chi phí: SAM khoảng 1.04 s/frame và 3.8 GB VRAM. DINOv3 + grid chỉ cần khoảng 0.1 s/frame cho cả index và khoảng 25 ms/truy vấn.
 - Kết luận: Đề 12 chốt **DINOv3 ViT-S/16 + region grid + FAISS** (Built with DINOv3). SAM được ghi nhận là ablation âm.
+
+## Kaggle v4/v5 — hybrid DINOv3 + SAM 3 (27/10/2026)
+- v4 (23:31–23:47 UTC+7, 26/10) **thất bại**. SAM chạy fp32 thuần thì crash: `mat1 and mat2 must have the same dtype (BFloat16 vs Float)`, vì repo có op bf16 bên trong. EG2 cũng không import được do xung đột torchvision. Số DINOv3 grid trong lần chạy này giống hệt v3 (`results/kaggle_v4_de12_results.json`).
+- Nguyên nhân 0 box ở v2/v3 đã xác định trên CPU của box: prompt chung "object" chỉ đạt score 0.02–0.08. Ảnh mẫu chính thức truck.jpg với prompt "truck" đạt 0.863. Ngoài ra `Sam3Processor` mặc định `confidence_threshold=0.5`. Cách sửa: dùng bộ prompt theo lớp (person, animal, dog, horse, cow, bird, car, bicycle, motorcycle, boat, ball, vehicle), đặt threshold của processor là 0.0, tự lọc ở ≥0.3 rồi chạy NMS (IoU 0.7), giữ tối đa 8 box/frame. Vector vùng = DINOv3 của crop đã che bằng mask SAM (pixel ngoài mask tô xám).
+- v5 (23:52 26/10 → 00:48 27/10 UTC+7, `results/kaggle_v5_de12_results.json`). Sanity với autocast fp16: truck đạt 0.865 (1 box), "object" đạt 0.075 (0 box); 5 frame DAVIS cho [5, 8, 6, 1, 8] box. Nạp sam3.pt: missing 0, unexpected 22. SAM: 2.633 s/frame, 4.36 box/frame, VRAM đỉnh 4.73 GB. Index grid+SAM: 0.35 frame/s, so với 10.3 frame/s khi chỉ dùng grid (70 video: 1104 box SAM, 4.0 box/frame).
+
+| Bộ / truy vấn | frame+grid (mặc định) | chỉ vùng SAM | frame+SAM | frame+grid+SAM (fuse) | re-rank SAM top-20 |
+|---|---|---|---|---|---|
+| 70 video hard | 0.586 / 0.680 | 0.276 / 0.369 | 0.448 / 0.526 | 0.517 / 0.582 | **0.603 / 0.684** |
+| 70 video plain | 0.966 / 0.957 | 0.776 / 0.815 | 0.897 / 0.922 | 0.948 / 0.948 | 0.966 / 0.957 |
+| 10 video hard | 0.759 / 0.838 | 0.534 / 0.603 | 0.655 / 0.731 | 0.741 / 0.788 | 0.759 / 0.836 |
+| 10 video plain | 1.000 / 0.980 | 0.897 / 0.882 | 0.966 / 0.960 | 0.983 / 0.971 | 1.000 / 0.980 |
+(R@1 / mAP@10.) Thời gian truy vấn: khoảng 25–27 ms khi chỉ dùng index. Re-rank tốn 936.6 ms/truy vấn (70 video hard) và 517.5 ms (10 video hard). Phần re-rank dùng lại box SAM đã lưu lúc index (229 keyframe duy nhất, 4.04 box/keyframe), nên thời gian chủ yếu là đọc frame và embed crop. Nếu phải chạy SAM mới cho từng keyframe thì cần thêm khoảng 2.6 s/keyframe.
+**Nhận xét:** re-rank SAM chỉ tăng R@1 trên 70 video hard từ 0.586 lên 0.603, tức thêm 1/58 truy vấn, kèm khoảng +0.9 s/truy vấn và chi phí index tăng khoảng 30 lần. Các bộ còn lại không đổi hoặc giảm. Vùng SAM thay cho grid thì kém hơn (vùng SAM theo lớp bỏ sót vật thể ngoài bộ prompt). Mặc định vẫn là DINOv3 + grid; re-rank SAM để làm tuỳ chọn.
