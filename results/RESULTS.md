@@ -84,3 +84,22 @@ Nguồn: `results/kaggle_v2_de12_results.json` (1 file, 0 lỗi stage). Benchmar
 
 GPU: DINOv3 ViT-S/16 132.8 ảnh/s, VRAM đỉnh 0.25 GB; index grid 9.65 frame/s (3864 vector). SAM 3.1: nạp 17.4 s, 1.038 s/frame, VRAM đỉnh 3.79 GB, **0.0 box/frame** (prompt "object", ngưỡng 0.3); index SAM chỉ 281 vector / 276 frame. Nạp `detector.*` từ sam3.1_multiplex: 1166 key, thiếu 4 (`backbone.vision_backbone.convs.3.*`), thừa 36.
 **Kết luận:** SAM 3.1 (như đang nạp) gần như không trả về vùng nào, nên region SAM = 0 và re-rank không đổi kết quả so với grid; DINOv3 + grid vẫn tốt nhất (hard 0.586/0.680). Nghi do 4 key thiếu khi lấy detector từ checkpoint multiplex và/hoặc prompt chung "object"; cần thử checkpoint ảnh sam3.pt hoặc prompt/ngưỡng khác.
+
+## Kaggle GPU v3 (T4, fp16) — 26/10/2026, kernel v3 — KẾT QUẢ CUỐI
+Nguồn: `results/kaggle_v3_de12_results.json`. Chạy 21:57–22:07 (UTC+7). SAM 3 dùng checkpoint ảnh `sam3.pt` (facebook/sam3, sha256 9999e234…, dataset private `holilihu/de12-sam3-image`): **missing = 0**, unexpected = 22 (`backbone.vision_backbone.sam2_convs.*`, phần dành cho tracker SAM 2), 1156 key detector.
+Kiểm tra nhanh 5 frame (prompt "object", ngưỡng 0.3): số box = [0, 0, 0, 0, 0] → bỏ qua các bước SAM như đã định. gpu_bench (39 frame): SAM 3 tốn 1.043 s/frame, VRAM đỉnh 3.79 GB, 0.0 box/frame; DINOv3 đạt 141.7 ảnh/s với VRAM 0.25 GB.
+
+| Bộ | Truy vấn | frame R@1 / mAP@10 | grid region R@1 / mAP@10 | frame+grid R@1 / mAP@10 | ms/truy vấn (frame+grid) |
+|---|---|---|---|---|---|
+| 70 video | hard | 0.552 / 0.642 | 0.586 / 0.679 | 0.586 / 0.680 | 24.8 |
+| 70 video | plain | 0.862 / 0.907 | 0.966 / 0.957 | 0.966 / 0.957 | 26.1 |
+| 10 video | hard | 0.690 / 0.793 | 0.759 / 0.835 | 0.759 / 0.838 | 24.9 |
+| 10 video | plain | 0.983 / 0.971 | 1.000 / 0.980 | 1.000 / 0.980 | 26.6 |
+
+Lưu ý: trên GPU fp16, bộ 10 video hard đạt R@1 0.759, còn số 0.776 cũ đo trên CPU fp32. Nguyên nhân chênh lệch chưa được kiểm chứng.
+
+## Ablation âm: SAM 3.1 / SAM 3 (quyết định cuối: DINOv3 + grid)
+- v2: SAM 3.1 multiplex `detector.*` nạp được 1166 key, thiếu 4 (`convs.3.*`), thừa 36. Kết quả 0.0 box/frame; SAM region R@1 = 0.000; re-rank top-20 cho đúng kết quả của grid (hard 0.586 / 0.680) nhưng mất 24.7 s/truy vấn, chậm khoảng 850 lần.
+- v3: SAM 3 `sam3.pt` nạp đủ, missing = 0, nhưng vẫn ra 0 box trên 5/5 frame. Như vậy lệch key **không** phải nguyên nhân chính. Giả thuyết chưa kiểm chứng: prompt chung "object" không phù hợp với detector theo khái niệm của SAM 3, cách đọc output/ngưỡng của `Sam3Processor`, hoặc fp16 autocast.
+- Chi phí: SAM khoảng 1.04 s/frame và 3.8 GB VRAM. DINOv3 + grid chỉ cần khoảng 0.1 s/frame cho cả index và khoảng 25 ms/truy vấn.
+- Kết luận: Đề 12 chốt **DINOv3 ViT-S/16 + region grid + FAISS** (Built with DINOv3). SAM được ghi nhận là ablation âm.
