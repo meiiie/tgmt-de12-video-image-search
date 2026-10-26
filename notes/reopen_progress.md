@@ -4,3 +4,4 @@
 - EG2 in kernel failed (sentence-transformers Pooling arg mismatch in --no-deps lib) -> benchmarking EG2 frame-only on box CPU (in progress, log /tmp/eg2run.log).
 - README lines 12-13 fixed (commit 8e72354).
 - TODO: EG2 CPU numbers -> RESULTS.md/README tables, commit, report.
+- 01:10 Leakage audit (EG2 0.983 on 10-video hard): see notes/eg2_leakage_audit.md. Box "large70" EG2 numbers DISCARDED: box data/davis_bench_large has only 10 videos (distractors cleaned for disk) -> invalid.
