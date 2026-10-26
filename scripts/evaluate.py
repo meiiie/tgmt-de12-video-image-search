@@ -36,4 +36,8 @@ for mode in a.modes.split(","):
         APs.append(ap_ / min(len(q["gt"]), 10))
     res[mode] = {**{f"R@{k}": round(float(np.mean(v)), 3) for k, v in R.items()}, "mAP@10": round(float(np.mean(APs)), 3), "top1_peak_in_GT": round(float(np.mean(PK)), 3), "ms/query": round(1000*float(np.mean(lat)), 1), "n_queries": len(Q)}
     print(mode, res[mode])
+if a.rerank:
+    from vsearch import rerank as _rr; nb = [len(v) for v in _rr._CACHE.values()]
+    res["rerank_stats"] = {"unique_keyframes": len(nb), "boxes_total": sum(nb), "boxes_per_keyframe": round(sum(nb) / max(1, len(nb)), 2), "keyframes_with_boxes": sum(1 for x in nb if x)}
+    print("rerank_stats", res["rerank_stats"])
 if a.out: json.dump({"index": S.d | {"meta": None}, "results": res}, open(a.out, "w"), indent=1)

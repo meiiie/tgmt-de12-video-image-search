@@ -9,7 +9,8 @@
  "enable_internet": true,
  "machine_shape": "NvidiaTeslaT4",
  "dataset_sources": [
-  "holilihu/de7-weights"
+  "holilihu/de7-weights",
+  "holilihu/de12-sam3-image"
  ],
  "competition_sources": [],
  "kernel_sources": [],

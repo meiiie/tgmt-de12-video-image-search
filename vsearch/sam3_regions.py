@@ -8,15 +8,16 @@ class SAM3Regions:
         from sam3.model_builder import build_sam3_image_model
         from sam3.model.sam3_image_processor import Sam3Processor
         import torch; device = device or ("cuda" if torch.cuda.is_available() else "cpu")
-        import os; checkpoint_path = checkpoint_path or os.environ.get("SAM3_CKPT")
+        import os; checkpoint_path = checkpoint_path or os.environ.get("SAM3_CKPT"); self.strict = os.environ.get("SAM3_STRICT", "0") == "1"
         model = build_sam3_image_model(device="cpu", load_from_HF=checkpoint_path is None)
         self.load_info = {}
         if checkpoint_path:  # works for sam3.pt and sam3.1_multiplex.pt: take 'detector.*' keys, report mismatch
             ck = torch.load(checkpoint_path, map_location="cpu", weights_only=True); ck = ck.get("model", ck)
             sd = {k.replace("detector.", "", 1): v for k, v in ck.items() if k.startswith("detector.")}
             r = model.load_state_dict(sd, strict=False)
-            self.load_info = {"ckpt": os.path.basename(checkpoint_path), "detector_keys": len(sd), "missing": len(r.missing_keys), "unexpected": len(r.unexpected_keys), "missing_sample": r.missing_keys[:5]}
+            self.load_info = {"ckpt": os.path.basename(checkpoint_path), "detector_keys": len(sd), "missing": len(r.missing_keys), "unexpected": len(r.unexpected_keys), "missing_sample": r.missing_keys[:5], "unexpected_sample": r.unexpected_keys[:5]}
             print("SAM3 load:", self.load_info); del ck, sd
+            if self.strict and self.load_info["missing"]: raise RuntimeError(f"SAM3 strict load: missing={self.load_info['missing']}")
         model = model.to(device).eval()
         self.proc = Sam3Processor(model); self.prompts, self.k, self.th = prompts, topk, min_score
     def __call__(self, img: Image.Image):
