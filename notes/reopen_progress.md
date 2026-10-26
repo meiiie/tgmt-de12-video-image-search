@@ -7,3 +7,5 @@
 - 01:10 Leakage audit (EG2 0.983 on 10-video hard): see notes/eg2_leakage_audit.md. Box "large70" EG2 numbers DISCARDED: box data/davis_bench_large has only 10 videos (distractors cleaned for disk) -> invalid.
 - 01:20 hybrid results written to README/RESULTS. Kernel v6 (EG2 70-video, pinned ST 6.2.0/transformers 5.20.2) prepared, NOT pushed: 2 kernels running (de7-sam31-v4, de14-helmet).
 - 01:25 EG2 10-video results committed; v6 auto-push watcher running (/workspace/tgmt/de12_v6_push.sh).
+- 02:35 v6 push (routine; watcher gone, .venv missing so used /tmp/kv kaggle; 1 kernel running): Kernel version 6 successfully pushed.  Please check progress at https://www.kaggle.com/code/holilihu/tgmt-de12-video-image-search
+- 03:35 v6 COMPLETE but EG2 FAILED: index_eg2_large70 timeout (1500s), index_eg2_small10 TypeError Pooling.__init__() missing 'embedding_dimension' (ST 6.2.0 in /tmp/eglib). No EG2 70-video numbers; app default stays DINOv3. DINOv3 same-run rerun saved results/kaggle_v6_de12_results.json (large70 object_hard both R@1 0.586 mAP@10 0.68). Routine paused.
