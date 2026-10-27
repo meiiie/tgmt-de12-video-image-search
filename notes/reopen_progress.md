@@ -37,3 +37,4 @@
 - 14:45 README/RESULTS text-search section written; committing.
 - 14:50 pushed a8354c5; d3-lite weights deleted. DONE (d3-turbo not run: infeasible on T4, documented).
 - 14:25 soccer demo (scripts/get_soccer_demo.sh, eval_text/soccer_*), negatives, text_extra_eval.py; min_score in core/app. results/text_extra_*.json
+- 14:35 pushed 7a23c1d; temp clips deleted. DONE.
