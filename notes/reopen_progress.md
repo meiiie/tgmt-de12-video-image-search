@@ -44,3 +44,5 @@
 - 15:31 resumed after interrupt. No Kaggle kernel pushed in this phase (Charades upload to Kaggle blocked by auto-review & licence forbids 3rd-party distribution -> all on box CPU). EG2 charades idx still running (pid 479344); so400m idx queued (/tmp/cha_so.sh). vsearch/translate.py (opus/vinai VI->EN).
 - 16:21 milestone1a: SigLIP2-only Charades eval running (/tmp/cha_eval_sig.log -> results/charades_m1_siglip2.json); EG2 idx still running.
 - 16:27 milestone1a done: results/charades_m1_siglip2.json, README section. committing.
+- 16:46 EG2 charades idx done; so400m idx started (/tmp/cha_so.log). Running full eval (eg2+sig+fusion) -> results/charades_m1.json
+- 16:51 milestone1b done (results/charades_m1.json): EG2+proposals best on test EN 44.33/22.68; fusion won dev but not test. committing.

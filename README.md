@@ -432,3 +432,21 @@ App giờ bật ngưỡng 0.637 mặc định khi index là EG2 (`--text-min-sco
 (Dev: baseline 30.19/13.21, proposals 50.94/28.30 R@1 IoU0.5/0.7.) Proposals tăng mạnh R@5 (34 → 73) và tăng R@1. Dịch VI→EN không giúp SigLIP 2; VI gốc trên test còn cao hơn EN, chênh lệch nằm trong nhiễu của 97 câu. ms của các dòng dịch có cache bản dịch nên dòng baseline thấp hơn thực tế.
 
 **So với số đã công bố** (toàn bộ test 3720 câu, khác tập con nên chỉ tham khảo): UniVTG zero-shot R@1 IoU0.5/0.7 = 25.22/10.03, mIoU 27.12 (arXiv:2307.16715, bảng zero-shot; mình đọc từ bản HTML trên arXiv). TimeChat-7B zero-shot 32.2/13.4 (mình lấy từ bảng tổng hợp sota2.com, **chưa đối chiếu với bài gốc**). Phương pháp có huấn luyện, ví dụ QD-DETR 57.3/32.6 (cũng theo sota2.com, chưa đối chiếu).
+
+**Mốc 1b: EG2 (pipeline hiện tại của app), SigLIP 2, và ghép z** (`results/charades_m1.json`). Index EG2 trên CPU box bf16: 4221 frame mất 6847 s (0.62 frame/s); SigLIP 2 base 524 s (8.1 frame/s). Tham số proposals chọn trên dev, giống nhau cho mọi mô hình (0.2/0.3/0.4, λ = 1.5; riêng ghép w = 0.75 thì λ = 1.0).
+
+| Test (n=97), R@1 IoU0.5 / IoU0.7 / R@5 IoU0.5 / R@5 IoU0.7 / mIoU | EN | VI gốc | VI→EN vinai |
+|---|---|---|---|
+| **EG2 baseline (app hiện tại)** | 29.90 / 15.46 / 29.90 / 15.46 / 30.71 | 30.93 / 15.46 / 30.93 / 15.46 / 30.94 | 32.99 / 14.43 / 32.99 / 14.43 / 30.10 |
+| **EG2 + proposals** | **44.33 / 22.68 / 77.32 / 44.33 / 38.90** | 40.21 / 24.74 / 72.16 / 43.30 / 37.63 | **45.36 / 25.77 / 75.26 / 48.45 / 39.07** |
+| SigLIP 2 + proposals | 35.05 / 16.49 / 73.20 / 44.33 / 34.22 | 40.21 / 23.71 / 73.20 / 52.58 / 37.13 | 35.05 / 18.56 / 67.01 / 39.18 / 33.64 |
+| Ghép z w(EG2)=0.25 + proposals (**thắng trên dev**) | 41.24 / 17.53 / 75.26 / 44.33 / 37.69 | 43.30 / 24.74 / 79.38 / 51.55 / 38.73 | – |
+| Ghép z w=0.5 + proposals | 41.24 / 18.56 / 74.23 / 41.24 / 37.46 | 44.33 / 24.74 / 78.35 / 47.42 / 39.10 | – |
+| Ghép z w=0.75 + proposals | 43.30 / 22.68 / 77.32 / 43.30 / 38.20 | 42.27 / 21.65 / 78.35 / 42.27 / 38.13 | – |
+
+Độ trễ (ms/câu, CPU đang bị job khác chiếm): EG2 108–122, SigLIP 2 100–121, ghép 206–240, VI→EN vinai thêm khoảng 1.1 s, opus-mt khoảng 0.2 s.
+
+- **Proposals cửa sổ trượt là cải thiện lớn nhất:** EG2 EN R@1 IoU0.5 29.9 → 44.3, IoU0.7 15.5 → 22.7, R@5 IoU0.5 29.9 → 77.3, mIoU 30.7 → 38.9.
+- **Ghép EG2 + SigLIP 2:** thắng trên dev (w = 0.25: dev 54.7 / 32.1, mIoU 46.9) nhưng trên test EN thua EG2 + proposals (41.2 so với 44.3). Với 53 câu dev, việc chọn trọng số không ổn định, nên mình **không** dùng ghép.
+- **Câu tiếng Việt:** dịch bằng vinai-translate-vi2en-v2 cho EG2 số tốt nhất (45.4 / 25.8) nhưng chậm thêm khoảng 1.1 s; EG2 với VI gốc đạt 40.2 / 24.7. opus-mt không giúp.
+- **So với công bố:** EG2 + proposals zero-shot (44.3 / 22.7 trên 97 câu) cao hơn UniVTG zero-shot (25.2 / 10.0) và TimeChat (32.2 / 13.4, số chưa đối chiếu), nhưng thấp hơn các mô hình có huấn luyện (QD-DETR 57.3 / 32.6). Tập con 97 câu so với 3720 câu nên **không so sánh trực tiếp được**.
