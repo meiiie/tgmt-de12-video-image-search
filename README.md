@@ -343,3 +343,32 @@ n = 30 câu mỗi cột moment, 16 câu mỗi cột ordinal. tIoU≥0.5 R@1 và 
 - DAVIS 2017: https://davischallenge.org/
 
 Chạy lại: `python scripts/make_text_eval.py` → `build_index(..., fps=4.0, regions='none')` cho từng mô hình vào `data/text_idx/<model>_{davis10,ord}` → `python scripts/text_eval.py google/embeddinggemma-2 [--translate]` → `python scripts/text_rerank_d3.py <đường dẫn d3-lite> 5`.
+
+## Video bóng đá thật + ngưỡng "không tìm thấy" (27/10/2026, box CPU)
+
+**Dữ liệu.** 4 clip bóng đá giấy phép mở trên Wikimedia Commons (CC BY 2.0 / CC BY 4.0 / CC BY 3.0 / CC BY-SA 4.0), ghép thành `match.mp4` 66.5 s bằng `scripts/get_soccer_demo.sh`; nguồn, tác giả, giấy phép và các mốc gán tay ở `eval_text/soccer_sources.md`. Video không được commit. Mốc thời gian mình gán tay từ contact sheet 2–4 fps, sai số khoảng ±0.5 s: bàn A 5.0–8.0 s, ăn mừng A 9.5–30.0, thủ môn cản phá 43.1–45.6, bàn B 51.6–53.6, ăn mừng B 53.9–57.6, phát lại bàn B 58.1–63.1, bàn C 64.6–66.5. Không dùng SoccerNet vì video của nó yêu cầu ký NDA và chờ duyệt (https://www.soccer-net.org/faq).
+
+**Truy vấn** (`eval_text/soccer_queries.json`): 8 ý × EN/VI = 16 câu (bàn thắng đầu tiên/cuối cùng, bóng vào lưới, thủ môn cản phá, ăn mừng, ăn mừng đầu tiên/cuối cùng). Luật trúng như trên (peak trong khoảng GT ±0.5 s; câu "bóng vào lưới" và "ăn mừng" chấp nhận mọi lần). Không tinh chỉnh gì trên video này.
+
+| Mô hình (4 fps, window + ordinal) | R@1 | R@5 | Sai số thời gian TB | Độ trễ/câu (CPU, sau khi nạp mô hình) |
+|---|---|---|---|---|
+| EG2 (mặc định app) | 0.375 (6/16) | 0.375 | 12.9 s | 42 ms |
+| SigLIP 2 base | 0.500 (8/16) | 0.500 | 8.9 s | 62 ms |
+
+Câu của Darren **"khoảnh khắc sút bóng vào lưới đầu tiên"**: EG2 **trượt**, trả về 62.64 s (đoạn 61.68–63.13). Đó là cảnh phát lại bàn B, đúng là bóng vào lưới nhưng không phải bàn đầu tiên; sai 54.6 s so với bàn A (5.0–8.0). Bản tiếng Anh "the first goal, the ball goes into the net" thì EG2 trúng (6.24 s). SigLIP 2 trúng cả hai câu (7.20 s và 6.48 s). EG2 trúng: bàn cuối EN (66.48 s), bóng vào lưới EN/VI, ăn mừng EN/VI. EG2 trượt: cả hai câu thủ môn cản phá (về 62.64 s), "bàn thắng đầu tiên" (về 44.4 s, chính là pha cản phá), các câu "ăn mừng đầu tiên/cuối cùng". Lý do chính: frame ăn mừng và frame khung thành nhìn rất giống nhau; lớp thứ tự chỉ đếm các đoạn có điểm ≥ trung vị + 0.5·(max − trung vị), nên bàn A (điểm thấp hơn vì quay xa, chất lượng 2006, 320×240) bị loại khỏi danh sách ứng viên. Bộ có 16 câu nên số chỉ để minh hoạ, chưa đủ để kết luận.
+
+Ảnh chụp app (Gradio, Chrome headless qua Playwright, index EG2 của `match.mp4`, ngưỡng 0.6427):
+- [`docs/text_search_soccer_first_goal.png`](docs/text_search_soccer_first_goal.png): câu của Darren, kết quả 62.64 s (sai như trên)
+- [`docs/text_search_soccer_last_goal.png`](docs/text_search_soccer_last_goal.png): "the last goal scored"
+- [`docs/text_search_not_found.png`](docs/text_search_not_found.png): "con mèo ngủ trên ghế sofa" → "Không tìm thấy (điểm cao nhất < ngưỡng 0.6427) · 62 ms"
+
+**Ngưỡng "không tìm thấy".** Điểm = cosine đã làm mượt của đoạn tốt nhất (đã bỏ từ thứ tự). 30 câu âm (15 ý × EN/VI, nội dung không có trong 10 video DAVIS: mèo, máy bay, nấu ăn, bóng rổ, pháo hoa, bóng đá…; `eval_text/negatives.json`). Chọn ngưỡng **chỉ trên DAVIS** (60 câu moment có / 30 câu âm), rồi giữ nguyên áp sang video bóng đá (16 câu có / 28 câu âm, bỏ câu "bóng đá ghi bàn" vì nó có thật trong video).
+
+| Mô hình | Cách chọn | τ | DAVIS FAR / FRR | DAVIS R@1 trước → sau | Bóng đá FAR / FRR | Bóng đá R@1 trước → sau |
+|---|---|---|---|---|---|---|
+| EG2 | max F1 | **0.6427** | 0.000 / 0.000 | 0.983 → 0.983 | 0.071 / 0.000 | 0.375 → 0.375 |
+| EG2 | FAR ≤ 10% | 0.6293 | 0.100 / 0.000 | 0.983 → 0.983 | 0.107 / 0.000 | 0.375 → 0.375 |
+| SigLIP 2 | max F1 | 0.0901 | 0.000 / 0.000 | 0.933 → 0.933 | 0.071 / 0.000 | 0.500 → 0.500 |
+| SigLIP 2 | FAR ≤ 10% | 0.0681 | 0.100 / 0.000 | 0.933 → 0.933 | 0.107 / 0.000 | 0.500 → 0.500 |
+
+(FAR = tỉ lệ câu âm bị nhận nhầm; FRR = tỉ lệ câu có thật bị từ chối; R@1 sau ngưỡng tính câu bị từ chối là trượt.) Trên DAVIS hai lớp tách hẳn nhau (EG2: câu có thật ≥ 0.6427, câu âm ≤ 0.6313), nên τ max-F1 nằm sát mép; khoảng cách chỉ ~0.01 nên ngưỡng này **dễ vỡ** khi đổi video, thấy rõ ở 7% FAR trên bóng đá. Ngưỡng không sửa được lỗi định vị sai (câu có thật mà trả sai thời điểm vẫn qua ngưỡng). Thang điểm khác nhau giữa các mô hình nên mỗi backbone cần τ riêng. App: `python app.py ... --text-min-score 0.6427` (mặc định tắt) hoặc ô "Ngưỡng 'không tìm thấy'" trên giao diện; API `Searcher.search_text(..., min_score=τ)`. Số gốc: `results/text_extra_embeddinggemma-2.json`, `results/text_extra_siglip2-base-patch16-224.json`.

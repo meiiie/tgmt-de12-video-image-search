@@ -1,0 +1,238 @@
+{
+ "video": "match.mp4",
+ "note": "hand-annotated, approx ±0.5 s; any listed span counts as a hit; see soccer_sources.md",
+ "queries": [
+  {
+   "id": "s_first_goal_en",
+   "lang": "en",
+   "text": "the first goal, the ball goes into the net",
+   "gt": [
+    {
+     "video": "match.mp4",
+     "start": 5.0,
+     "end": 8.0
+    }
+   ]
+  },
+  {
+   "id": "s_first_goal_vi",
+   "lang": "vi",
+   "text": "khoảnh khắc sút bóng vào lưới đầu tiên",
+   "gt": [
+    {
+     "video": "match.mp4",
+     "start": 5.0,
+     "end": 8.0
+    }
+   ]
+  },
+  {
+   "id": "s_first_goal2_en",
+   "lang": "en",
+   "text": "the first goal scored",
+   "gt": [
+    {
+     "video": "match.mp4",
+     "start": 5.0,
+     "end": 8.0
+    }
+   ]
+  },
+  {
+   "id": "s_first_goal2_vi",
+   "lang": "vi",
+   "text": "bàn thắng đầu tiên",
+   "gt": [
+    {
+     "video": "match.mp4",
+     "start": 5.0,
+     "end": 8.0
+    }
+   ]
+  },
+  {
+   "id": "s_last_goal_en",
+   "lang": "en",
+   "text": "the last goal scored",
+   "gt": [
+    {
+     "video": "match.mp4",
+     "start": 64.62,
+     "end": 66.52
+    }
+   ]
+  },
+  {
+   "id": "s_last_goal_vi",
+   "lang": "vi",
+   "text": "bàn thắng cuối cùng",
+   "gt": [
+    {
+     "video": "match.mp4",
+     "start": 64.62,
+     "end": 66.52
+    }
+   ]
+  },
+  {
+   "id": "s_any_goal_en",
+   "lang": "en",
+   "text": "the ball goes into the net",
+   "gt": [
+    {
+     "video": "match.mp4",
+     "start": 5.0,
+     "end": 8.0
+    },
+    {
+     "video": "match.mp4",
+     "start": 51.62,
+     "end": 53.62
+    },
+    {
+     "video": "match.mp4",
+     "start": 58.12,
+     "end": 63.12
+    },
+    {
+     "video": "match.mp4",
+     "start": 64.62,
+     "end": 66.52
+    }
+   ]
+  },
+  {
+   "id": "s_any_goal_vi",
+   "lang": "vi",
+   "text": "bóng bay vào lưới",
+   "gt": [
+    {
+     "video": "match.mp4",
+     "start": 5.0,
+     "end": 8.0
+    },
+    {
+     "video": "match.mp4",
+     "start": 51.62,
+     "end": 53.62
+    },
+    {
+     "video": "match.mp4",
+     "start": 58.12,
+     "end": 63.12
+    },
+    {
+     "video": "match.mp4",
+     "start": 64.62,
+     "end": 66.52
+    }
+   ]
+  },
+  {
+   "id": "s_save_en",
+   "lang": "en",
+   "text": "the goalkeeper makes a save",
+   "gt": [
+    {
+     "video": "match.mp4",
+     "start": 43.1,
+     "end": 45.6
+    }
+   ]
+  },
+  {
+   "id": "s_save_vi",
+   "lang": "vi",
+   "text": "thủ môn cản phá cú sút",
+   "gt": [
+    {
+     "video": "match.mp4",
+     "start": 43.1,
+     "end": 45.6
+    }
+   ]
+  },
+  {
+   "id": "s_celebration_en",
+   "lang": "en",
+   "text": "players celebrating a goal",
+   "gt": [
+    {
+     "video": "match.mp4",
+     "start": 9.5,
+     "end": 30.0
+    },
+    {
+     "video": "match.mp4",
+     "start": 53.87,
+     "end": 57.62
+    }
+   ]
+  },
+  {
+   "id": "s_celebration_vi",
+   "lang": "vi",
+   "text": "các cầu thủ ăn mừng bàn thắng",
+   "gt": [
+    {
+     "video": "match.mp4",
+     "start": 9.5,
+     "end": 30.0
+    },
+    {
+     "video": "match.mp4",
+     "start": 53.87,
+     "end": 57.62
+    }
+   ]
+  },
+  {
+   "id": "s_first_celebration_en",
+   "lang": "en",
+   "text": "the first goal celebration",
+   "gt": [
+    {
+     "video": "match.mp4",
+     "start": 9.5,
+     "end": 30.0
+    }
+   ]
+  },
+  {
+   "id": "s_first_celebration_vi",
+   "lang": "vi",
+   "text": "màn ăn mừng bàn thắng đầu tiên",
+   "gt": [
+    {
+     "video": "match.mp4",
+     "start": 9.5,
+     "end": 30.0
+    }
+   ]
+  },
+  {
+   "id": "s_last_celebration_en",
+   "lang": "en",
+   "text": "the last goal celebration",
+   "gt": [
+    {
+     "video": "match.mp4",
+     "start": 53.87,
+     "end": 57.62
+    }
+   ]
+  },
+  {
+   "id": "s_last_celebration_vi",
+   "lang": "vi",
+   "text": "màn ăn mừng bàn thắng cuối cùng",
+   "gt": [
+    {
+     "video": "match.mp4",
+     "start": 53.87,
+     "end": 57.62
+    }
+   ]
+  }
+ ]
+}

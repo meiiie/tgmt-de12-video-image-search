@@ -1,0 +1,155 @@
+{
+ "note": "queries whose content is absent from the 10 DAVIS-bench videos (checked against the 30 sequence names/frames). For match.mp4 the football query is NOT negative and is dropped.",
+ "queries": [
+  {
+   "id": "n0_en",
+   "lang": "en",
+   "text": "a cat sleeping on a sofa"
+  },
+  {
+   "id": "n0_vi",
+   "lang": "vi",
+   "text": "con mèo ngủ trên ghế sofa"
+  },
+  {
+   "id": "n1_en",
+   "lang": "en",
+   "text": "an airplane taking off from a runway"
+  },
+  {
+   "id": "n1_vi",
+   "lang": "vi",
+   "text": "máy bay cất cánh trên đường băng"
+  },
+  {
+   "id": "n2_en",
+   "lang": "en",
+   "text": "a person cooking in a kitchen"
+  },
+  {
+   "id": "n2_vi",
+   "lang": "vi",
+   "text": "người đang nấu ăn trong bếp"
+  },
+  {
+   "id": "n3_en",
+   "lang": "en",
+   "text": "snow-covered mountains and skiers"
+  },
+  {
+   "id": "n3_vi",
+   "lang": "vi",
+   "text": "núi phủ tuyết và người trượt tuyết"
+  },
+  {
+   "id": "n4_en",
+   "lang": "en",
+   "text": "a basketball player dunking"
+  },
+  {
+   "id": "n4_vi",
+   "lang": "vi",
+   "text": "cầu thủ bóng rổ úp rổ"
+  },
+  {
+   "id": "n5_en",
+   "lang": "en",
+   "text": "a birthday cake with candles"
+  },
+  {
+   "id": "n5_vi",
+   "lang": "vi",
+   "text": "bánh sinh nhật có nến"
+  },
+  {
+   "id": "n6_en",
+   "lang": "en",
+   "text": "a train arriving at a station"
+  },
+  {
+   "id": "n6_vi",
+   "lang": "vi",
+   "text": "đoàn tàu vào ga"
+  },
+  {
+   "id": "n7_en",
+   "lang": "en",
+   "text": "someone playing the piano"
+  },
+  {
+   "id": "n7_vi",
+   "lang": "vi",
+   "text": "người đang chơi đàn piano"
+  },
+  {
+   "id": "n8_en",
+   "lang": "en",
+   "text": "fireworks exploding in the night sky"
+  },
+  {
+   "id": "n8_vi",
+   "lang": "vi",
+   "text": "pháo hoa nổ trên bầu trời đêm"
+  },
+  {
+   "id": "n9_en",
+   "lang": "en",
+   "text": "a man typing on a laptop in an office"
+  },
+  {
+   "id": "n9_vi",
+   "lang": "vi",
+   "text": "người đàn ông gõ máy tính trong văn phòng"
+  },
+  {
+   "id": "n10_en",
+   "lang": "en",
+   "text": "an elephant bathing in a river"
+  },
+  {
+   "id": "n10_vi",
+   "lang": "vi",
+   "text": "con voi tắm dưới sông"
+  },
+  {
+   "id": "n11_en",
+   "lang": "en",
+   "text": "a surgeon operating in a hospital"
+  },
+  {
+   "id": "n11_vi",
+   "lang": "vi",
+   "text": "bác sĩ phẫu thuật trong bệnh viện"
+  },
+  {
+   "id": "n12_en",
+   "lang": "en",
+   "text": "a football player scoring a goal"
+  },
+  {
+   "id": "n12_vi",
+   "lang": "vi",
+   "text": "cầu thủ bóng đá ghi bàn"
+  },
+  {
+   "id": "n13_en",
+   "lang": "en",
+   "text": "a tennis match on a clay court"
+  },
+  {
+   "id": "n13_vi",
+   "lang": "vi",
+   "text": "trận quần vợt trên sân đất nện"
+  },
+  {
+   "id": "n14_en",
+   "lang": "en",
+   "text": "rain falling on a city at night"
+  },
+  {
+   "id": "n14_vi",
+   "lang": "vi",
+   "text": "mưa rơi trên thành phố về đêm"
+  }
+ ]
+}

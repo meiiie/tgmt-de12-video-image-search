@@ -1,0 +1,293 @@
+{
+ "model": "google/siglip2-base-patch16-224",
+ "calibration_davis": {
+  "n_pos": 60,
+  "n_neg": 30,
+  "pos_score_mean": 0.1452,
+  "neg_score_mean": 0.0388,
+  "pos_min": 0.0901,
+  "neg_max": 0.0737,
+  "tau_F1": {
+   "tau": 0.0901,
+   "false_accept_rate": 0.0,
+   "false_reject_rate": 0.0,
+   "F1_present": 1.0,
+   "R@1_no_threshold": 0.933,
+   "R@1_with_threshold": 0.933
+  },
+  "tau_FAR10": {
+   "tau": 0.0681,
+   "false_accept_rate": 0.1,
+   "false_reject_rate": 0.0,
+   "F1_present": 0.976,
+   "R@1_no_threshold": 0.933,
+   "R@1_with_threshold": 0.933
+  }
+ },
+ "football": {
+  "n": 16,
+  "R@1": 0.5,
+  "R@5": 0.5,
+  "mean_ts_err_s": 8.92,
+  "latency_ms_mean": 61.8,
+  "n_neg": 28,
+  "at_tau_F1": {
+   "tau": 0.0901,
+   "false_accept_rate": 0.071,
+   "false_reject_rate": 0.0,
+   "F1_present": 0.941,
+   "R@1_no_threshold": 0.5,
+   "R@1_with_threshold": 0.5
+  },
+  "at_tau_FAR10": {
+   "tau": 0.0681,
+   "false_accept_rate": 0.107,
+   "false_reject_rate": 0.0,
+   "F1_present": 0.914,
+   "R@1_no_threshold": 0.5,
+   "R@1_with_threshold": 0.5
+  },
+  "queries": [
+   {
+    "id": "s_first_goal_en",
+    "text": "the first goal, the ball goes into the net",
+    "score": 0.158,
+    "top1": {
+     "start": 6.0,
+     "end": 9.13,
+     "peak_t": 6.48
+    },
+    "hit@1": true,
+    "hit@5": true,
+    "ts_err_s": 0.0,
+    "latency_ms": 45.6,
+    "encode_ms": 44.4
+   },
+   {
+    "id": "s_first_goal_vi",
+    "text": "khoảnh khắc sút bóng vào lưới đầu tiên",
+    "score": 0.1688,
+    "top1": {
+     "start": 6.72,
+     "end": 7.69,
+     "peak_t": 7.2
+    },
+    "hit@1": true,
+    "hit@5": true,
+    "ts_err_s": 0.0,
+    "latency_ms": 42.4,
+    "encode_ms": 41.6
+   },
+   {
+    "id": "s_first_goal2_en",
+    "text": "the first goal scored",
+    "score": 0.1504,
+    "top1": {
+     "start": 6.24,
+     "end": 9.37,
+     "peak_t": 7.44
+    },
+    "hit@1": true,
+    "hit@5": true,
+    "ts_err_s": 0.0,
+    "latency_ms": 32.3,
+    "encode_ms": 31.5
+   },
+   {
+    "id": "s_first_goal2_vi",
+    "text": "bàn thắng đầu tiên",
+    "score": 0.1264,
+    "top1": {
+     "start": 48.96,
+     "end": 49.93,
+     "peak_t": 49.2
+    },
+    "hit@1": false,
+    "hit@5": false,
+    "ts_err_s": 41.2,
+    "latency_ms": 100.6,
+    "encode_ms": 99.8
+   },
+   {
+    "id": "s_last_goal_en",
+    "text": "the last goal scored",
+    "score": 0.1504,
+    "top1": {
+     "start": 52.08,
+     "end": 53.77,
+     "peak_t": 52.56
+    },
+    "hit@1": false,
+    "hit@5": false,
+    "ts_err_s": 12.06,
+    "latency_ms": 33.9,
+    "encode_ms": 33.0
+   },
+   {
+    "id": "s_last_goal_vi",
+    "text": "bàn thắng cuối cùng",
+    "score": 0.1264,
+    "top1": {
+     "start": 61.2,
+     "end": 66.01,
+     "peak_t": 65.28
+    },
+    "hit@1": true,
+    "hit@5": true,
+    "ts_err_s": 0.0,
+    "latency_ms": 44.1,
+    "encode_ms": 43.1
+   },
+   {
+    "id": "s_any_goal_en",
+    "text": "the ball goes into the net",
+    "score": 0.1466,
+    "top1": {
+     "start": 61.92,
+     "end": 62.89,
+     "peak_t": 62.4
+    },
+    "hit@1": true,
+    "hit@5": true,
+    "ts_err_s": 0.0,
+    "latency_ms": 44.8,
+    "encode_ms": 44.2
+   },
+   {
+    "id": "s_any_goal_vi",
+    "text": "bóng bay vào lưới",
+    "score": 0.1082,
+    "top1": {
+     "start": 61.92,
+     "end": 63.13,
+     "peak_t": 62.4
+    },
+    "hit@1": true,
+    "hit@5": true,
+    "ts_err_s": 0.0,
+    "latency_ms": 38.2,
+    "encode_ms": 37.6
+   },
+   {
+    "id": "s_save_en",
+    "text": "the goalkeeper makes a save",
+    "score": 0.1334,
+    "top1": {
+     "start": 5.76,
+     "end": 9.37,
+     "peak_t": 6.24
+    },
+    "hit@1": false,
+    "hit@5": false,
+    "ts_err_s": 36.86,
+    "latency_ms": 46.8,
+    "encode_ms": 45.1
+   },
+   {
+    "id": "s_save_vi",
+    "text": "thủ môn cản phá cú sút",
+    "score": 0.1426,
+    "top1": {
+     "start": 61.68,
+     "end": 63.37,
+     "peak_t": 62.64
+    },
+    "hit@1": false,
+    "hit@5": false,
+    "ts_err_s": 17.04,
+    "latency_ms": 52.5,
+    "encode_ms": 52.0
+   },
+   {
+    "id": "s_celebration_en",
+    "text": "players celebrating a goal",
+    "score": 0.1432,
+    "top1": {
+     "start": 43.68,
+     "end": 47.05,
+     "peak_t": 44.16
+    },
+    "hit@1": false,
+    "hit@5": false,
+    "ts_err_s": 9.71,
+    "latency_ms": 43.7,
+    "encode_ms": 43.1
+   },
+   {
+    "id": "s_celebration_vi",
+    "text": "các cầu thủ ăn mừng bàn thắng",
+    "score": 0.1335,
+    "top1": {
+     "start": 56.16,
+     "end": 57.37,
+     "peak_t": 56.64
+    },
+    "hit@1": true,
+    "hit@5": true,
+    "ts_err_s": 0.0,
+    "latency_ms": 48.1,
+    "encode_ms": 47.5
+   },
+   {
+    "id": "s_first_celebration_en",
+    "text": "the first goal celebration",
+    "score": 0.1382,
+    "top1": {
+     "start": 7.44,
+     "end": 8.89,
+     "peak_t": 8.16
+    },
+    "hit@1": false,
+    "hit@5": false,
+    "ts_err_s": 1.34,
+    "latency_ms": 105.3,
+    "encode_ms": 104.5
+   },
+   {
+    "id": "s_first_celebration_vi",
+    "text": "màn ăn mừng bàn thắng đầu tiên",
+    "score": 0.1366,
+    "top1": {
+     "start": 48.96,
+     "end": 49.45,
+     "peak_t": 49.2
+    },
+    "hit@1": false,
+    "hit@5": false,
+    "ts_err_s": 19.2,
+    "latency_ms": 126.0,
+    "encode_ms": 125.1
+   },
+   {
+    "id": "s_last_celebration_en",
+    "text": "the last goal celebration",
+    "score": 0.1382,
+    "top1": {
+     "start": 56.64,
+     "end": 57.13,
+     "peak_t": 56.64
+    },
+    "hit@1": true,
+    "hit@5": true,
+    "ts_err_s": 0.0,
+    "latency_ms": 137.2,
+    "encode_ms": 136.3
+   },
+   {
+    "id": "s_last_celebration_vi",
+    "text": "màn ăn mừng bàn thắng cuối cùng",
+    "score": 0.1366,
+    "top1": {
+     "start": 62.16,
+     "end": 66.73,
+     "peak_t": 62.88
+    },
+    "hit@1": false,
+    "hit@5": false,
+    "ts_err_s": 5.26,
+    "latency_ms": 47.4,
+    "encode_ms": 46.6
+   }
+  ]
+ }
+}
