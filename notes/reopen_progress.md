@@ -47,3 +47,4 @@
 - 16:46 EG2 charades idx done; so400m idx started (/tmp/cha_so.log). Running full eval (eg2+sig+fusion) -> results/charades_m1.json
 - 16:51 milestone1b done (results/charades_m1.json): EG2+proposals best on test EN 44.33/22.68; fusion won dev but not test. committing.
 - 16:56 milestone2: proposals option in app (+threshold fix), verified via gradio_client on Charades. committing. so400m idx: see /tmp/cha_so.log
+- 16:56 NEXT: when /tmp/cha_so.log shows SODONE, add MODELS['so400m']=('google/siglip2-so400m-patch14-384','siglip2-so400m-patch14-384') to charades_eval.py, run OUT=results/charades_m3_so400m.json, add README row, commit. No Kaggle kernel pushed in this phase.
