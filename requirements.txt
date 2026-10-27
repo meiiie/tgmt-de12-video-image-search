@@ -6,3 +6,4 @@ opencv-python-headless>=4.8
 numpy
 pillow
 gradio>=4.0
+sentence-transformers[image]>=5.0

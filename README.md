@@ -488,3 +488,24 @@ Không có một ngưỡng chung nào tốt cho mọi miền. Hạ ngưỡng gi�
 - Lần chạy này chưa đánh chỉ mục xong so400m cho Charades: máy chỉ có 2 lõi CPU và đã chạy hơn 80 phút.
 - Khi `data/text_idx/siglip2-so400m-patch14-384_charades/meta.json` có, chạy: `CHA_MODELS=so400m OUT=results/charades_m3_so400m.json python scripts/charades_eval.py`.
 - Đã thêm `vsearch/pe.py` và `scripts/pe_index.py` cho PE-Core-B16 (timm/PE-Core-B-16, open_clip, Apache-2.0, 1.79 GB). Chưa đánh chỉ mục, nên chưa có số.
+
+## Chạy thử nhanh trên Windows (Windows quickstart)
+
+Cần Python 3.10+, Git và ffmpeg (`winget install Gyan.FFmpeg`). Chạy CPU được, không cần GPU.
+
+```bat
+git clone https://github.com/meiiie/tgmt-de12-video-image-search
+cd tgmt-de12-video-image-search
+python -m venv .venv
+.venv\Scripts\activate
+pip install --extra-index-url https://download.pytorch.org/whl/cpu -r requirements.txt
+rem EmbeddingGemma-2 là model gated: chấp nhận điều khoản trên huggingface.co rồi đăng nhập
+hf auth login
+rem Video demo bóng đá (Wikimedia Commons, CC BY/SA) – chạy trong Git Bash:
+bash scripts/get_soccer_demo.sh
+python scripts/build_index.py --videos data/soccer/videos --out data/idx_demo --fps 2
+python app.py --index data/idx_demo --videos data/soccer/videos
+```
+
+Mở http://127.0.0.1:7860. Thêm `--share` để có link công khai *.gradio.live (hết hạn sau 1 tuần).
+Trên CPU 8 nhân: tạo chỉ mục EG2 khoảng 2,6 s/khung (≈8 phút cho 188 khung), tìm bằng chữ 40–80 ms, tìm bằng ảnh khoảng 2,7 s.
