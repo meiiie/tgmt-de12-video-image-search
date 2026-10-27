@@ -37,7 +37,7 @@ with gr.Blocks(title="Đề 12 – Tìm kiếm ảnh/đối tượng/câu mô t�
         with gr.Column():
             txt = gr.Textbox(label="Câu truy vấn (tiếng Việt / English)", placeholder="khoảnh khắc ... đầu tiên")
             vid = gr.Dropdown(["(tất cả)"] + VIDEOS, value="(tất cả)", label="Giới hạn trong video")
-            meth = gr.Radio(["window", "frame"], value="window", label="Gộp thời gian")
+            meth = gr.Radio(["window", "proposals", "frame"], value="window", label="Gộp thời gian (proposals = cửa sổ trượt, tốt nhất trên Charades-STA)")
             thr = gr.Number(value=a.text_min_score or 0, label="Ngưỡng 'không tìm thấy' (0 = tắt)"); btn_t = gr.Button("Tìm bằng chữ")
     k = gr.Slider(1, 20, 5, step=1, label="Top-K"); lat = gr.Textbox(label="Độ trễ", interactive=False)
     gal = gr.Gallery(label="Kết quả", columns=5); tab = gr.Dataframe(headers=["video", "start(s)", "end(s)", "peak(s)", "score"])

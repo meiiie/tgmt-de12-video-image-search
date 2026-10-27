@@ -450,3 +450,14 @@ App giờ bật ngưỡng 0.637 mặc định khi index là EG2 (`--text-min-sco
 - **Ghép EG2 + SigLIP 2:** thắng trên dev (w = 0.25: dev 54.7 / 32.1, mIoU 46.9) nhưng trên test EN thua EG2 + proposals (41.2 so với 44.3). Với 53 câu dev, việc chọn trọng số không ổn định, nên mình **không** dùng ghép.
 - **Câu tiếng Việt:** dịch bằng vinai-translate-vi2en-v2 cho EG2 số tốt nhất (45.4 / 25.8) nhưng chậm thêm khoảng 1.1 s; EG2 với VI gốc đạt 40.2 / 24.7. opus-mt không giúp.
 - **So với công bố:** EG2 + proposals zero-shot (44.3 / 22.7 trên 97 câu) cao hơn UniVTG zero-shot (25.2 / 10.0) và TimeChat (32.2 / 13.4, số chưa đối chiếu), nhưng thấp hơn các mô hình có huấn luyện (QD-DETR 57.3 / 32.6). Tập con 97 câu so với 3720 câu nên **không so sánh trực tiếp được**.
+
+**Mốc 2: proposals trong app.** Ô "Gộp thời gian" có thêm lựa chọn `proposals`, dùng cửa sổ trượt với tham số chọn trên dev Charades (`window_proposals` trong `vsearch/text.py`). Mặc định vẫn là `window`, vì proposals chưa được đo trên DAVIS/bóng đá: cỡ cửa sổ tính theo tỉ lệ độ dài video, hợp với clip Charades khoảng 30 s. Câu có từ thứ tự vẫn dùng bước thứ tự v2.
+
+Kiểm tra qua `Searcher.search_text(method="proposals")` trên test EN: R@1 IoU0.5/0.7 = 43.30/23.71, mIoU 39.09. Lệch ±1 câu so với script (44.33/22.68) vì app lấy độ dài video bằng frame cuối cộng 1 s chứ không đọc độ dài file.
+
+Chạy app thật bằng `gradio_client`:
+- "the person opens the refrigerator" trong `KCRQU.mp4` → 20.0–29.0 s (GT 17.2–24.3, IoU 0.36), 568 ms.
+- "người đó mở tủ lạnh" → cùng đoạn, 231 ms.
+- "con mèo ngủ trên ghế sofa" → "Không tìm thấy".
+
+Đã sửa một lỗi: ngưỡng "không tìm thấy" giờ luôn so trên điểm cosine của `window`, không so trên điểm tương phản của proposals (trước đó mọi câu đều bị từ chối). Trên Charades, ngưỡng 0.637 (hiệu chỉnh trên DAVIS) **từ chối nhầm 4.7% câu có thật**; điểm cosine tốt nhất của các câu Charades có min 0.595, trung vị 0.705. Lý do là cảnh trong nhà tối, khác hẳn DAVIS, nên ngưỡng cần hiệu chỉnh lại theo từng loại video.

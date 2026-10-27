@@ -93,6 +93,11 @@ def text_search(meta, X, q, fps, method="window", w=3, alpha=0.5, beta=0.5, ordi
             segs.append({"video": v, **pick, "n_candidates": len(ev)})
         return sorted(segs, key=lambda r: -r["score"])[:k]
     if video: C = {video: C[video]}
+    if method == "proposals" and not ordinal:  # Charades-STA: multi-scale sliding windows, chosen on dev (README)
+        segs = []
+        for v, (t, s) in C.items():
+            segs += [{"video": v, "start": a, "end": b, "peak_t": a + (b - a) / 2, "score": sc} for a, b, sc in window_proposals(t, s, float(t[-1]) + dt, dt)]
+        return sorted(segs, key=lambda r: -r["score"])[:k]
     segs = []
     for v, (t, s) in C.items():
         ss = smooth(s, w if method == "window" else 1)
@@ -140,4 +145,20 @@ def events_v2(t, ss, dt, meta=None, video=None, Xdup=None, rho=0.3, gap=2.0, dup
         while a > 0 and ss[a-1] >= thr: a -= 1
         while b < len(ss)-1 and ss[b+1] >= thr: b += 1
         out.append({"start": float(t[a]), "end": float(t[b] + dt), "peak_t": float(t[i]), "score": float(ss[i])})
+    return out
+
+def window_proposals(t, s, dur, dt, lam=1.5, scales=(0.2, 0.3, 0.4), k=5, nms=0.5):
+    """Multi-scale sliding windows (length = scale * video length), score = mean(in) - lam*mean(out), NMS.
+    Params chosen on the Charades-STA dev split (results/charades_m1.json)."""
+    n = len(s); cs = np.concatenate([[0], np.cumsum(s)]); tot = cs[-1]; c = []
+    for r in scales:
+        L = max(1, int(round(r * n)))
+        for a in range(0, n - L + 1):
+            mi = (cs[a + L] - cs[a]) / L; mo = (tot - (cs[a + L] - cs[a])) / max(1, n - L)
+            c.append((float(t[a]), float(min(dur, t[a + L - 1] + dt)), float(mi - lam * mo)))
+    out = []
+    iou = lambda x, y: max(0, min(x[1], y[1]) - max(x[0], y[0])) / max(1e-9, max(x[1], y[1]) - min(x[0], y[0]))
+    for x in sorted(c, key=lambda z: -z[2]):
+        if all(iou(x, o) < nms for o in out): out.append(x)
+        if len(out) == k: break
     return out

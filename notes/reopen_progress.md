@@ -46,3 +46,4 @@
 - 16:27 milestone1a done: results/charades_m1_siglip2.json, README section. committing.
 - 16:46 EG2 charades idx done; so400m idx started (/tmp/cha_so.log). Running full eval (eg2+sig+fusion) -> results/charades_m1.json
 - 16:51 milestone1b done (results/charades_m1.json): EG2+proposals best on test EN 44.33/22.68; fusion won dev but not test. committing.
+- 16:56 milestone2: proposals option in app (+threshold fix), verified via gradio_client on Charades. committing. so400m idx: see /tmp/cha_so.log

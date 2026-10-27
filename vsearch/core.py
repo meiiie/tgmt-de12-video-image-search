@@ -180,11 +180,13 @@ class Searcher:
             self._X = np.zeros((len(self.meta), inner.d), "float32"); self._X[ids] = inner.reconstruct_n(0, inner.ntotal)
         clean, n = parse_ordinal(text) if use_ordinal else (text, None)
         q = self._te([clean])[0]
-        best = text_search(self.meta, self._X, q, self.d["fps"], method=method, w=w, video=video, k=1)[0]
+        best = text_search(self.meta, self._X, q, self.d["fps"], method="window", w=w, video=video, k=1)[0]  # threshold is on cosine scale
         if min_score is not None and best["score"] < min_score:
             return []  # 'not found': best segment below the calibrated threshold (README: EG2 tau)
         if n and not video:  # pick the video first (best non-ordinal segment), then the n-th occurrence in it
             video = best["video"]
+        if not n and method == "proposals":
+            return text_search(self.meta, self._X, q, self.d["fps"], method="proposals", video=video, k=k)
         return text_search(self.meta, self._X, q, self.d["fps"], method=method, w=w, ordinal=n, video=video, k=k, ord_v2=ord_v2, Xdup=self._X)  # v3: events v2 (rho/gap chosen on DAVIS)
 
 def to_hnsw(ix, ef_search=64, M=32):
