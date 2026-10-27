@@ -231,3 +231,4 @@ Nguồn: FAISS paper — Douze et al., "The Faiss library", arXiv:2401.08281; FA
 ## Text → moment (27/10/2026, box CPU)
 Xem bảng "Tìm bằng câu mô tả" trong README. Số gốc: `text_clip-vit-base-patch32.json`, `text_siglip2-base-patch16-224.json`, `text_embeddinggemma-2.json`, `*_opusmt.json` (chỉ cột VI có nghĩa), `text_rerank_d3-lite.json`.
 - Bóng đá (Commons, 66.5 s, 16 câu) + ngưỡng "không tìm thấy": `text_extra_embeddinggemma-2.json` (R@1 0.375, τ=0.6427, FAR 0.071 trên bóng đá), `text_extra_siglip2-base-patch16-224.json` (R@1 0.500). Chi tiết trong README.
+- Text v3 (thứ tự v2, ghép EG2+SigLIP 2, ngưỡng 0.637): `text_v3.json`. Mặc định text = EG2 + thứ tự v2; bóng đá R@1 0.625.

@@ -168,7 +168,7 @@ class Searcher:
         gap = merge_gap if merge_gap is not None else 1.5 / self.d["fps"]
         return merge_segments(best, gap)[:k]
 
-    def search_text(self, text, k=10, method="window", w=3, video=None, use_ordinal=True, translate=None, min_score=None):
+    def search_text(self, text, k=10, method="window", w=3, video=None, use_ordinal=True, translate=None, min_score=None, ord_v2={"rho": 0.3, "gap": 1.0, "dup": None}):
         """Text -> moments over the frame index (needs a text-capable backbone: EG2 / SigLIP 2 / CLIP).
         Ordinal words (đầu tiên/thứ hai/cuối cùng, first/second/last) pick the n-th matching segment in time
         within `video` (or within the best-matching video if none given). See vsearch/text.py."""
@@ -185,7 +185,7 @@ class Searcher:
             return []  # 'not found': best segment below the calibrated threshold (README: EG2 tau)
         if n and not video:  # pick the video first (best non-ordinal segment), then the n-th occurrence in it
             video = best["video"]
-        return text_search(self.meta, self._X, q, self.d["fps"], method=method, w=w, ordinal=n, video=video, k=k)
+        return text_search(self.meta, self._X, q, self.d["fps"], method=method, w=w, ordinal=n, video=video, k=k, ord_v2=ord_v2, Xdup=self._X)  # v3: events v2 (rho/gap chosen on DAVIS)
 
 def to_hnsw(ix, ef_search=64, M=32):
     """Rebuild an IndexIDMap(FlatIP) as IndexIDMap(HNSWFlat, inner product), keeping ids."""

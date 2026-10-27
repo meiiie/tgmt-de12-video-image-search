@@ -5,9 +5,10 @@ from vsearch.core import Searcher
 ap = argparse.ArgumentParser(); ap.add_argument("--index", required=True); ap.add_argument("--videos", required=True); ap.add_argument("--share", action="store_true")
 ap.add_argument("--hnsw-min", type=int, default=None, help="use FAISS HNSW for indexes with >= N vectors (off by default)")
 ap.add_argument("--query-cache", type=int, default=0, help="LRU size for repeated-query embeddings (0 = off)")
-ap.add_argument("--text-min-score", type=float, default=None, help="text search returns nothing if the best segment score is below this (EG2 calibrated: see README); default off")
+ap.add_argument("--text-min-score", type=float, default=None, help="text search returns nothing if the best segment score is below this. Default: 0.637 for an EG2 index (calibrated on DAVIS, README v3), off otherwise; 0 = off")
 ap.add_argument("--port", type=int, default=None); a = ap.parse_args()
 S = Searcher(a.index, hnsw_min=a.hnsw_min, query_cache=a.query_cache)
+if a.text_min_score is None: a.text_min_score = 0.637 if "embeddinggemma" in str(S.d["model"]).lower() else 0
 VIDEOS = sorted({m["video"] for m in S.meta})
 def frame_at(video, t, box):
     cap = cv2.VideoCapture(os.path.join(a.videos, video)); cap.set(cv2.CAP_PROP_POS_MSEC, t * 1000); ok, f = cap.read(); cap.release()

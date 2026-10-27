@@ -372,3 +372,42 @@ Câu của Darren **"khoảnh khắc sút bóng vào lưới đầu tiên"**: EG
 | SigLIP 2 | FAR ≤ 10% | 0.0681 | 0.100 / 0.000 | 0.933 → 0.933 | 0.107 / 0.000 | 0.500 → 0.500 |
 
 (FAR = tỉ lệ câu âm bị nhận nhầm; FRR = tỉ lệ câu có thật bị từ chối; R@1 sau ngưỡng tính câu bị từ chối là trượt.) Trên DAVIS hai lớp tách hẳn nhau (EG2: câu có thật ≥ 0.6427, câu âm ≤ 0.6313), nên τ max-F1 nằm sát mép; khoảng cách chỉ ~0.01 nên ngưỡng này **dễ vỡ** khi đổi video, thấy rõ ở 7% FAR trên bóng đá. Ngưỡng không sửa được lỗi định vị sai (câu có thật mà trả sai thời điểm vẫn qua ngưỡng). Thang điểm khác nhau giữa các mô hình nên mỗi backbone cần τ riêng. App: `python app.py ... --text-min-score 0.6427` (mặc định tắt) hoặc ô "Ngưỡng 'không tìm thấy'" trên giao diện; API `Searcher.search_text(..., min_score=τ)`. Số gốc: `results/text_extra_embeddinggemma-2.json`, `results/text_extra_siglip2-base-patch16-224.json`.
+
+## Text search v3: sửa bước từ thứ tự, ghép EG2 + SigLIP 2, hiệu chỉnh lại ngưỡng (27/10/2026, box CPU)
+
+Script: `scripts/text_v3_eval.py` → `results/text_v3.json`. Mọi tham số chọn **chỉ trên DAVIS** (60 câu moment + 32 câu thứ tự; 30 câu âm), rồi báo trên bóng đá (16 câu, 28 câu âm).
+
+**(1) Từ thứ tự v2** (`events_v2` trong `vsearch/text.py`): lấy mọi đỉnh cục bộ của đường điểm đã làm mượt có độ cao tương đối (s − trung vị)/(đỉnh cao nhất − trung vị) ≥ ρ, gộp các đỉnh cách nhau ≤ gap giây thành một sự kiện, rồi tuỳ chọn bỏ "phát lại": đỉnh có cosine ảnh EG2 ≥ dup với một sự kiện trước đó. Lưới ρ ∈ {0.1…0.5} × gap ∈ {1, 2, 3} s, cùng v1 cũ, được chọn theo R@1 trên DAVIS. Bộ lọc phát lại **không chọn được trên DAVIS** vì DAVIS không có cảnh phát lại, nên mình cố định trước dup = 0.9 và báo riêng: trên bóng đá nó không đổi R@1 của EG2 (0.625 → 0.625), nên mặc định tắt.
+
+**(2) EG2, SigLIP 2 và ghép điểm.** Ghép kiểu z dùng hằng số toàn cục của từng mô hình (trung bình và độ lệch chuẩn điểm frame trên các câu moment DAVIS), nên điểm ghép vẫn tuyệt đối và đặt ngưỡng được: s = w·z_EG2 + (1 − w)·z_SigLIP2. RRF (k = 60) để so sánh. Cột "DAVIS tổng" là tiêu chí chọn; cột bóng đá chỉ để báo cáo.
+
+| Cấu hình (text) | Thứ tự chọn trên DAVIS | DAVIS moment R@1 EN / VI | DAVIS thứ tự R@1 EN / VI | DAVIS tổng R@1 | Bóng đá R@1 EN / VI | Bóng đá sai số TB (s) | Bóng đá R@1 với thứ tự v1 |
+|---|---|---|---|---|---|---|---|
+| EG2 alone | v2 ρ=0.3 gap=1.0s | 1.0 / 0.967 | 1.0 / 0.875 | **0.967** | 0.625 / 0.625 | 6.34 | 0.375 |
+| SigLIP 2 alone | v1 | 0.967 / 0.9 | 0.875 / 0.875 | **0.913** | 0.5 / 0.5 | 8.92 | 0.5 |
+| z fusion w=0.25 | v2 ρ=0.3 gap=2.0s | 1.0 / 0.933 | 1.0 / 0.812 | **0.946** | 0.375 / 0.625 | 3.89 | 0.375 |
+| z fusion w=0.5 | v2 ρ=0.3 gap=2.0s | 1.0 / 0.967 | 1.0 / 0.812 | **0.956** | 0.5 / 0.5 | 5.3 | 0.312 |
+| z fusion w=0.75 | v2 ρ=0.3 gap=2.0s | 1.0 / 0.967 | 1.0 / 0.875 | **0.967** | 0.5 / 0.625 | 4.39 | 0.312 |
+| RRF w=0.25 | v2 ρ=0.3 gap=2.0s | 0.967 / 0.9 | 0.875 / 0.812 | **0.902** | 0.375 / 0.625 | 4.6 | 0.5 |
+| RRF w=0.5 | v2 ρ=0.3 gap=2.0s | 1.0 / 0.933 | 0.875 / 0.875 | **0.935** | 0.5 / 0.375 | 6.78 | 0.438 |
+| RRF w=0.75 | v2 ρ=0.3 gap=2.0s | 1.0 / 0.967 | 0.875 / 0.875 | **0.945** | 0.5 / 0.375 | 7.55 | 0.438 |
+- **Chọn: EG2 một mình + thứ tự v2 (ρ = 0.3, gap = 1 s)**. Trên DAVIS nó **hoà** với ghép z w = 0.75 (0.967). Hoà thì mình chọn cấu hình rẻ hơn: không cần index thứ hai và mỗi câu chỉ mã hoá một lần. Tìm bằng ảnh vẫn là EG2.
+- Bước thứ tự v2 là cải thiện thật: EG2 trên DAVIS thứ tự 0.72 → 0.94, trên bóng đá 0.375 → 0.625 (EN 0.625, VI 0.625), sai số TB 12.9 → 6.3 s.
+- Ghép z w = 0.75 trúng câu của Darren trên bóng đá, còn EG2 thì không. Nhưng điều này không dùng để chọn được (sẽ là chọn trên tập test), và tổng bóng đá của nó thấp hơn (0.5625).
+- Chi phí lập index trên box CPU, 4 fps: EG2 0.35–0.42 frame/s (`match.mp4` 278 frame: 800 s), SigLIP 2 10.8 frame/s (25.7 s), tức index SigLIP 2 thêm khoảng 3% thời gian. Mã hoá câu: EG2 50 ms, SigLIP 2 34 ms (đo lô trong script; trong app 41–94 ms/câu tính cả tìm).
+
+**(3) Ngưỡng "không tìm thấy" cho mặc định mới** (EG2; điểm thô = 0.5653 + z·0.0474). Trên DAVIS, câu có thật thấp nhất 0.6427 và câu âm cao nhất 0.6313. Chọn **τ = 0.637** (giữa khoảng trống; max-F1 cho 0.6427 cũng cùng kết quả trên bóng đá):
+
+| τ | DAVIS FAR / FRR | DAVIS R@1 trước → sau | Bóng đá FAR / FRR | Bóng đá R@1 trước → sau |
+|---|---|---|---|---|
+| 0.637 (mặc định app với index EG2) | 0.000 / 0.000 | 0.983 → 0.983 | 0.071 (2/28) / 0.000 | 0.625 → 0.625 |
+
+App giờ bật ngưỡng 0.637 mặc định khi index là EG2 (`--text-min-score 0` để tắt). Hai câu âm bị nhận nhầm trên bóng đá có cả "a basketball player dunking" (→ 62.64 s).
+
+**Chạy app thật** (Gradio, index EG2 4 fps của `match.mp4`, gọi 16 câu qua `gradio_client`): R@1 0.625, khớp đúng với script; 41–94 ms/câu trong app (lần đầu 230 ms). Ảnh chụp mới:
+- [`docs/text_search_soccer_first_goal.png`](docs/text_search_soccer_first_goal.png): "khoảnh khắc sút bóng vào lưới đầu tiên" → **vẫn sai**, 44.4 s (pha thủ môn cản phá, GT bàn A 5.0–8.0 s)
+- [`docs/text_search_soccer_first_goal_short.png`](docs/text_search_soccer_first_goal_short.png): "bàn thắng đầu tiên" → 6.48 s (**đúng**; trước v3 trả 44.4 s)
+- [`docs/text_search_soccer_last_goal.png`](docs/text_search_soccer_last_goal.png): "the last goal scored" → 66.48 s (đúng)
+- [`docs/text_search_not_found.png`](docs/text_search_not_found.png): "con mèo ngủ trên ghế sofa" → "Không tìm thấy (điểm cao nhất < ngưỡng 0.637)"
+
+**Vẫn yếu:** câu dài của Darren (EG2 lẫn pha cản phá với "sút bóng vào lưới"); cả hai câu thủ môn cản phá đều trả cảnh phát lại bàn B; "ăn mừng đầu tiên/cuối cùng" bằng tiếng Anh; ngưỡng chỉ cách hai lớp khoảng 0.006 và nhận nhầm 7% trên bóng đá; bộ đánh giá nhỏ (16 câu bóng đá, mốc gán tay ±0.5 s), nên chênh 1 câu = 0.0625.

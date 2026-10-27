@@ -78,11 +78,20 @@ def runs(t, s, thr, dt, min_len=1, gap=1):
         out.append({"start": float(t[g[0]]), "end": float(t[g[-1]] + dt), "peak_t": float(t[j]), "score": float(s[j])})
     return out
 
-def text_search(meta, X, q, fps, method="window", w=3, alpha=0.5, beta=0.5, ordinal=None, video=None, k=10):
+def text_search(meta, X, q, fps, method="window", w=3, alpha=0.5, beta=0.5, ordinal=None, video=None, k=10, scores=None, ord_v2=None, Xdup=None):
     """method: 'frame' = top frames merged into segments (baseline); 'window' = smoothed curve + adaptive segment.
     ordinal: 1,2,3,-1 -> within the chosen video, candidate segments with score >= med+beta*(max-med) sorted by time.
     video: restrict to one video (the user 'loaded' it)."""
-    sc = X @ q.reshape(-1); C = curves(meta, sc); dt = 1.0 / fps
+    sc = scores if scores is not None else X @ q.reshape(-1); C = curves(meta, sc); dt = 1.0 / fps
+    if ordinal and ord_v2 is not None:  # v2 events: peaks relative to top, merged, replays removed
+        segs = []
+        for v, (t, s) in C.items():
+            if video and v != video: continue
+            ev = events_v2(t, smooth(s, w), dt, meta, v, Xdup, **ord_v2)
+            n = ordinal - 1 if ordinal > 0 else ordinal
+            pick = ev[n] if -len(ev) <= n < len(ev) else ev[-1]
+            segs.append({"video": v, **pick, "n_candidates": len(ev)})
+        return sorted(segs, key=lambda r: -r["score"])[:k]
     if video: C = {video: C[video]}
     segs = []
     for v, (t, s) in C.items():
@@ -104,3 +113,31 @@ def text_search(meta, X, q, fps, method="window", w=3, alpha=0.5, beta=0.5, ordi
             used[a:b + 1] = True
             segs.append({"video": v, "start": float(t[a]), "end": float(t[b] + dt), "peak_t": float(t[j]), "score": float(ss[j])})
     return sorted(segs, key=lambda r: -r["score"])[:k] if not ordinal else sorted(segs, key=lambda r: -r["score"])[:k]
+
+def events_v2(t, ss, dt, meta=None, video=None, Xdup=None, rho=0.3, gap=2.0, dup=None, bound=0.5):
+    """Order-word events (v2). Local maxima whose relative height (s-med)/(top-med) >= rho are candidate peaks
+    (low-scoring events are kept unless below rho of the top peak); peaks closer than `gap` s are merged into one
+    event (highest kept); an event whose peak frame embedding (Xdup, image space) has cosine >= dup with an
+    EARLIER kept event's peak is treated as a replay and dropped. Events returned in time order."""
+    med, top = np.median(ss), ss.max(); rel = (ss - med) / max(1e-9, top - med)
+    pk = [i for i in range(len(ss)) if rel[i] >= rho and (i == 0 or ss[i] >= ss[i-1]) and (i == len(ss)-1 or ss[i] >= ss[i+1])]
+    merged = []
+    for i in pk:
+        if merged and t[i] - t[merged[-1][-1]] <= gap: merged[-1].append(i)
+        else: merged.append([i])
+    peaks = [max(g, key=lambda i: ss[i]) for g in merged]
+    if dup is not None and Xdup is not None:
+        idx = {m["t"]: j for j, m in enumerate(meta) if m["video"] == video and m["kind"] == "frame"}
+        keep = []
+        for i in peaks:
+            e = Xdup[idx[float(t[i])]] if float(t[i]) in idx else None
+            if e is not None and any(float(Xdup[idx[float(t[k])]] @ e) >= dup for k in keep): continue
+            keep.append(i)
+        peaks = keep
+    out = []
+    for i in peaks:
+        thr = ss[i] - bound * (ss[i] - med); a = b = i
+        while a > 0 and ss[a-1] >= thr: a -= 1
+        while b < len(ss)-1 and ss[b+1] >= thr: b += 1
+        out.append({"start": float(t[a]), "end": float(t[b] + dt), "peak_t": float(t[i]), "score": float(ss[i])})
+    return out

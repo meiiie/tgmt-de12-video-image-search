@@ -1,0 +1,5450 @@
+{
+ "enc_ms_cpu": {
+  "eg2": 49.9,
+  "sig": 33.7
+ },
+ "global_z": {
+  "eg2": [
+   0.5652656555175781,
+   0.04739905148744583
+  ],
+  "sig": [
+   -0.012047168798744678,
+   0.05162062868475914
+  ]
+ },
+ "selection_grid": [
+  {
+   "model": "eg2",
+   "w": 1.0,
+   "fusion": "z",
+   "ord": "v1",
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.719,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "eg2",
+   "w": 1.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.1,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.719,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "eg2",
+   "w": 1.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.1,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "eg2",
+   "w": 1.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.1,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.946
+  },
+  {
+   "model": "eg2",
+   "w": 1.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.2,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "eg2",
+   "w": 1.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.2,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "eg2",
+   "w": 1.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.2,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.906,
+   "davis_all_R1": 0.957
+  },
+  {
+   "model": "eg2",
+   "w": 1.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.938,
+   "davis_all_R1": 0.967
+  },
+  {
+   "model": "eg2",
+   "w": 1.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.938,
+   "davis_all_R1": 0.967
+  },
+  {
+   "model": "eg2",
+   "w": 1.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.938,
+   "davis_all_R1": 0.967
+  },
+  {
+   "model": "eg2",
+   "w": 1.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.4,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.906,
+   "davis_all_R1": 0.957
+  },
+  {
+   "model": "eg2",
+   "w": 1.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.4,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.906,
+   "davis_all_R1": 0.957
+  },
+  {
+   "model": "eg2",
+   "w": 1.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.4,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.906,
+   "davis_all_R1": 0.957
+  },
+  {
+   "model": "eg2",
+   "w": 1.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.5,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "eg2",
+   "w": 1.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.5,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "eg2",
+   "w": 1.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.5,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "sig",
+   "w": 0.0,
+   "fusion": "z",
+   "ord": "v1",
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "sig",
+   "w": 0.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.1,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.719,
+   "davis_all_R1": 0.859
+  },
+  {
+   "model": "sig",
+   "w": 0.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.1,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.75,
+   "davis_all_R1": 0.87
+  },
+  {
+   "model": "sig",
+   "w": 0.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.1,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.75,
+   "davis_all_R1": 0.87
+  },
+  {
+   "model": "sig",
+   "w": 0.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.2,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.75,
+   "davis_all_R1": 0.87
+  },
+  {
+   "model": "sig",
+   "w": 0.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.2,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.88
+  },
+  {
+   "model": "sig",
+   "w": 0.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.2,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.88
+  },
+  {
+   "model": "sig",
+   "w": 0.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "sig",
+   "w": 0.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "sig",
+   "w": 0.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "sig",
+   "w": 0.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.4,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.88
+  },
+  {
+   "model": "sig",
+   "w": 0.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.4,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.844,
+   "davis_all_R1": 0.902
+  },
+  {
+   "model": "sig",
+   "w": 0.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.4,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "sig",
+   "w": 0.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.5,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.88
+  },
+  {
+   "model": "sig",
+   "w": 0.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.5,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.844,
+   "davis_all_R1": 0.902
+  },
+  {
+   "model": "sig",
+   "w": 0.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.5,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.25,
+   "fusion": "z",
+   "ord": "v1",
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.935
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.25,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.1,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.75,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.25,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.1,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.25,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.1,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.719,
+   "davis_all_R1": 0.88
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.25,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.2,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.25,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.2,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.844,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.25,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.2,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.25,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.935
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.25,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.906,
+   "davis_all_R1": 0.946
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.25,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.844,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.25,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.4,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.25,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.4,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.844,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.25,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.4,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.25,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.5,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.844,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.25,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.5,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.935
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.25,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.5,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.935
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.5,
+   "fusion": "z",
+   "ord": "v1",
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.5,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.1,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.75,
+   "davis_all_R1": 0.902
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.5,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.1,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.5,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.1,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.75,
+   "davis_all_R1": 0.902
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.5,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.2,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.5,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.2,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.946
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.5,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.2,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.75,
+   "davis_all_R1": 0.902
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.5,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.946
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.5,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.906,
+   "davis_all_R1": 0.957
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.5,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.946
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.5,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.4,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.5,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.4,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.946
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.5,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.4,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.946
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.5,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.5,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.5,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.5,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.5,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.5,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.75,
+   "fusion": "z",
+   "ord": "v1",
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.75,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.1,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.688,
+   "davis_all_R1": 0.88
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.75,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.1,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.75,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.1,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.75,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.2,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.75,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.2,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.75,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.2,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.844,
+   "davis_all_R1": 0.935
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.75,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.906,
+   "davis_all_R1": 0.957
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.75,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.938,
+   "davis_all_R1": 0.967
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.75,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.938,
+   "davis_all_R1": 0.967
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.75,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.4,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.946
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.75,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.4,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.906,
+   "davis_all_R1": 0.957
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.75,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.4,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.906,
+   "davis_all_R1": 0.957
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.75,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.5,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.75,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.5,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.75,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.5,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.25,
+   "fusion": "rrf",
+   "ord": "v1",
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.88
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.25,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.1,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.719,
+   "davis_all_R1": 0.859
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.25,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.1,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.88
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.25,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.1,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.719,
+   "davis_all_R1": 0.859
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.25,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.2,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.719,
+   "davis_all_R1": 0.859
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.25,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.2,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.719,
+   "davis_all_R1": 0.859
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.25,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.2,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.88
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.25,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.3,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.25,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.844,
+   "davis_all_R1": 0.902
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.25,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.3,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.25,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.4,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.88
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.25,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.4,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.25,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.4,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.25,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.5,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.88
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.25,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.5,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.25,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.5,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.5,
+   "fusion": "rrf",
+   "ord": "v1",
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.902
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.5,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.1,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.625,
+   "davis_all_R1": 0.848
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.5,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.1,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.688,
+   "davis_all_R1": 0.87
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.5,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.1,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.688,
+   "davis_all_R1": 0.87
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.5,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.2,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.75,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.5,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.2,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.75,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.5,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.2,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.75,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.5,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.3,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.5,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.935
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.5,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.3,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.935
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.5,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.4,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.902
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.5,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.4,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.5,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.4,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.5,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.5,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.902
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.5,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.5,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.902
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.5,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.5,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.781,
+   "davis_all_R1": 0.902
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.75,
+   "fusion": "rrf",
+   "ord": "v1",
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.594,
+   "davis_all_R1": 0.848
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.75,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.1,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.625,
+   "davis_all_R1": 0.859
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.75,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.1,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.719,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.75,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.1,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.75,
+   "davis_all_R1": 0.902
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.75,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.2,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.75,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.2,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.75,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.2,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.75,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.3,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.844,
+   "davis_all_R1": 0.935
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.75,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.946
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.75,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.3,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.946
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.75,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.4,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.75,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.4,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.75,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.4,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.812,
+   "davis_all_R1": 0.924
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.75,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.5,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.719,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.75,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.5,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.719,
+   "davis_all_R1": 0.891
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.75,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.5,
+    "gap": 3.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.719,
+   "davis_all_R1": 0.891
+  }
+ ],
+ "best_per_model": [
+  {
+   "model": "eg2",
+   "w": 1.0,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.938,
+   "davis_all_R1": 0.967
+  },
+  {
+   "model": "sig",
+   "w": 0.0,
+   "fusion": "z",
+   "ord": "v1",
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.913
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.25,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.906,
+   "davis_all_R1": 0.946
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.5,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.906,
+   "davis_all_R1": 0.957
+  },
+  {
+   "model": "fuse_z",
+   "w": 0.75,
+   "fusion": "z",
+   "ord": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.938,
+   "davis_all_R1": 0.967
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.25,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.933,
+   "davis_ord_R1": 0.844,
+   "davis_all_R1": 0.902
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.5,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.967,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.935
+  },
+  {
+   "model": "fuse_rrf",
+   "w": 0.75,
+   "fusion": "rrf",
+   "ord": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment_R1": 0.983,
+   "davis_ord_R1": 0.875,
+   "davis_all_R1": 0.946
+  }
+ ],
+ "winner_on_davis": {
+  "model": "eg2",
+  "w": 1.0,
+  "fusion": "z",
+  "ord": {
+   "rho": 0.3,
+   "gap": 1.0,
+   "dup": null
+  },
+  "davis_moment_R1": 0.983,
+  "davis_ord_R1": 0.938,
+  "davis_all_R1": 0.967
+ },
+ "dup": 0.9,
+ "detail": {
+  "eg2_w1.0": {
+   "ord_params": {
+    "rho": 0.3,
+    "gap": 1.0,
+    "dup": null
+   },
+   "davis_moment": {
+    "all": {
+     "n": 60,
+     "R@1": 0.983,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    },
+    "en": {
+     "n": 30,
+     "R@1": 1.0,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    },
+    "vi": {
+     "n": 30,
+     "R@1": 0.967,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    }
+   },
+   "davis_ordinal": {
+    "all": {
+     "n": 32,
+     "R@1": 0.938,
+     "R@5": 0.938,
+     "ts_err_s": 0.29
+    },
+    "en": {
+     "n": 16,
+     "R@1": 1.0,
+     "R@5": 1.0,
+     "ts_err_s": 0.01
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.58
+    }
+   },
+   "davis_ordinal_v1": {
+    "all": {
+     "n": 32,
+     "R@1": 0.719,
+     "R@5": 0.719,
+     "ts_err_s": 1.47
+    },
+    "en": {
+     "n": 16,
+     "R@1": 0.688,
+     "R@5": 0.688,
+     "ts_err_s": 1.62
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.75,
+     "R@5": 0.75,
+     "ts_err_s": 1.32
+    }
+   },
+   "football": {
+    "all": {
+     "n": 16,
+     "R@1": 0.625,
+     "R@5": 0.625,
+     "ts_err_s": 6.34
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.625,
+     "R@5": 0.625,
+     "ts_err_s": 5.01
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.625,
+     "R@5": 0.625,
+     "ts_err_s": 7.67
+    }
+   },
+   "football_v1": {
+    "all": {
+     "n": 16,
+     "R@1": 0.375,
+     "R@5": 0.375,
+     "ts_err_s": 12.87
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 9.41
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.25,
+     "R@5": 0.25,
+     "ts_err_s": 16.34
+    }
+   },
+   "davis_ordinal_dup": {
+    "all": {
+     "n": 32,
+     "R@1": 0.938,
+     "R@5": 0.938,
+     "ts_err_s": 0.29
+    },
+    "en": {
+     "n": 16,
+     "R@1": 1.0,
+     "R@5": 1.0,
+     "ts_err_s": 0.01
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.58
+    }
+   },
+   "football_dup": {
+    "all": {
+     "n": 16,
+     "R@1": 0.625,
+     "R@5": 0.625,
+     "ts_err_s": 5.98
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.625,
+     "R@5": 0.625,
+     "ts_err_s": 5.01
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.625,
+     "R@5": 0.625,
+     "ts_err_s": 6.96
+    }
+   },
+   "football_dup_rows": [
+    {
+     "id": "s_first_goal_en",
+     "lang": "en",
+     "score": 3.831,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.24,
+     "text": "the first goal, the ball goes into the net"
+    },
+    {
+     "id": "s_first_goal_vi",
+     "lang": "vi",
+     "score": 3.498,
+     "h1": false,
+     "h5": false,
+     "err": 36.4,
+     "peak": 44.4,
+     "text": "khoảnh khắc sút bóng vào lưới đầu tiên"
+    },
+    {
+     "id": "s_first_goal2_en",
+     "lang": "en",
+     "score": 3.363,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.48,
+     "text": "the first goal scored"
+    },
+    {
+     "id": "s_first_goal2_vi",
+     "lang": "vi",
+     "score": 2.882,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.48,
+     "text": "bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_goal_en",
+     "lang": "en",
+     "score": 3.363,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 66.48,
+     "text": "the last goal scored"
+    },
+    {
+     "id": "s_last_goal_vi",
+     "lang": "vi",
+     "score": 2.882,
+     "h1": false,
+     "h5": false,
+     "err": 2.22,
+     "peak": 62.4,
+     "text": "bàn thắng cuối cùng"
+    },
+    {
+     "id": "s_any_goal_en",
+     "lang": "en",
+     "score": 3.62,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.64,
+     "text": "the ball goes into the net"
+    },
+    {
+     "id": "s_any_goal_vi",
+     "lang": "vi",
+     "score": 2.894,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.64,
+     "text": "bóng bay vào lưới"
+    },
+    {
+     "id": "s_save_en",
+     "lang": "en",
+     "score": 4.361,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "the goalkeeper makes a save"
+    },
+    {
+     "id": "s_save_vi",
+     "lang": "vi",
+     "score": 3.514,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "thủ môn cản phá cú sút"
+    },
+    {
+     "id": "s_celebration_en",
+     "lang": "en",
+     "score": 3.637,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.4,
+     "text": "players celebrating a goal"
+    },
+    {
+     "id": "s_celebration_vi",
+     "lang": "vi",
+     "score": 3.154,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.4,
+     "text": "các cầu thủ ăn mừng bàn thắng"
+    },
+    {
+     "id": "s_first_celebration_en",
+     "lang": "en",
+     "score": 3.567,
+     "h1": false,
+     "h5": false,
+     "err": 14.16,
+     "peak": 44.16,
+     "text": "the first goal celebration"
+    },
+    {
+     "id": "s_first_celebration_vi",
+     "lang": "vi",
+     "score": 3.033,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 25.68,
+     "text": "màn ăn mừng bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_celebration_en",
+     "lang": "en",
+     "score": 3.567,
+     "h1": false,
+     "h5": false,
+     "err": 8.86,
+     "peak": 66.48,
+     "text": "the last goal celebration"
+    },
+    {
+     "id": "s_last_celebration_vi",
+     "lang": "vi",
+     "score": 3.033,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 54.24,
+     "text": "màn ăn mừng bàn thắng cuối cùng"
+    }
+   ],
+   "football_rows": [
+    {
+     "id": "s_first_goal_en",
+     "lang": "en",
+     "score": 3.831,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.24,
+     "text": "the first goal, the ball goes into the net"
+    },
+    {
+     "id": "s_first_goal_vi",
+     "lang": "vi",
+     "score": 3.498,
+     "h1": false,
+     "h5": false,
+     "err": 36.4,
+     "peak": 44.4,
+     "text": "khoảnh khắc sút bóng vào lưới đầu tiên"
+    },
+    {
+     "id": "s_first_goal2_en",
+     "lang": "en",
+     "score": 3.363,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.48,
+     "text": "the first goal scored"
+    },
+    {
+     "id": "s_first_goal2_vi",
+     "lang": "vi",
+     "score": 2.882,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.48,
+     "text": "bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_goal_en",
+     "lang": "en",
+     "score": 3.363,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 66.48,
+     "text": "the last goal scored"
+    },
+    {
+     "id": "s_last_goal_vi",
+     "lang": "vi",
+     "score": 2.882,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 65.52,
+     "text": "bàn thắng cuối cùng"
+    },
+    {
+     "id": "s_any_goal_en",
+     "lang": "en",
+     "score": 3.62,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.64,
+     "text": "the ball goes into the net"
+    },
+    {
+     "id": "s_any_goal_vi",
+     "lang": "vi",
+     "score": 2.894,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.64,
+     "text": "bóng bay vào lưới"
+    },
+    {
+     "id": "s_save_en",
+     "lang": "en",
+     "score": 4.361,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "the goalkeeper makes a save"
+    },
+    {
+     "id": "s_save_vi",
+     "lang": "vi",
+     "score": 3.514,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "thủ môn cản phá cú sút"
+    },
+    {
+     "id": "s_celebration_en",
+     "lang": "en",
+     "score": 3.637,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.4,
+     "text": "players celebrating a goal"
+    },
+    {
+     "id": "s_celebration_vi",
+     "lang": "vi",
+     "score": 3.154,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.4,
+     "text": "các cầu thủ ăn mừng bàn thắng"
+    },
+    {
+     "id": "s_first_celebration_en",
+     "lang": "en",
+     "score": 3.567,
+     "h1": false,
+     "h5": false,
+     "err": 14.16,
+     "peak": 44.16,
+     "text": "the first goal celebration"
+    },
+    {
+     "id": "s_first_celebration_vi",
+     "lang": "vi",
+     "score": 3.033,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 25.68,
+     "text": "màn ăn mừng bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_celebration_en",
+     "lang": "en",
+     "score": 3.567,
+     "h1": false,
+     "h5": false,
+     "err": 8.86,
+     "peak": 66.48,
+     "text": "the last goal celebration"
+    },
+    {
+     "id": "s_last_celebration_vi",
+     "lang": "vi",
+     "score": 3.033,
+     "h1": false,
+     "h5": false,
+     "err": 7.9,
+     "peak": 65.52,
+     "text": "màn ăn mừng bàn thắng cuối cùng"
+    }
+   ],
+   "threshold": {
+    "tau_maxF1": {
+     "tau": 1.6335,
+     "davis_FAR": 0.0,
+     "davis_FRR": 0.0,
+     "davis_R1_after": 0.983,
+     "football_FAR": 0.071,
+     "football_FRR": 0.0,
+     "football_R1_after": 0.625
+    },
+    "tau_midgap": {
+     "tau": 1.5137,
+     "davis_FAR": 0.0,
+     "davis_FRR": 0.0,
+     "davis_R1_after": 0.983,
+     "football_FAR": 0.071,
+     "football_FRR": 0.0,
+     "football_R1_after": 0.625
+    },
+    "davis_pos_min": 1.6335,
+    "davis_neg_max": 1.3939,
+    "n_neg_davis": 30,
+    "n_neg_football": 28
+   }
+  },
+  "sig_w0.0": {
+   "ord_params": "v1",
+   "davis_moment": {
+    "all": {
+     "n": 60,
+     "R@1": 0.933,
+     "R@5": 1.0,
+     "ts_err_s": 0.29
+    },
+    "en": {
+     "n": 30,
+     "R@1": 0.967,
+     "R@5": 1.0,
+     "ts_err_s": 0.2
+    },
+    "vi": {
+     "n": 30,
+     "R@1": 0.9,
+     "R@5": 1.0,
+     "ts_err_s": 0.38
+    }
+   },
+   "davis_ordinal": {
+    "all": {
+     "n": 32,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.67
+    },
+    "en": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.71
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.63
+    }
+   },
+   "davis_ordinal_v1": {
+    "all": {
+     "n": 32,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.67
+    },
+    "en": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.71
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.63
+    }
+   },
+   "football": {
+    "all": {
+     "n": 16,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 8.92
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 7.5
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 10.34
+    }
+   },
+   "football_v1": {
+    "all": {
+     "n": 16,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 8.92
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 7.5
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 10.34
+    }
+   },
+   "football_rows": [
+    {
+     "id": "s_first_goal_en",
+     "lang": "en",
+     "score": 3.295,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.48,
+     "text": "the first goal, the ball goes into the net"
+    },
+    {
+     "id": "s_first_goal_vi",
+     "lang": "vi",
+     "score": 3.504,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 7.2,
+     "text": "khoảnh khắc sút bóng vào lưới đầu tiên"
+    },
+    {
+     "id": "s_first_goal2_en",
+     "lang": "en",
+     "score": 3.146,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 7.44,
+     "text": "the first goal scored"
+    },
+    {
+     "id": "s_first_goal2_vi",
+     "lang": "vi",
+     "score": 2.682,
+     "h1": false,
+     "h5": false,
+     "err": 41.2,
+     "peak": 49.2,
+     "text": "bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_goal_en",
+     "lang": "en",
+     "score": 3.146,
+     "h1": false,
+     "h5": false,
+     "err": 12.06,
+     "peak": 52.56,
+     "text": "the last goal scored"
+    },
+    {
+     "id": "s_last_goal_vi",
+     "lang": "vi",
+     "score": 2.682,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 65.28,
+     "text": "bàn thắng cuối cùng"
+    },
+    {
+     "id": "s_any_goal_en",
+     "lang": "en",
+     "score": 3.073,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.4,
+     "text": "the ball goes into the net"
+    },
+    {
+     "id": "s_any_goal_vi",
+     "lang": "vi",
+     "score": 2.33,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.4,
+     "text": "bóng bay vào lưới"
+    },
+    {
+     "id": "s_save_en",
+     "lang": "en",
+     "score": 2.817,
+     "h1": false,
+     "h5": false,
+     "err": 36.86,
+     "peak": 6.24,
+     "text": "the goalkeeper makes a save"
+    },
+    {
+     "id": "s_save_vi",
+     "lang": "vi",
+     "score": 2.995,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "thủ môn cản phá cú sút"
+    },
+    {
+     "id": "s_celebration_en",
+     "lang": "en",
+     "score": 3.007,
+     "h1": false,
+     "h5": false,
+     "err": 9.71,
+     "peak": 44.16,
+     "text": "players celebrating a goal"
+    },
+    {
+     "id": "s_celebration_vi",
+     "lang": "vi",
+     "score": 2.82,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.64,
+     "text": "các cầu thủ ăn mừng bàn thắng"
+    },
+    {
+     "id": "s_first_celebration_en",
+     "lang": "en",
+     "score": 2.911,
+     "h1": false,
+     "h5": false,
+     "err": 1.34,
+     "peak": 8.16,
+     "text": "the first goal celebration"
+    },
+    {
+     "id": "s_first_celebration_vi",
+     "lang": "vi",
+     "score": 2.88,
+     "h1": false,
+     "h5": false,
+     "err": 19.2,
+     "peak": 49.2,
+     "text": "màn ăn mừng bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_celebration_en",
+     "lang": "en",
+     "score": 2.911,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.64,
+     "text": "the last goal celebration"
+    },
+    {
+     "id": "s_last_celebration_vi",
+     "lang": "vi",
+     "score": 2.88,
+     "h1": false,
+     "h5": false,
+     "err": 5.26,
+     "peak": 62.88,
+     "text": "màn ăn mừng bàn thắng cuối cùng"
+    }
+   ],
+   "threshold": {
+    "tau_maxF1": {
+     "tau": 1.9786,
+     "davis_FAR": 0.0,
+     "davis_FRR": 0.0,
+     "davis_R1_after": 0.933,
+     "football_FAR": 0.071,
+     "football_FRR": 0.0,
+     "football_R1_after": 0.5
+    },
+    "tau_midgap": {
+     "tau": 1.8203,
+     "davis_FAR": 0.0,
+     "davis_FRR": 0.0,
+     "davis_R1_after": 0.933,
+     "football_FAR": 0.071,
+     "football_FRR": 0.0,
+     "football_R1_after": 0.5
+    },
+    "davis_pos_min": 1.9786,
+    "davis_neg_max": 1.662,
+    "n_neg_davis": 30,
+    "n_neg_football": 28
+   }
+  },
+  "fuse_z_w0.25": {
+   "ord_params": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment": {
+    "all": {
+     "n": 60,
+     "R@1": 0.967,
+     "R@5": 1.0,
+     "ts_err_s": 0.1
+    },
+    "en": {
+     "n": 30,
+     "R@1": 1.0,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    },
+    "vi": {
+     "n": 30,
+     "R@1": 0.933,
+     "R@5": 1.0,
+     "ts_err_s": 0.21
+    }
+   },
+   "davis_ordinal": {
+    "all": {
+     "n": 32,
+     "R@1": 0.906,
+     "R@5": 0.906,
+     "ts_err_s": 0.38
+    },
+    "en": {
+     "n": 16,
+     "R@1": 1.0,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.812,
+     "R@5": 0.812,
+     "ts_err_s": 0.76
+    }
+   },
+   "davis_ordinal_v1": {
+    "all": {
+     "n": 32,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.67
+    },
+    "en": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.71
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.63
+    }
+   },
+   "football": {
+    "all": {
+     "n": 16,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 3.89
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.375,
+     "R@5": 0.375,
+     "ts_err_s": 4.78
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.625,
+     "R@5": 0.625,
+     "ts_err_s": 3.01
+    }
+   },
+   "football_v1": {
+    "all": {
+     "n": 16,
+     "R@1": 0.375,
+     "R@5": 0.375,
+     "ts_err_s": 11.5
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 5.74
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.25,
+     "R@5": 0.25,
+     "ts_err_s": 17.27
+    }
+   },
+   "davis_ordinal_dup": {
+    "all": {
+     "n": 32,
+     "R@1": 0.906,
+     "R@5": 0.906,
+     "ts_err_s": 0.38
+    },
+    "en": {
+     "n": 16,
+     "R@1": 1.0,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.812,
+     "R@5": 0.812,
+     "ts_err_s": 0.76
+    }
+   },
+   "football_dup": {
+    "all": {
+     "n": 16,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 3.71
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.375,
+     "R@5": 0.375,
+     "ts_err_s": 4.42
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.625,
+     "R@5": 0.625,
+     "ts_err_s": 3.01
+    }
+   },
+   "football_dup_rows": [
+    {
+     "id": "s_first_goal_en",
+     "lang": "en",
+     "score": 3.279,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.48,
+     "text": "the first goal, the ball goes into the net"
+    },
+    {
+     "id": "s_first_goal_vi",
+     "lang": "vi",
+     "score": 3.46,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.72,
+     "text": "khoảnh khắc sút bóng vào lưới đầu tiên"
+    },
+    {
+     "id": "s_first_goal2_en",
+     "lang": "en",
+     "score": 3.056,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 7.44,
+     "text": "the first goal scored"
+    },
+    {
+     "id": "s_first_goal2_vi",
+     "lang": "vi",
+     "score": 2.627,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 7.2,
+     "text": "bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_goal_en",
+     "lang": "en",
+     "score": 3.056,
+     "h1": false,
+     "h5": false,
+     "err": 1.98,
+     "peak": 62.64,
+     "text": "the last goal scored"
+    },
+    {
+     "id": "s_last_goal_vi",
+     "lang": "vi",
+     "score": 2.627,
+     "h1": false,
+     "h5": false,
+     "err": 1.98,
+     "peak": 62.64,
+     "text": "bàn thắng cuối cùng"
+    },
+    {
+     "id": "s_any_goal_en",
+     "lang": "en",
+     "score": 3.191,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.4,
+     "text": "the ball goes into the net"
+    },
+    {
+     "id": "s_any_goal_vi",
+     "lang": "vi",
+     "score": 2.469,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.64,
+     "text": "bóng bay vào lưới"
+    },
+    {
+     "id": "s_save_en",
+     "lang": "en",
+     "score": 3.181,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "the goalkeeper makes a save"
+    },
+    {
+     "id": "s_save_vi",
+     "lang": "vi",
+     "score": 3.125,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "thủ môn cản phá cú sút"
+    },
+    {
+     "id": "s_celebration_en",
+     "lang": "en",
+     "score": 3.133,
+     "h1": false,
+     "h5": false,
+     "err": 9.71,
+     "peak": 44.16,
+     "text": "players celebrating a goal"
+    },
+    {
+     "id": "s_celebration_vi",
+     "lang": "vi",
+     "score": 2.897,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.64,
+     "text": "các cầu thủ ăn mừng bàn thắng"
+    },
+    {
+     "id": "s_first_celebration_en",
+     "lang": "en",
+     "score": 3.075,
+     "h1": false,
+     "h5": false,
+     "err": 1.58,
+     "peak": 7.92,
+     "text": "the first goal celebration"
+    },
+    {
+     "id": "s_first_celebration_vi",
+     "lang": "vi",
+     "score": 2.873,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 20.16,
+     "text": "màn ăn mừng bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_celebration_en",
+     "lang": "en",
+     "score": 3.075,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "the last goal celebration"
+    },
+    {
+     "id": "s_last_celebration_vi",
+     "lang": "vi",
+     "score": 2.873,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "màn ăn mừng bàn thắng cuối cùng"
+    }
+   ],
+   "football_rows": [
+    {
+     "id": "s_first_goal_en",
+     "lang": "en",
+     "score": 3.279,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.48,
+     "text": "the first goal, the ball goes into the net"
+    },
+    {
+     "id": "s_first_goal_vi",
+     "lang": "vi",
+     "score": 3.46,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.72,
+     "text": "khoảnh khắc sút bóng vào lưới đầu tiên"
+    },
+    {
+     "id": "s_first_goal2_en",
+     "lang": "en",
+     "score": 3.056,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 7.44,
+     "text": "the first goal scored"
+    },
+    {
+     "id": "s_first_goal2_vi",
+     "lang": "vi",
+     "score": 2.627,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 7.2,
+     "text": "bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_goal_en",
+     "lang": "en",
+     "score": 3.056,
+     "h1": false,
+     "h5": false,
+     "err": 1.98,
+     "peak": 62.64,
+     "text": "the last goal scored"
+    },
+    {
+     "id": "s_last_goal_vi",
+     "lang": "vi",
+     "score": 2.627,
+     "h1": false,
+     "h5": false,
+     "err": 1.98,
+     "peak": 62.64,
+     "text": "bàn thắng cuối cùng"
+    },
+    {
+     "id": "s_any_goal_en",
+     "lang": "en",
+     "score": 3.191,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.4,
+     "text": "the ball goes into the net"
+    },
+    {
+     "id": "s_any_goal_vi",
+     "lang": "vi",
+     "score": 2.469,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.64,
+     "text": "bóng bay vào lưới"
+    },
+    {
+     "id": "s_save_en",
+     "lang": "en",
+     "score": 3.181,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "the goalkeeper makes a save"
+    },
+    {
+     "id": "s_save_vi",
+     "lang": "vi",
+     "score": 3.125,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "thủ môn cản phá cú sút"
+    },
+    {
+     "id": "s_celebration_en",
+     "lang": "en",
+     "score": 3.133,
+     "h1": false,
+     "h5": false,
+     "err": 9.71,
+     "peak": 44.16,
+     "text": "players celebrating a goal"
+    },
+    {
+     "id": "s_celebration_vi",
+     "lang": "vi",
+     "score": 2.897,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.64,
+     "text": "các cầu thủ ăn mừng bàn thắng"
+    },
+    {
+     "id": "s_first_celebration_en",
+     "lang": "en",
+     "score": 3.075,
+     "h1": false,
+     "h5": false,
+     "err": 1.58,
+     "peak": 7.92,
+     "text": "the first goal celebration"
+    },
+    {
+     "id": "s_first_celebration_vi",
+     "lang": "vi",
+     "score": 2.873,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 20.16,
+     "text": "màn ăn mừng bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_celebration_en",
+     "lang": "en",
+     "score": 3.075,
+     "h1": false,
+     "h5": false,
+     "err": 7.9,
+     "peak": 65.52,
+     "text": "the last goal celebration"
+    },
+    {
+     "id": "s_last_celebration_vi",
+     "lang": "vi",
+     "score": 2.873,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "màn ăn mừng bàn thắng cuối cùng"
+    }
+   ],
+   "threshold": {
+    "tau_maxF1": {
+     "tau": 1.8923,
+     "davis_FAR": 0.0,
+     "davis_FRR": 0.0,
+     "davis_R1_after": 0.967,
+     "football_FAR": 0.036,
+     "football_FRR": 0.0,
+     "football_R1_after": 0.5
+    },
+    "tau_midgap": {
+     "tau": 1.7171,
+     "davis_FAR": 0.0,
+     "davis_FRR": 0.0,
+     "davis_R1_after": 0.967,
+     "football_FAR": 0.107,
+     "football_FRR": 0.0,
+     "football_R1_after": 0.5
+    },
+    "davis_pos_min": 1.8923,
+    "davis_neg_max": 1.5419,
+    "n_neg_davis": 30,
+    "n_neg_football": 28
+   }
+  },
+  "fuse_z_w0.5": {
+   "ord_params": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment": {
+    "all": {
+     "n": 60,
+     "R@1": 0.983,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    },
+    "en": {
+     "n": 30,
+     "R@1": 1.0,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    },
+    "vi": {
+     "n": 30,
+     "R@1": 0.967,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    }
+   },
+   "davis_ordinal": {
+    "all": {
+     "n": 32,
+     "R@1": 0.906,
+     "R@5": 0.906,
+     "ts_err_s": 0.34
+    },
+    "en": {
+     "n": 16,
+     "R@1": 1.0,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.812,
+     "R@5": 0.812,
+     "ts_err_s": 0.68
+    }
+   },
+   "davis_ordinal_v1": {
+    "all": {
+     "n": 32,
+     "R@1": 0.812,
+     "R@5": 0.812,
+     "ts_err_s": 0.91
+    },
+    "en": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.52
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.75,
+     "R@5": 0.75,
+     "ts_err_s": 1.3
+    }
+   },
+   "football": {
+    "all": {
+     "n": 16,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 5.3
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 5.74
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 4.87
+    }
+   },
+   "football_v1": {
+    "all": {
+     "n": 16,
+     "R@1": 0.312,
+     "R@5": 0.312,
+     "ts_err_s": 11.12
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.375,
+     "R@5": 0.375,
+     "ts_err_s": 5.99
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.25,
+     "R@5": 0.25,
+     "ts_err_s": 16.25
+    }
+   },
+   "davis_ordinal_dup": {
+    "all": {
+     "n": 32,
+     "R@1": 0.906,
+     "R@5": 0.906,
+     "ts_err_s": 0.34
+    },
+    "en": {
+     "n": 16,
+     "R@1": 1.0,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.812,
+     "R@5": 0.812,
+     "ts_err_s": 0.68
+    }
+   },
+   "football_dup": {
+    "all": {
+     "n": 16,
+     "R@1": 0.562,
+     "R@5": 0.562,
+     "ts_err_s": 5.17
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 5.74
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.625,
+     "R@5": 0.625,
+     "ts_err_s": 4.6
+    }
+   },
+   "football_dup_rows": [
+    {
+     "id": "s_first_goal_en",
+     "lang": "en",
+     "score": 3.443,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.48,
+     "text": "the first goal, the ball goes into the net"
+    },
+    {
+     "id": "s_first_goal_vi",
+     "lang": "vi",
+     "score": 3.473,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.24,
+     "text": "khoảnh khắc sút bóng vào lưới đầu tiên"
+    },
+    {
+     "id": "s_first_goal2_en",
+     "lang": "en",
+     "score": 3.116,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 7.44,
+     "text": "the first goal scored"
+    },
+    {
+     "id": "s_first_goal2_vi",
+     "lang": "vi",
+     "score": 2.703,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.96,
+     "text": "bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_goal_en",
+     "lang": "en",
+     "score": 3.116,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 66.48,
+     "text": "the last goal scored"
+    },
+    {
+     "id": "s_last_goal_vi",
+     "lang": "vi",
+     "score": 2.703,
+     "h1": false,
+     "h5": false,
+     "err": 4.86,
+     "peak": 59.76,
+     "text": "bàn thắng cuối cùng"
+    },
+    {
+     "id": "s_any_goal_en",
+     "lang": "en",
+     "score": 3.308,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.4,
+     "text": "the ball goes into the net"
+    },
+    {
+     "id": "s_any_goal_vi",
+     "lang": "vi",
+     "score": 2.611,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.64,
+     "text": "bóng bay vào lưới"
+    },
+    {
+     "id": "s_save_en",
+     "lang": "en",
+     "score": 3.574,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "the goalkeeper makes a save"
+    },
+    {
+     "id": "s_save_vi",
+     "lang": "vi",
+     "score": 3.255,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "thủ môn cản phá cú sút"
+    },
+    {
+     "id": "s_celebration_en",
+     "lang": "en",
+     "score": 3.259,
+     "h1": false,
+     "h5": false,
+     "err": 9.71,
+     "peak": 44.16,
+     "text": "players celebrating a goal"
+    },
+    {
+     "id": "s_celebration_vi",
+     "lang": "vi",
+     "score": 2.974,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.64,
+     "text": "các cầu thủ ăn mừng bàn thắng"
+    },
+    {
+     "id": "s_first_celebration_en",
+     "lang": "en",
+     "score": 3.239,
+     "h1": false,
+     "h5": false,
+     "err": 14.16,
+     "peak": 44.16,
+     "text": "the first goal celebration"
+    },
+    {
+     "id": "s_first_celebration_vi",
+     "lang": "vi",
+     "score": 2.889,
+     "h1": false,
+     "h5": false,
+     "err": 14.88,
+     "peak": 44.88,
+     "text": "màn ăn mừng bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_celebration_en",
+     "lang": "en",
+     "score": 3.239,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "the last goal celebration"
+    },
+    {
+     "id": "s_last_celebration_vi",
+     "lang": "vi",
+     "score": 2.889,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.64,
+     "text": "màn ăn mừng bàn thắng cuối cùng"
+    }
+   ],
+   "football_rows": [
+    {
+     "id": "s_first_goal_en",
+     "lang": "en",
+     "score": 3.443,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.48,
+     "text": "the first goal, the ball goes into the net"
+    },
+    {
+     "id": "s_first_goal_vi",
+     "lang": "vi",
+     "score": 3.473,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.24,
+     "text": "khoảnh khắc sút bóng vào lưới đầu tiên"
+    },
+    {
+     "id": "s_first_goal2_en",
+     "lang": "en",
+     "score": 3.116,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 7.44,
+     "text": "the first goal scored"
+    },
+    {
+     "id": "s_first_goal2_vi",
+     "lang": "vi",
+     "score": 2.703,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.96,
+     "text": "bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_goal_en",
+     "lang": "en",
+     "score": 3.116,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 66.48,
+     "text": "the last goal scored"
+    },
+    {
+     "id": "s_last_goal_vi",
+     "lang": "vi",
+     "score": 2.703,
+     "h1": false,
+     "h5": false,
+     "err": 1.98,
+     "peak": 62.64,
+     "text": "bàn thắng cuối cùng"
+    },
+    {
+     "id": "s_any_goal_en",
+     "lang": "en",
+     "score": 3.308,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.4,
+     "text": "the ball goes into the net"
+    },
+    {
+     "id": "s_any_goal_vi",
+     "lang": "vi",
+     "score": 2.611,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.64,
+     "text": "bóng bay vào lưới"
+    },
+    {
+     "id": "s_save_en",
+     "lang": "en",
+     "score": 3.574,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "the goalkeeper makes a save"
+    },
+    {
+     "id": "s_save_vi",
+     "lang": "vi",
+     "score": 3.255,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "thủ môn cản phá cú sút"
+    },
+    {
+     "id": "s_celebration_en",
+     "lang": "en",
+     "score": 3.259,
+     "h1": false,
+     "h5": false,
+     "err": 9.71,
+     "peak": 44.16,
+     "text": "players celebrating a goal"
+    },
+    {
+     "id": "s_celebration_vi",
+     "lang": "vi",
+     "score": 2.974,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.64,
+     "text": "các cầu thủ ăn mừng bàn thắng"
+    },
+    {
+     "id": "s_first_celebration_en",
+     "lang": "en",
+     "score": 3.239,
+     "h1": false,
+     "h5": false,
+     "err": 14.16,
+     "peak": 44.16,
+     "text": "the first goal celebration"
+    },
+    {
+     "id": "s_first_celebration_vi",
+     "lang": "vi",
+     "score": 2.889,
+     "h1": false,
+     "h5": false,
+     "err": 14.88,
+     "peak": 44.88,
+     "text": "màn ăn mừng bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_celebration_en",
+     "lang": "en",
+     "score": 3.239,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "the last goal celebration"
+    },
+    {
+     "id": "s_last_celebration_vi",
+     "lang": "vi",
+     "score": 2.889,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "màn ăn mừng bàn thắng cuối cùng"
+    }
+   ],
+   "threshold": {
+    "tau_maxF1": {
+     "tau": 1.8061,
+     "davis_FAR": 0.0,
+     "davis_FRR": 0.0,
+     "davis_R1_after": 0.983,
+     "football_FAR": 0.0,
+     "football_FRR": 0.0,
+     "football_R1_after": 0.5
+    },
+    "tau_midgap": {
+     "tau": 1.645,
+     "davis_FAR": 0.0,
+     "davis_FRR": 0.0,
+     "davis_R1_after": 0.983,
+     "football_FAR": 0.107,
+     "football_FRR": 0.0,
+     "football_R1_after": 0.5
+    },
+    "davis_pos_min": 1.8061,
+    "davis_neg_max": 1.484,
+    "n_neg_davis": 30,
+    "n_neg_football": 28
+   }
+  },
+  "fuse_z_w0.75": {
+   "ord_params": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment": {
+    "all": {
+     "n": 60,
+     "R@1": 0.983,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    },
+    "en": {
+     "n": 30,
+     "R@1": 1.0,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    },
+    "vi": {
+     "n": 30,
+     "R@1": 0.967,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    }
+   },
+   "davis_ordinal": {
+    "all": {
+     "n": 32,
+     "R@1": 0.938,
+     "R@5": 0.938,
+     "ts_err_s": 0.29
+    },
+    "en": {
+     "n": 16,
+     "R@1": 1.0,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.58
+    }
+   },
+   "davis_ordinal_v1": {
+    "all": {
+     "n": 32,
+     "R@1": 0.812,
+     "R@5": 0.812,
+     "ts_err_s": 0.92
+    },
+    "en": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.52
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.75,
+     "R@5": 0.75,
+     "ts_err_s": 1.33
+    }
+   },
+   "football": {
+    "all": {
+     "n": 16,
+     "R@1": 0.562,
+     "R@5": 0.625,
+     "ts_err_s": 4.39
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.625,
+     "ts_err_s": 5.74
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.625,
+     "R@5": 0.625,
+     "ts_err_s": 3.04
+    }
+   },
+   "football_v1": {
+    "all": {
+     "n": 16,
+     "R@1": 0.312,
+     "R@5": 0.375,
+     "ts_err_s": 13.25
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.375,
+     "R@5": 0.5,
+     "ts_err_s": 10.29
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.25,
+     "R@5": 0.25,
+     "ts_err_s": 16.21
+    }
+   },
+   "davis_ordinal_dup": {
+    "all": {
+     "n": 32,
+     "R@1": 0.938,
+     "R@5": 0.938,
+     "ts_err_s": 0.29
+    },
+    "en": {
+     "n": 16,
+     "R@1": 1.0,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.58
+    }
+   },
+   "football_dup": {
+    "all": {
+     "n": 16,
+     "R@1": 0.625,
+     "R@5": 0.688,
+     "ts_err_s": 4.45
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.625,
+     "ts_err_s": 5.74
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.75,
+     "R@5": 0.75,
+     "ts_err_s": 3.16
+    }
+   },
+   "football_dup_rows": [
+    {
+     "id": "s_first_goal_en",
+     "lang": "en",
+     "score": 3.637,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.24,
+     "text": "the first goal, the ball goes into the net"
+    },
+    {
+     "id": "s_first_goal_vi",
+     "lang": "vi",
+     "score": 3.485,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.24,
+     "text": "khoảnh khắc sút bóng vào lưới đầu tiên"
+    },
+    {
+     "id": "s_first_goal2_en",
+     "lang": "en",
+     "score": 3.24,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.48,
+     "text": "the first goal scored"
+    },
+    {
+     "id": "s_first_goal2_vi",
+     "lang": "vi",
+     "score": 2.792,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.96,
+     "text": "bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_goal_en",
+     "lang": "en",
+     "score": 3.24,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 66.48,
+     "text": "the last goal scored"
+    },
+    {
+     "id": "s_last_goal_vi",
+     "lang": "vi",
+     "score": 2.792,
+     "h1": false,
+     "h5": false,
+     "err": 8.22,
+     "peak": 56.4,
+     "text": "bàn thắng cuối cùng"
+    },
+    {
+     "id": "s_any_goal_en",
+     "lang": "en",
+     "score": 3.457,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.64,
+     "text": "the ball goes into the net"
+    },
+    {
+     "id": "s_any_goal_vi",
+     "lang": "vi",
+     "score": 2.752,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.64,
+     "text": "bóng bay vào lưới"
+    },
+    {
+     "id": "s_save_en",
+     "lang": "en",
+     "score": 3.967,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "the goalkeeper makes a save"
+    },
+    {
+     "id": "s_save_vi",
+     "lang": "vi",
+     "score": 3.384,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "thủ môn cản phá cú sút"
+    },
+    {
+     "id": "s_celebration_en",
+     "lang": "en",
+     "score": 3.385,
+     "h1": false,
+     "h5": true,
+     "err": 9.71,
+     "peak": 44.16,
+     "text": "players celebrating a goal"
+    },
+    {
+     "id": "s_celebration_vi",
+     "lang": "vi",
+     "score": 3.051,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.64,
+     "text": "các cầu thủ ăn mừng bàn thắng"
+    },
+    {
+     "id": "s_first_celebration_en",
+     "lang": "en",
+     "score": 3.403,
+     "h1": false,
+     "h5": false,
+     "err": 14.16,
+     "peak": 44.16,
+     "text": "the first goal celebration"
+    },
+    {
+     "id": "s_first_celebration_vi",
+     "lang": "vi",
+     "score": 2.941,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 25.68,
+     "text": "màn ăn mừng bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_celebration_en",
+     "lang": "en",
+     "score": 3.403,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "the last goal celebration"
+    },
+    {
+     "id": "s_last_celebration_vi",
+     "lang": "vi",
+     "score": 2.941,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.4,
+     "text": "màn ăn mừng bàn thắng cuối cùng"
+    }
+   ],
+   "football_rows": [
+    {
+     "id": "s_first_goal_en",
+     "lang": "en",
+     "score": 3.637,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.24,
+     "text": "the first goal, the ball goes into the net"
+    },
+    {
+     "id": "s_first_goal_vi",
+     "lang": "vi",
+     "score": 3.485,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.24,
+     "text": "khoảnh khắc sút bóng vào lưới đầu tiên"
+    },
+    {
+     "id": "s_first_goal2_en",
+     "lang": "en",
+     "score": 3.24,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.48,
+     "text": "the first goal scored"
+    },
+    {
+     "id": "s_first_goal2_vi",
+     "lang": "vi",
+     "score": 2.792,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.96,
+     "text": "bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_goal_en",
+     "lang": "en",
+     "score": 3.24,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 66.48,
+     "text": "the last goal scored"
+    },
+    {
+     "id": "s_last_goal_vi",
+     "lang": "vi",
+     "score": 2.792,
+     "h1": false,
+     "h5": false,
+     "err": 2.22,
+     "peak": 62.4,
+     "text": "bàn thắng cuối cùng"
+    },
+    {
+     "id": "s_any_goal_en",
+     "lang": "en",
+     "score": 3.457,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.64,
+     "text": "the ball goes into the net"
+    },
+    {
+     "id": "s_any_goal_vi",
+     "lang": "vi",
+     "score": 2.752,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.64,
+     "text": "bóng bay vào lưới"
+    },
+    {
+     "id": "s_save_en",
+     "lang": "en",
+     "score": 3.967,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "the goalkeeper makes a save"
+    },
+    {
+     "id": "s_save_vi",
+     "lang": "vi",
+     "score": 3.384,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "thủ môn cản phá cú sút"
+    },
+    {
+     "id": "s_celebration_en",
+     "lang": "en",
+     "score": 3.385,
+     "h1": false,
+     "h5": true,
+     "err": 9.71,
+     "peak": 44.16,
+     "text": "players celebrating a goal"
+    },
+    {
+     "id": "s_celebration_vi",
+     "lang": "vi",
+     "score": 3.051,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.64,
+     "text": "các cầu thủ ăn mừng bàn thắng"
+    },
+    {
+     "id": "s_first_celebration_en",
+     "lang": "en",
+     "score": 3.403,
+     "h1": false,
+     "h5": false,
+     "err": 14.16,
+     "peak": 44.16,
+     "text": "the first goal celebration"
+    },
+    {
+     "id": "s_first_celebration_vi",
+     "lang": "vi",
+     "score": 2.941,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 25.68,
+     "text": "màn ăn mừng bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_celebration_en",
+     "lang": "en",
+     "score": 3.403,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "the last goal celebration"
+    },
+    {
+     "id": "s_last_celebration_vi",
+     "lang": "vi",
+     "score": 2.941,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "màn ăn mừng bàn thắng cuối cùng"
+    }
+   ],
+   "threshold": {
+    "tau_maxF1": {
+     "tau": 1.7198,
+     "davis_FAR": 0.0,
+     "davis_FRR": 0.0,
+     "davis_R1_after": 0.983,
+     "football_FAR": 0.036,
+     "football_FRR": 0.0,
+     "football_R1_after": 0.562
+    },
+    "tau_midgap": {
+     "tau": 1.579,
+     "davis_FAR": 0.0,
+     "davis_FRR": 0.0,
+     "davis_R1_after": 0.983,
+     "football_FAR": 0.036,
+     "football_FRR": 0.0,
+     "football_R1_after": 0.562
+    },
+    "davis_pos_min": 1.7198,
+    "davis_neg_max": 1.4382,
+    "n_neg_davis": 30,
+    "n_neg_football": 28
+   }
+  },
+  "fuse_rrf_w0.25": {
+   "ord_params": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment": {
+    "all": {
+     "n": 60,
+     "R@1": 0.933,
+     "R@5": 1.0,
+     "ts_err_s": 0.29
+    },
+    "en": {
+     "n": 30,
+     "R@1": 0.967,
+     "R@5": 1.0,
+     "ts_err_s": 0.2
+    },
+    "vi": {
+     "n": 30,
+     "R@1": 0.9,
+     "R@5": 1.0,
+     "ts_err_s": 0.38
+    }
+   },
+   "davis_ordinal": {
+    "all": {
+     "n": 32,
+     "R@1": 0.844,
+     "R@5": 0.844,
+     "ts_err_s": 0.73
+    },
+    "en": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.71
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.812,
+     "R@5": 0.812,
+     "ts_err_s": 0.76
+    }
+   },
+   "davis_ordinal_v1": {
+    "all": {
+     "n": 32,
+     "R@1": 0.781,
+     "R@5": 0.781,
+     "ts_err_s": 1.59
+    },
+    "en": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 1.5
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.688,
+     "R@5": 0.688,
+     "ts_err_s": 1.68
+    }
+   },
+   "football": {
+    "all": {
+     "n": 16,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 4.6
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.375,
+     "R@5": 0.375,
+     "ts_err_s": 4.39
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.625,
+     "R@5": 0.625,
+     "ts_err_s": 4.82
+    }
+   },
+   "football_v1": {
+    "all": {
+     "n": 16,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 6.76
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 3.76
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 9.77
+    }
+   },
+   "davis_ordinal_dup": {
+    "all": {
+     "n": 32,
+     "R@1": 0.844,
+     "R@5": 0.844,
+     "ts_err_s": 0.73
+    },
+    "en": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.71
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.812,
+     "R@5": 0.812,
+     "ts_err_s": 0.76
+    }
+   },
+   "football_dup": {
+    "all": {
+     "n": 16,
+     "R@1": 0.438,
+     "R@5": 0.438,
+     "ts_err_s": 5.39
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.375,
+     "R@5": 0.375,
+     "ts_err_s": 4.39
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 6.39
+    }
+   },
+   "football_dup_rows": [
+    {
+     "id": "s_first_goal_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.48,
+     "text": "the first goal, the ball goes into the net"
+    },
+    {
+     "id": "s_first_goal_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.72,
+     "text": "khoảnh khắc sút bóng vào lưới đầu tiên"
+    },
+    {
+     "id": "s_first_goal2_en",
+     "lang": "en",
+     "score": 0.014,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 7.44,
+     "text": "the first goal scored"
+    },
+    {
+     "id": "s_first_goal2_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": false,
+     "h5": false,
+     "err": 16.48,
+     "peak": 24.48,
+     "text": "bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_goal_en",
+     "lang": "en",
+     "score": 0.014,
+     "h1": false,
+     "h5": false,
+     "err": 1.98,
+     "peak": 62.64,
+     "text": "the last goal scored"
+    },
+    {
+     "id": "s_last_goal_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": false,
+     "h5": false,
+     "err": 12.54,
+     "peak": 52.08,
+     "text": "bàn thắng cuối cùng"
+    },
+    {
+     "id": "s_any_goal_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.4,
+     "text": "the ball goes into the net"
+    },
+    {
+     "id": "s_any_goal_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.4,
+     "text": "bóng bay vào lưới"
+    },
+    {
+     "id": "s_save_en",
+     "lang": "en",
+     "score": 0.015,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "the goalkeeper makes a save"
+    },
+    {
+     "id": "s_save_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "thủ môn cản phá cú sút"
+    },
+    {
+     "id": "s_celebration_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 9.71,
+     "peak": 44.16,
+     "text": "players celebrating a goal"
+    },
+    {
+     "id": "s_celebration_vi",
+     "lang": "vi",
+     "score": 0.015,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.64,
+     "text": "các cầu thủ ăn mừng bàn thắng"
+    },
+    {
+     "id": "s_first_celebration_en",
+     "lang": "en",
+     "score": 0.015,
+     "h1": false,
+     "h5": false,
+     "err": 1.34,
+     "peak": 8.16,
+     "text": "the first goal celebration"
+    },
+    {
+     "id": "s_first_celebration_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 24.48,
+     "text": "màn ăn mừng bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_celebration_en",
+     "lang": "en",
+     "score": 0.015,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "the last goal celebration"
+    },
+    {
+     "id": "s_last_celebration_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "màn ăn mừng bàn thắng cuối cùng"
+    }
+   ],
+   "football_rows": [
+    {
+     "id": "s_first_goal_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.48,
+     "text": "the first goal, the ball goes into the net"
+    },
+    {
+     "id": "s_first_goal_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.72,
+     "text": "khoảnh khắc sút bóng vào lưới đầu tiên"
+    },
+    {
+     "id": "s_first_goal2_en",
+     "lang": "en",
+     "score": 0.014,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 7.44,
+     "text": "the first goal scored"
+    },
+    {
+     "id": "s_first_goal2_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": false,
+     "h5": false,
+     "err": 16.48,
+     "peak": 24.48,
+     "text": "bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_goal_en",
+     "lang": "en",
+     "score": 0.014,
+     "h1": false,
+     "h5": false,
+     "err": 1.98,
+     "peak": 62.64,
+     "text": "the last goal scored"
+    },
+    {
+     "id": "s_last_goal_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 65.28,
+     "text": "bàn thắng cuối cùng"
+    },
+    {
+     "id": "s_any_goal_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.4,
+     "text": "the ball goes into the net"
+    },
+    {
+     "id": "s_any_goal_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.4,
+     "text": "bóng bay vào lưới"
+    },
+    {
+     "id": "s_save_en",
+     "lang": "en",
+     "score": 0.015,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "the goalkeeper makes a save"
+    },
+    {
+     "id": "s_save_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "thủ môn cản phá cú sút"
+    },
+    {
+     "id": "s_celebration_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 9.71,
+     "peak": 44.16,
+     "text": "players celebrating a goal"
+    },
+    {
+     "id": "s_celebration_vi",
+     "lang": "vi",
+     "score": 0.015,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.64,
+     "text": "các cầu thủ ăn mừng bàn thắng"
+    },
+    {
+     "id": "s_first_celebration_en",
+     "lang": "en",
+     "score": 0.015,
+     "h1": false,
+     "h5": false,
+     "err": 1.34,
+     "peak": 8.16,
+     "text": "the first goal celebration"
+    },
+    {
+     "id": "s_first_celebration_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 24.48,
+     "text": "màn ăn mừng bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_celebration_en",
+     "lang": "en",
+     "score": 0.015,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "the last goal celebration"
+    },
+    {
+     "id": "s_last_celebration_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "màn ăn mừng bàn thắng cuối cùng"
+    }
+   ]
+  },
+  "fuse_rrf_w0.5": {
+   "ord_params": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment": {
+    "all": {
+     "n": 60,
+     "R@1": 0.967,
+     "R@5": 1.0,
+     "ts_err_s": 0.1
+    },
+    "en": {
+     "n": 30,
+     "R@1": 1.0,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    },
+    "vi": {
+     "n": 30,
+     "R@1": 0.933,
+     "R@5": 1.0,
+     "ts_err_s": 0.21
+    }
+   },
+   "davis_ordinal": {
+    "all": {
+     "n": 32,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.64
+    },
+    "en": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.71
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.58
+    }
+   },
+   "davis_ordinal_v1": {
+    "all": {
+     "n": 32,
+     "R@1": 0.781,
+     "R@5": 0.781,
+     "ts_err_s": 1.32
+    },
+    "en": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.96
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.688,
+     "R@5": 0.688,
+     "ts_err_s": 1.68
+    }
+   },
+   "football": {
+    "all": {
+     "n": 16,
+     "R@1": 0.438,
+     "R@5": 0.438,
+     "ts_err_s": 6.78
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 4.14
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.375,
+     "R@5": 0.375,
+     "ts_err_s": 9.42
+    }
+   },
+   "football_v1": {
+    "all": {
+     "n": 16,
+     "R@1": 0.438,
+     "R@5": 0.438,
+     "ts_err_s": 10.48
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.625,
+     "R@5": 0.625,
+     "ts_err_s": 5.11
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.25,
+     "R@5": 0.25,
+     "ts_err_s": 15.86
+    }
+   },
+   "davis_ordinal_dup": {
+    "all": {
+     "n": 32,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.64
+    },
+    "en": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.71
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.58
+    }
+   },
+   "football_dup": {
+    "all": {
+     "n": 16,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 6.46
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 4.14
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 8.79
+    }
+   },
+   "football_dup_rows": [
+    {
+     "id": "s_first_goal_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.24,
+     "text": "the first goal, the ball goes into the net"
+    },
+    {
+     "id": "s_first_goal_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.24,
+     "text": "khoảnh khắc sút bóng vào lưới đầu tiên"
+    },
+    {
+     "id": "s_first_goal2_en",
+     "lang": "en",
+     "score": 0.014,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 7.44,
+     "text": "the first goal scored"
+    },
+    {
+     "id": "s_first_goal2_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": false,
+     "h5": false,
+     "err": 36.4,
+     "peak": 44.4,
+     "text": "bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_goal_en",
+     "lang": "en",
+     "score": 0.014,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 66.48,
+     "text": "the last goal scored"
+    },
+    {
+     "id": "s_last_goal_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": false,
+     "h5": false,
+     "err": 1.98,
+     "peak": 62.64,
+     "text": "bàn thắng cuối cùng"
+    },
+    {
+     "id": "s_any_goal_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.4,
+     "text": "the ball goes into the net"
+    },
+    {
+     "id": "s_any_goal_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.4,
+     "text": "bóng bay vào lưới"
+    },
+    {
+     "id": "s_save_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "the goalkeeper makes a save"
+    },
+    {
+     "id": "s_save_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "thủ môn cản phá cú sút"
+    },
+    {
+     "id": "s_celebration_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 9.71,
+     "peak": 44.16,
+     "text": "players celebrating a goal"
+    },
+    {
+     "id": "s_celebration_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.64,
+     "text": "các cầu thủ ăn mừng bàn thắng"
+    },
+    {
+     "id": "s_first_celebration_en",
+     "lang": "en",
+     "score": 0.015,
+     "h1": false,
+     "h5": false,
+     "err": 1.34,
+     "peak": 8.16,
+     "text": "the first goal celebration"
+    },
+    {
+     "id": "s_first_celebration_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": false,
+     "h5": false,
+     "err": 14.88,
+     "peak": 44.88,
+     "text": "màn ăn mừng bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_celebration_en",
+     "lang": "en",
+     "score": 0.015,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "the last goal celebration"
+    },
+    {
+     "id": "s_last_celebration_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.64,
+     "text": "màn ăn mừng bàn thắng cuối cùng"
+    }
+   ],
+   "football_rows": [
+    {
+     "id": "s_first_goal_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.24,
+     "text": "the first goal, the ball goes into the net"
+    },
+    {
+     "id": "s_first_goal_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.24,
+     "text": "khoảnh khắc sút bóng vào lưới đầu tiên"
+    },
+    {
+     "id": "s_first_goal2_en",
+     "lang": "en",
+     "score": 0.014,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 7.44,
+     "text": "the first goal scored"
+    },
+    {
+     "id": "s_first_goal2_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": false,
+     "h5": false,
+     "err": 36.4,
+     "peak": 44.4,
+     "text": "bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_goal_en",
+     "lang": "en",
+     "score": 0.014,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 66.48,
+     "text": "the last goal scored"
+    },
+    {
+     "id": "s_last_goal_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": false,
+     "h5": false,
+     "err": 1.98,
+     "peak": 62.64,
+     "text": "bàn thắng cuối cùng"
+    },
+    {
+     "id": "s_any_goal_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.4,
+     "text": "the ball goes into the net"
+    },
+    {
+     "id": "s_any_goal_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.4,
+     "text": "bóng bay vào lưới"
+    },
+    {
+     "id": "s_save_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "the goalkeeper makes a save"
+    },
+    {
+     "id": "s_save_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "thủ môn cản phá cú sút"
+    },
+    {
+     "id": "s_celebration_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 9.71,
+     "peak": 44.16,
+     "text": "players celebrating a goal"
+    },
+    {
+     "id": "s_celebration_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.64,
+     "text": "các cầu thủ ăn mừng bàn thắng"
+    },
+    {
+     "id": "s_first_celebration_en",
+     "lang": "en",
+     "score": 0.015,
+     "h1": false,
+     "h5": false,
+     "err": 1.34,
+     "peak": 8.16,
+     "text": "the first goal celebration"
+    },
+    {
+     "id": "s_first_celebration_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": false,
+     "h5": false,
+     "err": 14.88,
+     "peak": 44.88,
+     "text": "màn ăn mừng bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_celebration_en",
+     "lang": "en",
+     "score": 0.015,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "the last goal celebration"
+    },
+    {
+     "id": "s_last_celebration_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "màn ăn mừng bàn thắng cuối cùng"
+    }
+   ]
+  },
+  "fuse_rrf_w0.75": {
+   "ord_params": {
+    "rho": 0.3,
+    "gap": 2.0,
+    "dup": null
+   },
+   "davis_moment": {
+    "all": {
+     "n": 60,
+     "R@1": 0.983,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    },
+    "en": {
+     "n": 30,
+     "R@1": 1.0,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    },
+    "vi": {
+     "n": 30,
+     "R@1": 0.967,
+     "R@5": 1.0,
+     "ts_err_s": 0.0
+    }
+   },
+   "davis_ordinal": {
+    "all": {
+     "n": 32,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.55
+    },
+    "en": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.52
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.58
+    }
+   },
+   "davis_ordinal_v1": {
+    "all": {
+     "n": 32,
+     "R@1": 0.594,
+     "R@5": 0.594,
+     "ts_err_s": 2.38
+    },
+    "en": {
+     "n": 16,
+     "R@1": 0.562,
+     "R@5": 0.562,
+     "ts_err_s": 2.8
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.625,
+     "R@5": 0.625,
+     "ts_err_s": 1.95
+    }
+   },
+   "football": {
+    "all": {
+     "n": 16,
+     "R@1": 0.438,
+     "R@5": 0.438,
+     "ts_err_s": 7.55
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 5.74
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.375,
+     "R@5": 0.375,
+     "ts_err_s": 9.36
+    }
+   },
+   "football_v1": {
+    "all": {
+     "n": 16,
+     "R@1": 0.438,
+     "R@5": 0.438,
+     "ts_err_s": 10.24
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 5.74
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.375,
+     "R@5": 0.375,
+     "ts_err_s": 14.74
+    }
+   },
+   "davis_ordinal_dup": {
+    "all": {
+     "n": 32,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.55
+    },
+    "en": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.52
+    },
+    "vi": {
+     "n": 16,
+     "R@1": 0.875,
+     "R@5": 0.875,
+     "ts_err_s": 0.58
+    }
+   },
+   "football_dup": {
+    "all": {
+     "n": 16,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 7.23
+    },
+    "en": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 5.74
+    },
+    "vi": {
+     "n": 8,
+     "R@1": 0.5,
+     "R@5": 0.5,
+     "ts_err_s": 8.73
+    }
+   },
+   "football_dup_rows": [
+    {
+     "id": "s_first_goal_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.24,
+     "text": "the first goal, the ball goes into the net"
+    },
+    {
+     "id": "s_first_goal_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.24,
+     "text": "khoảnh khắc sút bóng vào lưới đầu tiên"
+    },
+    {
+     "id": "s_first_goal2_en",
+     "lang": "en",
+     "score": 0.014,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.48,
+     "text": "the first goal scored"
+    },
+    {
+     "id": "s_first_goal2_vi",
+     "lang": "vi",
+     "score": 0.015,
+     "h1": false,
+     "h5": false,
+     "err": 36.4,
+     "peak": 44.4,
+     "text": "bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_goal_en",
+     "lang": "en",
+     "score": 0.014,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 66.48,
+     "text": "the last goal scored"
+    },
+    {
+     "id": "s_last_goal_vi",
+     "lang": "vi",
+     "score": 0.015,
+     "h1": false,
+     "h5": false,
+     "err": 1.98,
+     "peak": 62.64,
+     "text": "bàn thắng cuối cùng"
+    },
+    {
+     "id": "s_any_goal_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.4,
+     "text": "the ball goes into the net"
+    },
+    {
+     "id": "s_any_goal_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.64,
+     "text": "bóng bay vào lưới"
+    },
+    {
+     "id": "s_save_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "the goalkeeper makes a save"
+    },
+    {
+     "id": "s_save_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "thủ môn cản phá cú sút"
+    },
+    {
+     "id": "s_celebration_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 9.71,
+     "peak": 44.16,
+     "text": "players celebrating a goal"
+    },
+    {
+     "id": "s_celebration_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.64,
+     "text": "các cầu thủ ăn mừng bàn thắng"
+    },
+    {
+     "id": "s_first_celebration_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 14.16,
+     "peak": 44.16,
+     "text": "the first goal celebration"
+    },
+    {
+     "id": "s_first_celebration_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": false,
+     "h5": false,
+     "err": 14.4,
+     "peak": 44.4,
+     "text": "màn ăn mừng bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_celebration_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "the last goal celebration"
+    },
+    {
+     "id": "s_last_celebration_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.64,
+     "text": "màn ăn mừng bàn thắng cuối cùng"
+    }
+   ],
+   "football_rows": [
+    {
+     "id": "s_first_goal_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.24,
+     "text": "the first goal, the ball goes into the net"
+    },
+    {
+     "id": "s_first_goal_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.24,
+     "text": "khoảnh khắc sút bóng vào lưới đầu tiên"
+    },
+    {
+     "id": "s_first_goal2_en",
+     "lang": "en",
+     "score": 0.014,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 6.48,
+     "text": "the first goal scored"
+    },
+    {
+     "id": "s_first_goal2_vi",
+     "lang": "vi",
+     "score": 0.015,
+     "h1": false,
+     "h5": false,
+     "err": 36.4,
+     "peak": 44.4,
+     "text": "bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_goal_en",
+     "lang": "en",
+     "score": 0.014,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 66.48,
+     "text": "the last goal scored"
+    },
+    {
+     "id": "s_last_goal_vi",
+     "lang": "vi",
+     "score": 0.015,
+     "h1": false,
+     "h5": false,
+     "err": 1.98,
+     "peak": 62.64,
+     "text": "bàn thắng cuối cùng"
+    },
+    {
+     "id": "s_any_goal_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.4,
+     "text": "the ball goes into the net"
+    },
+    {
+     "id": "s_any_goal_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 62.64,
+     "text": "bóng bay vào lưới"
+    },
+    {
+     "id": "s_save_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "the goalkeeper makes a save"
+    },
+    {
+     "id": "s_save_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 17.04,
+     "peak": 62.64,
+     "text": "thủ môn cản phá cú sút"
+    },
+    {
+     "id": "s_celebration_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 9.71,
+     "peak": 44.16,
+     "text": "players celebrating a goal"
+    },
+    {
+     "id": "s_celebration_vi",
+     "lang": "vi",
+     "score": 0.016,
+     "h1": true,
+     "h5": true,
+     "err": 0.0,
+     "peak": 56.64,
+     "text": "các cầu thủ ăn mừng bàn thắng"
+    },
+    {
+     "id": "s_first_celebration_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 14.16,
+     "peak": 44.16,
+     "text": "the first goal celebration"
+    },
+    {
+     "id": "s_first_celebration_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": false,
+     "h5": false,
+     "err": 14.4,
+     "peak": 44.4,
+     "text": "màn ăn mừng bàn thắng đầu tiên"
+    },
+    {
+     "id": "s_last_celebration_en",
+     "lang": "en",
+     "score": 0.016,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "the last goal celebration"
+    },
+    {
+     "id": "s_last_celebration_vi",
+     "lang": "vi",
+     "score": 0.014,
+     "h1": false,
+     "h5": false,
+     "err": 5.02,
+     "peak": 62.64,
+     "text": "màn ăn mừng bàn thắng cuối cùng"
+    }
+   ]
+  }
+ }
+}
