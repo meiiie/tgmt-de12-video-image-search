@@ -42,3 +42,5 @@
 - 14:50 NEW PHASE Charades-STA. Data: HF mirror jwnt4/charades-sta-test small subset (150 q, 138 videos, 4161 s) -> data/charades/{v,small.csv,sta_test.txt}. Licence = AI2 Charades non-commercial research (no NDA). Index 1 fps: siglip2-base (CPU fp32) + EG2 (CPU bf16) via /tmp/cha_idx.sh, log /tmp/cha_idx.log -> data/text_idx/*_charades.
 - 15:20 eval_charades/queries.json (53 dev/97 test, VI human-written by assistant). scripts/charades_eval.py written. siglip2 charades idx done (523 s, 8 fr/s); EG2 bf16 idx running. Downloading siglip2-so400m-384 for Kaggle milestone 2.
 - 15:31 resumed after interrupt. No Kaggle kernel pushed in this phase (Charades upload to Kaggle blocked by auto-review & licence forbids 3rd-party distribution -> all on box CPU). EG2 charades idx still running (pid 479344); so400m idx queued (/tmp/cha_so.sh). vsearch/translate.py (opus/vinai VI->EN).
+- 16:21 milestone1a: SigLIP2-only Charades eval running (/tmp/cha_eval_sig.log -> results/charades_m1_siglip2.json); EG2 idx still running.
+- 16:27 milestone1a done: results/charades_m1_siglip2.json, README section. committing.

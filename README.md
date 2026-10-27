@@ -411,3 +411,24 @@ App giờ bật ngưỡng 0.637 mặc định khi index là EG2 (`--text-min-sco
 - [`docs/text_search_not_found.png`](docs/text_search_not_found.png): "con mèo ngủ trên ghế sofa" → "Không tìm thấy (điểm cao nhất < ngưỡng 0.637)"
 
 **Vẫn yếu:** câu dài của Darren (EG2 lẫn pha cản phá với "sút bóng vào lưới"); cả hai câu thủ môn cản phá đều trả cảnh phát lại bàn B; "ăn mừng đầu tiên/cuối cùng" bằng tiếng Anh; ngưỡng chỉ cách hai lớp khoảng 0.006 và nhận nhầm 7% trên bóng đá; bộ đánh giá nhỏ (16 câu bóng đá, mốc gán tay ±0.5 s), nên chênh 1 câu = 0.0625.
+
+## Benchmark chuẩn: Charades-STA (tập con), 27/10/2026
+
+**Dữ liệu.** Charades-STA (Gao et al. 2017, arXiv:1705.02101, https://github.com/jiyanggao/TALL) gắn câu mô tả với khoảng thời gian trên video Charades v1 (AI2). Mình dùng tập con 150 câu / 138 video (4161 s) lấy từ bản mirror `jwnt4/charades-sta-test` trên Hugging Face; tải bằng `scripts/get_charades_sta.sh`. **Giấy phép:** video Charades theo "License for Non-Commercial Use" của AI2 (https://prior.allenai.org/projects/data/charades/license.txt): dùng cho nghiên cứu học thuật, không NDA, **cấm phân phối lại cho bên thứ ba**. Vì vậy mình không commit video và không đưa lên Kaggle (lần thử tạo dataset Kaggle bị chặn, mình cũng không thử lại); mọi thứ chạy trên CPU của box. Chia cố định theo video: id video sắp xếp, cứ 3 video lấy 1 làm **dev** (53 câu), còn lại **test** (97 câu). Câu tiếng Việt do mình (Grok Bot) dịch tay từ câu tiếng Anh (`eval_charades/queries.json`; bản dịch máy opus-mt-en-vi kém nên chỉ giữ để tham khảo). Thiết lập chuẩn của STA: video đã biết, tìm đoạn trong video đó.
+
+**Chỉ số:** R@1 và R@5 ở IoU 0.5/0.7 (%), mIoU của top-1 (%), độ trễ ms/câu (mã hoá câu + tìm, CPU dùng chung với một job lập index đang chạy, nên con số chỉ tương đối). Tham số chọn trên dev (`scripts/charades_eval.py`).
+
+**Mốc 1a: SigLIP 2 base, 1 fps** (`results/charades_m1_siglip2.json`). Proposals = cửa sổ trượt nhiều cỡ (0.2/0.3/0.4 độ dài video), điểm = trung bình trong − 1.5·trung bình ngoài, NMS IoU 0.5; tham số chọn trên dev.
+
+| Test (n=97) | R@1 IoU0.5 | R@1 IoU0.7 | R@5 IoU0.5 | R@5 IoU0.7 | mIoU | ms/câu |
+|---|---|---|---|---|---|---|
+| Baseline app (window w=3), EN | 31.96 | 15.46 | 34.02 | 15.46 | 32.03 | 166 |
+| **Proposals cửa sổ trượt, EN** | **35.05** | **16.49** | **73.20** | **44.33** | **34.22** | 165 |
+| Baseline, VI gốc | 25.77 | 10.31 | 27.84 | 12.37 | 27.73 | 215 |
+| **Proposals, VI gốc** | **40.21** | **23.71** | **73.20** | **52.58** | **37.13** | 213 |
+| Proposals, VI→EN opus-mt | 35.05 | 21.65 | 73.20 | 49.48 | 32.54 | 287 |
+| Proposals, VI→EN vinai-translate-vi2en-v2 | 35.05 | 18.56 | 67.01 | 39.18 | 33.64 | 1359 |
+
+(Dev: baseline 30.19/13.21, proposals 50.94/28.30 R@1 IoU0.5/0.7.) Proposals tăng mạnh R@5 (34 → 73) và tăng R@1. Dịch VI→EN không giúp SigLIP 2; VI gốc trên test còn cao hơn EN, chênh lệch nằm trong nhiễu của 97 câu. ms của các dòng dịch có cache bản dịch nên dòng baseline thấp hơn thực tế.
+
+**So với số đã công bố** (toàn bộ test 3720 câu, khác tập con nên chỉ tham khảo): UniVTG zero-shot R@1 IoU0.5/0.7 = 25.22/10.03, mIoU 27.12 (arXiv:2307.16715, bảng zero-shot; mình đọc từ bản HTML trên arXiv). TimeChat-7B zero-shot 32.2/13.4 (mình lấy từ bảng tổng hợp sota2.com, **chưa đối chiếu với bài gốc**). Phương pháp có huấn luyện, ví dụ QD-DETR 57.3/32.6 (cũng theo sota2.com, chưa đối chiếu).
