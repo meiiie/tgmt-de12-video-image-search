@@ -12,7 +12,7 @@ Pipeline: lấy mẫu khung (đều theo fps, tuỳ chọn lọc trùng **aHash*
 | SAM 3 trên CPU | Chạy được trên box (bf16 autocast, bỏ `pin_memory`): khoảng 4 s/ảnh với ảnh mẫu, 8–14 s/frame DAVIS với 12 prompt; ảnh mẫu truck.jpg với prompt "truck" cho score 0.859 (26/10/2026) |
 | SAM 3.1 / SAM 3 trên GPU | Đã có số: v2 và v3 cho 0 box/frame (nguyên nhân là prompt chung "object" + ngưỡng mặc định 0.5 của processor); v4 dùng prompt theo lớp. Xem results/RESULTS.md |
 | OWLv2 region | Có mã, **chưa test** |
-| EmbeddingGemma 2 | **Backbone mặc định** từ 27/10/2026: Kaggle T4 v7, 70 video hard R@1 0.948 / mAP@10 0.951 so với DINOv3 frame+grid 0.586 / 0.680 (xem bảng v7 bên dưới) |
+| EmbeddingGemma 2 | **Backbone mặc định** từ 27/10/2026: Kaggle T4 v7, 70 video hard R@1 0.948 / mAP@10 0.951 so với DINOv3 frame+grid 0.586 / 0.680 (xem bảng v7 bên dưới). Từ v8 (27/10/2026) chạy fp16 khi có GPU: độ chính xác giữ nguyên, query giảm từ 461 xuống 203 ms; late fusion, hai tầng và SAM 3 re-rank đều không thắng (xem mục v8) |
 
 ## Kết quả đo (box CPU 8 lõi dùng chung, 23/10/2026)
 Số gốc: `results/RESULTS.md`, `results/*.json`, `results/eval_log.txt`, `results/eval_large_log.txt`.
@@ -147,6 +147,61 @@ Nguồn: `results/kaggle_v7_de12_results.json`. Kernel v7 chạy 49 phút (03:40
 | 10 video hard | EG2 frame | 0.983 | 1.000 | 1.000 | 0.971 | 485 | 1.96 |
 
 Quyết định: **EG2 chỉ frame là backbone mặc định** (thắng rõ trên 70 video hard). DINOv3 + grid vẫn chọn được (`--model facebook/dinov3-vits16-pretrain-lvd1689m --regions grid`), nhanh hơn khoảng 20 lần mỗi truy vấn. Lưới vùng làm EG2 kém đi trên bộ hard. SAM 3 re-rank vẫn là tuỳ chọn. Kết quả trên GPU khớp kết quả CPU trước đó trên 10 video (0.983/0.971). n=58 truy vấn, nên mỗi truy vấn tương đương 1.7 điểm R@1.
+
+## v8 (27/10/2026): tăng tốc độ và độ chính xác cho EG2, đo trên 70 video hard và 10 video hard
+
+Các con số dưới đây là số thật. Bộ truy vấn là `object_hard` với n = 58. Bộ 70 video có 276 khung hình, bộ 10 video có 73 khung, lấy mẫu 1 fps.
+
+Cách đo:
+- Kernel Kaggle v8 (T4, private) chạy từ 10:06 đến 10:48 (UTC+7), không lỗi. Nó dump toàn bộ embedding ra `results/kaggle_v8_de12_results.json`; phần base64 của embedding đã được bỏ khỏi file trong repo.
+- Mọi thí nghiệm sau đó chạy offline trên box bằng `scripts/offline_v8.py`, cùng logic segment và metric như `evaluate.py`. Kết quả nằm ở `results/v8_offline.json`.
+- Script này tái tạo đúng số của v7: DINOv3 0.586/0.680, EG2 0.948/0.951.
+- Phần chạy trên CPU của box nằm ở `results/v8_box_tokens.json` và `results/v8_cpu_variants.json`. Box là máy dùng chung với agent khác nên thời gian đo trên CPU bị nhiễu; mình báo p50.
+
+| Phương án | 70v R@1 | 70v mAP@10 | 10v R@1 | 10v mAP@10 | ms/truy vấn (encode query) |
+|---|---|---|---|---|---|
+| DINOv3 frame+grid (T4 fp16) | 0.586 | 0.680 | 0.759 | 0.838 | 16.5 |
+| EG2 frame, fp32 (T4) – mặc định cũ | 0.948 | 0.951 | 0.983 | 0.971 | 461 (forward 457 + preprocess 7) |
+| **EG2 frame, fp16 (T4), cả index và query – mặc định mới** | **0.948** | **0.951** | **0.983** | **0.971** | **203** (forward 180) |
+| Late fusion z-score, w chọn trên 10v (w_EG2 = 1.0) | 0.948 | 0.951 | 0.983 | 0.971 | 461 + 16.5 |
+| Late fusion RRF (k = 60), w chọn trên 10v (= 1.0) | 0.948 | 0.951 | 0.983 | 0.971 | 461 + 16.5 |
+| Hai tầng: DINOv3 top-50 → EG2 | 0.914 | 0.917 | 0.983 | 0.971 | 461 + 16.5 |
+| Hai tầng: DINOv3 top-100 / top-200 → EG2 | 0.948 | 0.951 | 0.983 | 0.971 | 461 + 16.5 |
+| EG2 Matryoshka 512 / 256 / 128 chiều | 0.931 / 0.914 / 0.828 | 0.943 / 0.923 / 0.868 | 0.966 / 0.948 / 0.948 | 0.963 / 0.954 / 0.946 | không đổi (search < 0.03 ms) |
+| SAM 3 re-rank top-20 của EG2, max(frame, crop) | 0.690 | 0.769 | 0.776 | 0.834 | + khoảng 2.7 s/khung nếu chạy SAM lúc truy vấn |
+| SAM 3 re-rank top-20 của EG2, 0.5·frame + 0.5·max | 0.914 | 0.926 | 0.966 | 0.955 | như trên |
+| CPU box: query fp32, index fp32 | 0.948 | 0.951 | 0.983 | 0.971 | 1928 (p50) |
+| CPU box: query bf16, index fp32 | 0.948 | 0.951 | 0.983 | 0.971 | 487–640 (p50, hai lần chạy) |
+| CPU box: query bf16 và index bf16 | 0.897 | 0.922 | 0.983 | 0.971 | 487 |
+| CPU box: token ảnh 140 / 70 (mặc định 280), bf16 | 0.897 / 0.793 | 0.922 / 0.855 | 0.983 / 0.931 | 0.971 / 0.937 | 386 / 267 |
+| CPU box: torch dynamic int8 cho Linear (trừ input_proj), chỉ đo 10v | – | – | 0.621 | 0.760 | 1128 |
+| CPU box: ONNX Runtime fp32 (export bằng dynamo), chỉ đo tốc độ | – | – | – | – | 5919 |
+
+Tầng 1 của phương án hai tầng là DINOv3 lấy top-K khung. Recall@K của tầng này (có ít nhất một khung GT trong top-K) trên 70 video:
+
+| K | 10 | 20 | 50 | 100 | 200 |
+|---|---|---|---|---|---|
+| Recall@K | 0.828 | 0.897 | 0.966 | 1.000 | 1.000 |
+
+Trên 10 video, recall@50 đạt 1.000.
+
+Kết luận:
+1. **Chỗ chậm là encode ảnh query.** Bước này chiếm hơn 99% thời gian: forward 457 ms, preprocess 7 ms, còn search FAISS flat chỉ khoảng 0.02 ms vì kho có 276 vector. Vì vậy FAISS HNSW, tầng 1 hai tầng và Matryoshka hầu như không giúp tốc độ. Matryoshka chỉ giảm dung lượng index, và với 256 chiều thì R@1 trên 70 video mất 0.034.
+2. **fp16 trên GPU là lựa chọn thắng rõ.** Độ chính xác giữ nguyên (cosine giữa query fp16 và fp32 là 1.000), query nhanh hơn 2.3 lần (461 → 203 ms), index nhanh hơn 2.4 lần (2.16 → 5.26 khung/s). Vì vậy app giờ mặc định EG2 fp16 khi chạy trên CUDA và fp32 khi chạy trên CPU; có thể đổi qua biến `DE12_EG2_DTYPE`.
+3. **Late fusion không giúp.** Trên 10 video, w tốt nhất là 1.0, tức chỉ dùng EG2. Trên 70 video, mọi w < 0.9 đều làm điểm kém đi.
+4. **Hai tầng không có lợi.** Phương án này không nhanh hơn vì vẫn phải encode query bằng EG2, và với K ≤ 50 thì độ chính xác còn giảm.
+5. **SAM 3 re-rank làm EG2 kém đi.** SAM tìm được 4.0 box/khung (1104 box trên 276 khung, 2.71 s/khung trên T4). Crop nền gây match sai. Vì vậy SAM 3 không được dùng với EG2.
+6. **Trên CPU, nên dùng query bf16 với index fp32.** Cách này nhanh hơn khoảng 3 lần mà không mất độ chính xác. Mình chưa đổi mặc định cho CPU vì thời gian đo trên box bị nhiễu do máy dùng chung. int8 dynamic, ONNX và giảm token ảnh đều tệ hơn hoặc chậm hơn. Lần chạy ONNX int8 bị dừng giữa chừng nên chưa có số.
+
+Công nghệ và nguồn:
+- EmbeddingGemma 2 qua sentence-transformers 6.2.0 và transformers 5.20.2: [model card](https://huggingface.co/google/embeddinggemma-2), [Google blog](https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/). Thông tin "hỗ trợ Matryoshka 768/512/256/128" lấy từ model card và [tài liệu Gemma](https://ai.google.dev/gemma/docs/embeddinggemma); mình chưa đọc lại để xác minh lần này nên đánh dấu là chưa xác minh.
+- Tham số `max_soft_tokens` = 280 đọc từ `processor_config.json` của model.
+- DINOv3 vits16.
+- SAM 3 (`sam3.pt`, repo facebookresearch/sam3).
+- FAISS (IndexFlatIP, IndexHNSWFlat).
+- PyTorch `quantize_dynamic`.
+- `torch.onnx` (dynamo) cùng ONNX Runtime 1.31.1.
+- RRF theo Cormack et al., SIGIR 2009 (chưa xác minh link trong lần này).
 
 ## Kaggle / Colab GPU
 - Colab/Kaggle: `notebooks/de12_colab.ipynb`, đặt `HF_TOKEN` qua Secrets.

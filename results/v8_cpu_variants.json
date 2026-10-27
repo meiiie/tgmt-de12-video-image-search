@@ -1,0 +1,60 @@
+{
+ "threads": 8,
+ "cpu": "Model name:                              Intel(R) Xeon(R) Processor",
+ "fp32cpu": {
+  "encode_ms_mean": 2102.1,
+  "encode_ms_p50": 1928.0,
+  "preprocess_ms_p50": 2.5,
+  "n": 58
+ },
+ "int8_linear_layers": 465,
+ "int8cpu": {
+  "encode_ms_mean": 1146.7,
+  "encode_ms_p50": 1128.1,
+  "preprocess_ms_p50": 3.0,
+  "n": 58
+ },
+ "bf16cpu": {
+  "encode_ms_mean": 653.9,
+  "encode_ms_p50": 639.7,
+  "preprocess_ms_p50": 3.3,
+  "n": 58
+ },
+ "onnx_export": {
+  "ok": false,
+  "error": "ModuleNotFoundError(\"No module named 'onnxscript'\")"
+ },
+ "onnx": {
+  "inputs": {
+   "input_ids": [
+    1,
+    260
+   ],
+   "attention_mask": [
+    1,
+    260
+   ],
+   "pixel_values": [
+    1,
+    2520,
+    768
+   ],
+   "image_position_ids": [
+    1,
+    2520,
+    2
+   ],
+   "num_images_per_sample": [
+    1
+   ]
+  },
+  "export_ok": true,
+  "export_s": 76.0,
+  "int8_error": "InferenceError('[ShapeInferenceError] Inferred shape and existing shape differ in dimension 0: (768) vs (512)')"
+ },
+ "onnxfp32cpu": {
+  "encode_ms_mean": 6036.7,
+  "encode_ms_p50": 5919.2,
+  "n": 58
+ }
+}

@@ -1,0 +1,1322 @@
+{
+ "started": "2026-10-27 03:06:57 UTC",
+ "precision": "DINOv3 fp16 autocast; SAM 3 autocast fp16 (bf16 fallback)",
+ "stages": {
+  "nvidia_smi": {
+   "rc": 0,
+   "sec": 0.0,
+   "tail": "name, memory.total [MiB]\nTesla T4, 15360 MiB\nTesla T4, 15360 MiB\n"
+  },
+  "install": {
+   "rc": 0,
+   "sec": 224.5,
+   "tail": "f1647e8d0c1d280991f4d1b7d974c2704537fe66\nERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\nbigframes 2.48.0 requires google-cloud-bigquery-storage<3.0.0,>=2.30.0, which is not installed.\nbayesian-optimization 3.4.0 requires numpy>=2.1.3; python_full_version == \"3.13.*\", but you have numpy 1.26.4 which is incompatible.\nopencv-python-headless 4.14.0.94 requires numpy>=2; python_version >= \"3.9\", but you have numpy 1.26.4 which is incompatible.\nmne 1.13.2 requires numpy<3,>=2.1, but you have numpy 1.26.4 which is incompatible.\nopencv-python 4.14.0.94 requires numpy>=2; python_version >= \"3.9\", but you have numpy 1.26.4 which is incompatible.\nkaggle-environments 1.32.7 requires numpy>=2.0, but you have numpy 1.26.4 which is incompatible.\ncesium 0.12.4 requires numpy<3.0,>=2.0, but you have numpy 1.26.4 which is incompatible.\ndopamine-rl 4.1.2 requires gym<=0.25.2, but you have gym 0.26.2 which is incompatible.\ngradio 6.26.0 requires pillow<13.0,>=8.0, but you have pillow 13.0.0 which is incompatible.\ncupy-cuda12x 14.0.1 requires numpy<2.6,>=2.0, but you have numpy 1.26.4 which is incompatible.\nmoviepy 1.0.3 requires decorator<5.0,>=4.0.2, but you have decorator 5.3.1 which is incompatible.\nml-dtypes 0.6.0 requires numpy>=2.0.0, but you have numpy 1.26.4 which is incompatible.\nml-dtypes 0.6.0 requires numpy>=2.1.0; python_version >= \"3.13\", but you have numpy 1.26.4 which is incompatible.\ntobler 0.14.0 requires numpy>=2.0, but you have numpy 1.26.4 which is incompatible.\njax 0.11.1 requires numpy>=2.1, but you have numpy 1.26.4 which is incompatible.\nopencv-contrib-python 4.14.0.94 requires numpy>=2; python_version >= \"3.9\", but you have numpy 1.26.4 which is incompatible.\ndm-tree 0.1.10 requires numpy>=2.1.0; python_version >= \"3.13\", but you have numpy 1.26.4 which is incompatible.\njaxlib 0.11.1 requires numpy>=2.0, but you have numpy 1.26.4 which is incompatible.\nxarray-einstats 0.11.0 requires numpy>=2.0, but you have numpy 1.26.4 which is incompatible.\ntifffile 2026.8.23 requires numpy>=2.1, but you have numpy 1.26.4 which is incompatible.\npytensor 2.38.3 requires numpy>=2.0, but you have numpy 1.26.4 which is incompatible.\nshap 0.52.0 requires numpy>=2, but you have numpy 1.26.4 which is incompatible.\nrasterio 1.5.1 requires numpy>=2, but you have numpy 1.26.4 which is incompatible.\n"
+  },
+  "install_eg2": {
+   "rc": 0,
+   "sec": 55.4,
+   "tail": "2.11.0+cu128 0.26.0+cu128 5.20.2 6.2.0\n"
+  },
+  "eg2_smoke": {
+   "rc": 0,
+   "sec": 333.7,
+   "tail": "ding weights:  33%|\u2588\u2588\u2588\u258e      | 454/1376 [01:16<02:32,  6.04it/s]\nLoading weights:  34%|\u2588\u2588\u2588\u258e      | 463/1376 [01:16<01:52,  8.13it/s]\nLoading weights:  34%|\u2588\u2588\u2588\u258d      | 468/1376 [01:18<02:34,  5.87it/s]\nLoading weights:  36%|\u2588\u2588\u2588\u258c      | 491/1376 [01:18<01:15, 11.78it/s]\nLoading weights:  36%|\u2588\u2588\u2588\u258c      | 494/1376 [01:19<01:19, 11.12it/s]\nLoading weights:  36%|\u2588\u2588\u2588\u258b      | 499/1376 [01:24<03:57,  3.70it/s]\nLoading weights:  37%|\u2588\u2588\u2588\u258b      | 511/1376 [01:25<02:40,  5.39it/s]\nLoading weights:  38%|\u2588\u2588\u2588\u258a      | 516/1376 [01:25<02:21,  6.08it/s]\nLoading weights:  38%|\u2588\u2588\u2588\u258a      | 525/1376 [01:26<01:56,  7.29it/s]\nLoading weights:  39%|\u2588\u2588\u2588\u258a      | 530/1376 [01:27<02:26,  5.78it/s]\nLoading weights:  40%|\u2588\u2588\u2588\u2588      | 553/1376 [01:28<01:21, 10.09it/s]\nLoading weights:  40%|\u2588\u2588\u2588\u2588      | 556/1376 [01:29<01:24,  9.66it/s]\nLoading weights:  41%|\u2588\u2588\u2588\u2588      | 561/1376 [01:33<03:30,  3.87it/s]\nLoading weights:  42%|\u2588\u2588\u2588\u2588\u258f     | 573/1376 [01:34<02:31,  5.31it/s]\nLoading weights:  42%|\u2588\u2588\u2588\u2588\u258f     | 578/1376 [01:35<02:20,  5.67it/s]\nLoading weights:  43%|\u2588\u2588\u2588\u2588\u258e     | 587/1376 [01:35<01:46,  7.43it/s]\nLoading weights:  43%|\u2588\u2588\u2588\u2588\u258e     | 592/1376 [01:37<02:06,  6.17it/s]\nLoading weights:  44%|\u2588\u2588\u2588\u2588\u258d     | 612/1376 [01:37<01:01, 12.39it/s]\nLoading weights:  45%|\u2588\u2588\u2588\u2588\u258d     | 616/1376 [01:38<01:21,  9.34it/s]\nLoading weights:  45%|\u2588\u2588\u2588\u2588\u258d     | 619/1376 [01:38<01:23,  9.05it/s]\nLoading weights:  45%|\u2588\u2588\u2588\u2588\u258c     | 623/1376 [01:43<04:03,  3.09it/s]\nLoading weights:  46%|\u2588\u2588\u2588\u2588\u258c     | 635/1376 [01:44<02:20,  5.28it/s]\nLoading weights:  47%|\u2588\u2588\u2588\u2588\u258b     | 640/1376 [01:44<01:55,  6.36it/s]\nLoading weights:  47%|\u2588\u2588\u2588\u2588\u258b     | 649/1376 [01:45<01:39,  7.28it/s]\nLoading weights:  48%|\u2588\u2588\u2588\u2588\u258a     | 654/1376 [01:46<01:59,  6.05it/s]\nLoading weights:  49%|\u2588\u2588\u2588\u2588\u2589     | 674/1376 [01:46<00:56, 12.52it/s]\nLoading weights:  49%|\u2588\u2588\u2588\u2588\u2589     | 678/1376 [01:47<01:15,  9.23it/s]\nLoading weights:  50%|\u2588\u2588\u2588\u2588\u2589     | 685/1376 [01:53<03:03,  3.76it/s]\nLoading weights:  51%|\u2588\u2588\u2588\u2588\u2588     | 697/1376 [01:53<02:09,  5.23it/s]\nLoading weights:  52%|\u2588\u2588\u2588\u2588\u2588\u258f    | 711/1376 [01:54<01:28,  7.47it/s]\nLoading weights:  52%|\u2588\u2588\u2588\u2588\u2588\u258f    | 716/1376 [01:55<01:34,  6.98it/s]\nLoading weights:  53%|\u2588\u2588\u2588\u2588\u2588\u258e    | 736/1376 [01:55<00:49, 12.92it/s]\nLoading weights:  54%|\u2588\u2588\u2588\u2588\u2588\u258d    | 741/1376 [01:56<01:07,  9.44it/s]\nLoading weights:  54%|\u2588\u2588\u2588\u2588\u2588\u258d    | 746/1376 [01:58<01:24,  7.43it/s]\nLoading weights:  54%|\u2588\u2588\u2588\u2588\u2588\u258d    | 746/1376 [02:10<01:24,  7.43it/s]\nLoading weights:  55%|\u2588\u2588\u2588\u2588\u2588\u258d    | 754/1376 [04:44<1:02:37,  6.04s/it]\nLoading weights:  94%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d| 1298/1376 [04:45<00:16,  4.73it/s] \nLoading weights:  96%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c| 1322/1376 [04:52<00:11,  4.64it/s]\nLoading weights:  97%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b| 1339/1376 [04:59<00:08,  4.42it/s]\nLoading weights:  98%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a| 1351/1376 [05:02<00:05,  4.36it/s]\nLoading weights:  99%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 1360/1376 [05:03<00:03,  4.54it/s]\nLoading weights:  99%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 1367/1376 [05:06<00:02,  4.27it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 1374/1376 [05:07<00:00,  4.48it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1376/1376 [05:12<00:00,  4.40it/s]\n"
+  },
+  "data": {
+   "rc": 0,
+   "sec": 81.7,
+   "tail": "30 seqs -> 10 videos; 58 object queries, 30 scene queries\n58\n70 videos\n"
+  },
+  "dump_dino": {
+   "rc": 0,
+   "sec": 54.0,
+   "tail": "d3 object_hard {'encode_ms_mean': 16.5, 'encode_ms_p50': 16.0}\nd3 object {'encode_ms_mean': 17.6, 'encode_ms_p50': 17.6}\ndino done 41.4 s\n\nLoading weights:   0%|          | 0/211 [00:00<?, ?it/s]\nLoading weights:   3%|\u258e         | 6/211 [00:00<00:03, 54.70it/s]\nLoading weights:   6%|\u258c         | 12/211 [00:00<00:05, 39.22it/s]\nLoading weights:  13%|\u2588\u258e        | 28/211 [00:00<00:02, 62.08it/s]\nLoading weights:  17%|\u2588\u258b        | 35/211 [00:00<00:03, 45.96it/s]\nLoading weights:  21%|\u2588\u2588        | 44/211 [00:00<00:03, 53.08it/s]\nLoading weights:  24%|\u2588\u2588\u258e       | 50/211 [00:00<00:03, 53.13it/s]\nLoading weights:  27%|\u2588\u2588\u258b       | 56/211 [00:01<00:04, 34.65it/s]\nLoading weights:  34%|\u2588\u2588\u2588\u258e      | 71/211 [00:01<00:02, 51.49it/s]\nLoading weights:  37%|\u2588\u2588\u2588\u258b      | 78/211 [00:01<00:02, 47.55it/s]\nLoading weights:  40%|\u2588\u2588\u2588\u2589      | 84/211 [00:01<00:02, 42.91it/s]\nLoading weights:  42%|\u2588\u2588\u2588\u2588\u258f     | 89/211 [00:02<00:03, 37.75it/s]\nLoading weights:  45%|\u2588\u2588\u2588\u2588\u258c     | 96/211 [00:02<00:03, 37.19it/s]\nLoading weights:  48%|\u2588\u2588\u2588\u2588\u258a     | 101/211 [00:02<00:02, 39.53it/s]\nLoading weights:  50%|\u2588\u2588\u2588\u2588\u2588     | 106/211 [00:02<00:03, 27.54it/s]\nLoading weights:  59%|\u2588\u2588\u2588\u2588\u2588\u2589    | 125/211 [00:02<00:01, 51.29it/s]\nLoading weights:  63%|\u2588\u2588\u2588\u2588\u2588\u2588\u258e   | 132/211 [00:02<00:01, 47.82it/s]\nLoading weights:  65%|\u2588\u2588\u2588\u2588\u2588\u2588\u258c   | 138/211 [00:03<00:01, 40.42it/s]\nLoading weights:  68%|\u2588\u2588\u2588\u2588\u2588\u2588\u258a   | 143/211 [00:03<00:01, 34.21it/s]\nLoading weights:  76%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b  | 161/211 [00:03<00:00, 53.00it/s]\nLoading weights:  80%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589  | 168/211 [00:03<00:00, 43.77it/s]\nLoading weights:  86%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c | 181/211 [00:03<00:00, 55.16it/s]\nLoading weights:  89%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589 | 188/211 [00:04<00:00, 53.68it/s]\nLoading weights:  94%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d| 199/211 [00:04<00:00, 62.24it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 211/211 [00:04<00:00, 49.76it/s]\n"
+  },
+  "dump_eg2_fp32": {
+   "rc": 0,
+   "sec": 211.9,
+   "tail": "eg2_fp32 object_hard {'encode_ms_mean': 461.3, 'encode_ms_p50': 461.5}\neg2_fp32 object {'encode_ms_mean': 463.3, 'encode_ms_p50': 462.2}\neg2_fp32 done 201.8 s\n\nLoading weights:   0%|          | 0/1376 [00:00<?, ?it/s]\nLoading weights:  14%|\u2588\u258e        | 189/1376 [00:00<00:00, 1726.19it/s]\nLoading weights:  27%|\u2588\u2588\u258b       | 375/1376 [00:00<00:00, 1714.81it/s]\nLoading weights:  40%|\u2588\u2588\u2588\u2589      | 547/1376 [00:00<00:00, 1673.70it/s]\nLoading weights:  52%|\u2588\u2588\u2588\u2588\u2588\u258f    | 715/1376 [00:00<00:00, 1646.51it/s]\nLoading weights:  64%|\u2588\u2588\u2588\u2588\u2588\u2588\u258d   | 880/1376 [00:00<00:00, 744.79it/s] \nLoading weights:  94%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d| 1300/1376 [00:00<00:00, 1375.45it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1376/1376 [00:01<00:00, 1280.10it/s]\n"
+  },
+  "dump_eg2_fp16": {
+   "rc": 0,
+   "sec": 101.5,
+   "tail": "eg2_fp16 object_hard {'encode_ms_mean': 203.5, 'encode_ms_p50': 202.7}\neg2_fp16 object {'encode_ms_mean': 200.4, 'encode_ms_p50': 200.7}\neg2_fp16 done 91.5 s\n\nLoading weights:   0%|          | 0/1376 [00:00<?, ?it/s]\nLoading weights:  14%|\u2588\u258e        | 189/1376 [00:00<00:00, 1837.01it/s]\nLoading weights:  28%|\u2588\u2588\u258a       | 388/1376 [00:00<00:00, 1916.54it/s]\nLoading weights:  43%|\u2588\u2588\u2588\u2588\u258e     | 598/1376 [00:00<00:00, 1998.63it/s]\nLoading weights:  58%|\u2588\u2588\u2588\u2588\u2588\u258a    | 798/1376 [00:00<00:00, 821.76it/s] \nLoading weights:  98%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a| 1342/1376 [00:00<00:00, 1684.37it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1376/1376 [00:00<00:00, 1498.52it/s]\n"
+  },
+  "dump_sam": {
+   "rc": 0,
+   "sec": 790.5,
+   "tail": "SAM3 load: {'ckpt': 'sam3.pt', 'detector_keys': 1156, 'missing': 0, 'unexpected': 22, 'missing_sample': [], 'unexpected_sample': ['backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.weight', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.bias', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.weight', 'backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.bias', 'backbone.vision_backbone.sam2_convs.0.conv_1x1.weight']}\nsam done 781.1 s\n/tmp/sam3/sam3/model_builder.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  import pkg_resources\n/tmp/sam3/sam3/model/model_misc.py:71: UserWarning: Flash Attention is disabled as it requires a GPU with Ampere (8.0) CUDA capability.\n  OLD_GPU, USE_FLASH_ATTN, MATH_KERNEL_ON = get_sdpa_settings()\n/usr/local/lib/python3.13/dist-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers\n  warnings.warn(f\"Importing from {__name__} is deprecated, please import via timm.layers\", FutureWarning)\n"
+  },
+  "dump_samemb_eg2": {
+   "rc": 0,
+   "sec": 549.2,
+   "tail": "samemb_eg2 done 539.4 s\n\nLoading weights:   0%|          | 0/1376 [00:00<?, ?it/s]\nLoading weights:  14%|\u2588\u258e        | 189/1376 [00:00<00:00, 1730.95it/s]\nLoading weights:  27%|\u2588\u2588\u258b       | 367/1376 [00:00<00:00, 1714.07it/s]\nLoading weights:  39%|\u2588\u2588\u2588\u2589      | 539/1376 [00:00<00:00, 1662.00it/s]\nLoading weights:  51%|\u2588\u2588\u2588\u2588\u2588\u258f    | 706/1376 [00:00<00:00, 1654.66it/s]\nLoading weights:  63%|\u2588\u2588\u2588\u2588\u2588\u2588\u258e   | 872/1376 [00:00<00:00, 772.76it/s] \nLoading weights:  94%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d| 1298/1376 [00:00<00:00, 1413.25it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1376/1376 [00:01<00:00, 1302.07it/s]\n"
+  },
+  "dump_samemb_d3": {
+   "rc": 0,
+   "sec": 14.9,
+   "tail": "samemb_d3 done 5.8 s\n\nLoading weights:   0%|          | 0/211 [00:00<?, ?it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 211/211 [00:00<00:00, 2741.94it/s]\n"
+  }
+ },
+ "errors": [],
+ "weights": {
+  "sam31_ckpt_raw": "/tmp/w/sam31.pt",
+  "sam31_sha256_ok": true,
+  "sam3_ckpt_raw": "/tmp/w/sam3.pt",
+  "sam3_sha256_ok": true,
+  "dinov3": "/tmp/w/dinov3-vits16-pretrain-lvd1689m",
+  "dinov3_b": "/tmp/w/dinov3-vitb16-pretrain-lvd1689m",
+  "clip": null,
+  "dinov2": null,
+  "sam31_ckpt": "/tmp/w/sam31.pt",
+  "sam3_ckpt": "/tmp/w/sam3.pt",
+  "assemble_s": 68.3
+ },
+ "eg2_path": "/tmp/eg2",
+ "eg2_files": [
+  "1_Pooling/config.json",
+  "2_Normalize/config.json",
+  "README.md",
+  "chat_template.jinja",
+  "config.json",
+  "config_sentence_transformers.json",
+  "model.safetensors",
+  "modules.json",
+  "preprocessor_config.json",
+  "processor_config.json",
+  "sentence_bert_config.json",
+  "tokenizer.json",
+  "tokenizer.model",
+  "tokenizer_config.json"
+ ],
+ "note": "v8: embedding dump for offline v8 experiments",
+ "skipped": [],
+ "dump_info": {
+  "dino_q": {
+   "object_hard": {
+    "encode_ms_mean": 16.5,
+    "encode_ms_p50": 16.0
+   },
+   "object": {
+    "encode_ms_mean": 17.6,
+    "encode_ms_p50": 17.6
+   }
+  },
+  "n_frames": 276,
+  "eg2_fp32_load_s": 7.6,
+  "eg2_fp32_index_fps": 2.16,
+  "eg2_fp32_nan": 0,
+  "eg2_fp32_q": {
+   "object_hard": {
+    "encode_ms_mean": 461.3,
+    "encode_ms_p50": 461.5
+   },
+   "object": {
+    "encode_ms_mean": 463.3,
+    "encode_ms_p50": 462.2
+   }
+  },
+  "eg2_fp32_split_ms": {
+   "preprocess": 7.0,
+   "forward": 457.4
+  },
+  "eg2_fp16_load_s": 6.8,
+  "eg2_fp16_index_fps": 5.26,
+  "eg2_fp16_nan": 0,
+  "eg2_fp16_q": {
+   "object_hard": {
+    "encode_ms_mean": 203.5,
+    "encode_ms_p50": 202.7
+   },
+   "object": {
+    "encode_ms_mean": 200.4,
+    "encode_ms_p50": 200.7
+   }
+  },
+  "eg2_fp16_split_ms": {
+   "preprocess": 7.0,
+   "forward": 179.6
+  },
+  "sam_load": {
+   "ckpt": "sam3.pt",
+   "detector_keys": 1156,
+   "missing": 0,
+   "unexpected": 22,
+   "missing_sample": [],
+   "unexpected_sample": [
+    "backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.weight",
+    "backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.bias",
+    "backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.weight",
+    "backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.bias",
+    "backbone.vision_backbone.sam2_convs.0.conv_1x1.weight"
+   ]
+  },
+  "sam_s_per_frame": 2.714,
+  "sam_boxes": 1104,
+  "sam_frames": 276,
+  "sam_crop_eg2_s": 531.6,
+  "sam_crop_d3_s": 4.9
+ },
+ "dump_frames": [
+  {
+   "video": "davis_00.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "davis_00.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "davis_00.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "davis_00.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "davis_00.mp4",
+   "t": 4.0
+  },
+  {
+   "video": "davis_00.mp4",
+   "t": 5.0
+  },
+  {
+   "video": "davis_00.mp4",
+   "t": 6.0
+  },
+  {
+   "video": "davis_01.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "davis_01.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "davis_01.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "davis_01.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "davis_01.mp4",
+   "t": 4.0
+  },
+  {
+   "video": "davis_01.mp4",
+   "t": 5.0
+  },
+  {
+   "video": "davis_01.mp4",
+   "t": 6.0
+  },
+  {
+   "video": "davis_01.mp4",
+   "t": 7.0
+  },
+  {
+   "video": "davis_01.mp4",
+   "t": 8.0
+  },
+  {
+   "video": "davis_02.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "davis_02.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "davis_02.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "davis_02.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "davis_02.mp4",
+   "t": 4.0
+  },
+  {
+   "video": "davis_02.mp4",
+   "t": 5.0
+  },
+  {
+   "video": "davis_02.mp4",
+   "t": 6.0
+  },
+  {
+   "video": "davis_02.mp4",
+   "t": 7.0
+  },
+  {
+   "video": "davis_02.mp4",
+   "t": 8.0
+  },
+  {
+   "video": "davis_03.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "davis_03.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "davis_03.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "davis_03.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "davis_03.mp4",
+   "t": 4.0
+  },
+  {
+   "video": "davis_03.mp4",
+   "t": 5.0
+  },
+  {
+   "video": "davis_04.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "davis_04.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "davis_04.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "davis_04.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "davis_04.mp4",
+   "t": 4.0
+  },
+  {
+   "video": "davis_04.mp4",
+   "t": 5.0
+  },
+  {
+   "video": "davis_04.mp4",
+   "t": 6.0
+  },
+  {
+   "video": "davis_04.mp4",
+   "t": 7.0
+  },
+  {
+   "video": "davis_05.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "davis_05.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "davis_05.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "davis_05.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "davis_05.mp4",
+   "t": 4.0
+  },
+  {
+   "video": "davis_05.mp4",
+   "t": 5.0
+  },
+  {
+   "video": "davis_06.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "davis_06.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "davis_06.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "davis_06.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "davis_06.mp4",
+   "t": 4.0
+  },
+  {
+   "video": "davis_07.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "davis_07.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "davis_07.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "davis_07.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "davis_07.mp4",
+   "t": 4.0
+  },
+  {
+   "video": "davis_07.mp4",
+   "t": 5.0
+  },
+  {
+   "video": "davis_08.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "davis_08.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "davis_08.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "davis_08.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "davis_08.mp4",
+   "t": 4.0
+  },
+  {
+   "video": "davis_08.mp4",
+   "t": 5.0
+  },
+  {
+   "video": "davis_08.mp4",
+   "t": 6.0
+  },
+  {
+   "video": "davis_08.mp4",
+   "t": 7.0
+  },
+  {
+   "video": "davis_08.mp4",
+   "t": 8.0
+  },
+  {
+   "video": "davis_08.mp4",
+   "t": 9.0
+  },
+  {
+   "video": "davis_09.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "davis_09.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "davis_09.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "davis_09.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "davis_09.mp4",
+   "t": 4.0
+  },
+  {
+   "video": "davis_09.mp4",
+   "t": 5.0
+  },
+  {
+   "video": "davis_09.mp4",
+   "t": 6.0
+  },
+  {
+   "video": "distractor_bear.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_bear.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_bear.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_bear.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_bmx-bumps.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_bmx-bumps.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_bmx-bumps.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_bmx-bumps.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_boat.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_boat.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_boat.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_boat.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_boxing-fisheye.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_boxing-fisheye.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_boxing-fisheye.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_boxing-fisheye.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_breakdance-flare.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_breakdance-flare.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_breakdance-flare.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_bus.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_bus.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_bus.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_bus.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_car-turn.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_car-turn.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_car-turn.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_car-turn.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_cat-girl.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_cat-girl.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_cat-girl.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_cat-girl.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_classic-car.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_classic-car.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_classic-car.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_color-run.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_color-run.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_color-run.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_color-run.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_crossing.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_crossing.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_crossing.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_dance-jump.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_dance-jump.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_dance-jump.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_dancing.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_dancing.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_dancing.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_disc-jockey.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_disc-jockey.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_disc-jockey.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_disc-jockey.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_dog-agility.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_dog-agility.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_dog-gooses.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_dog-gooses.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_dog-gooses.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_dog-gooses.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_dogs-scale.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_dogs-scale.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_dogs-scale.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_dogs-scale.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_drift-turn.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_drift-turn.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_drift-turn.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_drone.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_drone.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_drone.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_drone.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_elephant.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_elephant.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_elephant.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_elephant.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_flamingo.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_flamingo.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_flamingo.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_flamingo.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_hike.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_hike.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_hike.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_hike.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_hockey.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_hockey.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_hockey.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_hockey.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_horsejump-low.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_horsejump-low.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_horsejump-low.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_kid-football.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_kid-football.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_kid-football.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_kite-walk.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_kite-walk.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_kite-walk.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_kite-walk.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_koala.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_koala.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_koala.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_koala.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_koala.mp4",
+   "t": 4.0
+  },
+  {
+   "video": "distractor_lady-running.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_lady-running.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_lady-running.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_lindy-hop.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_lindy-hop.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_lindy-hop.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_lindy-hop.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_longboard.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_longboard.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_longboard.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_lucia.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_lucia.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_lucia.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_mallard-fly.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_mallard-fly.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_mallard-fly.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_mallard-water.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_mallard-water.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_mallard-water.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_mallard-water.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_miami-surf.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_miami-surf.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_miami-surf.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_motocross-bumps.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_motocross-bumps.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_motocross-bumps.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_motorbike.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_motorbike.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_night-race.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_night-race.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_paragliding.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_paragliding.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_paragliding.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_planes-water.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_planes-water.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_rallye.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_rallye.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_rallye.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_rhino.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_rhino.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_rhino.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_rhino.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_rollerblade.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_rollerblade.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_schoolgirls.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_schoolgirls.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_schoolgirls.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_schoolgirls.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_scooter-board.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_scooter-board.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_scooter-board.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_scooter-board.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_scooter-gray.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_scooter-gray.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_scooter-gray.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_scooter-gray.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_sheep.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_sheep.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_sheep.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_skate-park.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_skate-park.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_skate-park.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_skate-park.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_snowboard.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_snowboard.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_snowboard.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_soccerball.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_soccerball.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_stroller.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_stroller.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_stroller.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_stroller.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_stunt.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_stunt.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_stunt.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_surf.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_surf.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_surf.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_swing.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_swing.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_swing.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_tennis.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_tennis.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_tennis.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_tractor-sand.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_tractor-sand.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_tractor-sand.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_tractor-sand.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_train.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_train.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_train.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_train.mp4",
+   "t": 3.0
+  },
+  {
+   "video": "distractor_tuk-tuk.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_tuk-tuk.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_tuk-tuk.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_upside-down.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_upside-down.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_upside-down.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_varanus-cage.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_varanus-cage.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_varanus-cage.mp4",
+   "t": 2.0
+  },
+  {
+   "video": "distractor_walking.mp4",
+   "t": 0.0
+  },
+  {
+   "video": "distractor_walking.mp4",
+   "t": 1.0
+  },
+  {
+   "video": "distractor_walking.mp4",
+   "t": 2.0
+  }
+ ],
+ "dump_shapes": {
+  "q_eg2_fp32_object": [
+   58,
+   768
+  ],
+  "sam_eg2": [
+   1104,
+   768
+  ],
+  "q_d3_object": [
+   58,
+   768
+  ],
+  "sam_boxes": [
+   1104,
+   5
+  ],
+  "d3_region": [
+   276,
+   13,
+   768
+  ],
+  "q_d3_object_hard": [
+   58,
+   768
+  ],
+  "sam_d3": [
+   1104,
+   768
+  ],
+  "q_eg2_fp16_object": [
+   58,
+   768
+  ],
+  "q_eg2_fp16_object_hard": [
+   58,
+   768
+  ],
+  "q_eg2_fp32_object_hard": [
+   58,
+   768
+  ],
+  "eg2_fp32_frame": [
+   276,
+   768
+  ],
+  "d3_frame": [
+   276,
+   768
+  ],
+  "eg2_fp16_frame": [
+   276,
+   768
+  ]
+ },
+ "finished": "2026-10-27 03:48:23 UTC"
+}

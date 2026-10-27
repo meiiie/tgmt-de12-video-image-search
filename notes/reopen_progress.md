@@ -15,3 +15,14 @@
 - 03:40 v7 pushed (1 kernel running: de14-helmet).
 - 04:24 interrupted; v7 still RUNNING, watcher restarted (no re-push).
 - 04:33 v7 COMPLETE (49 min). EG2 frame 70-video hard R@1 0.948 mAP 0.951 vs DINOv3 0.586/0.680 -> default switched to EG2 (build_index default model/regions, README); DINOv3 selectable.
+- 09:55 27/10 v8 task (speed+accuracy: fusion, two-stage, EG2 profiling/fp16/int8/Matryoshka/FAISS, SAM on EG2 top-20).
+  Box has only 10 videos (no distractors) -> need GPU kernel v8 that dumps ALL embeddings (scripts/dump_embeddings.py, stages dino/eg2_fp32/eg2_fp16/sam/samemb) into one results JSON; all experiments then run OFFLINE on box (scripts/offline_v8.py).
+  Both Kaggle slots busy at 09:50 (de7-v6-sam-boxprompt, de14-helmet-sam31-dinov3). Box: EG2+DINOv3 weights -> /tmp/eg2w,/tmp/d3w (delete after), libs /tmp/eglib; CPU profiling of EG2 query encode (fp32/bf16/int8 dyn quant/ONNX) on box.
+- 10:05 box smoke OK (10 videos): dump stages dino+eg2_fp32 on CPU, offline_v8.py reproduces 10-video baselines (DINOv3 both 0.776/0.844 CPU, EG2 0.983/0.971). EG2 CPU query: forward 1335 ms, preprocess 3.5 ms. /tmp/v8_ready set; watcher /workspace/tgmt/de12_v8_push.sh pushes v8 when <2 kernels running (log /tmp/v8_push.log). Box dump in /tmp/boxdump.
+- 10:11 v8 PUSHED by watcher at 10:06 (1 kernel was running). Box CPU fp32 query encode done; int8 dyn-quant crashed on gemma4 input_proj -> excluded input_proj, rerunning eg2_cpu_variants.py (/tmp/cpuvar.log).
+- 10:19 Box CPU EG2 query (58 hard q, 10-video, fp32 index): fp32 1928 ms p50 (R@1 .983 mAP .971); torch dyn-int8 (Linear except input_proj) 1128 ms, R@1 .621 mAP .760 (cos .885) BAD; bf16 640 ms, .966/.963 (cos .997). preprocess ~3 ms -> forward dominates. ONNX export running (/tmp/onnx.log, /tmp/eg2onnx). Results in /tmp/boxdump/cpu_variants.json, off.json (copy to results/ before cleanup).
+- 10:30 ONNX export OK (dynamo, 76 s) but ORT fp32 CPU 5919 ms/q (3x slower than torch); EG2 image = 280 soft tokens (2520 patches) -> new knob: processor max_soft_tokens 70/140 (dump stage eg2_bf16_tok70). Downloading DAVIS to box to rebuild 70-video set (data/DAVIS, distractors via add_distractors.py; /tmp/davisdl.log) for box-CPU token-budget runs.
+- 10:38 interrupted; ONNX int8 run died (not measured). v8 kernel still RUNNING (no re-push). Starting box 70-video runs -> /tmp/boxdump70 (dino, eg2_bf16_tok280/140/70), log /tmp/b70.log
+- 10:50 v8 COMPLETE 10:06-10:48 no errors; dump unpacked /tmp/v8dump; results/kaggle_v8_de12_results.json (no b64). GPU T4: EG2 fp32 q 461 ms (forward 457, preprocess 7), fp16 203 ms; DINOv3 q 16.5 ms; SAM 2.71 s/frame, 1104 boxes/276 fr.
+- 10:51 offline_v8 on v8 dump -> results/v8_offline.json (baselines reproduce v7 exactly)
+- 11:07 README/RESULTS v8 section written; default: EG2 fp16 on CUDA (core.py). Next: commit+push, cleanup.
