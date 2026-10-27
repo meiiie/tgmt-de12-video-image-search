@@ -26,3 +26,4 @@
 - 10:50 v8 COMPLETE 10:06-10:48 no errors; dump unpacked /tmp/v8dump; results/kaggle_v8_de12_results.json (no b64). GPU T4: EG2 fp32 q 461 ms (forward 457, preprocess 7), fp16 203 ms; DINOv3 q 16.5 ms; SAM 2.71 s/frame, 1104 boxes/276 fr.
 - 10:51 offline_v8 on v8 dump -> results/v8_offline.json (baselines reproduce v7 exactly)
 - 11:07 README/RESULTS v8 section written; default: EG2 fp16 on CUDA (core.py). Next: commit+push, cleanup.
+- 11:07 committed+pushed; temp weights/dumps/DAVIS/distractors deleted. DONE.
