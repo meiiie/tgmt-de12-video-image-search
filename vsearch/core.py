@@ -134,14 +134,30 @@ def build_index(video_dir, out_dir, model="openai/clip-vit-base-patch32", fps=1.
 
 # ---------------- search ----------------
 class Searcher:
-    def __init__(self, index_dir, embedder=None):
+    def __init__(self, index_dir, embedder=None, hnsw_min=None, ef_search=64, query_cache=0):
+        """Optional (off by default): hnsw_min=N rebuilds any index with >=N vectors as FAISS HNSW32
+        (approximate; only worth it at ~1e5+ vectors, see results/RESULTS.md). query_cache=N keeps an LRU of
+        N query embeddings keyed by sha256 of the image pixels, so repeated queries skip the EG2 forward pass."""
         self.d = json.load(open(f"{index_dir}/meta.json")); self.meta = self.d["meta"]
         self.emb = embedder or Embedder(self.d["model"])
         self.idx = {k: faiss.read_index(f"{index_dir}/{k}.faiss") for k in ("frame", "region", "region_sam") if os.path.exists(f"{index_dir}/{k}.faiss")}
+        if hnsw_min:
+            for k, ix in list(self.idx.items()):
+                if ix.ntotal >= hnsw_min: self.idx[k] = to_hnsw(ix, ef_search)
+        self.qcache_n = query_cache; self.qcache = {}
+
+    def embed_query(self, img):
+        if not self.qcache_n: return self.emb([img])
+        import hashlib
+        key = hashlib.sha256(img.mode.encode() + str(img.size).encode() + img.tobytes()).hexdigest()
+        if key in self.qcache: self.qcache[key] = self.qcache.pop(key); return self.qcache[key]
+        q = self.emb([img]); self.qcache[key] = q
+        if len(self.qcache) > self.qcache_n: self.qcache.pop(next(iter(self.qcache)))
+        return q
 
     def search(self, img, mode="frame", k=10, topn=200, merge_gap=None, qvec=None):
         """mode: frame | region | both. Returns ranked segments [{video,start,end,peak_t,score,box}]."""
-        q = qvec if qvec is not None else self.emb([img]); best = {}
+        q = qvec if qvec is not None else self.embed_query(img); best = {}
         kinds = {"frame": ["frame"], "region": ["region"], "both": ["frame", "region"], "sam": ["region_sam"],
                  "frame+sam": ["frame", "region_sam"], "fuse": ["frame", "region", "region_sam"]}[mode]
         for kind in [k for k in kinds if k in self.idx]:
@@ -151,6 +167,13 @@ class Searcher:
                 if key not in best or s > best[key][0]: best[key] = (float(s), h["box"])
         gap = merge_gap if merge_gap is not None else 1.5 / self.d["fps"]
         return merge_segments(best, gap)[:k]
+
+def to_hnsw(ix, ef_search=64, M=32):
+    """Rebuild an IndexIDMap(FlatIP) as IndexIDMap(HNSWFlat, inner product), keeping ids."""
+    inner = faiss.downcast_index(ix.index); ids = faiss.vector_to_array(ix.id_map).astype("int64")
+    X = inner.reconstruct_n(0, inner.ntotal)
+    h = faiss.IndexHNSWFlat(X.shape[1], M, faiss.METRIC_INNER_PRODUCT); h.hnsw.efSearch = ef_search
+    out = faiss.IndexIDMap(h); out.add_with_ids(X, ids); return out
 
 def merge_segments(best, gap):
     """Merge temporally adjacent hits (same video, |dt|<=gap) into segments; segment score = max hit score."""

@@ -196,3 +196,34 @@ Công nghệ và nguồn:
 - PyTorch `quantize_dynamic`.
 - `torch.onnx` (dynamo) cùng ONNX Runtime 1.31.1.
 - RRF theo Cormack et al., SIGIR 2009 (chưa xác minh link trong lần này).
+
+## Vector store (FAISS / ChromaDB) có làm EG2 nhanh hơn không? (box CPU, 27/10/2026)
+
+Script: `scripts/bench_vectorstore.py` → `results/vectorstore_bench.json`. CPU box, 1 luồng khi truy vấn, k=10, 100 truy vấn đo latency; recall@10 so với FlatIP (exact). Vector "real" = index EG2 10 video còn trên box (73 vector, 768-d; index 70 video 276 vector không còn trên box). 100k/1M là **vector tổng hợp có cụm (Gaussian mixture), không phải embedding thật** — recall của ANN trên dữ liệu thật có thể khác. ChromaDB 1.5.9 chỉ đo tới 100k (nạp 1M quá lâu cho box dùng chung). faiss-cpu 1.15.1.
+
+| Tập | Store | Build (s) | RAM (MB) | p50 / p95 (ms) | recall@10 |
+|---|---|---|---|---|---|
+| real 73×768 | FAISS FlatIP (app hiện tại) | 0.00 | 1 | 0.008 / 0.009 | 1.000 |
+| real 73×768 | FAISS HNSW32 | 0.00 | 1 | 0.013 / 0.015 | 1.000 |
+| real 73×768 | ChromaDB (persistent) | 0.09 | 26 | 0.70 / 1.16 | 1.000 |
+| 100k×768 | FlatIP | 0.23 | 293 | 18.5 / 20.9 | 1.000 |
+| 100k×768 | HNSW32 ef64 | 2.6 | 319 | 0.11 / 0.21 | 0.988 |
+| 100k×768 | IVF1264-Flat np16 | 6.7 | 373 | 0.36 / 0.44 | 1.000 |
+| 100k×768 | IVF-PQ96x8 np16 | 16.8 | 21 | 0.17 / 0.20 | 0.512 |
+| 100k×768 | ChromaDB | 18.0 | 482 | 1.53 / 1.95 | 1.000 |
+| 100k×256 (MRL) | FlatIP / HNSW / Chroma | 0.05 / 1.4 / 10.1 | 98 / 122 / 197 | 3.18 / 0.06 / 0.81 | 1.0 / 0.987 / 1.0 |
+| 1M×768 | FlatIP | 3.2 | 2918 | 237.6 / 292.9 | 1.000 |
+| 1M×768 | HNSW32 ef64 | 46.3 | 3178 | 0.37 / 0.59 | 0.690 |
+| 1M×768 | IVF4000-Flat np16 | 48.6 | ~3500 | 1.42 / 1.84 | 1.000 |
+| 1M×768 | IVF-PQ96x8 np16 | 86.2 | nhỏ | 0.56 / 0.66 | 0.351 |
+| 1M×256 (MRL) | FlatIP / HNSW / IVF-Flat | 0.8 / 19.1 / 15.0 | 977 / 1225 / 1037 | 81.0 / 0.20 / 0.47 | 1.0 / 0.877 / 1.0 |
+
+**End-to-end** (encode EG2 + search): encode query ≈ 457 ms fp32 / ≈ 203 ms fp16 trên T4 (v7/v8). Với index của Đề 12 (73–276 vector) search < 0.02 ms = <0.01% thời gian → đổi sang HNSW/IVF/Chroma **không nhanh hơn** (Chroma còn chậm hơn FlatIP ~90 lần vì overhead client). Store chỉ có ý nghĩa khi index lớn: ở 100k vector FlatIP tốn 18.5 ms CPU (~9% của 203 ms), ở 1M tốn 238 ms (≈ bằng thời gian encode) → lúc đó IVF-Flat (1.4 ms, recall 1.0) hoặc HNSW (cần tăng efSearch để recall >0.69) mới đáng dùng. PQ nén RAM mạnh nhưng recall thấp trên dữ liệu này.
+
+**Query cache** (sha256 của byte ảnh → embedding): lần lặp lại bỏ qua forward EG2. Hash + tra dict cho 150 KB: p50 0.087 ms; trong `Searcher.search` với ảnh 640×480 (hash pixel + search + merge) đo được 11.7 ms so với ~460 ms. Chỉ có lợi khi người dùng gửi lại đúng ảnh.
+
+Đã thêm vào app (mặc định **tắt**, giữ FlatIP exact): `--hnsw-min N` (index ≥N vector chuyển sang FAISS HNSW32) và `--query-cache N` (LRU N embedding). Đã kiểm tra bằng embedder giả: HNSW cho kết quả giống FlatIP trên index 73 vector, lần gọi thứ 2 không gọi encoder.
+
+Kết luận: nút thắt của EG2 là forward pass của model, không phải tìm kiếm. Muốn nhanh hơn thì dùng fp16/GPU (đã làm), model nhỏ hơn, hoặc cache; vector store chỉ cần khi kho vượt ~10^5 vector.
+
+Nguồn: FAISS paper — Douze et al., "The Faiss library", arXiv:2401.08281; FAISS wiki "Guidelines to choose an index" (github.com/facebookresearch/faiss/wiki/Guidelines-to-choose-an-index); HNSW — Malkov & Yashunin, arXiv:1603.09320; Jégou et al., "Product Quantization for Nearest Neighbor Search", TPAMI 2011; ChromaDB docs (docs.trychroma.com) — việc Chroma dùng HNSW bên dưới dựa trên tham số `hnsw:space` trong docs, chi tiết nội bộ **chưa xác minh**.

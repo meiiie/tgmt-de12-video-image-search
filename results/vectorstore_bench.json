@@ -1,0 +1,272 @@
+[
+ {
+  "set": "real EG2 box index (73)",
+  "store": "FAISS FlatIP",
+  "n": 73,
+  "d": 768,
+  "build_s": 0.0,
+  "mem_mb": 1.1,
+  "p50_ms": 0.008,
+  "p95_ms": 0.009,
+  "recall10": 1.0
+ },
+ {
+  "set": "real EG2 box index (73)",
+  "store": "FAISS HNSW32 ef64",
+  "n": 73,
+  "d": 768,
+  "build_s": 0.0,
+  "mem_mb": 0.8,
+  "p50_ms": 0.013,
+  "p95_ms": 0.015,
+  "recall10": 1.0
+ },
+ {
+  "set": "real EG2 box index (73)",
+  "store": "ChromaDB (HNSW, persistent)",
+  "n": 73,
+  "d": 768,
+  "build_s": 0.09,
+  "mem_mb": 25.6,
+  "p50_ms": 0.696,
+  "p95_ms": 1.156,
+  "recall10": 1.0
+ },
+ {
+  "set": "real EG2 MRL-256",
+  "store": "FAISS FlatIP",
+  "n": 73,
+  "d": 256,
+  "build_s": 0.0,
+  "mem_mb": 0.0,
+  "p50_ms": 0.005,
+  "p95_ms": 0.007,
+  "recall10": 1.0
+ },
+ {
+  "set": "real EG2 MRL-256",
+  "store": "FAISS HNSW32 ef64",
+  "n": 73,
+  "d": 256,
+  "build_s": 0.0,
+  "mem_mb": 0.0,
+  "p50_ms": 0.012,
+  "p95_ms": 0.015,
+  "recall10": 1.0
+ },
+ {
+  "set": "real EG2 MRL-256",
+  "store": "ChromaDB (HNSW, persistent)",
+  "n": 73,
+  "d": 256,
+  "build_s": 0.03,
+  "mem_mb": 5.2,
+  "p50_ms": 0.549,
+  "p95_ms": 0.774,
+  "recall10": 1.0
+ },
+ {
+  "set": "synthetic clustered 100000",
+  "store": "FAISS FlatIP",
+  "n": 100000,
+  "d": 768,
+  "build_s": 0.23,
+  "mem_mb": 293.0,
+  "p50_ms": 18.463,
+  "p95_ms": 20.902,
+  "recall10": 1.0
+ },
+ {
+  "set": "synthetic clustered 100000",
+  "store": "FAISS HNSW32 ef64",
+  "n": 100000,
+  "d": 768,
+  "build_s": 2.56,
+  "mem_mb": 319.3,
+  "p50_ms": 0.109,
+  "p95_ms": 0.205,
+  "recall10": 0.988
+ },
+ {
+  "set": "synthetic clustered 100000",
+  "store": "FAISS IVF1264-Flat np16",
+  "n": 100000,
+  "d": 768,
+  "build_s": 6.65,
+  "mem_mb": 373.4,
+  "p50_ms": 0.364,
+  "p95_ms": 0.443,
+  "recall10": 1.0
+ },
+ {
+  "set": "synthetic clustered 100000",
+  "store": "FAISS IVF1264-PQ96x8 np16",
+  "n": 100000,
+  "d": 768,
+  "build_s": 16.77,
+  "mem_mb": 21.2,
+  "p50_ms": 0.173,
+  "p95_ms": 0.201,
+  "recall10": 0.512
+ },
+ {
+  "set": "synthetic clustered 100000",
+  "store": "ChromaDB (HNSW, persistent)",
+  "n": 100000,
+  "d": 768,
+  "build_s": 17.97,
+  "mem_mb": 481.8,
+  "p50_ms": 1.529,
+  "p95_ms": 1.951,
+  "recall10": 1.0
+ },
+ {
+  "set": "synthetic clustered 100000",
+  "store": "FAISS FlatIP",
+  "n": 100000,
+  "d": 256,
+  "build_s": 0.05,
+  "mem_mb": 97.7,
+  "p50_ms": 3.176,
+  "p95_ms": 3.397,
+  "recall10": 1.0
+ },
+ {
+  "set": "synthetic clustered 100000",
+  "store": "FAISS HNSW32 ef64",
+  "n": 100000,
+  "d": 256,
+  "build_s": 1.42,
+  "mem_mb": 122.4,
+  "p50_ms": 0.059,
+  "p95_ms": 0.111,
+  "recall10": 0.987
+ },
+ {
+  "set": "synthetic clustered 100000",
+  "store": "FAISS IVF1264-Flat np16",
+  "n": 100000,
+  "d": 256,
+  "build_s": 5.42,
+  "mem_mb": 94.0,
+  "p50_ms": 0.101,
+  "p95_ms": 0.122,
+  "recall10": 1.0
+ },
+ {
+  "set": "synthetic clustered 100000",
+  "store": "FAISS IVF1264-PQ32x8 np16",
+  "n": 100000,
+  "d": 256,
+  "build_s": 8.63,
+  "mem_mb": 0.0,
+  "p50_ms": 0.05,
+  "p95_ms": 0.069,
+  "recall10": 0.42
+ },
+ {
+  "set": "synthetic clustered 100000",
+  "store": "ChromaDB (HNSW, persistent)",
+  "n": 100000,
+  "d": 256,
+  "build_s": 10.06,
+  "mem_mb": 196.7,
+  "p50_ms": 0.805,
+  "p95_ms": 1.124,
+  "recall10": 1.0
+ },
+ {
+  "set": "synthetic clustered 1000000",
+  "store": "FAISS FlatIP",
+  "n": 1000000,
+  "d": 768,
+  "build_s": 3.15,
+  "mem_mb": 2918.0,
+  "p50_ms": 237.601,
+  "p95_ms": 292.891,
+  "recall10": 1.0
+ },
+ {
+  "set": "synthetic clustered 1000000",
+  "store": "FAISS HNSW32 ef64",
+  "n": 1000000,
+  "d": 768,
+  "build_s": 46.3,
+  "mem_mb": 3177.8,
+  "p50_ms": 0.372,
+  "p95_ms": 0.59,
+  "recall10": 0.69
+ },
+ {
+  "set": "synthetic clustered 1000000",
+  "store": "FAISS IVF4000-Flat np16",
+  "n": 1000000,
+  "d": 768,
+  "build_s": 48.55,
+  "mem_mb": 3498.2,
+  "p50_ms": 1.417,
+  "p95_ms": 1.84,
+  "recall10": 1.0
+ },
+ {
+  "set": "synthetic clustered 1000000",
+  "store": "FAISS IVF4000-PQ96x8 np16",
+  "n": 1000000,
+  "d": 768,
+  "build_s": 86.24,
+  "mem_mb": -205.1,
+  "p50_ms": 0.555,
+  "p95_ms": 0.658,
+  "recall10": 0.351
+ },
+ {
+  "set": "synthetic clustered 1000000",
+  "store": "FAISS FlatIP",
+  "n": 1000000,
+  "d": 256,
+  "build_s": 0.76,
+  "mem_mb": 976.6,
+  "p50_ms": 81.035,
+  "p95_ms": 83.855,
+  "recall10": 1.0
+ },
+ {
+  "set": "synthetic clustered 1000000",
+  "store": "FAISS HNSW32 ef64",
+  "n": 1000000,
+  "d": 256,
+  "build_s": 19.08,
+  "mem_mb": 1224.6,
+  "p50_ms": 0.2,
+  "p95_ms": 0.311,
+  "recall10": 0.877
+ },
+ {
+  "set": "synthetic clustered 1000000",
+  "store": "FAISS IVF4000-Flat np16",
+  "n": 1000000,
+  "d": 256,
+  "build_s": 15.04,
+  "mem_mb": 1037.0,
+  "p50_ms": 0.471,
+  "p95_ms": 0.62,
+  "recall10": 1.0
+ },
+ {
+  "set": "synthetic clustered 1000000",
+  "store": "FAISS IVF4000-PQ32x8 np16",
+  "n": 1000000,
+  "d": 256,
+  "build_s": 18.43,
+  "mem_mb": 18.7,
+  "p50_ms": 0.168,
+  "p95_ms": 0.211,
+  "recall10": 0.252
+ },
+ {
+  "set": "query cache",
+  "store": "sha256(150KB)+dict",
+  "p50_ms": 0.0866,
+  "p95_ms": 0.0969
+ }
+]

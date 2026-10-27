@@ -1,8 +1,10 @@
 """Gradio demo: python app.py --index data/index_davis"""
 import argparse, os, cv2, gradio as gr
 from vsearch.core import Searcher
-ap = argparse.ArgumentParser(); ap.add_argument("--index", required=True); ap.add_argument("--videos", required=True); ap.add_argument("--share", action="store_true"); a = ap.parse_args()
-S = Searcher(a.index)
+ap = argparse.ArgumentParser(); ap.add_argument("--index", required=True); ap.add_argument("--videos", required=True); ap.add_argument("--share", action="store_true")
+ap.add_argument("--hnsw-min", type=int, default=None, help="use FAISS HNSW for indexes with >= N vectors (off by default)")
+ap.add_argument("--query-cache", type=int, default=0, help="LRU size for repeated-query embeddings (0 = off)"); a = ap.parse_args()
+S = Searcher(a.index, hnsw_min=a.hnsw_min, query_cache=a.query_cache)
 def frame_at(video, t, box):
     cap = cv2.VideoCapture(os.path.join(a.videos, video)); cap.set(cv2.CAP_PROP_POS_MSEC, t * 1000); ok, f = cap.read(); cap.release()
     if not ok: return None
