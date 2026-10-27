@@ -35,3 +35,4 @@
 - 14:15 evals done for clip/eg2/eg2-opusmt (siglip-opusmt chain). d3-lite rerank running (scripts/text_rerank_d3.py, /tmp/d3rr.log)
 - 14:30 d3-lite rerank done results/text_rerank_d3-lite.json. Next: app e2e test, README.
 - 14:45 README/RESULTS text-search section written; committing.
+- 14:50 pushed a8354c5; d3-lite weights deleted. DONE (d3-turbo not run: infeasible on T4, documented).
