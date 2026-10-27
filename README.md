@@ -483,3 +483,8 @@ Proposals **làm giảm** kết quả trên DAVIS và bóng đá. Trên DAVIS, m
 | 0.6151 (FAR ≤ 5% trên tập hiệu chỉnh) | 0.048 / 0.108 | 0.143 / 0.000 | 0.115 / 0.036 |
 
 Không có một ngưỡng chung nào tốt cho mọi miền. Hạ ngưỡng giảm từ chối nhầm trên Charades (8.2% → 3.6%) nhưng nhận nhầm gấp đôi trên bóng đá (7% → 14%) và tăng mạnh trên Charades (0.5% → 8%). Mình **giữ 0.637**, tức ưu tiên ít nhận nhầm. Với video trong nhà tối, có thể hạ xuống khoảng 0.62 bằng ô ngưỡng trên app hoặc `--text-min-score`.
+
+**SigLIP 2 so400m-384 và Perception Encoder (chưa có số).**
+- Lần chạy này chưa đánh chỉ mục xong so400m cho Charades: máy chỉ có 2 lõi CPU và đã chạy hơn 80 phút.
+- Khi `data/text_idx/siglip2-so400m-patch14-384_charades/meta.json` có, chạy: `CHA_MODELS=so400m OUT=results/charades_m3_so400m.json python scripts/charades_eval.py`.
+- Đã thêm `vsearch/pe.py` và `scripts/pe_index.py` cho PE-Core-B16 (timm/PE-Core-B-16, open_clip, Apache-2.0, 1.79 GB). Chưa đánh chỉ mục, nên chưa có số.

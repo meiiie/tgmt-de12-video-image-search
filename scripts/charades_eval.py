@@ -9,8 +9,10 @@ from vsearch.core import Embedder
 from vsearch.text import TextEncoder, text_search, curves, smooth
 from text_eval import load
 Q = json.load(open("eval_charades/queries.json"))["queries"]
-MODELS = {"eg2": ("google/embeddinggemma-2", "embeddinggemma-2"), "sig": ("google/siglip2-base-patch16-224", "siglip2-base-patch16-224")}
+MODELS = {"eg2": ("google/embeddinggemma-2", "embeddinggemma-2"), "sig": ("google/siglip2-base-patch16-224", "siglip2-base-patch16-224"),
+          "so400m": ("google/siglip2-so400m-patch14-384", "siglip2-so400m-patch14-384"), "pe": ("timm/PE-Core-B-16", "PE-Core-B-16")}
 import os
+if os.environ.get("CHA_MODELS"): MODELS = {m: MODELS[m] for m in os.environ["CHA_MODELS"].split(",")}
 MODELS = {m: v for m, v in MODELS.items() if os.path.exists(f"data/text_idx/{v[1]}_charades/meta.json")}  # use whatever index is finished
 IDX = {m: load(f"data/text_idx/{t}_charades") for m, (_, t) in MODELS.items()}
 FIRST = next(iter(MODELS))
@@ -35,7 +37,10 @@ def baseline(meta, sc, video, fps):
 ENC = {}
 def encoders():
     if not ENC:
-        for m, (n, _) in MODELS.items(): ENC[m] = TextEncoder(Embedder(n, device="cpu"))
+        for m, (n, _) in MODELS.items():
+            if m == "pe":
+                from vsearch.pe import PEEmbedder; ENC[m] = PEEmbedder(n).text
+            else: ENC[m] = TextEncoder(Embedder(n, device="cpu"))
     return ENC
 _cache = {}
 def emb(m, text):
@@ -69,7 +74,7 @@ if __name__ == "__main__":
     for m in MODELS: out["dev"][f"{m}_baseline"] = evaluate("dev", m, "baseline", G=G)
     grid = [dict(lam=l, scales=s, sw=w) for l, s, w in itertools.product((0.0, 0.5, 1.0, 1.5), ((0.1, 0.2, 0.3, 0.4, 0.5), (0.2, 0.3, 0.4), (0.15, 0.25, 0.35, 0.5)), (1, 3))]
     best = {}
-    for m in list(MODELS) + (["fuse"] if len(MODELS) == 2 else []):
+    for m in list(MODELS) + (["fuse"] if set(MODELS) == {"eg2", "sig"} else []):
         for fw in ((0.25, 0.5, 0.75) if m == "fuse" else (None,)):
             for g in grid:
                 r = evaluate("dev", m, "prop", G=G, w=fw or 0.5, **g); key = (m, fw)

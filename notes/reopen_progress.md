@@ -49,3 +49,4 @@
 - 16:56 milestone2: proposals option in app (+threshold fix), verified via gradio_client on Charades. committing. so400m idx: see /tmp/cha_so.log
 - 16:56 NEXT: when /tmp/cha_so.log shows SODONE, add MODELS['so400m']=('google/siglip2-so400m-patch14-384','siglip2-so400m-patch14-384') to charades_eval.py, run OUT=results/charades_m3_so400m.json, add README row, commit. No Kaggle kernel pushed in this phase.
 - 17:00 milestone3: proposals hurt DAVIS/football -> default stays window; cross-domain threshold study, keep 0.637. committing.
+- 18:06 so400m index still running (/tmp/cha_so.log, SODONE); PE index stopped (2 cores). charades_eval supports CHA_MODELS + so400m/pe. Wrapped up.
