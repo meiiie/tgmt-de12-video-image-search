@@ -1,0 +1,221 @@
+{
+ "model": "google/siglip2-base-patch16-224",
+ "translate_vi_en": false,
+ "tol_s": 0.5,
+ "text_encode_ms_per_query_cpu": 75.9,
+ "index_fps": 4.0,
+ "frames": {
+  "davis10": 279,
+  "ord": 170
+ },
+ "index_sec_cpu": {
+  "davis10": 25.8,
+  "ord": 14.4
+ },
+ "results": {
+  "frame": {
+   "moment_en": {
+    "n": 30,
+    "R@1": 0.933,
+    "R@5": 0.967,
+    "R@1_tIoU0.5": 0.9,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.67
+   },
+   "moment_vi": {
+    "n": 30,
+    "R@1": 0.933,
+    "R@5": 1.0,
+    "R@1_tIoU0.5": 0.9,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.26
+   },
+   "ordinal_en": {
+    "n": 16,
+    "R@1": 0.312,
+    "R@5": 0.375,
+    "R@1_tIoU0.5": 0.312,
+    "mean_ts_err_s": 5.16,
+    "search_ms": 0.08
+   },
+   "ordinal_vi": {
+    "n": 16,
+    "R@1": 0.25,
+    "R@5": 0.375,
+    "R@1_tIoU0.5": 0.25,
+    "mean_ts_err_s": 4.75,
+    "search_ms": 0.07
+   }
+  },
+  "frame+ordinal": {
+   "moment_en": {
+    "n": 30,
+    "R@1": 0.933,
+    "R@5": 0.967,
+    "R@1_tIoU0.5": 0.9,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.29
+   },
+   "moment_vi": {
+    "n": 30,
+    "R@1": 0.933,
+    "R@5": 1.0,
+    "R@1_tIoU0.5": 0.9,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.3
+   },
+   "ordinal_en": {
+    "n": 16,
+    "R@1": 0.875,
+    "R@5": 0.875,
+    "R@1_tIoU0.5": 0.875,
+    "mean_ts_err_s": 0.71,
+    "search_ms": 0.11
+   },
+   "ordinal_vi": {
+    "n": 16,
+    "R@1": 0.812,
+    "R@5": 0.812,
+    "R@1_tIoU0.5": 0.688,
+    "mean_ts_err_s": 0.77,
+    "search_ms": 0.1
+   }
+  },
+  "window_w3": {
+   "moment_en": {
+    "n": 30,
+    "R@1": 0.967,
+    "R@5": 1.0,
+    "R@1_tIoU0.5": 0.933,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.53
+   },
+   "moment_vi": {
+    "n": 30,
+    "R@1": 0.9,
+    "R@5": 1.0,
+    "R@1_tIoU0.5": 0.867,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.57
+   },
+   "ordinal_en": {
+    "n": 16,
+    "R@1": 0.25,
+    "R@5": 0.312,
+    "R@1_tIoU0.5": 0.25,
+    "mean_ts_err_s": 6.26,
+    "search_ms": 0.1
+   },
+   "ordinal_vi": {
+    "n": 16,
+    "R@1": 0.25,
+    "R@5": 0.25,
+    "R@1_tIoU0.5": 0.25,
+    "mean_ts_err_s": 4.8,
+    "search_ms": 0.09
+   }
+  },
+  "window_w3+ordinal": {
+   "moment_en": {
+    "n": 30,
+    "R@1": 0.967,
+    "R@5": 1.0,
+    "R@1_tIoU0.5": 0.933,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.47
+   },
+   "moment_vi": {
+    "n": 30,
+    "R@1": 0.9,
+    "R@5": 1.0,
+    "R@1_tIoU0.5": 0.867,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.57
+   },
+   "ordinal_en": {
+    "n": 16,
+    "R@1": 0.875,
+    "R@5": 0.875,
+    "R@1_tIoU0.5": 0.875,
+    "mean_ts_err_s": 0.71,
+    "search_ms": 0.11
+   },
+   "ordinal_vi": {
+    "n": 16,
+    "R@1": 0.875,
+    "R@5": 0.875,
+    "R@1_tIoU0.5": 0.812,
+    "mean_ts_err_s": 0.63,
+    "search_ms": 0.1
+   }
+  },
+  "window_w5": {
+   "moment_en": {
+    "n": 30,
+    "R@1": 0.967,
+    "R@5": 1.0,
+    "R@1_tIoU0.5": 0.933,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.49
+   },
+   "moment_vi": {
+    "n": 30,
+    "R@1": 0.9,
+    "R@5": 1.0,
+    "R@1_tIoU0.5": 0.867,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.52
+   },
+   "ordinal_en": {
+    "n": 16,
+    "R@1": 0.312,
+    "R@5": 0.375,
+    "R@1_tIoU0.5": 0.312,
+    "mean_ts_err_s": 6.35,
+    "search_ms": 0.09
+   },
+   "ordinal_vi": {
+    "n": 16,
+    "R@1": 0.188,
+    "R@5": 0.25,
+    "R@1_tIoU0.5": 0.188,
+    "mean_ts_err_s": 5.83,
+    "search_ms": 0.09
+   }
+  },
+  "window_w5+ordinal": {
+   "moment_en": {
+    "n": 30,
+    "R@1": 0.967,
+    "R@5": 1.0,
+    "R@1_tIoU0.5": 0.933,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.51
+   },
+   "moment_vi": {
+    "n": 30,
+    "R@1": 0.9,
+    "R@5": 1.0,
+    "R@1_tIoU0.5": 0.867,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.53
+   },
+   "ordinal_en": {
+    "n": 16,
+    "R@1": 0.875,
+    "R@5": 0.875,
+    "R@1_tIoU0.5": 0.875,
+    "mean_ts_err_s": 0.66,
+    "search_ms": 0.11
+   },
+   "ordinal_vi": {
+    "n": 16,
+    "R@1": 0.75,
+    "R@5": 0.75,
+    "R@1_tIoU0.5": 0.75,
+    "mean_ts_err_s": 1.47,
+    "search_ms": 0.1
+   }
+  }
+ }
+}

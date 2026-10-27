@@ -27,3 +27,11 @@
 - 10:51 offline_v8 on v8 dump -> results/v8_offline.json (baselines reproduce v7 exactly)
 - 11:07 README/RESULTS v8 section written; default: EG2 fp16 on CUDA (core.py). Next: commit+push, cleanup.
 - 11:07 committed+pushed; temp weights/dumps/DAVIS/distractors deleted. DONE.
+- 13:30 TEXT-SEARCH task start. Env: PYTHONPATH=/tmp/eglib:/tmp/egdeps:/tmp/egtv:. ; HF snapshot download (EG2, siglip2-base, clip-b32, opus-mt-vi-en) -> ~/.cache/hf, log /tmp/textdl.log. Plan: scripts/text_eval.py; eval = 30 DAVIS seq spans (EN+VI captions) + composite ordinal video.
+- 13:40 eval set built (scripts/make_text_eval.py -> data/text_eval: 60 moment + 32 ordinal q). vsearch/text.py written. Indexes 4fps frame-only -> data/text_idx/<model>_{davis10,ord} via /tmp/build_text_idx.sh (log /tmp/textidx.log; resumable, skips done).
+- 13:55 siglip2 eval done (results/text_siglip2-base-patch16-224.json). Searcher.search_text + app text box written (not yet run). Waiting EG2 index.
+- 13:45 d3-turbo add-on: verified HF vllm-sr/d3-turbo (Apache-2.0, 52.2GB bf16), -INT4 (16.6GB, W4A16 unpack->BF16, peak 46.4GiB MI300X), -FP8, -NVFP4; vLLM-SR engine ROCm/MI325X only documented. 2.12s/255q IS stated on MI325X. Plan: T4 infeasible (doc'd), real test with small sibling d3-lite (1.7GB) on box CPU as re-ranker.
+- 14:00 EG2 4fps idx done (0.42 fr/s CPU). running /tmp/evals.log chain: clip build+eval, eg2, eg2 --translate, siglip2 --translate -> results/text_*.json. d3-lite download /tmp/d3dl.log
+- 14:15 evals done for clip/eg2/eg2-opusmt (siglip-opusmt chain). d3-lite rerank running (scripts/text_rerank_d3.py, /tmp/d3rr.log)
+- 14:30 d3-lite rerank done results/text_rerank_d3-lite.json. Next: app e2e test, README.
+- 14:45 README/RESULTS text-search section written; committing.

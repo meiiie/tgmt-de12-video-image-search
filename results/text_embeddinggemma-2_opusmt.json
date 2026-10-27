@@ -1,0 +1,221 @@
+{
+ "model": "google/embeddinggemma-2",
+ "translate_vi_en": true,
+ "tol_s": 0.5,
+ "text_encode_ms_per_query_cpu": 259.2,
+ "index_fps": 4.0,
+ "frames": {
+  "davis10": 279,
+  "ord": 170
+ },
+ "index_sec_cpu": {
+  "davis10": 671.1,
+  "ord": 303.8
+ },
+ "results": {
+  "frame": {
+   "moment_en": {
+    "n": 30,
+    "R@1": 0.733,
+    "R@5": 0.833,
+    "R@1_tIoU0.5": 0.667,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.34
+   },
+   "moment_vi": {
+    "n": 30,
+    "R@1": 0.933,
+    "R@5": 1.0,
+    "R@1_tIoU0.5": 0.867,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.29
+   },
+   "ordinal_en": {
+    "n": 16,
+    "R@1": 0.438,
+    "R@5": 0.625,
+    "R@1_tIoU0.5": 0.312,
+    "mean_ts_err_s": 4.91,
+    "search_ms": 0.09
+   },
+   "ordinal_vi": {
+    "n": 16,
+    "R@1": 0.188,
+    "R@5": 0.25,
+    "R@1_tIoU0.5": 0.188,
+    "mean_ts_err_s": 4.91,
+    "search_ms": 0.07
+   }
+  },
+  "frame+ordinal": {
+   "moment_en": {
+    "n": 30,
+    "R@1": 0.733,
+    "R@5": 0.833,
+    "R@1_tIoU0.5": 0.667,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.26
+   },
+   "moment_vi": {
+    "n": 30,
+    "R@1": 0.933,
+    "R@5": 1.0,
+    "R@1_tIoU0.5": 0.867,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.26
+   },
+   "ordinal_en": {
+    "n": 16,
+    "R@1": 0.625,
+    "R@5": 0.625,
+    "R@1_tIoU0.5": 0.5,
+    "mean_ts_err_s": 2.12,
+    "search_ms": 0.09
+   },
+   "ordinal_vi": {
+    "n": 16,
+    "R@1": 0.75,
+    "R@5": 0.75,
+    "R@1_tIoU0.5": 0.75,
+    "mean_ts_err_s": 1.36,
+    "search_ms": 0.08
+   }
+  },
+  "window_w3": {
+   "moment_en": {
+    "n": 30,
+    "R@1": 0.867,
+    "R@5": 0.967,
+    "R@1_tIoU0.5": 0.8,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.44
+   },
+   "moment_vi": {
+    "n": 30,
+    "R@1": 0.933,
+    "R@5": 0.933,
+    "R@1_tIoU0.5": 0.9,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.44
+   },
+   "ordinal_en": {
+    "n": 16,
+    "R@1": 0.375,
+    "R@5": 0.375,
+    "R@1_tIoU0.5": 0.25,
+    "mean_ts_err_s": 5.01,
+    "search_ms": 0.09
+   },
+   "ordinal_vi": {
+    "n": 16,
+    "R@1": 0.25,
+    "R@5": 0.25,
+    "R@1_tIoU0.5": 0.25,
+    "mean_ts_err_s": 4.62,
+    "search_ms": 0.09
+   }
+  },
+  "window_w3+ordinal": {
+   "moment_en": {
+    "n": 30,
+    "R@1": 0.867,
+    "R@5": 0.967,
+    "R@1_tIoU0.5": 0.8,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.43
+   },
+   "moment_vi": {
+    "n": 30,
+    "R@1": 0.933,
+    "R@5": 0.933,
+    "R@1_tIoU0.5": 0.9,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.43
+   },
+   "ordinal_en": {
+    "n": 16,
+    "R@1": 0.562,
+    "R@5": 0.562,
+    "R@1_tIoU0.5": 0.5,
+    "mean_ts_err_s": 2.38,
+    "search_ms": 0.1
+   },
+   "ordinal_vi": {
+    "n": 16,
+    "R@1": 0.875,
+    "R@5": 0.875,
+    "R@1_tIoU0.5": 0.875,
+    "mean_ts_err_s": 0.61,
+    "search_ms": 0.1
+   }
+  },
+  "window_w5": {
+   "moment_en": {
+    "n": 30,
+    "R@1": 0.9,
+    "R@5": 0.967,
+    "R@1_tIoU0.5": 0.8,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.43
+   },
+   "moment_vi": {
+    "n": 30,
+    "R@1": 0.9,
+    "R@5": 0.933,
+    "R@1_tIoU0.5": 0.833,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.42
+   },
+   "ordinal_en": {
+    "n": 16,
+    "R@1": 0.375,
+    "R@5": 0.438,
+    "R@1_tIoU0.5": 0.375,
+    "mean_ts_err_s": 4.62,
+    "search_ms": 0.09
+   },
+   "ordinal_vi": {
+    "n": 16,
+    "R@1": 0.188,
+    "R@5": 0.25,
+    "R@1_tIoU0.5": 0.188,
+    "mean_ts_err_s": 5.17,
+    "search_ms": 0.09
+   }
+  },
+  "window_w5+ordinal": {
+   "moment_en": {
+    "n": 30,
+    "R@1": 0.9,
+    "R@5": 0.967,
+    "R@1_tIoU0.5": 0.8,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.43
+   },
+   "moment_vi": {
+    "n": 30,
+    "R@1": 0.9,
+    "R@5": 0.933,
+    "R@1_tIoU0.5": 0.833,
+    "mean_ts_err_s": 0.0,
+    "search_ms": 0.43
+   },
+   "ordinal_en": {
+    "n": 16,
+    "R@1": 0.562,
+    "R@5": 0.562,
+    "R@1_tIoU0.5": 0.5,
+    "mean_ts_err_s": 2.44,
+    "search_ms": 0.1
+   },
+   "ordinal_vi": {
+    "n": 16,
+    "R@1": 0.875,
+    "R@5": 0.875,
+    "R@1_tIoU0.5": 0.875,
+    "mean_ts_err_s": 0.58,
+    "search_ms": 0.09
+   }
+  }
+ }
+}

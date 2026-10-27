@@ -227,3 +227,6 @@ Script: `scripts/bench_vectorstore.py` → `results/vectorstore_bench.json`. CPU
 Kết luận: nút thắt của EG2 là forward pass của model, không phải tìm kiếm. Muốn nhanh hơn thì dùng fp16/GPU (đã làm), model nhỏ hơn, hoặc cache; vector store chỉ cần khi kho vượt ~10^5 vector.
 
 Nguồn: FAISS paper — Douze et al., "The Faiss library", arXiv:2401.08281; FAISS wiki "Guidelines to choose an index" (github.com/facebookresearch/faiss/wiki/Guidelines-to-choose-an-index); HNSW — Malkov & Yashunin, arXiv:1603.09320; Jégou et al., "Product Quantization for Nearest Neighbor Search", TPAMI 2011; ChromaDB docs (docs.trychroma.com) — việc Chroma dùng HNSW bên dưới dựa trên tham số `hnsw:space` trong docs, chi tiết nội bộ **chưa xác minh**.
+
+## Text → moment (27/10/2026, box CPU)
+Xem bảng "Tìm bằng câu mô tả" trong README. Số gốc: `text_clip-vit-base-patch32.json`, `text_siglip2-base-patch16-224.json`, `text_embeddinggemma-2.json`, `*_opusmt.json` (chỉ cột VI có nghĩa), `text_rerank_d3-lite.json`.

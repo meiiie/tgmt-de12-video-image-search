@@ -168,6 +168,22 @@ class Searcher:
         gap = merge_gap if merge_gap is not None else 1.5 / self.d["fps"]
         return merge_segments(best, gap)[:k]
 
+    def search_text(self, text, k=10, method="window", w=3, video=None, use_ordinal=True, translate=None):
+        """Text -> moments over the frame index (needs a text-capable backbone: EG2 / SigLIP 2 / CLIP).
+        Ordinal words (đầu tiên/thứ hai/cuối cùng, first/second/last) pick the n-th matching segment in time
+        within `video` (or within the best-matching video if none given). See vsearch/text.py."""
+        from vsearch.text import TextEncoder, text_search, parse_ordinal
+        if getattr(self, "_te", None) is None or self._te_tr != translate:
+            self._te, self._te_tr = TextEncoder(self.emb, translate=translate), translate
+        if getattr(self, "_X", None) is None:
+            ix = self.idx["frame"]; inner = faiss.downcast_index(ix.index); ids = faiss.vector_to_array(ix.id_map)
+            self._X = np.zeros((len(self.meta), inner.d), "float32"); self._X[ids] = inner.reconstruct_n(0, inner.ntotal)
+        clean, n = parse_ordinal(text) if use_ordinal else (text, None)
+        q = self._te([clean])[0]
+        if n and not video:  # pick the video first (best non-ordinal segment), then the n-th occurrence in it
+            video = text_search(self.meta, self._X, q, self.d["fps"], method=method, w=w, k=1)[0]["video"]
+        return text_search(self.meta, self._X, q, self.d["fps"], method=method, w=w, ordinal=n, video=video, k=k)
+
 def to_hnsw(ix, ef_search=64, M=32):
     """Rebuild an IndexIDMap(FlatIP) as IndexIDMap(HNSWFlat, inner product), keeping ids."""
     inner = faiss.downcast_index(ix.index); ids = faiss.vector_to_array(ix.id_map).astype("int64")

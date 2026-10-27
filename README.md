@@ -287,3 +287,59 @@ Script: `scripts/bench_vectorstore.py` → `results/vectorstore_bench.json`. CPU
 Kết luận: nút thắt của EG2 là forward pass của model, không phải tìm kiếm. Muốn nhanh hơn thì dùng fp16/GPU (đã làm), model nhỏ hơn, hoặc cache; vector store chỉ cần khi kho vượt ~10^5 vector.
 
 Nguồn: FAISS paper — Douze et al., "The Faiss library", arXiv:2401.08281; FAISS wiki "Guidelines to choose an index" (github.com/facebookresearch/faiss/wiki/Guidelines-to-choose-an-index); HNSW — Malkov & Yashunin, arXiv:1603.09320; Jégou et al., "Product Quantization for Nearest Neighbor Search", TPAMI 2011; ChromaDB docs (docs.trychroma.com) — việc Chroma dùng HNSW bên dưới dựa trên tham số `hnsw:space` trong docs, chi tiết nội bộ **chưa xác minh**.
+
+## Tìm bằng câu mô tả (text → mốc thời gian), 27/10/2026, box CPU
+
+App có thêm ô **"Câu truy vấn"** cạnh ô ảnh: nhập câu tiếng Việt hoặc tiếng Anh, trả về video + `peak` (giây) + đoạn `[start, end]`. Nó dùng chung index frame EG2 với tìm bằng ảnh (EG2 nhúng chữ và ảnh vào cùng không gian 768-d, query dùng prompt `SearchQuery` theo model card). Code: `vsearch/text.py`, `Searcher.search_text` trong `vsearch/core.py`, `app.py`.
+
+**Lớp thời gian.** Điểm cosine của từng frame → đường cong theo thời gian của mỗi video → làm mượt trung bình trượt `w` frame (`window`, mặc định w=3 @4 fps ≈ 0.75 s) → đoạn = vùng quanh đỉnh có điểm ≥ đỉnh − 0.5·(đỉnh − trung vị). **Từ thứ tự** (`đầu tiên/thứ nhất/lần đầu`, `thứ hai`, `thứ ba`, `cuối/cuối cùng/lần cuối`, `first/second/third/last/final`) được tách khỏi câu bằng regex; phần còn lại được nhúng, các đoạn ứng viên (điểm mượt ≥ trung vị + 0.5·(max − trung vị), dài ≥ 2 frame) xếp theo thời gian và lấy đoạn thứ n. Nếu không chọn video, app lấy video có đoạn khớp nhất rồi mới đếm thứ tự. Ngưỡng 0.5 được chọn trước, không tinh chỉnh trên bộ test.
+
+**Bộ đánh giá** (`scripts/make_text_eval.py`, câu hỏi trong `eval_text/`):
+- *Moment*: 30 chuỗi DAVIS 2017 đã ghép sẵn trong 10 video `davis_bench` (3 chuỗi/video, 279 frame @4 fps), mỗi chuỗi 1 câu EN + 1 câu VI do mình viết sau khi xem frame → 60 câu. GT = khoảng thời gian của chuỗi. Tìm trên cả 10 video.
+- *Ordinal*: 2 video ghép lại từ cùng các clip DAVIS (`ord_a`, `ord_b`, 21 s, 170 frame) trong đó chó / ô tô / vật nuôi xuất hiện 3 lần mỗi loại; câu "the first/second/last …", "… đầu tiên/thứ hai/cuối cùng" → 16 EN + 16 VI. Tìm trong video đã nạp.
+- Nguồn: DAVIS 2017 (https://davischallenge.org/, dùng cho nghiên cứu). Không dùng Charades-STA/QVHighlights: phải tải video gốc (Charades ~ vài chục GB; QVHighlights từ YouTube), vượt dung lượng đĩa và không chạy kịp EG2 CPU. **Hạn chế:** bộ nhỏ, câu do một người viết, các clip DAVIS khác nhau rõ về hình ảnh nên phần *moment* dễ; không có cảnh bóng đá nên câu ví dụ "sút bóng vào lưới đầu tiên" **chưa được kiểm chứng** về độ chính xác (app vẫn trả về đoạn có điểm cao nhất, 0.586, không có ngưỡng "không tìm thấy").
+
+**Luật trúng:** đoạn đúng video VÀ `peak` nằm trong khoảng GT nới ±0.5 s. R@1/R@5 trên danh sách đoạn; thêm R@1 với tIoU([start,end], GT) ≥ 0.5. Sai số thời gian = khoảng cách từ `peak` top-1 tới khoảng GT (0 nếu nằm trong), chỉ tính khi đúng video. Tìm kiếm (sau khi đã nhúng câu) < 1 ms ở mọi cấu hình.
+
+| Mô hình (box CPU, fp32) | Mã hoá câu ms | Moment EN R@1/R@5 | Moment VI R@1/R@5 | Ordinal EN R@1 (sai số s) | Ordinal VI R@1 (sai số s) | Index s/279 frame |
+|---|---|---|---|---|---|---|
+| CLIP ViT-B/32 (baseline), frame | 16 | 0.867 / 0.933 | 0.233 / 0.233 | 0.375 (6.52) | 0.125 (5.38) | 10 |
+| CLIP ViT-B/32, window + ordinal | 16 | 0.900 / 1.000 | 0.167 / 0.333 | 0.625 (1.72) | 0.250 (2.74) | |
+| SigLIP 2 base/16-224, frame | 76 | 0.933 / 0.967 | 0.933 / 1.000 | 0.312 (5.16) | 0.250 (4.75) | 26 |
+| SigLIP 2, window + ordinal | 76 | 0.967 / 1.000 | 0.900 / 1.000 | **0.875 (0.71)** | **0.875 (0.63)** | |
+| **EG2, frame** | 78 | **1.000 / 1.000** | 0.900 / 0.900 | 0.312 (5.57) | 0.312 (4.71) | 671 |
+| **EG2, window + ordinal (mặc định app)** | 78 | **1.000 / 1.000** | **0.967 / 1.000** | 0.688 (1.62) | 0.750 (1.32) | |
+| EG2, câu VI dịch → EN bằng opus-mt-vi-en, window + ordinal | 259 | – | 0.933 / 0.933 | – | 0.875 (0.61) | |
+| SigLIP 2, câu VI dịch bằng opus-mt-vi-en, window + ordinal | 231 | – | 0.900 / 0.933 | – | 0.875 | |
+| EG2 window + re-rank **d3-lite** (0.85B) yes/no, top-5, fusion z | 78 + 1509 | 1.000 / 1.000 | **1.000 / 1.000** | 0.688 (1.62) | 0.625 (2.09) | |
+
+n = 30 câu mỗi cột moment, 16 câu mỗi cột ordinal. tIoU≥0.5 R@1 và mọi số khác: `results/text_*.json`. Cột "frame" không tách từ thứ tự (baseline); bỏ lớp ordinal thì cả 3 mô hình chỉ còn 0.19–0.38 trên câu thứ tự.
+
+**Nhận xét.**
+- Không có ordinal, câu "đầu tiên/cuối cùng" gần như luôn sai (chọn lần xuất hiện khớp nhất chứ không phải lần đầu). Lớp ordinal kéo EG2 từ 0.31 lên 0.69–0.75 và SigLIP 2 lên 0.875.
+- Tiếng Việt: EG2 và SigLIP 2 dùng trực tiếp được (đa ngôn ngữ), CLIP thì không (0.23). Dịch VI→EN bằng opus-mt không cải thiện câu moment, giúp ordinal của EG2 (0.75 → 0.875) nhưng thêm ~180 ms; ở bộ 16 câu, chênh 2 câu, chưa đủ để kết luận.
+- SigLIP 2 tốt hơn EG2 ở câu thứ tự trên bộ nhỏ này, EG2 tốt hơn ở câu moment tiếng Việt và là index dùng chung với tìm bằng ảnh (EG2 0.948 R@1 70 video so với các backbone khác). Vì vậy **mặc định giữ EG2**; không đổi sang SigLIP 2 vì không "thắng rõ" trên toàn bộ.
+- Lập index EG2 trên CPU chậm (0.42 frame/s); trên T4 fp16 nhanh hơn nhiều (xem v8).
+- Chạy app thật (EG2, index 4 fps của `ord_a/ord_b`, gọi qua `gradio_client`): "the last car driving by" → `ord_a.mp4` 16.75–18.0 s (GT 16.6–17.8, đúng), "con lợn ủi đất" → `ord_a` 13.5 s và `ord_b` 9.0 s (đều đúng), "lần đầu tiên con chó xuất hiện" (không chọn video) → `ord_b` 11.5 s (sai, GT 4.4–6.7 s); 63–148 ms/câu sau lần nạp mô hình. Tìm bằng ảnh trong cùng app vẫn chạy (goat → `ord_a` 18.75 s, `ord_b` 2.0 s, đúng).
+
+### d3-turbo làm re-ranker: khả thi không?
+
+Đã kiểm tra ([model card](https://huggingface.co/vllm-sr/d3-turbo), [INT4](https://huggingface.co/vllm-sr/d3-turbo-INT4)): có thật trên Hugging Face, Apache-2.0, 26.09B tham số (gồm vision 0.46B), trả xác suất cho yes/no/choice/score/box/track mà không sinh chữ. Trọng số BF16 52.2 GB; có bản `-INT4` (W4A16, 16.6 GB), `-FP8`, `-NVFP4`. Con số "255 câu hỏi/ảnh trong 2.12 s" **có ghi phần cứng**: một AMD Instinct MI325X, AutoModel (không phải T4); mình chưa tự kiểm chứng. vLLM: model card hướng dẫn `vllm-sr serve --engine --platform rocm` (vLLM Semantic Router, ROCm/MI325X); không thấy hướng dẫn CUDA/T4.
+
+**Không chạy d3-turbo trên Kaggle T4**, lý do (suy luận từ tài liệu, chưa thử trên phần cứng):
+1. Bản INT4 16.6 GB > 15 GB VRAM của một T4; model card ghi đỉnh 46.4 GiB khi benchmark và lớp int4 giải nén ra BF16 cho từng phép nhân. Loader `load_d3(path, device="cuda:0")` chạy một GPU, chia 2×T4 cần tự viết device_map cho code riêng.
+2. T4 (sm75) không có BF16 tensor core; nhân Gated DeltaNet của flash-linear-attention (Triton) cần BF16. Chạy bằng fp16 thay BF16 chưa được tác giả kiểm định.
+3. Đưa 16.6 GB lên Kaggle dataset từ box (đĩa trống ~40 GB) mất nhiều thời gian, rủi ro vượt 2 giờ.
+
+**Thay thế đã đo thật:** cùng họ Decision 3.0, `vllm-sr/d3-lite` (0.85B, Apache-2.0, 1.7 GB) trên CPU box, hỏi "Does this frame show: <câu>?" cho frame đỉnh của top-5 đoạn EG2 (`scripts/text_rerank_d3.py`). 366 ms/lần hỏi, ~1.5 s/câu truy vấn. Kết quả ở bảng trên: +1 câu moment VI (0.967 → 1.000), không cải thiện câu thứ tự (VI 0.75 → 0.625). Không bật trong app. Kết quả của d3-turbo **chưa đo**.
+
+### Công nghệ dùng cho tìm bằng chữ
+- EmbeddingGemma 2 (google/embeddinggemma-2, Apache-2.0, đa ngôn ngữ 100+, chữ+ảnh cùng không gian 768-d): https://huggingface.co/google/embeddinggemma-2
+- SigLIP 2 (google/siglip2-base-patch16-224, Apache-2.0, đa ngôn ngữ): https://huggingface.co/google/siglip2-base-patch16-224, arXiv:2502.14786
+- CLIP ViT-B/32 (baseline, tiếng Anh): https://huggingface.co/openai/clip-vit-base-patch32, arXiv:2103.00020
+- Dịch VI→EN cục bộ: Helsinki-NLP/opus-mt-vi-en (MarianMT, Apache-2.0): https://huggingface.co/Helsinki-NLP/opus-mt-vi-en
+- d3-lite (vLLM Semantic Router Decision 3.0, Apache-2.0): https://huggingface.co/vllm-sr/d3-lite; d3-turbo: https://huggingface.co/vllm-sr/d3-turbo
+- sentence-transformers 6.2.0, transformers 5.20.2, PyTorch CPU, FAISS, OpenCV, Gradio 6.30
+- DAVIS 2017: https://davischallenge.org/
+
+Chạy lại: `python scripts/make_text_eval.py` → `build_index(..., fps=4.0, regions='none')` cho từng mô hình vào `data/text_idx/<model>_{davis10,ord}` → `python scripts/text_eval.py google/embeddinggemma-2 [--translate]` → `python scripts/text_rerank_d3.py <đường dẫn d3-lite> 5`.

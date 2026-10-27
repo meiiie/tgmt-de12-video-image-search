@@ -1,0 +1,1642 @@
+{
+ "moment": [
+  {
+   "id": "m_bike-packing_en",
+   "lang": "en",
+   "text": "a person lifting a loaded bicycle down a staircase",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_00.mp4",
+     "start": 0.0,
+     "end": 2.333
+    }
+   ]
+  },
+  {
+   "id": "m_bike-packing_vi",
+   "lang": "vi",
+   "text": "một người khiêng chiếc xe đạp chở đồ xuống cầu thang",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_00.mp4",
+     "start": 0.0,
+     "end": 2.333
+    }
+   ]
+  },
+  {
+   "id": "m_blackswan_en",
+   "lang": "en",
+   "text": "a black swan swimming on a pond",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_00.mp4",
+     "start": 2.375,
+     "end": 3.917
+    }
+   ]
+  },
+  {
+   "id": "m_blackswan_vi",
+   "lang": "vi",
+   "text": "con thiên nga đen bơi trên mặt hồ",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_00.mp4",
+     "start": 2.375,
+     "end": 3.917
+    }
+   ]
+  },
+  {
+   "id": "m_bmx-trees_en",
+   "lang": "en",
+   "text": "a BMX rider jumping between trees next to a graffiti wall",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_00.mp4",
+     "start": 3.958,
+     "end": 6.75
+    }
+   ]
+  },
+  {
+   "id": "m_bmx-trees_vi",
+   "lang": "vi",
+   "text": "người đi xe đạp BMX nhảy giữa hàng cây cạnh bức tường graffiti",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_00.mp4",
+     "start": 3.958,
+     "end": 6.75
+    }
+   ]
+  },
+  {
+   "id": "m_breakdance_en",
+   "lang": "en",
+   "text": "a breakdancer spinning on the ground in front of a crowd",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_01.mp4",
+     "start": 0.0,
+     "end": 2.958
+    }
+   ]
+  },
+  {
+   "id": "m_breakdance_vi",
+   "lang": "vi",
+   "text": "vũ công breakdance xoay người trên mặt đất trước đám đông",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_01.mp4",
+     "start": 0.0,
+     "end": 2.958
+    }
+   ]
+  },
+  {
+   "id": "m_camel_en",
+   "lang": "en",
+   "text": "a camel walking in an enclosure at a zoo",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_01.mp4",
+     "start": 3.0,
+     "end": 6.208
+    }
+   ]
+  },
+  {
+   "id": "m_camel_vi",
+   "lang": "vi",
+   "text": "con lạc đà đi lại trong chuồng ở sở thú",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_01.mp4",
+     "start": 3.0,
+     "end": 6.208
+    }
+   ]
+  },
+  {
+   "id": "m_car-roundabout_en",
+   "lang": "en",
+   "text": "a dark car driving around a roundabout in a town",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_01.mp4",
+     "start": 6.25,
+     "end": 8.833
+    }
+   ]
+  },
+  {
+   "id": "m_car-roundabout_vi",
+   "lang": "vi",
+   "text": "chiếc ô tô màu tối chạy vòng qua bùng binh trong thị trấn",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_01.mp4",
+     "start": 6.25,
+     "end": 8.833
+    }
+   ]
+  },
+  {
+   "id": "m_car-shadow_en",
+   "lang": "en",
+   "text": "a silver car driving along a street past white buildings",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_02.mp4",
+     "start": 0.0,
+     "end": 1.125
+    }
+   ]
+  },
+  {
+   "id": "m_car-shadow_vi",
+   "lang": "vi",
+   "text": "chiếc ô tô màu bạc chạy trên phố qua những tòa nhà trắng",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_02.mp4",
+     "start": 0.0,
+     "end": 1.125
+    }
+   ]
+  },
+  {
+   "id": "m_cows_en",
+   "lang": "en",
+   "text": "a brown and white cow walking on grass",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_02.mp4",
+     "start": 1.167,
+     "end": 4.958
+    }
+   ]
+  },
+  {
+   "id": "m_cows_vi",
+   "lang": "vi",
+   "text": "con bò nâu trắng đi trên bãi cỏ",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_02.mp4",
+     "start": 1.167,
+     "end": 4.958
+    }
+   ]
+  },
+  {
+   "id": "m_dance-twirl_en",
+   "lang": "en",
+   "text": "a woman dancing and twirling in front of spectators",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_02.mp4",
+     "start": 5.0,
+     "end": 8.208
+    }
+   ]
+  },
+  {
+   "id": "m_dance-twirl_vi",
+   "lang": "vi",
+   "text": "cô gái nhảy múa và xoay tròn trước khán giả",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_02.mp4",
+     "start": 5.0,
+     "end": 8.208
+    }
+   ]
+  },
+  {
+   "id": "m_dog_en",
+   "lang": "en",
+   "text": "a white dog sniffing the ground",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_03.mp4",
+     "start": 0.0,
+     "end": 1.958
+    }
+   ]
+  },
+  {
+   "id": "m_dog_vi",
+   "lang": "vi",
+   "text": "con chó trắng đánh hơi trên mặt đất",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_03.mp4",
+     "start": 0.0,
+     "end": 1.958
+    }
+   ]
+  },
+  {
+   "id": "m_dogs-jump_en",
+   "lang": "en",
+   "text": "dogs jumping to catch something thrown by their owner in a field",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_03.mp4",
+     "start": 2.0,
+     "end": 4.208
+    }
+   ]
+  },
+  {
+   "id": "m_dogs-jump_vi",
+   "lang": "vi",
+   "text": "những con chó nhảy lên bắt đồ do chủ ném trên bãi cỏ",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_03.mp4",
+     "start": 2.0,
+     "end": 4.208
+    }
+   ]
+  },
+  {
+   "id": "m_drift-chicane_en",
+   "lang": "en",
+   "text": "a car drifting with lots of tyre smoke on a race track",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_03.mp4",
+     "start": 4.25,
+     "end": 5.875
+    }
+   ]
+  },
+  {
+   "id": "m_drift-chicane_vi",
+   "lang": "vi",
+   "text": "ô tô drift tạo nhiều khói lốp trên đường đua",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_03.mp4",
+     "start": 4.25,
+     "end": 5.875
+    }
+   ]
+  },
+  {
+   "id": "m_drift-straight_en",
+   "lang": "en",
+   "text": "a red race car sliding sideways on a track",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_04.mp4",
+     "start": 0.0,
+     "end": 1.542
+    }
+   ]
+  },
+  {
+   "id": "m_drift-straight_vi",
+   "lang": "vi",
+   "text": "chiếc xe đua màu đỏ trượt ngang trên đường đua",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_04.mp4",
+     "start": 0.0,
+     "end": 1.542
+    }
+   ]
+  },
+  {
+   "id": "m_goat_en",
+   "lang": "en",
+   "text": "a goat standing on rocks on a hillside",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_04.mp4",
+     "start": 1.583,
+     "end": 4.792
+    }
+   ]
+  },
+  {
+   "id": "m_goat_vi",
+   "lang": "vi",
+   "text": "con dê đứng trên những tảng đá trên sườn đồi",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_04.mp4",
+     "start": 1.583,
+     "end": 4.792
+    }
+   ]
+  },
+  {
+   "id": "m_gold-fish_en",
+   "lang": "en",
+   "text": "goldfish swimming in an aquarium",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_04.mp4",
+     "start": 4.833,
+     "end": 7.542
+    }
+   ]
+  },
+  {
+   "id": "m_gold-fish_vi",
+   "lang": "vi",
+   "text": "đàn cá vàng bơi trong bể cá",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_04.mp4",
+     "start": 4.833,
+     "end": 7.542
+    }
+   ]
+  },
+  {
+   "id": "m_horsejump-high_en",
+   "lang": "en",
+   "text": "a horse and rider jumping over an obstacle in show jumping",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_05.mp4",
+     "start": 0.0,
+     "end": 1.542
+    }
+   ]
+  },
+  {
+   "id": "m_horsejump-high_vi",
+   "lang": "vi",
+   "text": "người cưỡi ngựa nhảy qua chướng ngại vật",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_05.mp4",
+     "start": 0.0,
+     "end": 1.542
+    }
+   ]
+  },
+  {
+   "id": "m_india_en",
+   "lang": "en",
+   "text": "people in colourful clothes in a crowded street market",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_05.mp4",
+     "start": 1.583,
+     "end": 4.417
+    }
+   ]
+  },
+  {
+   "id": "m_india_vi",
+   "lang": "vi",
+   "text": "những người mặc quần áo sặc sỡ ở khu chợ đông đúc",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_05.mp4",
+     "start": 1.583,
+     "end": 4.417
+    }
+   ]
+  },
+  {
+   "id": "m_judo_en",
+   "lang": "en",
+   "text": "two judo fighters throwing each other on a mat",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_05.mp4",
+     "start": 4.458,
+     "end": 5.333
+    }
+   ]
+  },
+  {
+   "id": "m_judo_vi",
+   "lang": "vi",
+   "text": "hai võ sĩ judo quật nhau trên thảm tập",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_05.mp4",
+     "start": 4.458,
+     "end": 5.333
+    }
+   ]
+  },
+  {
+   "id": "m_kite-surf_en",
+   "lang": "en",
+   "text": "a kitesurfer riding waves on the sea",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_06.mp4",
+     "start": 0.0,
+     "end": 1.542
+    }
+   ]
+  },
+  {
+   "id": "m_kite-surf_vi",
+   "lang": "vi",
+   "text": "người lướt ván diều trên sóng biển",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_06.mp4",
+     "start": 0.0,
+     "end": 1.542
+    }
+   ]
+  },
+  {
+   "id": "m_lab-coat_en",
+   "lang": "en",
+   "text": "women in white lab coats standing on a lawn",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_06.mp4",
+     "start": 1.583,
+     "end": 3.0
+    }
+   ]
+  },
+  {
+   "id": "m_lab-coat_vi",
+   "lang": "vi",
+   "text": "những cô gái mặc áo blouse trắng đứng trên bãi cỏ",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_06.mp4",
+     "start": 1.583,
+     "end": 3.0
+    }
+   ]
+  },
+  {
+   "id": "m_libby_en",
+   "lang": "en",
+   "text": "a small dog running through a garden",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_06.mp4",
+     "start": 3.042,
+     "end": 4.542
+    }
+   ]
+  },
+  {
+   "id": "m_libby_vi",
+   "lang": "vi",
+   "text": "chú chó nhỏ chạy qua khu vườn",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_06.mp4",
+     "start": 3.042,
+     "end": 4.542
+    }
+   ]
+  },
+  {
+   "id": "m_loading_en",
+   "lang": "en",
+   "text": "a man pushing a shopping cart loaded with boxes in a store",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_07.mp4",
+     "start": 0.0,
+     "end": 1.542
+    }
+   ]
+  },
+  {
+   "id": "m_loading_vi",
+   "lang": "vi",
+   "text": "người đàn ông đẩy xe hàng chất đầy thùng trong cửa hàng",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_07.mp4",
+     "start": 0.0,
+     "end": 1.542
+    }
+   ]
+  },
+  {
+   "id": "m_mbike-trick_en",
+   "lang": "en",
+   "text": "a motorcyclist doing a burnout trick with smoke",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_07.mp4",
+     "start": 1.583,
+     "end": 4.333
+    }
+   ]
+  },
+  {
+   "id": "m_mbike-trick_vi",
+   "lang": "vi",
+   "text": "người lái mô tô biểu diễn đốt lốp tạo khói",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_07.mp4",
+     "start": 1.583,
+     "end": 4.333
+    }
+   ]
+  },
+  {
+   "id": "m_motocross-jump_en",
+   "lang": "en",
+   "text": "a motocross rider jumping high in the air",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_07.mp4",
+     "start": 4.375,
+     "end": 5.5
+    }
+   ]
+  },
+  {
+   "id": "m_motocross-jump_vi",
+   "lang": "vi",
+   "text": "tay đua mô tô địa hình bay lên cao trên không",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_07.mp4",
+     "start": 4.375,
+     "end": 5.5
+    }
+   ]
+  },
+  {
+   "id": "m_paragliding-launch_en",
+   "lang": "en",
+   "text": "a paraglider taking off from a grassy hill",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_08.mp4",
+     "start": 0.0,
+     "end": 2.792
+    }
+   ]
+  },
+  {
+   "id": "m_paragliding-launch_vi",
+   "lang": "vi",
+   "text": "người chơi dù lượn cất cánh từ ngọn đồi cỏ",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_08.mp4",
+     "start": 0.0,
+     "end": 2.792
+    }
+   ]
+  },
+  {
+   "id": "m_parkour_en",
+   "lang": "en",
+   "text": "a man doing parkour jumping over a railing",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_08.mp4",
+     "start": 2.833,
+     "end": 6.458
+    }
+   ]
+  },
+  {
+   "id": "m_parkour_vi",
+   "lang": "vi",
+   "text": "chàng trai chơi parkour nhảy qua lan can",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_08.mp4",
+     "start": 2.833,
+     "end": 6.458
+    }
+   ]
+  },
+  {
+   "id": "m_pigs_en",
+   "lang": "en",
+   "text": "pigs rooting in the dirt",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_08.mp4",
+     "start": 6.5,
+     "end": 9.25
+    }
+   ]
+  },
+  {
+   "id": "m_pigs_vi",
+   "lang": "vi",
+   "text": "những con lợn ủi đất",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_08.mp4",
+     "start": 6.5,
+     "end": 9.25
+    }
+   ]
+  },
+  {
+   "id": "m_scooter-black_en",
+   "lang": "en",
+   "text": "a person riding a black scooter on a city street",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_09.mp4",
+     "start": 0.0,
+     "end": 1.25
+    }
+   ]
+  },
+  {
+   "id": "m_scooter-black_vi",
+   "lang": "vi",
+   "text": "người lái xe tay ga màu đen trên phố",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_09.mp4",
+     "start": 0.0,
+     "end": 1.25
+    }
+   ]
+  },
+  {
+   "id": "m_shooting_en",
+   "lang": "en",
+   "text": "a man aiming a gun",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_09.mp4",
+     "start": 1.292,
+     "end": 2.417
+    }
+   ]
+  },
+  {
+   "id": "m_shooting_vi",
+   "lang": "vi",
+   "text": "người đàn ông đang ngắm bắn súng",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_09.mp4",
+     "start": 1.292,
+     "end": 2.417
+    }
+   ]
+  },
+  {
+   "id": "m_soapbox_en",
+   "lang": "en",
+   "text": "a soapbox car racing down a street",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_09.mp4",
+     "start": 2.458,
+     "end": 6.042
+    }
+   ]
+  },
+  {
+   "id": "m_soapbox_vi",
+   "lang": "vi",
+   "text": "chiếc xe hộp xà phòng lao xuống dốc trên phố",
+   "ordinal": null,
+   "gt": [
+    {
+     "video": "davis_09.mp4",
+     "start": 2.458,
+     "end": 6.042
+    }
+   ]
+  }
+ ],
+ "ordinal": [
+  {
+   "id": "o_ord_a_dog_first_en",
+   "lang": "en",
+   "text": "the first time a dog appears",
+   "ordinal": "first",
+   "category": "dog",
+   "gt": [
+    {
+     "video": "ord_a.mp4",
+     "start": 0.0,
+     "end": 2.0
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_a.mp4",
+     "start": 8.458,
+     "end": 10.0
+    },
+    {
+     "video": "ord_a.mp4",
+     "start": 14.375,
+     "end": 16.625
+    }
+   ]
+  },
+  {
+   "id": "o_ord_a_dog_first_vi",
+   "lang": "vi",
+   "text": "lần đầu tiên con chó xuất hiện",
+   "ordinal": "first",
+   "category": "dog",
+   "gt": [
+    {
+     "video": "ord_a.mp4",
+     "start": 0.0,
+     "end": 2.0
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_a.mp4",
+     "start": 8.458,
+     "end": 10.0
+    },
+    {
+     "video": "ord_a.mp4",
+     "start": 14.375,
+     "end": 16.625
+    }
+   ]
+  },
+  {
+   "id": "o_ord_a_dog_second_en",
+   "lang": "en",
+   "text": "the second time a dog appears",
+   "ordinal": "second",
+   "category": "dog",
+   "gt": [
+    {
+     "video": "ord_a.mp4",
+     "start": 8.458,
+     "end": 10.0
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_a.mp4",
+     "start": 0.0,
+     "end": 2.0
+    },
+    {
+     "video": "ord_a.mp4",
+     "start": 14.375,
+     "end": 16.625
+    }
+   ]
+  },
+  {
+   "id": "o_ord_a_dog_second_vi",
+   "lang": "vi",
+   "text": "lần thứ hai con chó xuất hiện",
+   "ordinal": "second",
+   "category": "dog",
+   "gt": [
+    {
+     "video": "ord_a.mp4",
+     "start": 8.458,
+     "end": 10.0
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_a.mp4",
+     "start": 0.0,
+     "end": 2.0
+    },
+    {
+     "video": "ord_a.mp4",
+     "start": 14.375,
+     "end": 16.625
+    }
+   ]
+  },
+  {
+   "id": "o_ord_a_dog_last_en",
+   "lang": "en",
+   "text": "the last time a dog appears",
+   "ordinal": "last",
+   "category": "dog",
+   "gt": [
+    {
+     "video": "ord_a.mp4",
+     "start": 14.375,
+     "end": 16.625
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_a.mp4",
+     "start": 0.0,
+     "end": 2.0
+    },
+    {
+     "video": "ord_a.mp4",
+     "start": 8.458,
+     "end": 10.0
+    }
+   ]
+  },
+  {
+   "id": "o_ord_a_dog_last_vi",
+   "lang": "vi",
+   "text": "lần cuối cùng con chó xuất hiện",
+   "ordinal": "last",
+   "category": "dog",
+   "gt": [
+    {
+     "video": "ord_a.mp4",
+     "start": 14.375,
+     "end": 16.625
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_a.mp4",
+     "start": 0.0,
+     "end": 2.0
+    },
+    {
+     "video": "ord_a.mp4",
+     "start": 8.458,
+     "end": 10.0
+    }
+   ]
+  },
+  {
+   "id": "o_ord_a_car_first_en",
+   "lang": "en",
+   "text": "the first car driving by",
+   "ordinal": "first",
+   "category": "car",
+   "gt": [
+    {
+     "video": "ord_a.mp4",
+     "start": 2.0,
+     "end": 4.625
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_a.mp4",
+     "start": 10.0,
+     "end": 11.583
+    },
+    {
+     "video": "ord_a.mp4",
+     "start": 16.625,
+     "end": 17.792
+    }
+   ]
+  },
+  {
+   "id": "o_ord_a_car_first_vi",
+   "lang": "vi",
+   "text": "chiếc ô tô đầu tiên chạy qua",
+   "ordinal": "first",
+   "category": "car",
+   "gt": [
+    {
+     "video": "ord_a.mp4",
+     "start": 2.0,
+     "end": 4.625
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_a.mp4",
+     "start": 10.0,
+     "end": 11.583
+    },
+    {
+     "video": "ord_a.mp4",
+     "start": 16.625,
+     "end": 17.792
+    }
+   ]
+  },
+  {
+   "id": "o_ord_a_car_second_en",
+   "lang": "en",
+   "text": "the second car driving by",
+   "ordinal": "second",
+   "category": "car",
+   "gt": [
+    {
+     "video": "ord_a.mp4",
+     "start": 10.0,
+     "end": 11.583
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_a.mp4",
+     "start": 2.0,
+     "end": 4.625
+    },
+    {
+     "video": "ord_a.mp4",
+     "start": 16.625,
+     "end": 17.792
+    }
+   ]
+  },
+  {
+   "id": "o_ord_a_car_second_vi",
+   "lang": "vi",
+   "text": "chiếc ô tô thứ hai chạy qua",
+   "ordinal": "second",
+   "category": "car",
+   "gt": [
+    {
+     "video": "ord_a.mp4",
+     "start": 10.0,
+     "end": 11.583
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_a.mp4",
+     "start": 2.0,
+     "end": 4.625
+    },
+    {
+     "video": "ord_a.mp4",
+     "start": 16.625,
+     "end": 17.792
+    }
+   ]
+  },
+  {
+   "id": "o_ord_a_car_last_en",
+   "lang": "en",
+   "text": "the last car driving by",
+   "ordinal": "last",
+   "category": "car",
+   "gt": [
+    {
+     "video": "ord_a.mp4",
+     "start": 16.625,
+     "end": 17.792
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_a.mp4",
+     "start": 2.0,
+     "end": 4.625
+    },
+    {
+     "video": "ord_a.mp4",
+     "start": 10.0,
+     "end": 11.583
+    }
+   ]
+  },
+  {
+   "id": "o_ord_a_car_last_vi",
+   "lang": "vi",
+   "text": "chiếc ô tô cuối cùng chạy qua",
+   "ordinal": "last",
+   "category": "car",
+   "gt": [
+    {
+     "video": "ord_a.mp4",
+     "start": 16.625,
+     "end": 17.792
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_a.mp4",
+     "start": 2.0,
+     "end": 4.625
+    },
+    {
+     "video": "ord_a.mp4",
+     "start": 10.0,
+     "end": 11.583
+    }
+   ]
+  },
+  {
+   "id": "o_ord_a_farm_first_en",
+   "lang": "en",
+   "text": "the first farm animal",
+   "ordinal": "first",
+   "category": "farm",
+   "gt": [
+    {
+     "video": "ord_a.mp4",
+     "start": 4.625,
+     "end": 8.458
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_a.mp4",
+     "start": 11.583,
+     "end": 14.375
+    },
+    {
+     "video": "ord_a.mp4",
+     "start": 17.792,
+     "end": 21.042
+    }
+   ]
+  },
+  {
+   "id": "o_ord_a_farm_first_vi",
+   "lang": "vi",
+   "text": "con vật nông trại đầu tiên",
+   "ordinal": "first",
+   "category": "farm",
+   "gt": [
+    {
+     "video": "ord_a.mp4",
+     "start": 4.625,
+     "end": 8.458
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_a.mp4",
+     "start": 11.583,
+     "end": 14.375
+    },
+    {
+     "video": "ord_a.mp4",
+     "start": 17.792,
+     "end": 21.042
+    }
+   ]
+  },
+  {
+   "id": "o_ord_a_farm_last_en",
+   "lang": "en",
+   "text": "the last farm animal",
+   "ordinal": "last",
+   "category": "farm",
+   "gt": [
+    {
+     "video": "ord_a.mp4",
+     "start": 17.792,
+     "end": 21.042
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_a.mp4",
+     "start": 4.625,
+     "end": 8.458
+    },
+    {
+     "video": "ord_a.mp4",
+     "start": 11.583,
+     "end": 14.375
+    }
+   ]
+  },
+  {
+   "id": "o_ord_a_farm_last_vi",
+   "lang": "vi",
+   "text": "con vật nông trại cuối cùng",
+   "ordinal": "last",
+   "category": "farm",
+   "gt": [
+    {
+     "video": "ord_a.mp4",
+     "start": 17.792,
+     "end": 21.042
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_a.mp4",
+     "start": 4.625,
+     "end": 8.458
+    },
+    {
+     "video": "ord_a.mp4",
+     "start": 11.583,
+     "end": 14.375
+    }
+   ]
+  },
+  {
+   "id": "o_ord_b_dog_first_en",
+   "lang": "en",
+   "text": "the first time a dog appears",
+   "ordinal": "first",
+   "category": "dog",
+   "gt": [
+    {
+     "video": "ord_b.mp4",
+     "start": 4.417,
+     "end": 6.667
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_b.mp4",
+     "start": 11.042,
+     "end": 12.583
+    },
+    {
+     "video": "ord_b.mp4",
+     "start": 19.042,
+     "end": 21.042
+    }
+   ]
+  },
+  {
+   "id": "o_ord_b_dog_first_vi",
+   "lang": "vi",
+   "text": "lần đầu tiên con chó xuất hiện",
+   "ordinal": "first",
+   "category": "dog",
+   "gt": [
+    {
+     "video": "ord_b.mp4",
+     "start": 4.417,
+     "end": 6.667
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_b.mp4",
+     "start": 11.042,
+     "end": 12.583
+    },
+    {
+     "video": "ord_b.mp4",
+     "start": 19.042,
+     "end": 21.042
+    }
+   ]
+  },
+  {
+   "id": "o_ord_b_dog_second_en",
+   "lang": "en",
+   "text": "the second time a dog appears",
+   "ordinal": "second",
+   "category": "dog",
+   "gt": [
+    {
+     "video": "ord_b.mp4",
+     "start": 11.042,
+     "end": 12.583
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_b.mp4",
+     "start": 4.417,
+     "end": 6.667
+    },
+    {
+     "video": "ord_b.mp4",
+     "start": 19.042,
+     "end": 21.042
+    }
+   ]
+  },
+  {
+   "id": "o_ord_b_dog_second_vi",
+   "lang": "vi",
+   "text": "lần thứ hai con chó xuất hiện",
+   "ordinal": "second",
+   "category": "dog",
+   "gt": [
+    {
+     "video": "ord_b.mp4",
+     "start": 11.042,
+     "end": 12.583
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_b.mp4",
+     "start": 4.417,
+     "end": 6.667
+    },
+    {
+     "video": "ord_b.mp4",
+     "start": 19.042,
+     "end": 21.042
+    }
+   ]
+  },
+  {
+   "id": "o_ord_b_dog_last_en",
+   "lang": "en",
+   "text": "the last time a dog appears",
+   "ordinal": "last",
+   "category": "dog",
+   "gt": [
+    {
+     "video": "ord_b.mp4",
+     "start": 19.042,
+     "end": 21.042
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_b.mp4",
+     "start": 4.417,
+     "end": 6.667
+    },
+    {
+     "video": "ord_b.mp4",
+     "start": 11.042,
+     "end": 12.583
+    }
+   ]
+  },
+  {
+   "id": "o_ord_b_dog_last_vi",
+   "lang": "vi",
+   "text": "lần cuối cùng con chó xuất hiện",
+   "ordinal": "last",
+   "category": "dog",
+   "gt": [
+    {
+     "video": "ord_b.mp4",
+     "start": 19.042,
+     "end": 21.042
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_b.mp4",
+     "start": 4.417,
+     "end": 6.667
+    },
+    {
+     "video": "ord_b.mp4",
+     "start": 11.042,
+     "end": 12.583
+    }
+   ]
+  },
+  {
+   "id": "o_ord_b_car_first_en",
+   "lang": "en",
+   "text": "the first car driving by",
+   "ordinal": "first",
+   "category": "car",
+   "gt": [
+    {
+     "video": "ord_b.mp4",
+     "start": 3.25,
+     "end": 4.417
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_b.mp4",
+     "start": 9.458,
+     "end": 11.042
+    },
+    {
+     "video": "ord_b.mp4",
+     "start": 16.417,
+     "end": 19.042
+    }
+   ]
+  },
+  {
+   "id": "o_ord_b_car_first_vi",
+   "lang": "vi",
+   "text": "chiếc ô tô đầu tiên chạy qua",
+   "ordinal": "first",
+   "category": "car",
+   "gt": [
+    {
+     "video": "ord_b.mp4",
+     "start": 3.25,
+     "end": 4.417
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_b.mp4",
+     "start": 9.458,
+     "end": 11.042
+    },
+    {
+     "video": "ord_b.mp4",
+     "start": 16.417,
+     "end": 19.042
+    }
+   ]
+  },
+  {
+   "id": "o_ord_b_car_second_en",
+   "lang": "en",
+   "text": "the second car driving by",
+   "ordinal": "second",
+   "category": "car",
+   "gt": [
+    {
+     "video": "ord_b.mp4",
+     "start": 9.458,
+     "end": 11.042
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_b.mp4",
+     "start": 3.25,
+     "end": 4.417
+    },
+    {
+     "video": "ord_b.mp4",
+     "start": 16.417,
+     "end": 19.042
+    }
+   ]
+  },
+  {
+   "id": "o_ord_b_car_second_vi",
+   "lang": "vi",
+   "text": "chiếc ô tô thứ hai chạy qua",
+   "ordinal": "second",
+   "category": "car",
+   "gt": [
+    {
+     "video": "ord_b.mp4",
+     "start": 9.458,
+     "end": 11.042
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_b.mp4",
+     "start": 3.25,
+     "end": 4.417
+    },
+    {
+     "video": "ord_b.mp4",
+     "start": 16.417,
+     "end": 19.042
+    }
+   ]
+  },
+  {
+   "id": "o_ord_b_car_last_en",
+   "lang": "en",
+   "text": "the last car driving by",
+   "ordinal": "last",
+   "category": "car",
+   "gt": [
+    {
+     "video": "ord_b.mp4",
+     "start": 16.417,
+     "end": 19.042
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_b.mp4",
+     "start": 3.25,
+     "end": 4.417
+    },
+    {
+     "video": "ord_b.mp4",
+     "start": 9.458,
+     "end": 11.042
+    }
+   ]
+  },
+  {
+   "id": "o_ord_b_car_last_vi",
+   "lang": "vi",
+   "text": "chiếc ô tô cuối cùng chạy qua",
+   "ordinal": "last",
+   "category": "car",
+   "gt": [
+    {
+     "video": "ord_b.mp4",
+     "start": 16.417,
+     "end": 19.042
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_b.mp4",
+     "start": 3.25,
+     "end": 4.417
+    },
+    {
+     "video": "ord_b.mp4",
+     "start": 9.458,
+     "end": 11.042
+    }
+   ]
+  },
+  {
+   "id": "o_ord_b_farm_first_en",
+   "lang": "en",
+   "text": "the first farm animal",
+   "ordinal": "first",
+   "category": "farm",
+   "gt": [
+    {
+     "video": "ord_b.mp4",
+     "start": 0.0,
+     "end": 3.25
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_b.mp4",
+     "start": 6.667,
+     "end": 9.458
+    },
+    {
+     "video": "ord_b.mp4",
+     "start": 12.583,
+     "end": 16.417
+    }
+   ]
+  },
+  {
+   "id": "o_ord_b_farm_first_vi",
+   "lang": "vi",
+   "text": "con vật nông trại đầu tiên",
+   "ordinal": "first",
+   "category": "farm",
+   "gt": [
+    {
+     "video": "ord_b.mp4",
+     "start": 0.0,
+     "end": 3.25
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_b.mp4",
+     "start": 6.667,
+     "end": 9.458
+    },
+    {
+     "video": "ord_b.mp4",
+     "start": 12.583,
+     "end": 16.417
+    }
+   ]
+  },
+  {
+   "id": "o_ord_b_farm_last_en",
+   "lang": "en",
+   "text": "the last farm animal",
+   "ordinal": "last",
+   "category": "farm",
+   "gt": [
+    {
+     "video": "ord_b.mp4",
+     "start": 12.583,
+     "end": 16.417
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_b.mp4",
+     "start": 0.0,
+     "end": 3.25
+    },
+    {
+     "video": "ord_b.mp4",
+     "start": 6.667,
+     "end": 9.458
+    }
+   ]
+  },
+  {
+   "id": "o_ord_b_farm_last_vi",
+   "lang": "vi",
+   "text": "con vật nông trại cuối cùng",
+   "ordinal": "last",
+   "category": "farm",
+   "gt": [
+    {
+     "video": "ord_b.mp4",
+     "start": 12.583,
+     "end": 16.417
+    }
+   ],
+   "distractor_spans": [
+    {
+     "video": "ord_b.mp4",
+     "start": 0.0,
+     "end": 3.25
+    },
+    {
+     "video": "ord_b.mp4",
+     "start": 6.667,
+     "end": 9.458
+    }
+   ]
+  }
+ ],
+ "composite": {
+  "ord_a.mp4": [
+   "dog",
+   "car-roundabout",
+   "cows",
+   "libby",
+   "drift-straight",
+   "pigs",
+   "dogs-jump",
+   "car-shadow",
+   "goat"
+  ],
+  "ord_b.mp4": [
+   "goat",
+   "car-shadow",
+   "dogs-jump",
+   "pigs",
+   "drift-straight",
+   "libby",
+   "cows",
+   "car-roundabout",
+   "dog"
+  ]
+ }
+}
