@@ -1,0 +1,55 @@
+{
+ "n": {
+  "cal_pos": 166,
+  "cal_neg": 230,
+  "fb_pos": 16,
+  "fb_neg": 28,
+  "ct_pos": 194,
+  "ct_neg": 200
+ },
+ "old_davis_only": {
+  "tau": 0.637,
+  "calibration": {
+   "FAR": 0.0,
+   "FRR": 0.205
+  },
+  "football": {
+   "FAR": 0.071,
+   "FRR": 0.0
+  },
+  "charades_test": {
+   "FAR": 0.005,
+   "FRR": 0.082
+  }
+ },
+ "maxF1": {
+  "tau": 0.6196,
+  "calibration": {
+   "FAR": 0.022,
+   "FRR": 0.114
+  },
+  "football": {
+   "FAR": 0.143,
+   "FRR": 0.0
+  },
+  "charades_test": {
+   "FAR": 0.08,
+   "FRR": 0.036
+  }
+ },
+ "FAR<=5%": {
+  "tau": 0.6151,
+  "calibration": {
+   "FAR": 0.048,
+   "FRR": 0.108
+  },
+  "football": {
+   "FAR": 0.143,
+   "FRR": 0.0
+  },
+  "charades_test": {
+   "FAR": 0.115,
+   "FRR": 0.036
+  }
+ }
+}

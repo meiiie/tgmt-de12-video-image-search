@@ -461,3 +461,25 @@ Chạy app thật bằng `gradio_client`:
 - "con mèo ngủ trên ghế sofa" → "Không tìm thấy".
 
 Đã sửa một lỗi: ngưỡng "không tìm thấy" giờ luôn so trên điểm cosine của `window`, không so trên điểm tương phản của proposals (trước đó mọi câu đều bị từ chối). Trên Charades, ngưỡng 0.637 (hiệu chỉnh trên DAVIS) **từ chối nhầm 4.7% câu có thật**; điểm cosine tốt nhất của các câu Charades có min 0.595, trung vị 0.705. Lý do là cảnh trong nhà tối, khác hẳn DAVIS, nên ngưỡng cần hiệu chỉnh lại theo từng loại video.
+
+**Mốc 3: proposals có dùng được ngoài Charades không?** (`scripts/proposals_crossdomain.py` → `results/proposals_crossdomain.json`, EG2 qua `Searcher.search_text`). Trúng = peak (với proposals là tâm đoạn) nằm trong GT ±0.5 s.
+
+| R@1 trúng EN / VI | window (mặc định) | proposals |
+|---|---|---|
+| DAVIS moment (10 video, n = 30 + 30) | **1.000 / 0.967** | 0.867 / 0.767 |
+| DAVIS thứ tự | 1.000 / 0.875 | giống hệt (câu có từ thứ tự luôn đi qua bước thứ tự v2) |
+| Bóng đá (n = 8 + 8) | **0.625 / 0.625** | 0.500 / 0.625 |
+
+Proposals **làm giảm** kết quả trên DAVIS và bóng đá. Trên DAVIS, mỗi video ghép 3 clip ngắn, cửa sổ 20–40% độ dài video cắt ngang ranh giới giữa các clip. Vì vậy **mặc định vẫn là `window`**; `proposals` chỉ nên chọn cho video một cảnh dài kiểu Charades.
+
+**Ngưỡng "không tìm thấy" chung cho nhiều miền** (`scripts/threshold_crossdomain.py` → `results/threshold_crossdomain.json`).
+- Hiệu chỉnh trên DAVIS (60 câu có thật / 30 câu âm) + Charades dev (106 câu EN/VI có thật; 22 câu âm ngoài trời × 10 video = 220 lượt). Đã bỏ các câu âm có thể xảy ra trong nhà: nấu ăn, laptop, mèo, piano, bánh.
+- Báo trên phần giữ lại: bóng đá (16 / 28) và Charades test (194 / 220).
+
+| τ | Hiệu chỉnh FAR / FRR | Bóng đá FAR / FRR | Charades test FAR / FRR |
+|---|---|---|---|
+| **0.637 (cũ, chỉ DAVIS; giữ làm mặc định)** | 0.000 / 0.205 | 0.071 / 0.000 | 0.005 / 0.082 |
+| 0.6196 (max-F1 nhiều miền) | 0.022 / 0.114 | 0.143 / 0.000 | 0.080 / 0.036 |
+| 0.6151 (FAR ≤ 5% trên tập hiệu chỉnh) | 0.048 / 0.108 | 0.143 / 0.000 | 0.115 / 0.036 |
+
+Không có một ngưỡng chung nào tốt cho mọi miền. Hạ ngưỡng giảm từ chối nhầm trên Charades (8.2% → 3.6%) nhưng nhận nhầm gấp đôi trên bóng đá (7% → 14%) và tăng mạnh trên Charades (0.5% → 8%). Mình **giữ 0.637**, tức ưu tiên ít nhận nhầm. Với video trong nhà tối, có thể hạ xuống khoảng 0.62 bằng ô ngưỡng trên app hoặc `--text-min-score`.

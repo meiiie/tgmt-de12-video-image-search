@@ -1,0 +1,86 @@
+{
+ "davis_moment_window": {
+  "en": {
+   "n": 30,
+   "R@1_hit": 1.0,
+   "R@1_tIoU0.5": 0.967,
+   "mIoU": 0.85
+  },
+  "vi": {
+   "n": 30,
+   "R@1_hit": 0.967,
+   "R@1_tIoU0.5": 0.933,
+   "mIoU": 0.827
+  }
+ },
+ "davis_moment_proposals": {
+  "en": {
+   "n": 30,
+   "R@1_hit": 0.867,
+   "R@1_tIoU0.5": 0.867,
+   "mIoU": 0.742
+  },
+  "vi": {
+   "n": 30,
+   "R@1_hit": 0.767,
+   "R@1_tIoU0.5": 0.767,
+   "mIoU": 0.655
+  }
+ },
+ "davis_ordinal_window": {
+  "en": {
+   "n": 16,
+   "R@1_hit": 1.0,
+   "R@1_tIoU0.5": 0.875,
+   "mIoU": 0.758
+  },
+  "vi": {
+   "n": 16,
+   "R@1_hit": 0.875,
+   "R@1_tIoU0.5": 0.875,
+   "mIoU": 0.724
+  }
+ },
+ "davis_ordinal_proposals": {
+  "en": {
+   "n": 16,
+   "R@1_hit": 1.0,
+   "R@1_tIoU0.5": 0.875,
+   "mIoU": 0.758
+  },
+  "vi": {
+   "n": 16,
+   "R@1_hit": 0.875,
+   "R@1_tIoU0.5": 0.875,
+   "mIoU": 0.724
+  }
+ },
+ "football_window": {
+  "en": {
+   "n": 8,
+   "R@1_hit": 0.625,
+   "R@1_tIoU0.5": 0.25,
+   "mIoU": 0.291
+  },
+  "vi": {
+   "n": 8,
+   "R@1_hit": 0.625,
+   "R@1_tIoU0.5": 0.125,
+   "mIoU": 0.228
+  }
+ },
+ "football_proposals": {
+  "en": {
+   "n": 8,
+   "R@1_hit": 0.5,
+   "R@1_tIoU0.5": 0.25,
+   "mIoU": 0.272
+  },
+  "vi": {
+   "n": 8,
+   "R@1_hit": 0.625,
+   "R@1_tIoU0.5": 0.125,
+   "mIoU": 0.189
+  }
+ }
+}
