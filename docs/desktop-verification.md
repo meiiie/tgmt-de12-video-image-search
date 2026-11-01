@@ -30,7 +30,9 @@ A separate clean-library run with `HF_HUB_OFFLINE=1` and `TRANSFORMERS_OFFLINE=1
 
 These are individual observations, not percentiles or throughput promises. In the live Codex panel, the first text search took about 42 seconds including cold initialization while other build tasks were running. Subsequent queries reuse the loaded model. CPU indexing is not real-time on this laptop.
 
-The first run from the copied package runtime recorded a **134.8-second cold text search** while a Rust release build was running. That run still passed text/image retrieval, authenticated HTTP, range playback and 2.002-second clip export. The concurrent build and cold runtime paths make that observation unsuitable for comparison with the warm timings above. Cold-start latency remains a product limitation on this CPU configuration.
+Query numbers are the backend's `elapsed_ms` measurements; they exclude HTTP/IPC and the first import of the shared temporal module. They are not complete application-startup timings.
+
+The first run from the copied package runtime recorded a **134.8-second cold text search** while a Rust release build was running. A second run after compilation completed recorded **32.36 seconds**, also including model initialization. Both passed text/image retrieval, authenticated HTTP, range playback and 2.002-second clip export. The different contention and cache conditions make these observations unsuitable for comparison with the warm timings above. Cold-start latency remains a product limitation on this CPU configuration.
 
 Evidence: `desktop-real-acceptance.json`, `desktop-offline-acceptance.json`, their logs, `flower-query.png`, and the timestamped `flower-export-*.mp4` files. Run `scripts/accept_desktop_real.py --data-dir <isolated-library> --report <report.json>` to avoid writing to a currently open library.
 
@@ -40,6 +42,14 @@ The acceptance scripts expect `data/models/embeddinggemma-2`, `data/acceptance-m
 
 The first native Windows build was launched successfully and showed its local library. Subsequent checks use the Codex right-side browser and hidden processes, as requested by the user. Native file-dialog/export selection was not completed interactively; the browser path-selection flow and backend export were verified.
 
-The final installer build log is `desktop-build-final.log`. Package verification and hashes are recorded alongside it after bundling. An unsigned local build is not a signed public release. Other operating systems, GPU packages, huge libraries, retrieval accuracy on a representative dataset and audio/OCR features have not been validated or implemented.
+The final Windows executable compiled successfully in the release profile. `scripts/verify_desktop_package.py` compared packaged Python source with the repository and exercised the copied runtime over authenticated HTTP, using actual EG2 text/image queries, byte-range media and a decoded clip export. That final check passed; evidence is `desktop-package-verification-final.log` and `desktop-package-verification.json`.
+
+The NSIS installer compilation was stopped after prolonged packaging of the full runtime. No completed NSIS installer is delivered in this pass; `desktop-build-final.log` preserves that outcome. The verified portable ZIP is the distributable artifact. An unsigned local build is not a signed public release. Other operating systems, GPU packages, huge libraries, retrieval accuracy on a representative dataset and audio/OCR features have not been validated or implemented.
 
 The interface concept and design critique are in [the visual lab](lab/README.md). Generated mockup content is separate from real application data.
+
+## Portable artifact
+
+`outputs/releases/FrameAtlas_0.1.0_windows-x64-portable.zip`: 433,159,126 bytes (about 413 MiB), 15,080 files. ZIP CRC verification passed. SHA-256: `57bb0e952af47b33e2c334575d380e7ab72d9a89039209aa61203dd2db2fd055`. The archive includes the compiled Windows application, engine, Python runtime and FFmpeg; model weights and acceptance data remain separate.
+
+The ZIP was extracted into a new directory, and its own Python/runtime/engine passed real EG2 text and image queries, authorization, range playback and decoded 2.002-second clip export. Evidence: `portable-verification.log`, `portable-verification.json`, and `outputs/releases/portable-manifest.json`. The native window was kept closed throughout this check.

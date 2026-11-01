@@ -4,6 +4,8 @@ FrameAtlas finds moments in local video files using text or an image. It opens t
 
 ## First launch
 
+For the portable build, extract the entire ZIP, then open `FrameAtlas/frameatlas.exe`. Keep the adjacent `runtime` and `engine` directories with it. No system Python installation is needed. The application still stores its library under the per-user data directory, so moving the extracted program does not move your catalog.
+
 1. Launch the Windows build. The native shell starts and owns its local worker automatically.
 2. Open **Cài đặt** to select an existing EmbeddingGemma 2 directory, or leave the path empty to download the official pinned weights. The first download needs roughly 1.5 GB plus tokenizer files. Loading text and vision uses additional memory; 16 GB RAM is recommended for this CPU build.
 3. Choose **Thêm video** or **Thêm thư mục**. Dragging files/folders into the native window also imports them. Folder imports include supported videos in subfolders.
@@ -44,6 +46,8 @@ npm run tauri -- build
 ```
 
 Installer output: `desktop/src-tauri/target/release/bundle/nsis/`. The build is unsigned unless a signing identity is supplied by the distributor. The unbundled executable needs the adjacent `runtime` and `engine` resource folders.
+
+After the native release build, `desktop/runtime314/python.exe scripts/package_portable.py` (from the repository root) creates a ZIP under `outputs/releases/` and verifies its CRC. The portable package omits Python bytecode and C++ build headers. Verify a freshly extracted copy with `scripts/verify_desktop_package.py --build-dir <extracted-FrameAtlas-directory> --report <report.json>` using the bundled Python interpreter and the acceptance inputs below.
 
 Backend checks from repository root:
 

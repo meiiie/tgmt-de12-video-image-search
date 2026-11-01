@@ -1,5 +1,7 @@
 # Phân tích logic Đề 12
 
+**Cập nhật sau khảo sát:** FrameAtlas đã triển khai ứng dụng desktop trong `desktop/`. Các lỗi temporal tái hiện bên dưới đã được sửa và kiểm tra hồi quy; xem [bằng chứng kiểm thử](desktop-verification.md). Phần phân tích dưới đây giữ nguyên mốc source ban đầu để đối chiếu. Các hạn chế về metadata, dependency và notebook của pipeline nghiên cứu không mô tả backend desktop mới.
+
 Phạm vi là source tại `be13268a60a72d812dfd8105350fe8fc6ddec3dd`, khảo sát ngày 01/11/2026. Đây là bước chuẩn bị cải thiện. Code thuật toán trong `vsearch/` chưa thay đổi ở mốc này.
 
 ## Bài toán và trạng thái thực tế

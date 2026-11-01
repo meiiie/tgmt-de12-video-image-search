@@ -18,6 +18,7 @@ OUT = ROOT / "outputs/onboarding"
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--build-dir", type=Path, default=ROOT / "desktop/src-tauri/target/release")
+    parser.add_argument("--report", type=Path, default=OUT / "desktop-package-verification.json")
     args = parser.parse_args()
     build = args.build_dir.resolve()
     engine = build / "engine"
@@ -79,7 +80,7 @@ def main():
                 "range_status": 206, "unauthorized_status": 401, "export_duration": duration,
                 "artifacts": [{"path": str(path), "bytes": path.stat().st_size,
                     "sha256": hashlib.file_digest(path.open("rb"), "sha256").hexdigest()} for path in files]}
-            (OUT / "desktop-package-verification.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+            args.report.write_text(json.dumps(report, indent=2), encoding="utf-8")
             print("Packaged runtime, source, EG2 text/image, media range and clip export: PASSED")
         finally:
             worker.terminate()
