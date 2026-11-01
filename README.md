@@ -7,6 +7,7 @@
 - [Nghiên cứu hướng camera giao thông: tìm xe và rà soát sự cố (đề xuất)](docs/traffic-use-case-research.md)
 - [Nghiên cứu pain point creator/bóng đá và lab EG2 audio](docs/creator-highlights-research.md)
 - [EG2: giấy phép, sentiment, học tập và phép thử giới hạn similarity](docs/eg2-capabilities-and-product-fit.md)
+- [Tìm người/nhân vật xuyên nhiều video: nhu cầu, giới hạn và pilot](docs/person-character-search-research.md)
 - [Lab giao diện](docs/lab/README.md)
 - [Kiểm chứng bản desktop](docs/desktop-verification.md)
 
