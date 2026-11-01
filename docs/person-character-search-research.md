@@ -2,6 +2,14 @@
 
 Ngày kiểm tra: 01/11/2026. Đây là nghiên cứu và phạm vi pilot, **chưa phải tính năng nhận diện đã triển khai hoặc benchmark chất lượng**. Chỉ agent chính thực hiện.
 
+## Quan hệ với đề bài gốc
+
+Đối chiếu lại README trước khi xây desktop (`be13268`) và `research.md:7`: bài toán được repo mô tả là **ảnh truy vấn toàn cảnh/crop đối tượng → video nguồn và các đoạn xuất hiện, thời điểm đỉnh, điểm khớp**. Người/nhân vật là một loại đối tượng có thể truy vấn, nên hướng này trực tiếp nối tiếp instance search của Đề 12. Khởi điểm cần kiểm chứng là tìm bằng ảnh mẫu trên video thật; chưa có căn cứ coi nhận diện khuôn mặt hoặc xác nhận danh tính bất chấp thay trang phục là yêu cầu bắt buộc của đề.
+
+Phần nhận diện chuyên biệt bên dưới là khả năng mở rộng khi tác vụ đích đòi hỏi, không phải điều kiện để mọi truy vấn ảnh người hoạt động. Các hướng sentiment, chấm nói và tự chọn highlight thuộc mở rộng sản phẩm. EG2 là encoder đang được chọn, không phải định nghĩa bài toán.
+
+`research.md` dẫn `de_bai.pdf`, nhưng chưa tìm thấy file gốc trong checkout hoặc theo tên đó ở các thư mục tải về đã kiểm tra. Vì vậy đây là đối chiếu với tài liệu repo; chưa thể xác nhận nguyên văn yêu cầu/thang chấm của giảng viên. Recall/mAP và giao thức DAVIS hiện là phương pháp đánh giá của dự án, chưa xác nhận là rubric của đề.
+
 ## Quyết định
 
 Ưu tiên kiểm chứng **tìm các lần xuất hiện của nhân vật đã được người dùng chọn trong thư viện video của họ**, phục vụ tìm tư liệu và dựng clip. Đây là hướng có đầu ra rõ và dễ đối chiếu hơn việc tự chọn đoạn “hay nhất” hoặc chấm điểm nói: trả về đúng video, đúng đoạn, đúng đối tượng; người dựng duyệt và xuất phần cần dùng.
