@@ -413,6 +413,7 @@ progress::-webkit-progress-value {
 }
 .search-options {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin: 11px 1px 24px;
@@ -432,6 +433,23 @@ progress::-webkit-progress-value {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+.time-scope {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: -8px 0 22px;
+  color: #616854;
+  font-size: 12px;
+}
+.time-scope input {
+  width: 90px;
+  padding: 6px 8px;
+  margin-left: 5px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
 }
 .stats-strip {
   display: flex;

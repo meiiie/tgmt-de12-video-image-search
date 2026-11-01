@@ -60,6 +60,15 @@ def main():
                 raise AssertionError("Unauthenticated request succeeded")
             except HTTPError as error:
                 assert error.code == 401
+            deadline = time.monotonic() + 900
+            while True:
+                with request("/library") as response:
+                    status = json.load(response)
+                assert not any(v["status"] == "error" for v in status["videos"]), status["videos"]
+                if status["summary"]["ready"] == status["summary"]["videos"]:
+                    break
+                assert time.monotonic() < deadline, "Packaged index rebuild timed out"
+                time.sleep(2)
             with request("/search", {"text": "con ong trên bông hoa"}) as response:
                 search = json.load(response)
             first = search["results"][0]

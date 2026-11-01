@@ -131,3 +131,34 @@ test("panel imports paths and exports a playable clip without native dialogs", a
   await expect(picker).toHaveCount(0);
   await expect(page.locator(".inspector")).toBeVisible();
 });
+
+test("search within a time range and clear the range", async ({ page }) => {
+  await page.goto(entry);
+  await page
+    .getByRole("combobox", { name: "Phạm vi", exact: true })
+    .selectOption({ label: "red-square.avi" });
+  await page.getByLabel("Từ phút", { exact: true }).fill("0.05");
+  await page.getByLabel("Đến phút", { exact: true }).fill("0.09");
+  await page.getByRole("textbox", { name: "Mô tả cảnh cần tìm" }).fill("red");
+  const request = page.waitForResponse(
+    (response) =>
+      response.url().endsWith("/search") &&
+      response.request().method() === "POST",
+  );
+  await page.getByRole("button", { name: "Tìm kiếm", exact: true }).click();
+  const response = await request;
+  expect(response.ok()).toBe(true);
+  const result: {
+    results: { start: number; end: number; peak: number }[];
+    indexed_frames: number;
+  } = await response.json();
+  expect(result.results.length).toBeGreaterThan(0);
+  expect(result.indexed_frames).toBe(3);
+  for (const moment of result.results) {
+    expect(moment.start).toBeGreaterThanOrEqual(3);
+    expect(moment.end).toBeLessThanOrEqual(5.4);
+  }
+  await page.getByRole("button", { name: "Xóa giới hạn", exact: true }).click();
+  await expect(page.getByLabel("Từ phút", { exact: true })).toHaveValue("");
+  await expect(page.getByLabel("Đến phút", { exact: true })).toHaveValue("");
+});

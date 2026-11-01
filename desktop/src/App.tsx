@@ -116,6 +116,17 @@ function Brand() {
   );
 }
 
+function IndexProgress({ progress }: { progress: Library["progress"] }) {
+  if (!progress) return null;
+  return (
+    <small className="index-progress">
+      {progress.stage === "model"
+        ? "Đang nạp EG2…"
+        : `${progress.rate.toLocaleString("vi-VN", { maximumFractionDigits: 2 })} khung/giây${progress.eta_seconds === null ? "" : ` · còn khoảng ${timestamp(progress.eta_seconds)}`}`}
+    </small>
+  );
+}
+
 function Workspace({ api }: { api: Api }) {
   const [page, setPage] = useState<Page>("search");
   const [library, setLibrary] = useState<Library | null>(null);
@@ -289,6 +300,7 @@ function Workspace({ api }: { api: Api }) {
                   ? `${active.frames}/${active.total || "…"} khung · ${active.name}`
                   : `${pending} video trong hàng đợi`}
               </small>
+              {library && <IndexProgress progress={library.progress} />}
             </div>
           )}
           <div className="privacy">
@@ -494,6 +506,18 @@ function Workspace({ api }: { api: Api }) {
                                   max={Math.max(1, video.total)}
                                 />
                               )}
+                              {video.frames > 0 && video.status !== "ready" && (
+                                <span>
+                                  Đã xử lý đến{" "}
+                                  {timestamp(
+                                    Math.min(video.next_t, video.duration),
+                                  )}{" "}
+                                  / {timestamp(video.duration)}
+                                </span>
+                              )}
+                              {library.progress?.video_id === video.id && (
+                                <IndexProgress progress={library.progress} />
+                              )}
                               {video.error && (
                                 <p className="error-text">{video.error}</p>
                               )}
@@ -625,6 +649,8 @@ function SearchPage({
   );
   const [scope, setScope] = useState("");
   const [occurrence, setOccurrence] = useState("");
+  const [fromMinute, setFromMinute] = useState("");
+  const [toMinute, setToMinute] = useState("");
   const [result, setResult] = useState<SearchResults | null>(null);
   const [busy, setBusy] = useState(false);
   const input = useRef<HTMLInputElement>(null);
@@ -644,10 +670,16 @@ function SearchPage({
     if ((!query.trim() && !image) || busy) return;
     setBusy(true);
     try {
+      const start = scope && fromMinute !== "" ? Number(fromMinute) * 60 : null;
+      const end = scope && toMinute !== "" ? Number(toMinute) * 60 : null;
+      if (end !== null && end <= (start ?? 0))
+        throw new Error("Mốc kết thúc phải lớn hơn mốc bắt đầu.");
       const response = await api.request("/search", SearchResults, "POST", {
         ...(image ? { image: image.data } : { text: query.trim() }),
         video_id: scope || null,
         occurrence: scope && occurrence ? Number(occurrence) : null,
+        start,
+        end,
       });
       setResult(response);
     } catch (error) {
@@ -735,7 +767,14 @@ function SearchPage({
         <div className="search-options">
           <label>
             Phạm vi{" "}
-            <select value={scope} onChange={(e) => setScope(e.target.value)}>
+            <select
+              value={scope}
+              onChange={(e) => {
+                setScope(e.target.value);
+                setFromMinute("");
+                setToMinute("");
+              }}
+            >
               <option value="">Toàn bộ thư viện</option>
               {library.videos
                 .filter((v) => v.frames > 0)
@@ -765,7 +804,60 @@ function SearchPage({
             <ShieldCheck size={13} /> Nội dung không rời thiết bị
           </span>
         </div>
+        {scope && (
+          <div className="time-scope">
+            <Clock3 size={15} />
+            <label>
+              Từ phút{" "}
+              <input
+                type="number"
+                min="0"
+                step="any"
+                placeholder="0"
+                value={fromMinute}
+                onChange={(e) => setFromMinute(e.target.value)}
+              />
+            </label>
+            <label>
+              Đến phút{" "}
+              <input
+                type="number"
+                min="0"
+                step="any"
+                placeholder="Hết video"
+                value={toMinute}
+                onChange={(e) => setToMinute(e.target.value)}
+              />
+            </label>
+            {(fromMinute || toMinute) && (
+              <button
+                type="button"
+                className="text-button"
+                onClick={() => {
+                  setFromMinute("");
+                  setToMinute("");
+                }}
+              >
+                Xóa giới hạn
+              </button>
+            )}
+            <span>Để trống để tìm toàn bộ video.</span>
+          </div>
+        )}
       </form>
+      {busy && (
+        <p className="help-text" role="status">
+          {library.model.state !== "ready"
+            ? "Đang chuẩn bị EG2 cho lượt tìm đầu tiên…"
+            : "Đang tìm trong các khung đã lập chỉ mục…"}
+        </p>
+      )}
+      {library.summary.ready < library.summary.videos && (
+        <p className="help-text">
+          Thư viện đang được xử lý. Kết quả hiện tại chỉ gồm những khung đã lập
+          chỉ mục.
+        </p>
+      )}
       <div className="stats-strip">
         <div>
           <Film size={17} />
@@ -1516,6 +1608,7 @@ function SettingsPage({
                 setSettings((s) => ({ ...s, fps: Number(event.target.value) }))
               }
             >
+              <option value={0.1}>0,1 — mỗi 10 giây, video dài</option>
               <option value={0.25}>0,25 — mỗi 4 giây</option>
               <option value={0.5}>0,5 — mỗi 2 giây</option>
               <option value={1}>1 — cân bằng</option>

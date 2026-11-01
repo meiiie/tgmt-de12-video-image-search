@@ -16,6 +16,10 @@ For the portable build, extract the entire ZIP, then open `FrameAtlas/frameatlas
 
 **Lần xuất hiện** is available when a single video is selected. It identifies candidate events from similarity peaks, not a guaranteed count of real-world actions. No nth candidate means no result.
 
+For long recordings, Settings offers **0.1 fps — mỗi 10 giây** for a first pass. Activity shows processed video time, throughput and an estimated remaining time. Sampling can miss brief scenes between frames; use a denser setting when those scenes matter. Changing sampling rebuilds the index. Choose a single video in **Phạm vi**, then enter **Từ phút / Đến phút** to search within a known interval; decimal minutes are supported and blank fields mean the beginning/end of the video.
+
+The real-video check covers a 2-hour-11-minute 1080p recording, restart recovery, Vietnamese visual retrieval, silent seek, saved intervals and an actual 5-second export. See [the evidence and limitations](../docs/real-video-acceptance.md).
+
 ## Data and offline use
 
 The per-user data directory is shown in Settings (normally `%APPDATA%\app.frameatlas.desktop`). It contains `library.sqlite3`, thumbnails, compatible preview copies, downloaded models, `worker.log` and one previous log. Copy the whole directory with the app closed to back it up. Keep original videos at their recorded paths. The app does not upload videos, queries or usage analytics. The first model download contacts Hugging Face; subsequent automatic loads use the completed local model.
@@ -42,12 +46,16 @@ npm run build
 # UI behavior against real HTTP/media services and deterministic embedding fixtures:
 npm run test:ui
 # Windows installer (includes runtime and FFmpeg, excludes model weights):
-npm run tauri -- build
+node node_modules/@tauri-apps/cli/tauri.js build
+# Compile application/resources for a portable ZIP without NSIS compression:
+node node_modules/@tauri-apps/cli/tauri.js build --no-bundle
 ```
 
 Installer output: `desktop/src-tauri/target/release/bundle/nsis/`. The build is unsigned unless a signing identity is supplied by the distributor. The unbundled executable needs the adjacent `runtime` and `engine` resource folders.
 
 After the native release build, `desktop/runtime314/python.exe scripts/package_portable.py` (from the repository root) creates a ZIP under `outputs/releases/` and verifies its CRC. The portable package omits Python bytecode and C++ build headers. Verify a freshly extracted copy with `scripts/verify_desktop_package.py --build-dir <extracted-FrameAtlas-directory> --report <report.json>` using the bundled Python interpreter and the acceptance inputs below.
+
+An optional CUDA 12.6 variant uses the same application and engine with official `torch==2.14.1+cu126` and `torchvision==0.29.1+cu126` wheels. Install them into a separate directory, verify with `scripts/benchmark_desktop_cuda.py`, then assemble with `scripts/build_cuda_variant.py --site <wheel-install-directory> --output <fresh-directory>`. The script keeps the CPU runtime intact and runs dependency/device checks. Package the variant with `scripts/package_portable.py --build-dir <variant-directory> --name FrameAtlas_0.1.0_windows-x64-cuda126-portable`. Its larger runtime is intended for compatible NVIDIA machines; validation here covers the RTX 3050 Ti and driver recorded in the real-video report.
 
 Backend checks from repository root:
 

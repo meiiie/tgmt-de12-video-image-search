@@ -21,7 +21,7 @@ class Library:
         self.root = root
         settings = self.store.settings()
         self.encoder = encoder or Encoder(root, settings["model_path"], settings["vision_tokens"])
-        signature = self.encoder.signature + f':fps={settings["fps"]}'
+        signature = self.encoder.signature + f':fps={settings["fps"]}:pts-v1'
         with self.store.connect() as db:
             db.execute("DELETE FROM frames WHERE video_id IN (SELECT id FROM videos WHERE signature<>'' AND signature<>?)", (signature,))
             db.execute("UPDATE videos SET status='queued',frames=0,next_t=0,error='',signature='' WHERE signature<>'' AND signature<>?", (signature,))
@@ -33,6 +33,7 @@ class Library:
         self.search_lock = threading.Lock()
         self.state_lock = threading.RLock()
         self.active = None
+        self.progress = None
         self.thread = None
         self.prepare_lock = threading.Lock()
         if start_worker:
@@ -96,7 +97,7 @@ class Library:
             "videos": videos, "settings": self.store.settings(), "folders": folders, "history": history,
             "model": {"state": self.encoder.state, "error": self.encoder.error, "device": self.encoder.device},
             "summary": {"videos": len(videos), "ready": sum(v["status"] == "ready" for v in videos), "frames": sum(v["frames"] for v in videos), "duration": sum(v["duration"] for v in videos), "saved": saved},
-            "active": self.active, "data_dir": str(self.root),
+            "active": self.active, "progress": self.progress, "data_dir": str(self.root),
         }
 
     def prepare(self):
@@ -179,7 +180,7 @@ class Library:
         cap = None
         try:
             settings = self.store.settings()
-            signature = self.encoder.signature + f':fps={settings["fps"]}'
+            signature = self.encoder.signature + f':fps={settings["fps"]}:pts-v1'
             if fingerprint(Path(video["path"])) != video["fingerprint"]:
                 self.import_paths([video["path"]])
                 return
@@ -189,7 +190,6 @@ class Library:
                     db.execute("UPDATE videos SET next_t=0,frames=0 WHERE id=?", (identity,))
                     video["next_t"] = 0
                 db.execute("UPDATE videos SET signature=? WHERE id=? AND status='indexing'", (signature, identity))
-            self.encoder.ensure()
             cap = cv2.VideoCapture(video["path"])
             native_fps = cap.get(cv2.CAP_PROP_FPS)
             count = cap.get(cv2.CAP_PROP_FRAME_COUNT)
@@ -200,18 +200,30 @@ class Library:
             total = math.ceil(count / step)
             with self.store.connect() as db:
                 db.execute("UPDATE videos SET duration=?,width=?,height=?,total=? WHERE id=?", (duration, int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)), total, identity))
+            self.progress = {"video_id": identity, "stage": "model", "processed": video["frames"], "total": total, "rate": 0.0, "eta_seconds": None}
+            self.encoder.ensure()
             i = int(round(video["next_t"] * native_fps))
             cap.set(cv2.CAP_PROP_POS_FRAMES, i)
+            sparse = step >= native_fps * 2
+            rate = None
             while i < count and self._current(video):
+                batch_started = time.perf_counter()
                 batch, times = [], []
                 for _ in range(settings["batch_size"]):
+                    if sparse:
+                        if not cap.set(cv2.CAP_PROP_POS_FRAMES, i):
+                            raise ValueError("Không thể đọc chính xác mốc video; thử mức lấy mẫu dày hơn")
                     ok, frame = cap.read()
                     if not ok:
                         break
                     batch.append(Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)))
-                    times.append(round(i / native_fps, 6))
-                    for _ in range(step - 1):
-                        cap.grab()
+                    timestamp = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000
+                    if not math.isfinite(timestamp) or (i > 0 and timestamp <= 0):
+                        raise ValueError("Video không cung cấp mốc thời gian giải mã hợp lệ")
+                    times.append(round(timestamp, 6))
+                    if not sparse:
+                        for _ in range(step - 1):
+                            cap.grab()
                     i += step
                     if i >= count:
                         break
@@ -232,7 +244,11 @@ class Library:
                         break
                     db.executemany("INSERT OR REPLACE INTO frames(video_id,t,embedding,thumb) VALUES(?,?,?,?)", records)
                     db.execute("UPDATE videos SET next_t=?,frames=(SELECT COUNT(*) FROM frames WHERE video_id=?) WHERE id=?", (i / native_fps, identity, identity))
+                    processed = db.execute("SELECT frames FROM videos WHERE id=?", (identity,)).fetchone()[0]
                 self.revision += 1
+                batch_rate = len(batch) / max(.001, time.perf_counter() - batch_started)
+                rate = batch_rate if rate is None else rate * .8 + batch_rate * .2
+                self.progress = {"video_id": identity, "stage": "indexing", "processed": processed, "total": total, "rate": round(rate, 3), "eta_seconds": round(max(0, total - processed) / rate)}
                 time.sleep(0.01)
             with self.store.connect() as db:
                 db.execute("UPDATE videos SET status=CASE WHEN frames >= total AND total > 0 THEN 'ready' ELSE 'queued' END WHERE id=? AND status='indexing' AND fingerprint=?", (identity, video["fingerprint"]))
@@ -243,10 +259,11 @@ class Library:
             if cap is not None:
                 cap.release()
             self.active = None
+            self.progress = None
 
-    def search(self, text=None, image=None, video_id=None, limit=24, min_score=-1, occurrence=None):
-        from vsearch.text import text_search
+    def search(self, text=None, image=None, video_id=None, limit=24, min_score=-1, occurrence=None, start=None, end=None):
         started = time.perf_counter()
+        from vsearch.text import text_search
         ordinal = occurrence
         with self.search_lock:
             if self.snapshot_revision != self.revision:
@@ -256,18 +273,21 @@ class Library:
                 self.snapshot = ([{key: r[key] for key in r.keys() if key != "embedding"} for r in rows], np.stack([np.frombuffer(r["embedding"], dtype="float32") for r in rows]) if rows else None)
                 self.snapshot_revision = revision
             rows, matrix = self.snapshot
+            if video_id:
+                indices = [i for i, row in enumerate(rows) if row["video_id"] == video_id and (start is None or row["t"] >= start) and (end is None or row["t"] < end)]
+                rows = [rows[i] for i in indices]
+                matrix = matrix[indices] if indices else None
             if not rows:
                 return {"results": [], "elapsed_ms": 0, "indexed_frames": 0}
             q = self.encoder.query(text=text, image=image)
             scores = matrix @ q
             meta = [{"video": r["video_id"], "t": r["t"], "kind": "frame"} for r in rows]
             fps = self.store.settings()["fps"]
-            if video_id and not any(r["video_id"] == video_id for r in rows):
-                return {"results": [], "elapsed_ms": 0, "indexed_frames": len(rows)}
+            window = 1 if image is not None else max(1, round(fps * 3))
             if ordinal and not video_id:
-                best = text_search(meta, None, None, fps, scores=scores, k=1)
+                best = text_search(meta, None, None, fps, scores=scores, k=1, w=window)
                 video_id = best[0]["video"] if best else None
-            segments = text_search(meta, None, None, fps, scores=scores, video=video_id, k=limit, ordinal=ordinal, ord_v2={"rho": 0.3, "gap": 1.0, "dup": None})
+            segments = text_search(meta, None, None, fps, scores=scores, video=video_id, k=limit, w=window, ordinal=ordinal, ord_v2={"rho": 0.3, "gap": 1.0, "dup": None})
             results = []
             by_video = {}
             for row in rows:
@@ -276,7 +296,7 @@ class Library:
                 if segment["score"] < min_score:
                     continue
                 near = min(by_video[segment["video"]], key=lambda row: abs(row["t"] - segment["peak_t"]))
-                results.append({"video_id": near["video_id"], "name": near["name"], "path": near["path"], "duration": near["duration"], "frame_id": near["id"], "start": max(0, segment["start"]), "end": min(near["duration"], segment["end"]), "peak": segment["peak_t"], "score": segment["score"]})
+                results.append({"video_id": near["video_id"], "name": near["name"], "path": near["path"], "duration": near["duration"], "frame_id": near["id"], "start": max(start or 0, segment["start"]), "end": min(near["duration"], end if end is not None else near["duration"], segment["end"]), "peak": segment["peak_t"], "score": segment["score"]})
         if text:
             with self.store.connect() as db:
                 db.execute("INSERT OR REPLACE INTO history VALUES(?,?)", (text, time.time()))

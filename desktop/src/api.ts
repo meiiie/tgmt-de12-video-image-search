@@ -16,6 +16,7 @@ export const Video = z.object({
   height: z.number(),
   frames: z.number(),
   total: z.number(),
+  next_t: z.number().default(0),
   error: z.string(),
   first_frame_id: z.number().nullable(),
 });
@@ -42,6 +43,17 @@ export const Library = z.object({
     saved: z.number(),
   }),
   active: z.string().nullable(),
+  progress: z
+    .object({
+      video_id: z.string(),
+      stage: z.enum(["model", "indexing"]),
+      processed: z.number(),
+      total: z.number(),
+      rate: z.number(),
+      eta_seconds: z.number().nullable(),
+    })
+    .nullable()
+    .default(null),
   data_dir: z.string(),
 });
 export type Library = z.infer<typeof Library>;

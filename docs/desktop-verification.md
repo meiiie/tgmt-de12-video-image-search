@@ -2,6 +2,8 @@
 
 This record describes checks actually run on the local Windows x64 build. It is not a retrieval-accuracy benchmark or a claim of validation on a large video collection.
 
+The subsequent long-video pass is recorded separately in [real-video-acceptance.md](real-video-acceptance.md). Measurements below belong to the initial build and its small acceptance fixtures.
+
 ## Application behavior
 
 - Python 3.14.10 runtime: **13 backend tests passed**, including library persistence, duplicate imports, missing/corrupt sources, cancellation, restart checkpoints, changes to sources/settings, authorization, CORS, byte-range playback, saved intervals and accurate export without overwrite.
@@ -48,8 +50,8 @@ The NSIS installer compilation was stopped after prolonged packaging of the full
 
 The interface concept and design critique are in [the visual lab](lab/README.md). Generated mockup content is separate from real application data.
 
-## Portable artifact
+## Initial portable artifact (superseded)
 
-`outputs/releases/FrameAtlas_0.1.0_windows-x64-portable.zip`: 433,159,126 bytes (about 413 MiB), 15,080 files. ZIP CRC verification passed. SHA-256: `57bb0e952af47b33e2c334575d380e7ab72d9a89039209aa61203dd2db2fd055`. The archive includes the compiled Windows application, engine, Python runtime and FFmpeg; model weights and acceptance data remain separate.
+The initial `outputs/releases/FrameAtlas_0.1.0_windows-x64-portable.zip` was 433,159,126 bytes (about 413 MiB), 15,080 files. ZIP CRC verification passed. Its historical SHA-256 was `57bb0e952af47b33e2c334575d380e7ab72d9a89039209aa61203dd2db2fd055`. The long-video pass replaces that archive; use the current archive-specific manifest under `outputs/releases/` and the [new verification record](real-video-acceptance.md). The archive includes the compiled Windows application, engine, Python runtime and FFmpeg; model weights and acceptance data remain separate.
 
 The ZIP was extracted into a new directory, and its own Python/runtime/engine passed real EG2 text and image queries, authorization, range playback and decoded 2.002-second clip export. Evidence: `portable-verification.log`, `portable-verification.json`, and `outputs/releases/portable-manifest.json`. The native window was kept closed throughout this check.

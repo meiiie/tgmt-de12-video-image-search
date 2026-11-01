@@ -21,6 +21,7 @@ class Encoder:
         self.error = ""
         self.device = "cpu"
         self.cache = OrderedDict()
+        self.cache_lock = threading.Lock()
 
     @property
     def signature(self):
@@ -80,14 +81,19 @@ class Encoder:
             ), dtype=np.float32)
             if vectors.shape != (len(images), 768) or not np.isfinite(vectors).all():
                 raise ValueError("Model phải trả về vector EG2 hữu hạn, 768 chiều. Hãy dùng FP32 hoặc BF16.")
+            norms = np.linalg.norm(vectors, axis=1, keepdims=True)
+            if np.any(norms <= 1e-9):
+                raise ValueError("Model trả về vector rỗng")
+            vectors = vectors / norms
             return vectors
 
     def query(self, text=None, image=None):
         key = "t:" + text if text is not None else "i:" + hashlib.sha256(image.convert("RGB").tobytes() + str(image.size).encode()).hexdigest()
-        with self.lock:
+        with self.cache_lock:
             if key in self.cache:
                 self.cache.move_to_end(key)
                 return self.cache[key]
+        with self.lock:
             self.ensure()
             if text is not None:
                 vector = np.asarray(self.model.encode(
@@ -97,6 +103,11 @@ class Encoder:
                 vector = self.images([image])[0]
             if not np.isfinite(vector).all():
                 raise ValueError("Model trả về vector không hữu hạn")
+            norm = np.linalg.norm(vector)
+            if norm <= 1e-9:
+                raise ValueError("Model trả về vector rỗng")
+            vector = vector / norm
+        with self.cache_lock:
             self.cache[key] = vector
             if len(self.cache) > 64:
                 self.cache.popitem(last=False)

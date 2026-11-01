@@ -218,3 +218,70 @@ def test_interrupted_indexing_recovers_at_startup(library, media):
     reopened = Library(library.root, ColorEncoder(), start_worker=False)
     assert reopened.store.videos()[0]["status"] == "queued"
     reopened.close()
+
+
+def test_sparse_index_reports_duration_and_resumes_at_decoded_timestamp(library, media):
+    library.store.update_settings({"fps": .5, "batch_size": 1})
+    library.import_paths([str(media[0])])
+    video = library.store.videos()[0]
+    original = library.encoder.images
+    observations = []
+
+    def pause_second_batch(images):
+        observations.append(library.status())
+        if len(observations) == 2:
+            library.store.update_settings({"paused": True})
+        return original(images)
+
+    library.encoder.images = pause_second_batch
+    library.index_video(video)
+    assert observations[0]["videos"][0]["duration"] == 6
+    assert observations[0]["progress"]["total"] == 3
+    assert observations[1]["progress"]["processed"] == 1
+    assert observations[1]["progress"]["rate"] > 0
+    assert observations[1]["progress"]["eta_seconds"] >= 0
+    paused = library.store.video(video["id"])
+    assert paused["frames"] == 1 and paused["next_t"] == 2
+    assert library.status()["progress"] is None
+
+    reopened = Library(library.root, ColorEncoder(), start_worker=False)
+    reopened.settings({"paused": False})
+    reopened.index_video(reopened.store.video(video["id"]))
+    assert reopened.store.video(video["id"])["status"] == "ready"
+    with reopened.store.connect() as db:
+        assert [r[0] for r in db.execute("SELECT t FROM frames ORDER BY t")] == [0, 2, 4]
+    reopened.close()
+
+
+@pytest.mark.parametrize("image_query,fps", [(True, 1), (False, .1)])
+def test_brief_exact_match_beats_sustained_weaker_match(library, media, image_query, fps):
+    index_all(library, media)
+    library.store.update_settings({"fps": fps})
+    with library.store.connect() as db:
+        red = next(v for v in library.store.videos() if v["name"] == "red.avi")
+        blue = next(v for v in library.store.videos() if v["name"] == "blue.avi")
+        db.execute("UPDATE frames SET embedding=? WHERE video_id=?", (np.array([0, 0, 1], dtype="float32").tobytes(), red["id"]))
+        db.execute("UPDATE frames SET embedding=? WHERE video_id=? AND t=2", (np.array([1, 0, 0], dtype="float32").tobytes(), red["id"]))
+        db.execute("UPDATE frames SET embedding=? WHERE video_id=?", (np.array([.8, .6, 0], dtype="float32").tobytes(), blue["id"]))
+        db.execute("UPDATE frames SET t=t/?", (fps,))
+        db.execute("UPDATE videos SET duration=6/?", (fps,))
+    result = library.search(image=Image.new("RGB", (64, 64), "red")) if image_query else library.search(text="red square")
+    assert result["results"][0]["video_id"] == red["id"]
+    assert result["results"][0]["peak"] == 2 / fps
+
+
+def test_time_scope_filters_before_ranking_and_clips_segment_bounds(library, media):
+    index_all(library, media)
+    video = library.store.videos()[0]
+    with TestClient(create_app(library, "t" * 64)) as client:
+        headers = {"Authorization": "Bearer " + "t" * 64}
+        body = {"text": "red", "video_id": video["id"], "start": 2, "end": 3.5}
+        response = client.post("/search", headers=headers, json=body)
+        assert response.status_code == 200
+        result = response.json()
+        assert result["indexed_frames"] == 2
+        assert result["results"]
+        assert all(r["video_id"] == video["id"] and 2 <= r["start"] <= r["peak"] < r["end"] <= 3.5 for r in result["results"])
+        assert client.post("/search", headers=headers, json={**body, "start": 10, "end": 20}).json()["results"] == []
+        assert client.post("/search", headers=headers, json={**body, "video_id": None}).status_code == 422
+        assert client.post("/search", headers=headers, json={**body, "end": 1}).status_code == 422
