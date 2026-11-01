@@ -33,6 +33,8 @@ Frontend trong tab local đã được build lại; các gói portable trước 
 
 ## Chất lượng cần đo tiếp trước khi mở rộng
 
+Theo dõi bước đo có nhãn, so sánh lấy mẫu/crop/chỉ mục vùng và ngưỡng chọn riêng trên dev tại [báo cáo bỏ sót và nhận nhầm](image-retrieval-quality-20261101.md). Pilot này chưa thay thế việc gán nhãn đầy đủ video người dùng.
+
 - Tập ảnh toàn cảnh/crop từ video thật, có nhãn khoảng xuất hiện và video không chứa đối tượng. Giữ tập test riêng; tránh dùng đúng frame đã index hoặc các bản sao gần nhau làm bằng chứng tổng quát hóa.
 - Đo riêng tìm cảnh gốc, tìm đối tượng ở cảnh khác, chi tiết nhỏ, thay góc/ánh sáng và truy vấn không có kết quả. Báo tỷ lệ trúng top-k, bỏ sót, nhận nhầm và sai lệch thời gian.
 - So toàn frame với chỉ mục vùng hoặc kiểm tra lại vùng trên cùng tập cố định. Rerank top-k không thể cứu trường hợp cảnh đúng đã bị bỏ khỏi tập ứng viên; phải đo cả bước tạo ứng viên.

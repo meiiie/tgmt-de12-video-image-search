@@ -4,6 +4,7 @@
 
 - [Chạy ứng dụng và phát triển desktop](desktop/README.md)
 - [Luồng tìm bằng ảnh/crop và kiểm chứng đầu vào trên video thật](docs/image-search-practical-workflow.md)
+- [Đo bỏ sót, nhận nhầm và so sánh tiền xử lý ảnh trên bộ có nhãn](docs/image-retrieval-quality-20261101.md)
 - [Kiến trúc, phạm vi sản phẩm và nghiên cứu nguồn mở](docs/desktop-product.md)
 - [Nghiên cứu hướng camera giao thông: tìm xe và rà soát sự cố (đề xuất)](docs/traffic-use-case-research.md)
 - [Nghiên cứu pain point creator/bóng đá và lab EG2 audio](docs/creator-highlights-research.md)

@@ -27,6 +27,12 @@ Nguồn: [release đã pin](https://huggingface.co/google/embeddinggemma-2/tree/
 
 Giấy phép của EG2 không tự cấp quyền dùng mọi video, bộ dữ liệu hay model phụ tích hợp trong app. Không suy luận giấy phép EG2 từ giấy phép của một model Gemma khác.
 
+### Số tham số và nơi triển khai
+
+[Model card chính thức](https://ai.google.dev/gemma/docs/embeddinggemma/model_card_2) ghi **740 triệu tham số**: văn bản 270M (transformer 130M + embedder 140M), thị giác 170M, âm thanh 300M. Các nhánh có thể nạp riêng. `desktop/backend/inference.py` đặt `audio_config=None`, nên app hiện nạp phần chữ + ảnh, khoảng **440M** theo cách chia của model card; không phải đang dùng một model 740M đầy đủ mọi modality. Vector đầu ra đang dùng là 768 chiều.
+
+Có thể tích hợp local/offline sau lần tải trọng số hoặc trên server, kể cả sản phẩm thương mại. Apache-2.0 không bắt buộc công khai toàn bộ mã ứng dụng; khi phân phối phải giữ các thông báo/giấy phép liên quan và ghi nhận thay đổi theo điều khoản. Khả năng chạy trên từng máy phụ thuộc bộ nhớ, runtime và phần cứng; “được phép tích hợp” không có nghĩa mọi thiết bị đều chạy được. Trọng số mở và mã inference công khai cũng không đồng nghĩa toàn bộ dữ liệu/pipeline pretraining đều đã công bố.
+
 ## 2. Nó thực hiện thao tác gì?
 
 Một ví dụ: người dùng hỏi bằng tiếng Việt “cách xin người khác nhắc lại chậm hơn”. Thư viện có một đoạn tiếng Anh chứa “Could you say that again more slowly?”. EG2 biến câu hỏi và các đoạn thành vector để hệ thống tìm các nội dung gần nghĩa, rồi ứng dụng mở đoạn nguồn tương ứng.
