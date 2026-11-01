@@ -5,6 +5,7 @@
 - [Chạy ứng dụng và phát triển desktop](desktop/README.md)
 - [Kiến trúc, phạm vi sản phẩm và nghiên cứu nguồn mở](docs/desktop-product.md)
 - [Nghiên cứu hướng camera giao thông: tìm xe và rà soát sự cố (đề xuất)](docs/traffic-use-case-research.md)
+- [Nghiên cứu pain point creator/bóng đá và lab EG2 audio](docs/creator-highlights-research.md)
 - [Lab giao diện](docs/lab/README.md)
 - [Kiểm chứng bản desktop](docs/desktop-verification.md)
 
