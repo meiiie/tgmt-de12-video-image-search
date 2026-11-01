@@ -411,6 +411,99 @@ progress::-webkit-progress-value {
   min-height: 38px;
   padding: 9px 12px;
 }
+.query-image-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(210px, 0.8fr);
+  gap: 20px;
+  padding: 18px;
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+}
+.query-image-canvas {
+  min-width: 0;
+  align-self: center;
+  text-align: center;
+}
+.query-image-stage {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  touch-action: none;
+  cursor: crosshair;
+  user-select: none;
+  vertical-align: top;
+}
+.query-image-stage img {
+  display: block;
+  max-width: 100%;
+  max-height: 260px;
+  width: auto;
+  height: auto;
+}
+.query-image-region {
+  position: absolute;
+  border: 2px solid #e5b34e;
+  box-shadow: 0 0 0 1000px #1118;
+  pointer-events: none;
+}
+.query-image-tools {
+  min-width: 0;
+  font-size: 12px;
+}
+.query-image-preview {
+  display: block;
+  max-width: 150px;
+  max-height: 110px;
+  margin-top: 10px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.query-image-tools p {
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 8px 0 12px;
+}
+.query-image-tools fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.query-image-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.query-image-actions button {
+  font-size: 12px;
+}
+.query-image-tools summary {
+  cursor: pointer;
+  margin-top: 12px;
+  color: var(--muted);
+}
+.query-image-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+.query-image-fields label {
+  display: grid;
+  gap: 4px;
+}
+.query-image-fields input {
+  width: 100%;
+  padding: 6px;
+}
+@media (max-width: 1100px) {
+  .query-image-panel {
+    grid-template-columns: 1fr;
+  }
+}
 .search-options {
   display: flex;
   flex-wrap: wrap;

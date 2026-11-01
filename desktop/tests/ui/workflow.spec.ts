@@ -132,6 +132,90 @@ test("panel imports paths and exports a playable clip without native dialogs", a
   await expect(page.locator(".inspector")).toBeVisible();
 });
 
+test("image region changes retrieval, supports keyboard and drag, and restores the full image", async ({
+  page,
+}) => {
+  await page.goto(entry);
+  await page
+    .getByLabel("Ảnh truy vấn", { exact: true })
+    .setInputFiles("../outputs/onboarding/ui-query-mixed.png");
+  const search = page.getByRole("button", { name: "Tìm kiếm", exact: true });
+  await expect(page.getByAltText("Ảnh gốc để chọn chi tiết")).toBeVisible();
+  await search.click();
+  await expect(page.locator(".moment-card").first()).toContainText(
+    "blue-scene.avi",
+  );
+  await page.getByText("Chọn vùng bằng bàn phím", { exact: true }).click();
+  await page.getByLabel("Rộng (%)", { exact: true }).fill("20");
+  await expect(search).toBeDisabled();
+  await expect(page.locator(".moment-card")).toHaveCount(0);
+  await page
+    .getByRole("button", { name: "Dùng vùng đã chọn", exact: true })
+    .click();
+  await expect(
+    page.getByText("Đang dùng vùng đã chọn.", { exact: true }),
+  ).toBeVisible();
+  const request = page.waitForRequest(
+    (request) =>
+      request.url().endsWith("/search") && request.method() === "POST",
+  );
+  await search.click();
+  const imagePayload: unknown = (await request).postDataJSON().image;
+  expect(typeof imagePayload).toBe("string");
+  if (typeof imagePayload !== "string")
+    throw new Error("Missing cropped query");
+  const dimensions = await page.evaluate(async (data) => {
+    const image = new Image();
+    image.src = `data:image/png;base64,${data}`;
+    await image.decode();
+    return [image.naturalWidth, image.naturalHeight];
+  }, imagePayload);
+  expect(dimensions).toEqual([64, 180]);
+  await expect(page.locator(".moment-card").first()).toContainText(
+    "red-square.avi",
+  );
+  const audit = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+    .analyze();
+  expect(audit.violations).toEqual([]);
+  await page
+    .getByRole("button", { name: "Dùng toàn ảnh", exact: true })
+    .click();
+  await search.click();
+  await expect(page.locator(".moment-card").first()).toContainText(
+    "blue-scene.avi",
+  );
+  const bounds = await page
+    .getByRole("group", { name: "Khoanh vùng ảnh bằng chuột" })
+    .boundingBox();
+  if (!bounds) throw new Error("Query image not visible");
+  await page.mouse.move(
+    bounds.x + bounds.width * 0.2,
+    bounds.y + bounds.height * 0.9,
+  );
+  await page.mouse.down();
+  await page.mouse.move(
+    bounds.x + bounds.width * 0.02,
+    bounds.y + bounds.height * 0.1,
+    { steps: 5 },
+  );
+  await page.mouse.up();
+  await page
+    .getByRole("button", { name: "Dùng vùng đã chọn", exact: true })
+    .click();
+  await search.click();
+  await expect(page.locator(".moment-card").first()).toContainText(
+    "red-square.avi",
+  );
+  await page.setViewportSize({ width: 920, height: 700 });
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({ path: "../outputs/onboarding/ui-image-region.png" });
+});
+
 test("search within a time range and clear the range", async ({ page }) => {
   await page.goto(entry);
   await page

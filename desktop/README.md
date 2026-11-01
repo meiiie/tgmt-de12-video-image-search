@@ -12,6 +12,8 @@ For the portable build, extract the entire ZIP, then open `FrameAtlas/frameatlas
 4. Search while completed batches become available. Use Vietnamese or English, or upload a PNG/JPEG/WebP query. `Ctrl+K` returns to text entry; `Escape` closes the inspector.
 5. Select a result, play the video, adjust start/end in seconds, and save or export the interval. Export requires a new `.mp4` filename and never overwrites an existing file.
 
+Image queries now show the reference image before searching. Drag a rectangle over the detail you want, or open **Chọn vùng bằng bàn phím** for percentage controls, then choose **Dùng vùng đã chọn**. The selected crop is shown separately; **Dùng toàn ảnh** restores the original. A pending selection disables search until applied or reset, and changing the image clears old results. The image API respects EXIF orientation. Cropping changes what is being searched for; it is not a guarantee of higher retrieval accuracy. See [the input checks and real-video evidence](../docs/image-search-practical-workflow.md).
+
 **Hoạt động** exposes progress, pause, resume, cancel and retry. Pause takes effect at the next inference-batch boundary. **Quét thay đổi** checks imported folders and known files for additions/changes; it is an explicit scan, not an operating-system watcher. Removing a library entry removes its saved moments/index only. A later scan of its tracked folder can discover that source again; stop tracking the folder to prevent that.
 
 **Lần xuất hiện** is available when a single video is selected. It identifies candidate events from similarity peaks, not a guaranteed count of real-world actions. No nth candidate means no result.

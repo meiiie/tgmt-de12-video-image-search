@@ -14,7 +14,7 @@ from typing import Literal
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
-from PIL import Image, UnidentifiedImageError
+from PIL import Image, ImageOps, UnidentifiedImageError
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from .library import Library
@@ -178,7 +178,7 @@ def create_app(library: Library, token: str):
                 if image.width * image.height > 24_000_000:
                     raise ValueError("Ảnh tối đa 24 megapixel")
                 image.load()
-                image = image.convert("RGB")
+                image = ImageOps.exif_transpose(image).convert("RGB")
             except (UnidentifiedImageError, Image.DecompressionBombError, OSError) as error:
                 raise ValueError("Không đọc được ảnh truy vấn") from error
         return library.search(text=body.text.strip() if body.text else None, image=image, video_id=body.video_id, limit=body.limit, min_score=body.min_score, occurrence=body.occurrence, start=body.start, end=body.end)

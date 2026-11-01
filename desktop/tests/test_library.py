@@ -1,3 +1,6 @@
+import base64
+from io import BytesIO
+
 import cv2
 from fastapi.testclient import TestClient
 import numpy as np
@@ -198,6 +201,29 @@ def test_api_auth_validation_thumbnails_and_video_ranges(library, media):
         response = client.get(f"/media/{identity}?token={token}", headers={"Range": "bytes=0-99"})
         assert response.status_code == 206 and len(response.content) == 100
         assert client.get(f"/videos/missing", headers=headers).status_code == 404
+
+
+@pytest.mark.parametrize("orientation,transform", [(2, Image.Transpose.FLIP_LEFT_RIGHT), (6, Image.Transpose.ROTATE_90)])
+def test_image_search_uses_displayed_exif_orientation(library, media, orientation, transform):
+    class LeftEdgeEncoder(ColorEncoder):
+        def images(self, images):
+            return super().images([image.crop((0, 0, max(1, image.width // 5), image.height)) for image in images])
+
+    library.encoder = LeftEdgeEncoder()
+    index_all(library, media)
+    displayed = Image.new("RGB", (100, 60), "blue")
+    displayed.paste("red", (0, 0, 25, 60))
+    stored = displayed.transpose(transform)
+    exif = Image.Exif()
+    exif[274] = orientation
+    payload = BytesIO()
+    stored.save(payload, format="JPEG", quality=95, exif=exif)
+    token = "t" * 64
+    with TestClient(create_app(library, token)) as client:
+        response = client.post("/search", headers={"Authorization": f"Bearer {token}"},
+                               json={"image": base64.b64encode(payload.getvalue()).decode()})
+        assert response.status_code == 200
+        assert response.json()["results"][0]["name"] == "red.avi"
 
 
 def test_settings_reset_and_active_job_conflict(library, media):

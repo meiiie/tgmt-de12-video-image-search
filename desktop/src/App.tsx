@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { invoke, isTauri } from "@tauri-apps/api/core";
 import { getCurrentWebview } from "@tauri-apps/api/webview";
 import { choosePaths } from "./paths";
+import { ImageQuery, type QueryImage } from "./ImageQuery";
 import { z } from "zod";
 import {
   Activity,
@@ -644,9 +645,9 @@ function SearchPage({
   onLibrary: () => void;
 }) {
   const [text, setText] = useState("");
-  const [image, setImage] = useState<{ data: string; name: string } | null>(
-    null,
-  );
+  const [image, setImage] = useState<QueryImage | null>(null);
+  const [cropPending, setCropPending] = useState(false);
+  const uploadRevision = useRef(0);
   const [scope, setScope] = useState("");
   const [occurrence, setOccurrence] = useState("");
   const [fromMinute, setFromMinute] = useState("");
@@ -657,17 +658,20 @@ function SearchPage({
   const file = useRef<HTMLInputElement>(null);
   useEffect(() => {
     const key = (e: KeyboardEvent) => {
-      if (active && (e.ctrlKey || e.metaKey) && e.key === "k") {
+      if (active && !busy && (e.ctrlKey || e.metaKey) && e.key === "k") {
         e.preventDefault();
         setImage(null);
+        setCropPending(false);
+        setResult(null);
+        uploadRevision.current++;
         requestAnimationFrame(() => input.current?.focus());
       }
     };
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
-  }, [active]);
+  }, [active, busy]);
   const search = async (query = text) => {
-    if ((!query.trim() && !image) || busy) return;
+    if ((!query.trim() && !image) || busy || cropPending) return;
     setBusy(true);
     try {
       const start = scope && fromMinute !== "" ? Number(fromMinute) * 60 : null;
@@ -689,15 +693,32 @@ function SearchPage({
     }
   };
   const upload = async (file?: File) => {
-    if (!file) return;
+    if (!file || busy) return;
     if (file.size > 8_000_000) {
       fail(new Error("Chọn ảnh nhỏ hơn 8 MB."));
       return;
     }
+    const revision = ++uploadRevision.current;
     const reader = new FileReader();
-    reader.onload = () => {
-      if (typeof reader.result === "string")
-        setImage({ data: reader.result.split(",")[1], name: file.name });
+    reader.onload = async () => {
+      if (typeof reader.result !== "string") return;
+      try {
+        const preview = new window.Image();
+        preview.src = reader.result;
+        await preview.decode();
+        if (preview.naturalWidth * preview.naturalHeight > 24_000_000)
+          throw new Error("Ảnh tối đa 24 megapixel.");
+        if (revision !== uploadRevision.current) return;
+        setImage({
+          data: reader.result.split(",")[1],
+          url: reader.result,
+          name: file.name,
+        });
+        setCropPending(false);
+        setResult(null);
+      } catch {
+        fail(new Error("Không đọc được ảnh hoặc ảnh vượt quá 24 megapixel."));
+      }
     };
     reader.onerror = () => fail(new Error("Không đọc được ảnh."));
     reader.readAsDataURL(file);
@@ -707,7 +728,7 @@ function SearchPage({
       <PageTitle
         eyebrow="TÌM ĐÚNG KHOẢNH KHẮC"
         title="Bạn đang tìm cảnh nào?"
-        text="Mô tả bằng ngôn ngữ tự nhiên hoặc đưa vào một hình ảnh. FrameAtlas tìm trong video của bạn."
+        text="Tải ảnh tham chiếu, chọn chi tiết rồi tìm video và thời điểm tương ứng. Bạn cũng có thể tìm bằng mô tả."
       />
       <form
         className="search-form"
@@ -735,7 +756,15 @@ function SearchPage({
             type="button"
             className="image-query"
             aria-label={image ? "Bỏ ảnh truy vấn" : "Tìm bằng hình ảnh"}
-            onClick={() => (image ? setImage(null) : file.current?.click())}
+            disabled={busy}
+            onClick={() => {
+              if (image) {
+                setImage(null);
+                setCropPending(false);
+                setResult(null);
+                uploadRevision.current++;
+              } else file.current?.click();
+            }}
           >
             {image ? <X size={20} /> : <ImagePlus size={20} />}
           </button>
@@ -745,7 +774,10 @@ function SearchPage({
             aria-label={busy ? "Đang tìm" : "Tìm kiếm"}
             aria-busy={busy}
             disabled={
-              busy || !library.summary.frames || (!text.trim() && !image)
+              busy ||
+              cropPending ||
+              !library.summary.frames ||
+              (!text.trim() && !image)
             }
           >
             {busy ? (
@@ -762,8 +794,29 @@ function SearchPage({
           type="file"
           accept="image/png,image/jpeg,image/webp"
           aria-label="Ảnh truy vấn"
-          onChange={(e) => void upload(e.target.files?.[0])}
+          disabled={busy}
+          onChange={(e) => {
+            void upload(e.target.files?.[0]);
+            e.currentTarget.value = "";
+          }}
         />
+        {image && (
+          <ImageQuery
+            key={image.url}
+            image={image}
+            disabled={busy}
+            pending={cropPending}
+            onPending={(pending) => {
+              setCropPending(pending);
+              if (pending) setResult(null);
+            }}
+            onApply={(data) => {
+              setImage({ ...image, data });
+              setResult(null);
+            }}
+            fail={fail}
+          />
+        )}
         <div className="search-options">
           <label>
             Phạm vi{" "}

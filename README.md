@@ -3,6 +3,7 @@
 Ứng dụng desktop Windows dùng **EmbeddingGemma 2**, Tauri và bộ xử lý cục bộ: nhập video/thư mục, lập chỉ mục có thể tiếp tục, tìm bằng văn bản hoặc ảnh, phát đúng thời điểm, lưu khoảnh khắc và xuất clip MP4. Video gốc giữ nguyên trên máy.
 
 - [Chạy ứng dụng và phát triển desktop](desktop/README.md)
+- [Luồng tìm bằng ảnh/crop và kiểm chứng đầu vào trên video thật](docs/image-search-practical-workflow.md)
 - [Kiến trúc, phạm vi sản phẩm và nghiên cứu nguồn mở](docs/desktop-product.md)
 - [Nghiên cứu hướng camera giao thông: tìm xe và rà soát sự cố (đề xuất)](docs/traffic-use-case-research.md)
 - [Nghiên cứu pain point creator/bóng đá và lab EG2 audio](docs/creator-highlights-research.md)

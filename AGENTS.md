@@ -10,6 +10,8 @@
 
 ## Cách làm việc
 
+- Đề tài chính người dùng xác nhận: xây dựng hệ thống tìm kiếm hình ảnh trong video. Ưu tiên luồng ảnh toàn cảnh/crop đối tượng → video nguồn và các đoạn xuất hiện; các hướng khác là mở rộng.
+- Ưu tiên độ chính xác trước. Tách kiểm thử đầu vào/giao diện khỏi benchmark truy hồi; không gọi điểm cosine là xác suất đúng hoặc lấy một ca khớp làm độ chính xác chung.
 - Dùng `karpathy-guidelines` khi đọc, sửa, debug hoặc review code.
 - Đọc code và tái hiện baseline trước khi thay logic. Chỉ sửa trong phạm vi yêu cầu.
 - Phân biệt số liệu đã lưu trong repo với kết quả chạy lại trong phiên hiện tại. Không tuyên bố đạt độ chính xác chỉ dựa vào smoke test.
