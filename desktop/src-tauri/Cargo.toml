@@ -1,0 +1,24 @@
+[package]
+name = "frameatlas"
+version = "0.1.0"
+description = "Private desktop video search with EmbeddingGemma 2"
+authors = ["FrameAtlas contributors"]
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+tauri-plugin-single-instance = "2"
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Security", "Win32_System_JobObjects", "Win32_System_Threading"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rand = "0.8"
+reqwest = { version = "0.12", features = ["blocking", "json"], default-features = false }
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true

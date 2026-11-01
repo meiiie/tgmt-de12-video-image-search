@@ -25,3 +25,16 @@ digup_eval/index/
 *.mov
 *.faiss
 *.zip
+node_modules/
+desktop/dist/
+desktop/src-tauri/target/
+desktop/runtime/
+desktop/runtime314/
+desktop/resources/
+desktop/test-results/
+desktop/playwright-report/
+.pytest_cache/
+*.tsbuildinfo
+desktop/src-tauri/gen/
+desktop/src-tauri/icons/android/
+desktop/src-tauri/icons/ios/

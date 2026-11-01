@@ -1,0 +1,133 @@
+import { test, expect } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
+import { stat } from "node:fs/promises";
+import { resolve } from "node:path";
+const token = "frameatlas-ui-test-token-01234567890123456789";
+const entry = `/#port=18765&token=${token}`;
+
+test("main search meets WCAG AA automated checks", async ({ page }) => {
+  await page.goto(entry);
+  await expect(
+    page.getByRole("heading", { name: "Bạn đang tìm cảnh nào?" }),
+  ).toBeVisible();
+  const audit = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+    .analyze();
+  expect(audit.violations).toEqual([]);
+});
+
+test("text → real video seek → save → persist and remove saved moment", async ({
+  page,
+}) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  await page.goto(entry);
+  await expect(
+    page.getByRole("heading", { name: "Bạn đang tìm cảnh nào?" }),
+  ).toBeVisible();
+  await page
+    .getByRole("textbox", { name: "Mô tả cảnh cần tìm" })
+    .fill("red square");
+  await page.getByRole("button", { name: "Tìm kiếm", exact: true }).click();
+  const first = page.locator(".moment-card:visible").first();
+  await expect(first).toContainText("red-square.avi", { timeout: 30_000 });
+  await first.click();
+  const video = page.locator("video");
+  await expect
+    .poll(() => video.evaluate((el) => el.readyState))
+    .toBeGreaterThanOrEqual(2);
+  await page.getByLabel("Bắt đầu (giây)").fill("1");
+  await page.getByLabel("Kết thúc (giây)").fill("3");
+  await page.getByLabel("Tên khoảnh khắc").fill("Đoạn cần dùng");
+  await page
+    .getByRole("button", { name: "Lưu khoảnh khắc", exact: true })
+    .click();
+  await expect(page.getByRole("status")).toContainText("Đã lưu khoảnh khắc");
+  await page.getByRole("button", { name: /^Đã lưu/ }).click();
+  await expect(page.locator(".moment-card:visible").first()).toContainText(
+    "Đoạn cần dùng",
+  );
+  await page.screenshot({ path: "../outputs/onboarding/ui-saved.png" });
+  await page.reload();
+  await page.getByRole("button", { name: /^Đã lưu/ }).click();
+  await expect(page.locator(".moment-card:visible")).toHaveCount(1);
+  await page.getByRole("button", { name: "Bỏ lưu Đoạn cần dùng" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Giữ lại khoảnh khắc bạn cần." }),
+  ).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
+test("image query, library filtering, settings, narrow window and keyboard", async ({
+  page,
+}) => {
+  await page.goto(entry);
+  await page
+    .getByLabel("Ảnh truy vấn", { exact: true })
+    .setInputFiles("../outputs/onboarding/ui-query.png");
+  await page.getByRole("button", { name: "Tìm kiếm", exact: true }).click();
+  await expect(page.locator(".moment-card:visible").first()).toContainText(
+    "blue-scene.avi",
+  );
+  await page.screenshot({ path: "../outputs/onboarding/ui-search.png" });
+  await page.getByRole("button", { name: "Thư viện", exact: true }).click();
+  await page.getByRole("textbox", { name: "Lọc tên video" }).fill("red");
+  await expect(page.locator(".video-row")).toHaveCount(1);
+  await page.getByRole("button", { name: /red-square.avi.*khung/ }).click();
+  await expect(
+    page.getByRole("complementary", { name: "Chi tiết khoảnh khắc" }),
+  ).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(page.locator(".inspector")).toHaveCount(0);
+  await page.getByRole("button", { name: "Cài đặt", exact: true }).click();
+  await expect(
+    page.getByRole("heading", { name: "Bộ máy tìm kiếm EG2" }),
+  ).toBeVisible();
+  await page.getByLabel("Kích thước lô").selectOption("4");
+  await page.getByRole("button", { name: "Lưu cài đặt", exact: true }).click();
+  await expect(page.getByRole("status")).toContainText("Đã lưu cài đặt");
+  await page.setViewportSize({ width: 920, height: 700 });
+  await page
+    .getByRole("button", { name: "Tìm khoảnh khắc", exact: true })
+    .click();
+  await page.keyboard.press("Control+k");
+  await expect(
+    page.getByRole("textbox", { name: "Mô tả cảnh cần tìm" }),
+  ).toBeFocused();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({ path: "../outputs/onboarding/ui-narrow.png" });
+});
+
+test("panel imports paths and exports a playable clip without native dialogs", async ({
+  page,
+}) => {
+  await page.goto(entry);
+  await page.getByRole("button", { name: "Thư viện", exact: true }).click();
+  await page.getByRole("button", { name: /red-square.avi.*khung/ }).click();
+  const source = await page.locator(".source-info p").innerText();
+  await page.getByRole("button", { name: "Thêm video", exact: true }).click();
+  const picker = page.getByRole("dialog");
+  await picker.getByRole("textbox").fill(source);
+  await picker.getByRole("button", { name: "Dùng đường dẫn" }).click();
+  await expect(page.getByRole("status")).toContainText("Đã thêm 0 video");
+  await page
+    .getByRole("button", { name: "Xuất đoạn MP4", exact: true })
+    .click();
+  const destination = resolve(
+    `../outputs/onboarding/panel-export-${Date.now()}.mp4`,
+  );
+  await picker.getByRole("textbox").fill(destination);
+  await picker.getByRole("button", { name: "Xuất clip", exact: true }).click();
+  await expect(page.getByRole("status")).toContainText(destination);
+  expect((await stat(destination)).size).toBeGreaterThan(1000);
+  await page
+    .getByRole("button", { name: "Xuất đoạn MP4", exact: true })
+    .click();
+  await picker.getByRole("textbox").press("Escape");
+  await expect(picker).toHaveCount(0);
+  await expect(page.locator(".inspector")).toBeVisible();
+});

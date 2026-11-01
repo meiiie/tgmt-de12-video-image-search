@@ -1,4 +1,15 @@
-# Đề 12 – Tìm kiếm ảnh / đối tượng trong video (EmbeddingGemma 2 mặc định, DINOv3 + grid tuỳ chọn, FAISS, SAM 3 re-rank)
+# FrameAtlas · Tìm khoảnh khắc trong thư viện video
+
+Ứng dụng desktop Windows dùng **EmbeddingGemma 2**, Tauri và bộ xử lý cục bộ: nhập video/thư mục, lập chỉ mục có thể tiếp tục, tìm bằng văn bản hoặc ảnh, phát đúng thời điểm, lưu khoảnh khắc và xuất clip MP4. Video gốc giữ nguyên trên máy.
+
+- [Chạy ứng dụng và phát triển desktop](desktop/README.md)
+- [Kiến trúc, phạm vi sản phẩm và nghiên cứu nguồn mở](docs/desktop-product.md)
+- [Lab giao diện](docs/lab/README.md)
+- [Kiểm chứng bản desktop](docs/desktop-verification.md)
+
+Phần dưới giữ lại pipeline và số liệu nghiên cứu Đề 12. **Số liệu thí nghiệm cũ không phải benchmark của bản desktop.** Khuyến nghị FP16 trong các ghi chép v8 đã được thay bằng FP32/BF16 theo model card EG2 hiện tại; cần chạy lại benchmark GPU trước khi dùng các số cũ để kết luận về bản mới.
+
+## Pipeline nghiên cứu Đề 12
 
 Đầu vào là **một ảnh truy vấn**, có thể là cả khung cảnh hoặc ảnh crop một đối tượng. Đầu ra là danh sách **(video nguồn, đoạn [start, end], thời điểm đỉnh, điểm)**. Bài toán tương ứng với *Instance Search* (TRECVID INS) / *known-item search* (VBS) ở quy mô nhỏ.
 

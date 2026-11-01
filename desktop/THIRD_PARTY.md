@@ -1,0 +1,13 @@
+# Third-party components and provenance
+
+FrameAtlas uses independently developed components. No code from DigUp, Immich or LosslessCut was copied; those projects informed product workflows.
+
+- **Python 3.14.10**: Python Software Foundation license. Official Windows embeddable archive, SHA-256 `90905e64a840557d8c1bc4f5b74db3d7ee85e3ffb217611cac1c7813acea4159`. The runtime includes `LICENSE.txt` and `runtime-manifest.json`.
+- **Python dependencies**: exact installed versions are in `runtime-requirements.lock` and the runtime's `DEPENDENCIES.txt`. Distribution metadata and bundled license files remain under `Lib/site-packages/*dist-info/`.
+- **Tauri and Rust dependencies**: resolved in `src-tauri/Cargo.lock`; Tauri is MIT/Apache-2.0. Native file dialogs use the Tauri dialog plugin. Single-instance handling uses the official plugin.
+- **React, Vite, TypeScript, Zod, Lucide**: resolved in `package-lock.json`; respective package metadata/license files are in their source packages. The application uses locally bundled assets and system fonts.
+- **FFmpeg 9.0.2**: a separate GPLv3 executable from [Gyan's published release](https://github.com/GyanD/codexffmpeg/releases/tag/9.0.2), with H.264 encoding through libx264. The archive SHA-256 is `60f467265b1e312373dbcd92200c2618a74850f98d3d078e94296bb3fa2047ba`; its matching FFmpeg source commit is `946fcce07b`. Publisher license, README, documentation and provenance are preserved in `runtime/ffmpeg-notices/`. The older binary bundled by imageio-ffmpeg is excluded from the desktop runtime. Redistribution must provide the corresponding sources and notices required by the component licenses.
+- **EmbeddingGemma 2**: Google DeepMind, Apache-2.0 model card, pinned Hugging Face revision `f9972ac22e696a105c482202646979e33e4b5a1e`. Model weights are downloaded separately and are not included in the application installer. Read the [official model card](https://huggingface.co/google/embeddinggemma-2) for usage terms and limitations.
+- **Acceptance media**: MDN's CC0 flower video at `https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4`, plus locally generated geometric videos. These media are ignored by Git and excluded from the installer.
+
+The generated interface concept is a design-lab artifact. Source media, personal paths, model weights, databases and test screenshots are not application resources.

@@ -88,8 +88,10 @@ def text_search(meta, X, q, fps, method="window", w=3, alpha=0.5, beta=0.5, ordi
         for v, (t, s) in C.items():
             if video and v != video: continue
             ev = events_v2(t, smooth(s, w), dt, meta, v, Xdup, **ord_v2)
+            if not ev: continue
             n = ordinal - 1 if ordinal > 0 else ordinal
-            pick = ev[n] if -len(ev) <= n < len(ev) else ev[-1]
+            if not -len(ev) <= n < len(ev): continue
+            pick = ev[n]
             segs.append({"video": v, **pick, "n_candidates": len(ev)})
         return sorted(segs, key=lambda r: -r["score"])[:k]
     if video: C = {video: C[video]}
@@ -106,12 +108,13 @@ def text_search(meta, X, q, fps, method="window", w=3, alpha=0.5, beta=0.5, ordi
             cand = sorted(runs(t, ss, med + beta * (mx - med), dt, min_len=2), key=lambda r: r["start"])
             if not cand: cand = runs(t, ss, mx, dt)
             n = ordinal - 1 if ordinal > 0 else ordinal
-            pick = cand[n] if -len(cand) <= n < len(cand) else cand[-1]
+            if not -len(cand) <= n < len(cand): continue
+            pick = cand[n]
             segs.append({"video": v, **pick, "n_candidates": len(cand)}); continue
         # non-ordinal: every local segment in this video, bounded at peak - alpha*(peak-median)
         med = np.median(ss); used = np.zeros(len(ss), bool)
         for j in np.argsort(-ss):
-            if used[j] or len(segs) > 4 * k: break
+            if used[j]: continue
             thr = ss[j] - alpha * (ss[j] - med); a = b = j
             while a > 0 and ss[a - 1] >= thr and not used[a - 1]: a -= 1
             while b < len(ss) - 1 and ss[b + 1] >= thr and not used[b + 1]: b += 1

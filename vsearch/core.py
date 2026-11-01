@@ -76,7 +76,12 @@ class Embedder:
         self.name = name; self.dev = device or ("cuda" if torch.cuda.is_available() else "cpu")
         if "embeddinggemma" in name.lower() or "eg2" in os.path.basename(str(name)).lower():  # EmbeddingGemma 2 (multimodal, Apache-2.0) via sentence-transformers
             from sentence_transformers import SentenceTransformer
-            self.kind = "st"; self.m = SentenceTransformer(name, device=self.dev, model_kwargs={"dtype": {"fp16": torch.float16, "bf16": torch.bfloat16, "fp32": torch.float32}[os.environ.get("DE12_EG2_DTYPE") or ("fp16" if self.dev == "cuda" else "fp32")]}); return  # v8: fp16 on GPU = same R@1/mAP as fp32 on 70-video hard, 2.3x faster
+            precision = os.environ.get("DE12_EG2_DTYPE") or ("bf16" if self.dev == "cuda" and torch.cuda.is_bf16_supported() else "fp32")
+            if precision not in {"bf16", "fp32"}:
+                raise ValueError("EG2 requires fp32 or bf16; fp16 can produce invalid embeddings")
+            self.kind = "st"
+            self.m = SentenceTransformer(name, device=self.dev, config_kwargs={"audio_config": None}, model_kwargs={"dtype": {"bf16": torch.bfloat16, "fp32": torch.float32}[precision]})
+            return
         self.m = AutoModel.from_pretrained(name).to(self.dev).eval()
         self.kind = "dino" if ("dino" in name.lower() or "dino" in getattr(self.m.config, "model_type", "")) else "vl"
         if self.kind == "dino":
