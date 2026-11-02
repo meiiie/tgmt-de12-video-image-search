@@ -246,3 +246,25 @@ test("search within a time range and clear the range", async ({ page }) => {
   await expect(page.getByLabel("Từ phút", { exact: true })).toHaveValue("");
   await expect(page.getByLabel("Đến phút", { exact: true })).toHaveValue("");
 });
+
+test("detail mode explains insufficient evidence and preserves text search", async ({ page }) => {
+  await page.goto(entry);
+  await page.getByLabel("Ảnh truy vấn", { exact: true }).setInputFiles("../outputs/onboarding/ui-query-mixed.png");
+  await page.getByRole("combobox", { name: "Cách tìm ảnh" }).selectOption("detail");
+  await page.getByRole("button", { name: "Tìm kiếm", exact: true }).click();
+  await expect(page.getByText("Ảnh chưa đủ chi tiết để đối chiếu.", { exact: false })).toBeVisible();
+  await expect(page.locator(".moment-card")).toHaveCount(0);
+  await page.getByRole("combobox", { name: "Cách tìm ảnh" }).selectOption("similar");
+  await page.getByRole("button", { name: "Tìm kiếm", exact: true }).click();
+  await expect(page.locator(".moment-card").first()).toBeVisible();
+  await page.getByRole("button", { name: "Bỏ ảnh truy vấn" }).click();
+  await page.getByRole("textbox", { name: "Mô tả cảnh cần tìm" }).fill("red square");
+  await page.getByRole("button", { name: "Tìm kiếm", exact: true }).click();
+  await expect(page.locator(".moment-card").first()).toContainText("red-square.avi");
+  await page.getByRole("button", { name: "Cài đặt", exact: true }).click();
+  await page.getByRole("combobox", { name: "Cách lấy khung hình" }).selectOption("hybrid");
+  await expect(page.getByRole("button", { name: "Lưu & lập chỉ mục lại" })).toBeVisible();
+  // Changing the selector is reversible; do not rebuild the shared fixture library here.
+  await page.getByRole("combobox", { name: "Cách lấy khung hình" }).selectOption("uniform");
+  await expect(page.getByRole("button", { name: "Lưu cài đặt", exact: true })).toBeVisible();
+});

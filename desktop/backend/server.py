@@ -35,6 +35,7 @@ class SettingsBody(Body):
     model_path: str | None = Field(default=None, max_length=4096)
     paused: bool | None = None
     vision_tokens: Literal[70, 140, 280] | None = None
+    sampling: Literal["uniform", "hybrid"] | None = None
 
 
 class SearchBody(Body):
@@ -46,6 +47,7 @@ class SearchBody(Body):
     occurrence: Literal[1, 2, 3, -1] | None = None
     start: float | None = Field(default=None, ge=0)
     end: float | None = Field(default=None, gt=0)
+    image_mode: Literal["similar", "detail"] = "similar"
 
     @model_validator(mode="after")
     def query_required(self):
@@ -57,6 +59,8 @@ class SearchBody(Body):
             raise ValueError("Chọn một video khi giới hạn khoảng thời gian")
         if self.end is not None and self.end <= (self.start or 0):
             raise ValueError("Mốc kết thúc phải lớn hơn mốc bắt đầu")
+        if self.image_mode == "detail" and (not self.image or self.occurrence):
+            raise ValueError("Đối chiếu chi tiết cần ảnh và chế độ Liên quan nhất")
         return self
 
 
@@ -181,7 +185,7 @@ def create_app(library: Library, token: str):
                 image = ImageOps.exif_transpose(image).convert("RGB")
             except (UnidentifiedImageError, Image.DecompressionBombError, OSError) as error:
                 raise ValueError("Không đọc được ảnh truy vấn") from error
-        return library.search(text=body.text.strip() if body.text else None, image=image, video_id=body.video_id, limit=body.limit, min_score=body.min_score, occurrence=body.occurrence, start=body.start, end=body.end)
+        return library.search(text=body.text.strip() if body.text else None, image=image, video_id=body.video_id, limit=body.limit, min_score=body.min_score, occurrence=body.occurrence, start=body.start, end=body.end, image_mode=body.image_mode)
 
     @app.get("/thumbnails/{frame_id}")
     def thumbnail(frame_id: int):

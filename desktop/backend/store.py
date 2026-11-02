@@ -4,14 +4,14 @@ from contextlib import contextmanager
 from pathlib import Path
 
 
-DEFAULTS = {"fps": 1.0, "batch_size": 2, "model_path": "", "vision_tokens": 140, "paused": False}
+DEFAULTS = {"fps": 1.0, "batch_size": 2, "model_path": "", "vision_tokens": 140, "paused": False, "sampling": "uniform"}
 
 
 class Store:
     def __init__(self, root: Path):
         self.root = root
         root.mkdir(parents=True, exist_ok=True)
-        for name in ("thumbnails", "previews", "models", "exports"):
+        for name in ("thumbnails", "previews", "models", "exports", "details", "sampling"):
             (root / name).mkdir(exist_ok=True)
         self.path = root / "library.sqlite3"
         with self.connect() as db:
@@ -40,6 +40,10 @@ class Store:
                 );
                 CREATE TABLE IF NOT EXISTS history(query TEXT PRIMARY KEY, used REAL NOT NULL);
             """)
+            columns = {row[1] for row in db.execute("PRAGMA table_info(frames)")}
+            for name in ("shot_start", "shot_end"):
+                if name not in columns:
+                    db.execute(f"ALTER TABLE frames ADD COLUMN {name} REAL")
             for key, value in DEFAULTS.items():
                 db.execute("INSERT OR IGNORE INTO settings VALUES(?,?)", (key, json.dumps(value)))
             db.execute("UPDATE videos SET status='queued' WHERE status='indexing'")

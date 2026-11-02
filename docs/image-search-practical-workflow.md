@@ -42,3 +42,5 @@ Theo dõi bước đo có nhãn, so sánh lấy mẫu/crop/chỉ mục vùng và
 - Trạng thái “không tìm thấy” cần hiệu chỉnh bằng truy vấn âm đúng domain. Không đặt một ngưỡng tùy ý rồi gọi kết quả trên ngưỡng là chắc chắn đúng.
 
 Thước đo sản phẩm là người dùng tìm được đúng đoạn và mất ít thời gian duyệt/sửa hơn. Tốc độ model, khả năng mở app và các fixture màu chỉ xác nhận từng phần kỹ thuật.
+
+Cập nhật 02/11: đã triển khai lấy mẫu đều kết hợp chuyển cảnh và chế độ đối chiếu chi tiết ảnh. [Báo cáo tiếp theo](sampling-and-verification-20261102.md) ghi phép đo bỏ sót/từ chối nhầm, giới hạn của bộ lọc và kiểm tra toàn bộ video người dùng. Những số liệu mỗi 10 giây ở trên là trạng thái của lượt 01/11, không phải chỉ mục hybrid mới.

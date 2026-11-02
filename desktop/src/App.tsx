@@ -32,6 +32,7 @@ import {
   Api,
   connect,
   Imported,
+  ImageMode,
   Library,
   message,
   Moment,
@@ -123,6 +124,8 @@ function IndexProgress({ progress }: { progress: Library["progress"] }) {
     <small className="index-progress">
       {progress.stage === "model"
         ? "Đang nạp EG2…"
+        : progress.stage === "scanning"
+          ? `Quét chuyển cảnh · ${timestamp(progress.processed)} / ${timestamp(progress.total)}`
         : `${progress.rate.toLocaleString("vi-VN", { maximumFractionDigits: 2 })} khung/giây${progress.eta_seconds === null ? "" : ` · còn khoảng ${timestamp(progress.eta_seconds)}`}`}
     </small>
   );
@@ -647,6 +650,7 @@ function SearchPage({
   const [text, setText] = useState("");
   const [image, setImage] = useState<QueryImage | null>(null);
   const [cropPending, setCropPending] = useState(false);
+  const [imageMode, setImageMode] = useState<ImageMode>("similar");
   const uploadRevision = useRef(0);
   const [scope, setScope] = useState("");
   const [occurrence, setOccurrence] = useState("");
@@ -679,9 +683,9 @@ function SearchPage({
       if (end !== null && end <= (start ?? 0))
         throw new Error("Mốc kết thúc phải lớn hơn mốc bắt đầu.");
       const response = await api.request("/search", SearchResults, "POST", {
-        ...(image ? { image: image.data } : { text: query.trim() }),
+        ...(image ? { image: image.data, image_mode: imageMode } : { text: query.trim() }),
         video_id: scope || null,
-        occurrence: scope && occurrence ? Number(occurrence) : null,
+        occurrence: scope && occurrence && (!image || imageMode === "similar") ? Number(occurrence) : null,
         start,
         end,
       });
@@ -818,6 +822,23 @@ function SearchPage({
           />
         )}
         <div className="search-options">
+          {image && (
+            <label>
+              Cách tìm ảnh{" "}
+              <select
+                value={imageMode}
+                disabled={busy}
+                onChange={(event) => {
+                  setImageMode(ImageMode.parse(event.target.value));
+                  setOccurrence("");
+                  setResult(null);
+                }}
+              >
+                <option value="similar">Nội dung tương tự</option>
+                <option value="detail">Đối chiếu chi tiết ảnh</option>
+              </select>
+            </label>
+          )}
           <label>
             Phạm vi{" "}
             <select
@@ -838,7 +859,7 @@ function SearchPage({
                 ))}
             </select>
           </label>
-          {scope && (
+          {scope && (!image || imageMode === "similar") && (
             <label>
               Lần xuất hiện{" "}
               <select
@@ -857,6 +878,12 @@ function SearchPage({
             <ShieldCheck size={13} /> Nội dung không rời thiết bị
           </span>
         </div>
+        {image && imageMode === "detail" && (
+          <p className="help-text">
+            Phù hợp tìm lại screenshot hoặc crop có chi tiết rõ. Có thể bỏ qua đối tượng đổi góc,
+            chuyển động hoặc ảnh ít chi tiết; chọn Nội dung tương tự để tìm rộng hơn.
+          </p>
+        )}
         {scope && (
           <div className="time-scope">
             <Clock3 size={15} />
@@ -941,6 +968,14 @@ function SearchPage({
               {result.indexed_frames.toLocaleString("vi-VN")} khung
             </span>
           </div>
+          {result.verification && (
+            <p className="help-text" role="status">
+              {result.verification.status === "insufficient_detail"
+                ? "Ảnh chưa đủ chi tiết để đối chiếu. Thử vùng ảnh lớn hơn hoặc chọn Nội dung tương tự."
+                : `Đã đối chiếu ${result.verification.checked}/${result.verification.candidates_total} khung ứng viên; chỉ hiển thị các khung có chi tiết khớp. Đây là đoạn xem quanh khung, chưa phải toàn bộ lần xuất hiện.`}
+              {result.verification.unavailable > 0 && ` Có ${result.verification.unavailable} khung chưa đọc được; kiểm tra file nguồn và quét thay đổi.`}
+            </p>
+          )}
           {result.results.length ? (
             <div className="results-grid">
               {result.results.map((moment) => (
@@ -960,7 +995,9 @@ function SearchPage({
             <Empty
               Icon={Search}
               title="Chưa tìm thấy khoảnh khắc."
-              text="Thử mô tả khác hoặc kiểm tra video đã được lập chỉ mục trong phạm vi bạn chọn."
+              text={result.verification
+                ? "Chưa đủ bằng chứng trong các khung đã đối chiếu. Thử Nội dung tương tự, vùng ảnh rõ hơn hoặc lấy mẫu dày hơn."
+                : "Thử mô tả khác hoặc kiểm tra video đã được lập chỉ mục trong phạm vi bạn chọn."}
             />
           )}
           <p className="footnote">
@@ -1097,6 +1134,7 @@ function MomentCard({
           )}
         </div>
         {title && <small>{moment.name}</small>}
+        {result.success && result.data.verification && <small>Đã đối chiếu ảnh</small>}
       </div>
     </button>
   );
@@ -1503,6 +1541,7 @@ function SettingsPage({
   const [settings, setSettings] = useState<Settings>(library.settings);
   const [busy, setBusy] = useState(false);
   const rebuilding =
+    settings.sampling !== library.settings.sampling ||
     settings.fps !== library.settings.fps ||
     settings.vision_tokens !== library.settings.vision_tokens ||
     settings.model_path !== library.settings.model_path;
@@ -1511,6 +1550,7 @@ function SettingsPage({
     try {
       await api.request("/settings", Ok, "PATCH", {
         fps: settings.fps,
+        sampling: settings.sampling,
         batch_size: settings.batch_size,
         vision_tokens: settings.vision_tokens,
         model_path: settings.model_path,
@@ -1633,6 +1673,19 @@ function SettingsPage({
       <section className="settings-card">
         <h2>Lập chỉ mục</h2>
         <label className="field-label">
+          Cách lấy khung hình
+          <select value={settings.sampling} onChange={(event) => setSettings((s) => ({
+            ...s, sampling: Settings.shape.sampling.parse(event.target.value),
+          }))}>
+            <option value="uniform">Mốc đều theo thời gian</option>
+            <option value="hybrid">Mốc đều + bổ sung khi chuyển cảnh</option>
+          </select>
+        </label>
+        <p className="help-text">
+          Bổ sung khi chuyển cảnh giúp giữ cảnh ngắn nằm giữa các mốc đều. Cần quét video trước khi
+          lập chỉ mục; vật thể xuất hiện thoáng qua trong cùng cảnh vẫn có thể bị bỏ sót.
+        </p>
+        <label className="field-label">
           Mức chi tiết thị giác
           <select
             value={settings.vision_tokens}
@@ -1694,7 +1747,7 @@ function SettingsPage({
         </p>
         {rebuilding && (
           <p className="rebuild-note">
-            Đổi model, mức chi tiết hoặc tần suất sẽ xây lại chỉ mục của toàn bộ
+            Đổi model, mức chi tiết, cách lấy khung hoặc tần suất sẽ xây lại chỉ mục của toàn bộ
             thư viện. Hãy tạm dừng và đợi lô hiện tại kết thúc trước khi lưu.
             Video gốc và khoảnh khắc đã lưu được giữ nguyên.
           </p>

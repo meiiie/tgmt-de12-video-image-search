@@ -27,6 +27,7 @@ export const Settings = z.object({
   vision_tokens: z.union([z.literal(70), z.literal(140), z.literal(280)]),
   model_path: z.string(),
   paused: z.boolean(),
+  sampling: z.enum(["uniform", "hybrid"]).default("uniform"),
 });
 export type Settings = z.infer<typeof Settings>;
 export const Library = z.object({
@@ -46,7 +47,7 @@ export const Library = z.object({
   progress: z
     .object({
       video_id: z.string(),
-      stage: z.enum(["model", "indexing"]),
+      stage: z.enum(["model", "indexing", "scanning"]),
       processed: z.number(),
       total: z.number(),
       rate: z.number(),
@@ -68,7 +69,12 @@ export const Moment = z.object({
   peak: z.number(),
 });
 export type Moment = z.infer<typeof Moment>;
-export const Result = Moment.extend({ score: z.number() });
+export const ImageMode = z.enum(["similar", "detail"]);
+export type ImageMode = z.infer<typeof ImageMode>;
+export const Result = Moment.extend({
+  score: z.number(),
+  verification: z.object({ status: z.literal("matched"), quality: z.number() }).optional(),
+});
 export type Result = z.infer<typeof Result>;
 export const Saved = Moment.extend({
   id: z.string(),
@@ -80,6 +86,15 @@ export const SearchResults = z.object({
   results: z.array(Result),
   elapsed_ms: z.number(),
   indexed_frames: z.number(),
+  verification: z.object({
+    mode: z.literal("detail"),
+    status: z.enum(["checked", "insufficient_detail"]),
+    checked: z.number(),
+    matched: z.number(),
+    unavailable: z.number(),
+    candidate_limit: z.number(),
+    candidates_total: z.number(),
+  }).nullable().default(null),
 });
 export type SearchResults = z.infer<typeof SearchResults>;
 export const Ok = z.object({ ok: z.boolean() });
