@@ -1,0 +1,74 @@
+{
+  "description": "Hand-authored diagnostic cases declared before the run. Not a representative or independent benchmark.",
+  "sentiment_scope": "The speaker's own expressed evaluation of the product; mixed means both praise and criticism of current attributes.",
+  "labels": {
+    "en": {
+      "positive": "A positive opinion about a product, expressing satisfaction or praise.",
+      "negative": "A negative opinion about a product, expressing dissatisfaction or criticism.",
+      "neutral": "A neutral factual description of a product, without an evaluation.",
+      "mixed": "A mixed opinion about a product, containing both praise and criticism."
+    },
+    "vi": {
+      "positive": "Ý kiến tích cực về sản phẩm, thể hiện sự hài lòng hoặc khen ngợi.",
+      "negative": "Ý kiến tiêu cực về sản phẩm, thể hiện sự không hài lòng hoặc chê bai.",
+      "neutral": "Thông tin trung lập mô tả sản phẩm, không đưa ra đánh giá.",
+      "mixed": "Ý kiến vừa tích cực vừa tiêu cực về sản phẩm, có cả khen và chê."
+    }
+  },
+  "sentiment": [
+    {"id":"p1","group":"plain","label":"positive","text":"Tôi rất hài lòng với chiếc điện thoại này. Nó dùng rất tốt."},
+    {"id":"p2","group":"plain","label":"positive","text":"Tai nghe này tuyệt vời, âm thanh rất hay."},
+    {"id":"p3","group":"plain","label":"positive","text":"This camera is excellent. I am very happy with my purchase."},
+    {"id":"p4","group":"plain","label":"positive","text":"I love this app. It works perfectly and saves me time."},
+    {"id":"n1","group":"plain","label":"negative","text":"Tôi rất thất vọng với chiếc điện thoại này. Nó liên tục bị lỗi."},
+    {"id":"n2","group":"plain","label":"negative","text":"Tai nghe này quá tệ, tôi muốn trả lại."},
+    {"id":"n3","group":"plain","label":"negative","text":"This camera is terrible. I regret buying it."},
+    {"id":"n4","group":"plain","label":"negative","text":"I hate this app. It keeps crashing and wasting my time."},
+    {"id":"z1","group":"plain","label":"neutral","text":"Điện thoại này có màn hình 6,5 inch và hai cổng kết nối."},
+    {"id":"z2","group":"plain","label":"neutral","text":"Hộp tai nghe có một dây cáp và một tờ hướng dẫn."},
+    {"id":"z3","group":"plain","label":"neutral","text":"The camera weighs 500 grams and uses an SD card."},
+    {"id":"z4","group":"plain","label":"neutral","text":"The application has three tabs and a settings menu."},
+    {"id":"m1","group":"plain","label":"mixed","text":"Camera chụp rất đẹp nhưng pin quá tệ, dùng một lát đã hết."},
+    {"id":"m2","group":"plain","label":"mixed","text":"Tai nghe có âm thanh hay nhưng đeo rất đau tai."},
+    {"id":"m3","group":"plain","label":"mixed","text":"The screen looks beautiful, but the battery life is awful."},
+    {"id":"m4","group":"plain","label":"mixed","text":"I like the app's useful features, but I dislike its confusing interface."},
+    {"id":"h1","group":"challenge","label":"negative","text":"Tuyệt vời thật, mới mua hôm qua mà hôm nay đã hỏng!"},
+    {"id":"h2","group":"challenge","label":"negative","text":"Fantastic, the app deleted all my work again. Just what I needed!"},
+    {"id":"h3","group":"challenge","label":"positive","text":"Tôi không hề hối hận khi mua sản phẩm này. Nó đáp ứng mọi nhu cầu của tôi."},
+    {"id":"h4","group":"challenge","label":"positive","text":"I have no complaints about this product. It does everything I need."},
+    {"id":"h5","group":"challenge","label":"negative","text":"Không phải tôi hài lòng với chiếc máy này. Tôi muốn được hoàn tiền."},
+    {"id":"h6","group":"challenge","label":"negative","text":"I cannot recommend this supposedly excellent product. It failed after one day."},
+    {"id":"h7","group":"challenge","label":"mixed","text":"Tôi thích chất lượng ảnh, nhưng đừng hiểu nhầm: tôi ghét thời lượng pin của nó."},
+    {"id":"h8","group":"challenge","label":"mixed","text":"I wouldn't call it a bad camera: the pictures are great, though the battery is a disaster."}
+  ],
+  "grading_pairs": [
+    {"id":"quantity","reference":"At standard atmospheric pressure, pure water boils at 100 degrees Celsius.","correct":"Under normal sea-level pressure, water reaches its boiling point at one hundred degrees Celsius.","incorrect":"At standard atmospheric pressure, pure water boils at 20 degrees Celsius."},
+    {"id":"relation","reference":"Plants absorb carbon dioxide during photosynthesis.","correct":"During photosynthesis, vegetation takes in CO2.","incorrect":"Plants release carbon dioxide during photosynthesis."},
+    {"id":"grammar","reference":"I went to the cinema yesterday.","correct":"Yesterday I saw a film at a movie theater.","incorrect":"I goed to the cinema yesterday."},
+    {"id":"time","reference":"The meeting starts at nine in the morning.","correct":"Our meeting begins at 9 a.m.","incorrect":"The meeting starts at nine in the evening."},
+    {"id":"direction","reference":"You should turn left after the bridge.","correct":"Once you have crossed the bridge, take the road on your left.","incorrect":"You should turn right after the bridge."},
+    {"id":"negation","reference":"Tôi không thích chiếc điện thoại này.","correct":"Chiếc điện thoại này khiến tôi không hài lòng.","incorrect":"Tôi rất thích chiếc điện thoại này."}
+  ],
+  "learning_documents": [
+    {"id":"clarify","text":"Sorry, could you say that again more slowly? I didn't quite catch the last part."},
+    {"id":"decline","text":"Thank you for inviting me. I'd love to join, but I already have plans that evening."},
+    {"id":"disagree","text":"I see your point, but I look at it a little differently. May I explain why?"},
+    {"id":"think","text":"That's an interesting question. Let me think for a moment before I answer."},
+    {"id":"example","text":"Let me give you a concrete example to explain what I mean."},
+    {"id":"apologize","text":"I'm sorry I interrupted you. Please go ahead and finish your point."},
+    {"id":"weather","text":"The forecast says it will rain this afternoon and remain cloudy tomorrow."},
+    {"id":"shopping","text":"The supermarket sells fresh fruit, vegetables and bread."},
+    {"id":"technical","text":"A database index can reduce the time needed to look up a record."},
+    {"id":"sport","text":"The home team scored twice in the second half of the match."},
+    {"id":"refuse_rude","text":"No. Stop bothering me with your invitation."},
+    {"id":"disagree_rude","text":"You're completely wrong. Your idea is ridiculous."}
+  ],
+  "learning_queries": [
+    {"text":"Tôi muốn nhờ người đối diện nhắc lại chậm hơn vì nghe chưa rõ.","expected":"clarify"},
+    {"text":"Tìm cách từ chối lời mời một cách lịch sự vì đã có kế hoạch khác.","expected":"decline"},
+    {"text":"Cách thể hiện bất đồng quan điểm nhẹ nhàng trong cuộc thảo luận.","expected":"disagree"},
+    {"text":"Câu nói để xin một chút thời gian suy nghĩ trước khi trả lời.","expected":"think"},
+    {"text":"Tôi muốn đưa ra ví dụ cụ thể để minh họa ý kiến của mình.","expected":"example"},
+    {"text":"Cách xin lỗi vì vừa ngắt lời người khác.","expected":"apologize"}
+  ]
+}

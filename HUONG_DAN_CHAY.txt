@@ -1,0 +1,74 @@
+FRAMEATLAS - HUONG DAN CHAY DU AN
+Cap nhat: 16/11/2026
+
+1. DUNG DUNG BAN SAN PHAM
+
+FrameAtlas la ung dung trong desktop/, gom giao dien React/TypeScript,
+bo xu ly Python/FastAPI va vo Windows Tauri/Rust.
+app.py o thu muc goc la demo Gradio nghien cuu, khong phai FrameAtlas.
+
+Neu co ban portable da dong goi: giai nen toan bo, mo frameatlas.exe,
+giu cac thu muc runtime va engine ben canh chuong trinh.
+Kho Git nay chua ma nguon; khong chua runtime, trong so EG2 va video.
+
+2. CAI TU MA NGUON TREN WINDOWS
+
+Can Git, Python 3.10+ co pip, Node.js va npm. Neu dung cua so desktop
+native, can them Rust stable, MSVC build tools va Windows WebView2.
+
+Mo PowerShell, chay:
+
+  git clone https://github.com/meiiie/tgmt-de12-video-image-search.git
+  cd tgmt-de12-video-image-search
+  python scripts/bootstrap_desktop_runtime.py
+  cd desktop
+  npm ci
+  npm run build
+  cd ..
+
+Bootstrap tao desktop/runtime314/ va tai cac phu thuoc da ghim phien ban.
+Lan dau can Internet va dung luong trong; xem desktop/README.md.
+
+3. CHAY GIAO DIEN TRONG TRINH DUYET (KHONG MO GRADIO)
+
+Tu thu muc goc, dung Python co san:
+
+  python scripts/serve_desktop_panel.py
+
+Cong giao dien la 1420, cong xu ly la 18766. Khi chuong trinh bao ready,
+mo outputs/onboarding/panel-session.json, lay gia tri url va mo trong
+trinh duyet. Token la ma phien cuc bo, doi moi moi lan khoi chay.
+Khong chia se hay dua panel-session.json len GitHub.
+Neu cac cong dang duoc su dung, dung phien FrameAtlas hien co hoac
+dung phien do truoc khi khoi chay lai; khong tat cac tien trinh khac.
+
+Du lieu mac dinh: %APPDATA%/app.frameatlas.desktop.
+Co the dung thu vien rieng bang tham so --data-dir <thu_muc>.
+Runtime tuy chon: --python <duong_dan_den_python.exe>.
+
+4. CHAY CUA SO WINDOWS NATIVE
+
+  cd desktop
+  npm run tauri -- dev
+
+Xem desktop/README.md de build bo cai dat hoac ban portable.
+Ban runtime mac dinh dung CPU; CUDA can runtime duoc chuan bi rieng.
+
+5. SU DUNG
+
+- Vao Cai dat, chon thu muc EmbeddingGemma 2 da tai hoac de trong de
+  ung dung tai mo hinh chinh thuc trong lan dau. Neu nha cung cap yeu
+  cau chap nhan dieu khoan/quyen truy cap, thuc hien tren Hugging Face.
+- Chon Them video / Them thu muc va cho lap chi muc hoan thanh.
+- Tai anh truy van, chon toan anh hoac crop, chon pham vi va nguong.
+- Noi dung tuong tu: xep hang theo vector EG2.
+- Doi chieu chi tiet anh: kiem tra them SIFT/RANSAC tren ung vien EG2.
+- Xem so khung qua nguong cua tung video, bam ket qua de phat dung moc.
+- Tim bang van ban van co san nhu mot huong mo rong.
+
+Diem cosine la do tuong dong cua bieu dien, khong phai xac suat dung.
+Video goc can giu tai duong dan da nhap de phat va xuat doan.
+
+6. BAO CAO VA THUYET TRINH
+
+Xem docs/submission/README.md de tai Word, PowerPoint va loi thuyet trinh.

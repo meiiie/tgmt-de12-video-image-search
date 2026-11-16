@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "FrameAtlas",
+  "version": "0.1.0",
+  "identifier": "app.frameatlas.desktop",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build",
+    "devUrl": "http://127.0.0.1:1420",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "FrameAtlas",
+        "width": 1440,
+        "height": 930,
+        "minWidth": 900,
+        "minHeight": 650,
+        "center": true,
+        "backgroundColor": "#f7f7f2"
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; connect-src ipc: http://ipc.localhost http://127.0.0.1:*; img-src 'self' data: blob: http://127.0.0.1:*; media-src 'self' blob: http://127.0.0.1:*; style-src 'self' 'unsafe-inline'; script-src 'self'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "category": "Video",
+    "shortDescription": "Find moments in your local video library",
+    "resources": {
+      "../THIRD_PARTY.md": "THIRD_PARTY.md",
+      "../runtime314/": "runtime/",
+      "../backend/": "engine/desktop/backend/",
+      "../__init__.py": "engine/desktop/__init__.py",
+      "../../vsearch/": "engine/vsearch/"
+    },
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser",
+        "displayLanguageSelector": false,
+        "languages": ["English"],
+        "compression": "lzma"
+      }
+    }
+  }
+}

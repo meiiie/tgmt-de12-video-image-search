@@ -1,0 +1,54 @@
+{
+  "description": "Six non-overlapping 150-second excerpts and one 146-second excerpt from four Blender Open Movie sources; ten library files are not ten independent recordings.",
+  "videos": [
+    {
+      "source": "Bunny",
+      "source_url": "[local path omitted]",
+      "source_start": 35,
+      "seconds": 150.0,
+      "sha256": "3700f079d964ac451594572b88a599bde2acb74e77f2e061aa32b9f6409ca8f6"
+    },
+    {
+      "source": "Bunny",
+      "source_url": "[local path omitted]",
+      "source_start": 215,
+      "seconds": 150.0,
+      "sha256": "c88e260d7a55b11eb509c68508f5885a6acbb8ac269226ac4f9747a957321d3a"
+    },
+    {
+      "source": "Elephants",
+      "source_url": "[local path omitted]",
+      "source_start": 35,
+      "seconds": 150.0,
+      "sha256": "c5d104a5f11b5995849076935de7240beedafdaa70eeb10d811162a90f41ffc5"
+    },
+    {
+      "source": "Elephants",
+      "source_url": "[local path omitted]",
+      "source_start": 215,
+      "seconds": 150.0,
+      "sha256": "a779d6df32c771f8452f51590526386b916dcc06858476f3df7de93cff209506"
+    },
+    {
+      "source": "Caminandes",
+      "source_url": "[local path omitted]",
+      "source_start": 0,
+      "seconds": 146.0,
+      "sha256": "9cb51ccebc7f22502391e849fcc821c3d89580cda336b27e1ddcb8a5c2bcb6b5"
+    },
+    {
+      "source": "Tears",
+      "source_url": "[local path omitted]",
+      "source_start": 45,
+      "seconds": 150.0,
+      "sha256": "a3676610862c628f8f60c7bfd4965a2dc9140ff9221755a29a85c72a6b776c78"
+    },
+    {
+      "source": "Tears",
+      "source_url": "[local path omitted]",
+      "source_start": 245,
+      "seconds": 150.0,
+      "sha256": "512ae95c3f5835c4b59c18d4131f3a08a17f2b128c903b49f2c58708977280f3"
+    }
+  ]
+}

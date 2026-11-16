@@ -1,0 +1,257 @@
+{
+  "orientation": {
+    "verified": true,
+    "scope": "Same displayed pixels produce the same ranked results through the actual image API; not an accuracy benchmark",
+    "device": "cuda",
+    "indexed_frames": 789,
+    "runs": {
+      "canonical": {
+        "indexed_frames": 789,
+        "results": [
+          {
+            "frame_id": 211,
+            "start": 2090.0,
+            "end": 2120.0,
+            "peak": 2100.0,
+            "score": 0.980563759803772
+          },
+          {
+            "frame_id": 124,
+            "start": 1230.0,
+            "end": 1240.0,
+            "peak": 1230.0,
+            "score": 0.9589115381240845
+          },
+          {
+            "frame_id": 109,
+            "start": 1040.0,
+            "end": 1120.0,
+            "peak": 1080.0,
+            "score": 0.9575797319412231
+          },
+          {
+            "frame_id": 84,
+            "start": 830.0,
+            "end": 880.0,
+            "peak": 830.0,
+            "score": 0.9542673826217651
+          },
+          {
+            "frame_id": 161,
+            "start": 1590.0,
+            "end": 1680.0,
+            "peak": 1600.0,
+            "score": 0.9541007280349731
+          },
+          {
+            "frame_id": 699,
+            "start": 6980.0,
+            "end": 7030.0,
+            "peak": 6980.0,
+            "score": 0.9540507197380066
+          },
+          {
+            "frame_id": 743,
+            "start": 7420.0,
+            "end": 7430.0,
+            "peak": 7420.0,
+            "score": 0.9505314826965332
+          },
+          {
+            "frame_id": 185,
+            "start": 1840.0,
+            "end": 1850.0,
+            "peak": 1840.0,
+            "score": 0.9499829411506653
+          },
+          {
+            "frame_id": 607,
+            "start": 6060.0,
+            "end": 6100.0,
+            "peak": 6060.0,
+            "score": 0.9473999738693237
+          },
+          {
+            "frame_id": 52,
+            "start": 480.0,
+            "end": 520.0,
+            "peak": 510.0,
+            "score": 0.9461798667907715
+          }
+        ]
+      },
+      "exif_orientation_6": {
+        "indexed_frames": 789,
+        "results": [
+          {
+            "frame_id": 211,
+            "start": 2090.0,
+            "end": 2120.0,
+            "peak": 2100.0,
+            "score": 0.980563759803772
+          },
+          {
+            "frame_id": 124,
+            "start": 1230.0,
+            "end": 1240.0,
+            "peak": 1230.0,
+            "score": 0.9589115381240845
+          },
+          {
+            "frame_id": 109,
+            "start": 1040.0,
+            "end": 1120.0,
+            "peak": 1080.0,
+            "score": 0.9575797319412231
+          },
+          {
+            "frame_id": 84,
+            "start": 830.0,
+            "end": 880.0,
+            "peak": 830.0,
+            "score": 0.9542673826217651
+          },
+          {
+            "frame_id": 161,
+            "start": 1590.0,
+            "end": 1680.0,
+            "peak": 1600.0,
+            "score": 0.9541007280349731
+          },
+          {
+            "frame_id": 699,
+            "start": 6980.0,
+            "end": 7030.0,
+            "peak": 6980.0,
+            "score": 0.9540507197380066
+          },
+          {
+            "frame_id": 743,
+            "start": 7420.0,
+            "end": 7430.0,
+            "peak": 7420.0,
+            "score": 0.9505314826965332
+          },
+          {
+            "frame_id": 185,
+            "start": 1840.0,
+            "end": 1850.0,
+            "peak": 1840.0,
+            "score": 0.9499829411506653
+          },
+          {
+            "frame_id": 607,
+            "start": 6060.0,
+            "end": 6100.0,
+            "peak": 6060.0,
+            "score": 0.9473999738693237
+          },
+          {
+            "frame_id": 52,
+            "start": 480.0,
+            "end": 520.0,
+            "peak": 510.0,
+            "score": 0.9461798667907715
+          }
+        ]
+      }
+    }
+  },
+  "real_ui": {
+    "scope": "Integration only; crops not annotated for retrieval accuracy",
+    "query_source_seconds": 2102.75,
+    "region_percent": {
+      "x": 46,
+      "y": 40,
+      "width": 13,
+      "height": 25
+    },
+    "whole": {
+      "indexed_frames": 789,
+      "results": [
+        {
+          "peak": 2100,
+          "score": 0.9804462194442749,
+          "start": 2090,
+          "end": 2120,
+          "frame_id": 211
+        },
+        {
+          "peak": 1090,
+          "score": 0.9587490558624268,
+          "start": 1040,
+          "end": 1120,
+          "frame_id": 110
+        },
+        {
+          "peak": 1230,
+          "score": 0.9572324752807617,
+          "start": 1230,
+          "end": 1240,
+          "frame_id": 124
+        },
+        {
+          "peak": 1600,
+          "score": 0.9535933136940002,
+          "start": 1590,
+          "end": 1690,
+          "frame_id": 161
+        },
+        {
+          "peak": 830,
+          "score": 0.9522846341133118,
+          "start": 830,
+          "end": 880,
+          "frame_id": 84
+        }
+      ]
+    },
+    "crop": {
+      "indexed_frames": 789,
+      "results": [
+        {
+          "peak": 7010,
+          "score": 0.8338972330093384,
+          "start": 6980,
+          "end": 7030,
+          "frame_id": 702
+        },
+        {
+          "peak": 490,
+          "score": 0.8335320353507996,
+          "start": 490,
+          "end": 520,
+          "frame_id": 50
+        },
+        {
+          "peak": 1220,
+          "score": 0.8303661942481995,
+          "start": 1220,
+          "end": 1240,
+          "frame_id": 123
+        },
+        {
+          "peak": 860,
+          "score": 0.83036208152771,
+          "start": 830,
+          "end": 880,
+          "frame_id": 87
+        },
+        {
+          "peak": 1390,
+          "score": 0.8285586833953857,
+          "start": 1390,
+          "end": 1410,
+          "frame_id": 140
+        }
+      ]
+    },
+    "player": {
+      "time": 7010,
+      "paused": true,
+      "width": 1920
+    }
+  },
+  "caveat": "Input/UI integration checks, not an annotated retrieval accuracy benchmark",
+  "date": "2026-11-01"
+}

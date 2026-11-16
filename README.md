@@ -1,4 +1,24 @@
-# Đề 12 – Tìm kiếm ảnh / đối tượng trong video (EmbeddingGemma 2 mặc định, DINOv3 + grid tuỳ chọn, FAISS, SAM 3 re-rank)
+# FrameAtlas · Tìm khoảnh khắc trong thư viện video
+
+Ứng dụng desktop Windows dùng **EmbeddingGemma 2**, Tauri và bộ xử lý cục bộ: nhập video/thư mục, lập chỉ mục có thể tiếp tục, tìm bằng văn bản hoặc ảnh, phát đúng thời điểm, lưu khoảnh khắc và xuất clip MP4. Video gốc giữ nguyên trên máy.
+
+- [Chạy ứng dụng và phát triển desktop](desktop/README.md)
+- [Hướng dẫn chạy FrameAtlas từ mã nguồn](HUONG_DAN_CHAY.txt)
+- [Báo cáo Word, PowerPoint kỹ thuật EG2 và lời thuyết trình](docs/submission/README.md)
+- [Luồng tìm bằng ảnh/crop và kiểm chứng đầu vào trên video thật](docs/image-search-practical-workflow.md)
+- [Đo bỏ sót, nhận nhầm và so sánh tiền xử lý ảnh trên bộ có nhãn](docs/image-retrieval-quality-20261101.md)
+- [Lấy mẫu theo chuyển cảnh, đối chiếu chi tiết và kiểm thử video 2 giờ](docs/sampling-and-verification-20261102.md)
+- [Kiến trúc, phạm vi sản phẩm và nghiên cứu nguồn mở](docs/desktop-product.md)
+- [Nghiên cứu hướng camera giao thông: tìm xe và rà soát sự cố (đề xuất)](docs/traffic-use-case-research.md)
+- [Nghiên cứu pain point creator/bóng đá và lab EG2 audio](docs/creator-highlights-research.md)
+- [EG2: giấy phép, sentiment, học tập và phép thử giới hạn similarity](docs/eg2-capabilities-and-product-fit.md)
+- [Tìm người/nhân vật xuyên nhiều video: nhu cầu, giới hạn và pilot](docs/person-character-search-research.md)
+- [Lab giao diện](docs/lab/README.md)
+- [Kiểm chứng bản desktop](docs/desktop-verification.md)
+
+Phần dưới giữ lại pipeline và số liệu nghiên cứu Đề 12. **Số liệu thí nghiệm cũ không phải benchmark của bản desktop.** Khuyến nghị FP16 trong các ghi chép v8 đã được thay bằng FP32/BF16 theo model card EG2 hiện tại; cần chạy lại benchmark GPU trước khi dùng các số cũ để kết luận về bản mới.
+
+## Pipeline nghiên cứu Đề 12
 
 Đầu vào là **một ảnh truy vấn**, có thể là cả khung cảnh hoặc ảnh crop một đối tượng. Đầu ra là danh sách **(video nguồn, đoạn [start, end], thời điểm đỉnh, điểm)**. Bài toán tương ứng với *Instance Search* (TRECVID INS) / *known-item search* (VBS) ở quy mô nhỏ.
 

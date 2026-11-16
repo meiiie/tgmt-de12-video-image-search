@@ -1,0 +1,2336 @@
+{
+  "runs": {
+    "fp32": {
+      "cases_sha256": "302ef3dd870e23b033ac3e6c782a8071832c49d1bc08bccc95dc32c54a372eb2",
+      "model_config_sha256": "b8f1e9931b57fbc054acdb445c41765d55b0074c58d145fa82839941ad1b5bb3",
+      "model_load_seconds": 2.8275753000016266,
+      "torch": "2.14.1+cu126",
+      "dtype": "torch.float32",
+      "dimension": 768,
+      "source": "Hand-authored diagnostic cases declared before the run. Not a representative or independent benchmark.",
+      "sentiment": {
+        "en": {
+          "label_definitions": {
+            "positive": "A positive opinion about a product, expressing satisfaction or praise.",
+            "negative": "A negative opinion about a product, expressing dissatisfaction or criticism.",
+            "neutral": "A neutral factual description of a product, without an evaluation.",
+            "mixed": "A mixed opinion about a product, containing both praise and criticism."
+          },
+          "groups": {
+            "plain": {
+              "total": 16,
+              "correct": 14
+            },
+            "challenge": {
+              "total": 8,
+              "correct": 6
+            }
+          },
+          "items": [
+            {
+              "id": "p1",
+              "group": "plain",
+              "label": "positive",
+              "text": "Tôi rất hài lòng với chiếc điện thoại này. Nó dùng rất tốt.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.8414679765701294,
+                "negative": 0.6949805021286011,
+                "neutral": 0.7056357860565186,
+                "mixed": 0.7030656337738037
+              }
+            },
+            {
+              "id": "p2",
+              "group": "plain",
+              "label": "positive",
+              "text": "Tai nghe này tuyệt vời, âm thanh rất hay.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.831843376159668,
+                "negative": 0.6532827019691467,
+                "neutral": 0.6818199753761292,
+                "mixed": 0.6703002452850342
+              }
+            },
+            {
+              "id": "p3",
+              "group": "plain",
+              "label": "positive",
+              "text": "This camera is excellent. I am very happy with my purchase.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.8354954719543457,
+                "negative": 0.6375971436500549,
+                "neutral": 0.6528533697128296,
+                "mixed": 0.641864538192749
+              }
+            },
+            {
+              "id": "p4",
+              "group": "plain",
+              "label": "positive",
+              "text": "I love this app. It works perfectly and saves me time.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.8350380659103394,
+                "negative": 0.6164127588272095,
+                "neutral": 0.6315125823020935,
+                "mixed": 0.6353956460952759
+              }
+            },
+            {
+              "id": "n1",
+              "group": "plain",
+              "label": "negative",
+              "text": "Tôi rất thất vọng với chiếc điện thoại này. Nó liên tục bị lỗi.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6272983551025391,
+                "negative": 0.8086444139480591,
+                "neutral": 0.6716223955154419,
+                "mixed": 0.6314922571182251
+              }
+            },
+            {
+              "id": "n2",
+              "group": "plain",
+              "label": "negative",
+              "text": "Tai nghe này quá tệ, tôi muốn trả lại.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6191026568412781,
+                "negative": 0.8145214319229126,
+                "neutral": 0.6704363822937012,
+                "mixed": 0.6425988078117371
+              }
+            },
+            {
+              "id": "n3",
+              "group": "plain",
+              "label": "negative",
+              "text": "This camera is terrible. I regret buying it.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.5794538259506226,
+                "negative": 0.8322689533233643,
+                "neutral": 0.6738572120666504,
+                "mixed": 0.6215997934341431
+              }
+            },
+            {
+              "id": "n4",
+              "group": "plain",
+              "label": "negative",
+              "text": "I hate this app. It keeps crashing and wasting my time.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.5934631824493408,
+                "negative": 0.8541313409805298,
+                "neutral": 0.6435442566871643,
+                "mixed": 0.6151368021965027
+              }
+            },
+            {
+              "id": "z1",
+              "group": "plain",
+              "label": "neutral",
+              "text": "Điện thoại này có màn hình 6,5 inch và hai cổng kết nối.",
+              "predicted": "neutral",
+              "scores": {
+                "positive": 0.6740018129348755,
+                "negative": 0.6325145363807678,
+                "neutral": 0.7888644933700562,
+                "mixed": 0.6972321271896362
+              }
+            },
+            {
+              "id": "z2",
+              "group": "plain",
+              "label": "neutral",
+              "text": "Hộp tai nghe có một dây cáp và một tờ hướng dẫn.",
+              "predicted": "neutral",
+              "scores": {
+                "positive": 0.6740890741348267,
+                "negative": 0.6685539484024048,
+                "neutral": 0.7739393711090088,
+                "mixed": 0.6927207708358765
+              }
+            },
+            {
+              "id": "z3",
+              "group": "plain",
+              "label": "neutral",
+              "text": "The camera weighs 500 grams and uses an SD card.",
+              "predicted": "neutral",
+              "scores": {
+                "positive": 0.6376063227653503,
+                "negative": 0.6195605993270874,
+                "neutral": 0.7675848007202148,
+                "mixed": 0.6686614751815796
+              }
+            },
+            {
+              "id": "z4",
+              "group": "plain",
+              "label": "neutral",
+              "text": "The application has three tabs and a settings menu.",
+              "predicted": "neutral",
+              "scores": {
+                "positive": 0.7047044038772583,
+                "negative": 0.6512589454650879,
+                "neutral": 0.7711753249168396,
+                "mixed": 0.7131434679031372
+              }
+            },
+            {
+              "id": "m1",
+              "group": "plain",
+              "label": "mixed",
+              "text": "Camera chụp rất đẹp nhưng pin quá tệ, dùng một lát đã hết.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6415725350379944,
+                "negative": 0.7405048608779907,
+                "neutral": 0.6727116107940674,
+                "mixed": 0.70210862159729
+              }
+            },
+            {
+              "id": "m2",
+              "group": "plain",
+              "label": "mixed",
+              "text": "Tai nghe có âm thanh hay nhưng đeo rất đau tai.",
+              "predicted": "mixed",
+              "scores": {
+                "positive": 0.6727160811424255,
+                "negative": 0.7016677856445312,
+                "neutral": 0.7318568229675293,
+                "mixed": 0.7511779069900513
+              }
+            },
+            {
+              "id": "m3",
+              "group": "plain",
+              "label": "mixed",
+              "text": "The screen looks beautiful, but the battery life is awful.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6260031461715698,
+                "negative": 0.815926194190979,
+                "neutral": 0.6987682580947876,
+                "mixed": 0.6838569641113281
+              }
+            },
+            {
+              "id": "m4",
+              "group": "plain",
+              "label": "mixed",
+              "text": "I like the app's useful features, but I dislike its confusing interface.",
+              "predicted": "mixed",
+              "scores": {
+                "positive": 0.7199301719665527,
+                "negative": 0.7268999218940735,
+                "neutral": 0.7316148281097412,
+                "mixed": 0.8380023837089539
+              }
+            },
+            {
+              "id": "h1",
+              "group": "challenge",
+              "label": "negative",
+              "text": "Tuyệt vời thật, mới mua hôm qua mà hôm nay đã hỏng!",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.7106272578239441,
+                "negative": 0.728829026222229,
+                "neutral": 0.6684834957122803,
+                "mixed": 0.6751551628112793
+              }
+            },
+            {
+              "id": "h2",
+              "group": "challenge",
+              "label": "negative",
+              "text": "Fantastic, the app deleted all my work again. Just what I needed!",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.7253878116607666,
+                "negative": 0.6636579036712646,
+                "neutral": 0.6276845335960388,
+                "mixed": 0.5821680426597595
+              }
+            },
+            {
+              "id": "h3",
+              "group": "challenge",
+              "label": "positive",
+              "text": "Tôi không hề hối hận khi mua sản phẩm này. Nó đáp ứng mọi nhu cầu của tôi.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.8138031363487244,
+                "negative": 0.7216911315917969,
+                "neutral": 0.7014063596725464,
+                "mixed": 0.683637261390686
+              }
+            },
+            {
+              "id": "h4",
+              "group": "challenge",
+              "label": "positive",
+              "text": "I have no complaints about this product. It does everything I need.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.8420587778091431,
+                "negative": 0.7014942765235901,
+                "neutral": 0.7499284744262695,
+                "mixed": 0.6968711614608765
+              }
+            },
+            {
+              "id": "h5",
+              "group": "challenge",
+              "label": "negative",
+              "text": "Không phải tôi hài lòng với chiếc máy này. Tôi muốn được hoàn tiền.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6528279185295105,
+                "negative": 0.7833774089813232,
+                "neutral": 0.6860908269882202,
+                "mixed": 0.6551336050033569
+              }
+            },
+            {
+              "id": "h6",
+              "group": "challenge",
+              "label": "negative",
+              "text": "I cannot recommend this supposedly excellent product. It failed after one day.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6331703662872314,
+                "negative": 0.8761332035064697,
+                "neutral": 0.7068121433258057,
+                "mixed": 0.6556888818740845
+              }
+            },
+            {
+              "id": "h7",
+              "group": "challenge",
+              "label": "mixed",
+              "text": "Tôi thích chất lượng ảnh, nhưng đừng hiểu nhầm: tôi ghét thời lượng pin của nó.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6622089147567749,
+                "negative": 0.7664213180541992,
+                "neutral": 0.6909524202346802,
+                "mixed": 0.7017017006874084
+              }
+            },
+            {
+              "id": "h8",
+              "group": "challenge",
+              "label": "mixed",
+              "text": "I wouldn't call it a bad camera: the pictures are great, though the battery is a disaster.",
+              "predicted": "mixed",
+              "scores": {
+                "positive": 0.6785040497779846,
+                "negative": 0.7138899564743042,
+                "neutral": 0.6915560960769653,
+                "mixed": 0.7912954092025757
+              }
+            }
+          ]
+        },
+        "vi": {
+          "label_definitions": {
+            "positive": "Ý kiến tích cực về sản phẩm, thể hiện sự hài lòng hoặc khen ngợi.",
+            "negative": "Ý kiến tiêu cực về sản phẩm, thể hiện sự không hài lòng hoặc chê bai.",
+            "neutral": "Thông tin trung lập mô tả sản phẩm, không đưa ra đánh giá.",
+            "mixed": "Ý kiến vừa tích cực vừa tiêu cực về sản phẩm, có cả khen và chê."
+          },
+          "groups": {
+            "plain": {
+              "total": 16,
+              "correct": 14
+            },
+            "challenge": {
+              "total": 8,
+              "correct": 6
+            }
+          },
+          "items": [
+            {
+              "id": "p1",
+              "group": "plain",
+              "label": "positive",
+              "text": "Tôi rất hài lòng với chiếc điện thoại này. Nó dùng rất tốt.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.8362677693367004,
+                "negative": 0.758287787437439,
+                "neutral": 0.7307641506195068,
+                "mixed": 0.7694151401519775
+              }
+            },
+            {
+              "id": "p2",
+              "group": "plain",
+              "label": "positive",
+              "text": "Tai nghe này tuyệt vời, âm thanh rất hay.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.8202314376831055,
+                "negative": 0.7180182933807373,
+                "neutral": 0.7210186719894409,
+                "mixed": 0.7421554923057556
+              }
+            },
+            {
+              "id": "p3",
+              "group": "plain",
+              "label": "positive",
+              "text": "This camera is excellent. I am very happy with my purchase.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.7411438226699829,
+                "negative": 0.6309688091278076,
+                "neutral": 0.6324208974838257,
+                "mixed": 0.6490476131439209
+              }
+            },
+            {
+              "id": "p4",
+              "group": "plain",
+              "label": "positive",
+              "text": "I love this app. It works perfectly and saves me time.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.7385851144790649,
+                "negative": 0.6172950267791748,
+                "neutral": 0.6239656805992126,
+                "mixed": 0.6492481827735901
+              }
+            },
+            {
+              "id": "n1",
+              "group": "plain",
+              "label": "negative",
+              "text": "Tôi rất thất vọng với chiếc điện thoại này. Nó liên tục bị lỗi.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.7030753493309021,
+                "negative": 0.8024888038635254,
+                "neutral": 0.739188015460968,
+                "mixed": 0.6932522058486938
+              }
+            },
+            {
+              "id": "n2",
+              "group": "plain",
+              "label": "negative",
+              "text": "Tai nghe này quá tệ, tôi muốn trả lại.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6860145330429077,
+                "negative": 0.7848989963531494,
+                "neutral": 0.7261713743209839,
+                "mixed": 0.6942133903503418
+              }
+            },
+            {
+              "id": "n3",
+              "group": "plain",
+              "label": "negative",
+              "text": "This camera is terrible. I regret buying it.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6016196012496948,
+                "negative": 0.73476243019104,
+                "neutral": 0.6843227744102478,
+                "mixed": 0.6295970678329468
+              }
+            },
+            {
+              "id": "n4",
+              "group": "plain",
+              "label": "negative",
+              "text": "I hate this app. It keeps crashing and wasting my time.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.594170093536377,
+                "negative": 0.7296974658966064,
+                "neutral": 0.6680739521980286,
+                "mixed": 0.6107837557792664
+              }
+            },
+            {
+              "id": "z1",
+              "group": "plain",
+              "label": "neutral",
+              "text": "Điện thoại này có màn hình 6,5 inch và hai cổng kết nối.",
+              "predicted": "neutral",
+              "scores": {
+                "positive": 0.7638230323791504,
+                "negative": 0.73537278175354,
+                "neutral": 0.7884160280227661,
+                "mixed": 0.7788136005401611
+              }
+            },
+            {
+              "id": "z2",
+              "group": "plain",
+              "label": "neutral",
+              "text": "Hộp tai nghe có một dây cáp và một tờ hướng dẫn.",
+              "predicted": "neutral",
+              "scores": {
+                "positive": 0.7245683670043945,
+                "negative": 0.718124270439148,
+                "neutral": 0.7645407915115356,
+                "mixed": 0.7234926223754883
+              }
+            },
+            {
+              "id": "z3",
+              "group": "plain",
+              "label": "neutral",
+              "text": "The camera weighs 500 grams and uses an SD card.",
+              "predicted": "neutral",
+              "scores": {
+                "positive": 0.6681511402130127,
+                "negative": 0.6487144827842712,
+                "neutral": 0.7203491926193237,
+                "mixed": 0.6815246343612671
+              }
+            },
+            {
+              "id": "z4",
+              "group": "plain",
+              "label": "neutral",
+              "text": "The application has three tabs and a settings menu.",
+              "predicted": "neutral",
+              "scores": {
+                "positive": 0.7068982124328613,
+                "negative": 0.665833592414856,
+                "neutral": 0.7260129451751709,
+                "mixed": 0.7058069705963135
+              }
+            },
+            {
+              "id": "m1",
+              "group": "plain",
+              "label": "mixed",
+              "text": "Camera chụp rất đẹp nhưng pin quá tệ, dùng một lát đã hết.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.7105282545089722,
+                "negative": 0.7727903127670288,
+                "neutral": 0.7247928380966187,
+                "mixed": 0.7710973620414734
+              }
+            },
+            {
+              "id": "m2",
+              "group": "plain",
+              "label": "mixed",
+              "text": "Tai nghe có âm thanh hay nhưng đeo rất đau tai.",
+              "predicted": "mixed",
+              "scores": {
+                "positive": 0.744018018245697,
+                "negative": 0.763327419757843,
+                "neutral": 0.7588990926742554,
+                "mixed": 0.7984707355499268
+              }
+            },
+            {
+              "id": "m3",
+              "group": "plain",
+              "label": "mixed",
+              "text": "The screen looks beautiful, but the battery life is awful.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6324313879013062,
+                "negative": 0.7456129193305969,
+                "neutral": 0.6836829781532288,
+                "mixed": 0.6833871006965637
+              }
+            },
+            {
+              "id": "m4",
+              "group": "plain",
+              "label": "mixed",
+              "text": "I like the app's useful features, but I dislike its confusing interface.",
+              "predicted": "mixed",
+              "scores": {
+                "positive": 0.6907967329025269,
+                "negative": 0.6956381797790527,
+                "neutral": 0.7060540914535522,
+                "mixed": 0.772708535194397
+              }
+            },
+            {
+              "id": "h1",
+              "group": "challenge",
+              "label": "negative",
+              "text": "Tuyệt vời thật, mới mua hôm qua mà hôm nay đã hỏng!",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.7711126804351807,
+                "negative": 0.7758101224899292,
+                "neutral": 0.728134036064148,
+                "mixed": 0.7682988047599792
+              }
+            },
+            {
+              "id": "h2",
+              "group": "challenge",
+              "label": "negative",
+              "text": "Fantastic, the app deleted all my work again. Just what I needed!",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.6599023342132568,
+                "negative": 0.632008969783783,
+                "neutral": 0.6268704533576965,
+                "mixed": 0.598699688911438
+              }
+            },
+            {
+              "id": "h3",
+              "group": "challenge",
+              "label": "positive",
+              "text": "Tôi không hề hối hận khi mua sản phẩm này. Nó đáp ứng mọi nhu cầu của tôi.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.8149556517601013,
+                "negative": 0.7620706558227539,
+                "neutral": 0.735413134098053,
+                "mixed": 0.7487417459487915
+              }
+            },
+            {
+              "id": "h4",
+              "group": "challenge",
+              "label": "positive",
+              "text": "I have no complaints about this product. It does everything I need.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.7798203229904175,
+                "negative": 0.7049592733383179,
+                "neutral": 0.7286223769187927,
+                "mixed": 0.7130449414253235
+              }
+            },
+            {
+              "id": "h5",
+              "group": "challenge",
+              "label": "negative",
+              "text": "Không phải tôi hài lòng với chiếc máy này. Tôi muốn được hoàn tiền.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.7272602915763855,
+                "negative": 0.7923696041107178,
+                "neutral": 0.7261377573013306,
+                "mixed": 0.7270351648330688
+              }
+            },
+            {
+              "id": "h6",
+              "group": "challenge",
+              "label": "negative",
+              "text": "I cannot recommend this supposedly excellent product. It failed after one day.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6394662857055664,
+                "negative": 0.7727876901626587,
+                "neutral": 0.7211467623710632,
+                "mixed": 0.6565433144569397
+              }
+            },
+            {
+              "id": "h7",
+              "group": "challenge",
+              "label": "mixed",
+              "text": "Tôi thích chất lượng ảnh, nhưng đừng hiểu nhầm: tôi ghét thời lượng pin của nó.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.7237579226493835,
+                "negative": 0.7841649055480957,
+                "neutral": 0.7386429309844971,
+                "mixed": 0.7637905478477478
+              }
+            },
+            {
+              "id": "h8",
+              "group": "challenge",
+              "label": "mixed",
+              "text": "I wouldn't call it a bad camera: the pictures are great, though the battery is a disaster.",
+              "predicted": "mixed",
+              "scores": {
+                "positive": 0.6883076429367065,
+                "negative": 0.7185646295547485,
+                "neutral": 0.6776731014251709,
+                "mixed": 0.785054087638855
+              }
+            }
+          ]
+        }
+      },
+      "grading_similarity": [
+        {
+          "id": "quantity",
+          "reference": "At standard atmospheric pressure, pure water boils at 100 degrees Celsius.",
+          "correct": "Under normal sea-level pressure, water reaches its boiling point at one hundred degrees Celsius.",
+          "incorrect": "At standard atmospheric pressure, pure water boils at 20 degrees Celsius.",
+          "correct_similarity": 0.9568905830383301,
+          "incorrect_similarity": 0.9679197072982788,
+          "incorrect_ranks_higher": true
+        },
+        {
+          "id": "relation",
+          "reference": "Plants absorb carbon dioxide during photosynthesis.",
+          "correct": "During photosynthesis, vegetation takes in CO2.",
+          "incorrect": "Plants release carbon dioxide during photosynthesis.",
+          "correct_similarity": 0.9649261236190796,
+          "incorrect_similarity": 0.9703061580657959,
+          "incorrect_ranks_higher": true
+        },
+        {
+          "id": "grammar",
+          "reference": "I went to the cinema yesterday.",
+          "correct": "Yesterday I saw a film at a movie theater.",
+          "incorrect": "I goed to the cinema yesterday.",
+          "correct_similarity": 0.9671075344085693,
+          "incorrect_similarity": 0.9701861143112183,
+          "incorrect_ranks_higher": true
+        },
+        {
+          "id": "time",
+          "reference": "The meeting starts at nine in the morning.",
+          "correct": "Our meeting begins at 9 a.m.",
+          "incorrect": "The meeting starts at nine in the evening.",
+          "correct_similarity": 0.9795570373535156,
+          "incorrect_similarity": 0.9660159349441528,
+          "incorrect_ranks_higher": false
+        },
+        {
+          "id": "direction",
+          "reference": "You should turn left after the bridge.",
+          "correct": "Once you have crossed the bridge, take the road on your left.",
+          "incorrect": "You should turn right after the bridge.",
+          "correct_similarity": 0.960271418094635,
+          "incorrect_similarity": 0.9766954183578491,
+          "incorrect_ranks_higher": true
+        },
+        {
+          "id": "negation",
+          "reference": "Tôi không thích chiếc điện thoại này.",
+          "correct": "Chiếc điện thoại này khiến tôi không hài lòng.",
+          "incorrect": "Tôi rất thích chiếc điện thoại này.",
+          "correct_similarity": 0.9649817943572998,
+          "incorrect_similarity": 0.9021666646003723,
+          "incorrect_ranks_higher": false
+        }
+      ],
+      "learning_retrieval": [
+        {
+          "text": "Tôi muốn nhờ người đối diện nhắc lại chậm hơn vì nghe chưa rõ.",
+          "expected": "clarify",
+          "top1_correct": true,
+          "results": [
+            {
+              "id": "clarify",
+              "text": "Sorry, could you say that again more slowly? I didn't quite catch the last part.",
+              "similarity": 0.7561492919921875
+            },
+            {
+              "id": "apologize",
+              "text": "I'm sorry I interrupted you. Please go ahead and finish your point.",
+              "similarity": 0.6963240504264832
+            },
+            {
+              "id": "disagree",
+              "text": "I see your point, but I look at it a little differently. May I explain why?",
+              "similarity": 0.6887741088867188
+            },
+            {
+              "id": "think",
+              "text": "That's an interesting question. Let me think for a moment before I answer.",
+              "similarity": 0.674956738948822
+            },
+            {
+              "id": "refuse_rude",
+              "text": "No. Stop bothering me with your invitation.",
+              "similarity": 0.6687803864479065
+            },
+            {
+              "id": "decline",
+              "text": "Thank you for inviting me. I'd love to join, but I already have plans that evening.",
+              "similarity": 0.6685898303985596
+            },
+            {
+              "id": "example",
+              "text": "Let me give you a concrete example to explain what I mean.",
+              "similarity": 0.6453449726104736
+            },
+            {
+              "id": "technical",
+              "text": "A database index can reduce the time needed to look up a record.",
+              "similarity": 0.6217435598373413
+            },
+            {
+              "id": "sport",
+              "text": "The home team scored twice in the second half of the match.",
+              "similarity": 0.6058265566825867
+            },
+            {
+              "id": "weather",
+              "text": "The forecast says it will rain this afternoon and remain cloudy tomorrow.",
+              "similarity": 0.5913885235786438
+            },
+            {
+              "id": "disagree_rude",
+              "text": "You're completely wrong. Your idea is ridiculous.",
+              "similarity": 0.5902451276779175
+            },
+            {
+              "id": "shopping",
+              "text": "The supermarket sells fresh fruit, vegetables and bread.",
+              "similarity": 0.5592580437660217
+            }
+          ]
+        },
+        {
+          "text": "Tìm cách từ chối lời mời một cách lịch sự vì đã có kế hoạch khác.",
+          "expected": "decline",
+          "top1_correct": false,
+          "results": [
+            {
+              "id": "refuse_rude",
+              "text": "No. Stop bothering me with your invitation.",
+              "similarity": 0.7708705067634583
+            },
+            {
+              "id": "decline",
+              "text": "Thank you for inviting me. I'd love to join, but I already have plans that evening.",
+              "similarity": 0.7564021348953247
+            },
+            {
+              "id": "disagree",
+              "text": "I see your point, but I look at it a little differently. May I explain why?",
+              "similarity": 0.6343247890472412
+            },
+            {
+              "id": "apologize",
+              "text": "I'm sorry I interrupted you. Please go ahead and finish your point.",
+              "similarity": 0.6320618987083435
+            },
+            {
+              "id": "clarify",
+              "text": "Sorry, could you say that again more slowly? I didn't quite catch the last part.",
+              "similarity": 0.6281142234802246
+            },
+            {
+              "id": "disagree_rude",
+              "text": "You're completely wrong. Your idea is ridiculous.",
+              "similarity": 0.6142702102661133
+            },
+            {
+              "id": "think",
+              "text": "That's an interesting question. Let me think for a moment before I answer.",
+              "similarity": 0.6078817844390869
+            },
+            {
+              "id": "example",
+              "text": "Let me give you a concrete example to explain what I mean.",
+              "similarity": 0.5949884057044983
+            },
+            {
+              "id": "weather",
+              "text": "The forecast says it will rain this afternoon and remain cloudy tomorrow.",
+              "similarity": 0.557018518447876
+            },
+            {
+              "id": "sport",
+              "text": "The home team scored twice in the second half of the match.",
+              "similarity": 0.5547595024108887
+            },
+            {
+              "id": "technical",
+              "text": "A database index can reduce the time needed to look up a record.",
+              "similarity": 0.5105701684951782
+            },
+            {
+              "id": "shopping",
+              "text": "The supermarket sells fresh fruit, vegetables and bread.",
+              "similarity": 0.4814637005329132
+            }
+          ]
+        },
+        {
+          "text": "Cách thể hiện bất đồng quan điểm nhẹ nhàng trong cuộc thảo luận.",
+          "expected": "disagree",
+          "top1_correct": true,
+          "results": [
+            {
+              "id": "disagree",
+              "text": "I see your point, but I look at it a little differently. May I explain why?",
+              "similarity": 0.757197380065918
+            },
+            {
+              "id": "clarify",
+              "text": "Sorry, could you say that again more slowly? I didn't quite catch the last part.",
+              "similarity": 0.6863563656806946
+            },
+            {
+              "id": "example",
+              "text": "Let me give you a concrete example to explain what I mean.",
+              "similarity": 0.6769727468490601
+            },
+            {
+              "id": "apologize",
+              "text": "I'm sorry I interrupted you. Please go ahead and finish your point.",
+              "similarity": 0.6704304218292236
+            },
+            {
+              "id": "think",
+              "text": "That's an interesting question. Let me think for a moment before I answer.",
+              "similarity": 0.6643572449684143
+            },
+            {
+              "id": "sport",
+              "text": "The home team scored twice in the second half of the match.",
+              "similarity": 0.6267926692962646
+            },
+            {
+              "id": "decline",
+              "text": "Thank you for inviting me. I'd love to join, but I already have plans that evening.",
+              "similarity": 0.6209311485290527
+            },
+            {
+              "id": "refuse_rude",
+              "text": "No. Stop bothering me with your invitation.",
+              "similarity": 0.6157535314559937
+            },
+            {
+              "id": "shopping",
+              "text": "The supermarket sells fresh fruit, vegetables and bread.",
+              "similarity": 0.594969630241394
+            },
+            {
+              "id": "disagree_rude",
+              "text": "You're completely wrong. Your idea is ridiculous.",
+              "similarity": 0.590166449546814
+            },
+            {
+              "id": "technical",
+              "text": "A database index can reduce the time needed to look up a record.",
+              "similarity": 0.5847950577735901
+            },
+            {
+              "id": "weather",
+              "text": "The forecast says it will rain this afternoon and remain cloudy tomorrow.",
+              "similarity": 0.5779696702957153
+            }
+          ]
+        },
+        {
+          "text": "Câu nói để xin một chút thời gian suy nghĩ trước khi trả lời.",
+          "expected": "think",
+          "top1_correct": true,
+          "results": [
+            {
+              "id": "think",
+              "text": "That's an interesting question. Let me think for a moment before I answer.",
+              "similarity": 0.8032463788986206
+            },
+            {
+              "id": "apologize",
+              "text": "I'm sorry I interrupted you. Please go ahead and finish your point.",
+              "similarity": 0.7205466032028198
+            },
+            {
+              "id": "clarify",
+              "text": "Sorry, could you say that again more slowly? I didn't quite catch the last part.",
+              "similarity": 0.7084755897521973
+            },
+            {
+              "id": "disagree",
+              "text": "I see your point, but I look at it a little differently. May I explain why?",
+              "similarity": 0.685267984867096
+            },
+            {
+              "id": "decline",
+              "text": "Thank you for inviting me. I'd love to join, but I already have plans that evening.",
+              "similarity": 0.6807466745376587
+            },
+            {
+              "id": "refuse_rude",
+              "text": "No. Stop bothering me with your invitation.",
+              "similarity": 0.6768009662628174
+            },
+            {
+              "id": "example",
+              "text": "Let me give you a concrete example to explain what I mean.",
+              "similarity": 0.6765432357788086
+            },
+            {
+              "id": "technical",
+              "text": "A database index can reduce the time needed to look up a record.",
+              "similarity": 0.6164863109588623
+            },
+            {
+              "id": "weather",
+              "text": "The forecast says it will rain this afternoon and remain cloudy tomorrow.",
+              "similarity": 0.601075291633606
+            },
+            {
+              "id": "disagree_rude",
+              "text": "You're completely wrong. Your idea is ridiculous.",
+              "similarity": 0.5892784595489502
+            },
+            {
+              "id": "sport",
+              "text": "The home team scored twice in the second half of the match.",
+              "similarity": 0.5788516402244568
+            },
+            {
+              "id": "shopping",
+              "text": "The supermarket sells fresh fruit, vegetables and bread.",
+              "similarity": 0.5663551092147827
+            }
+          ]
+        },
+        {
+          "text": "Tôi muốn đưa ra ví dụ cụ thể để minh họa ý kiến của mình.",
+          "expected": "example",
+          "top1_correct": true,
+          "results": [
+            {
+              "id": "example",
+              "text": "Let me give you a concrete example to explain what I mean.",
+              "similarity": 0.7941281795501709
+            },
+            {
+              "id": "disagree",
+              "text": "I see your point, but I look at it a little differently. May I explain why?",
+              "similarity": 0.7530212998390198
+            },
+            {
+              "id": "apologize",
+              "text": "I'm sorry I interrupted you. Please go ahead and finish your point.",
+              "similarity": 0.6944185495376587
+            },
+            {
+              "id": "think",
+              "text": "That's an interesting question. Let me think for a moment before I answer.",
+              "similarity": 0.692957878112793
+            },
+            {
+              "id": "clarify",
+              "text": "Sorry, could you say that again more slowly? I didn't quite catch the last part.",
+              "similarity": 0.6763434410095215
+            },
+            {
+              "id": "decline",
+              "text": "Thank you for inviting me. I'd love to join, but I already have plans that evening.",
+              "similarity": 0.6204038858413696
+            },
+            {
+              "id": "shopping",
+              "text": "The supermarket sells fresh fruit, vegetables and bread.",
+              "similarity": 0.6152228116989136
+            },
+            {
+              "id": "disagree_rude",
+              "text": "You're completely wrong. Your idea is ridiculous.",
+              "similarity": 0.6087892055511475
+            },
+            {
+              "id": "technical",
+              "text": "A database index can reduce the time needed to look up a record.",
+              "similarity": 0.6080691814422607
+            },
+            {
+              "id": "sport",
+              "text": "The home team scored twice in the second half of the match.",
+              "similarity": 0.6046980619430542
+            },
+            {
+              "id": "refuse_rude",
+              "text": "No. Stop bothering me with your invitation.",
+              "similarity": 0.5953212976455688
+            },
+            {
+              "id": "weather",
+              "text": "The forecast says it will rain this afternoon and remain cloudy tomorrow.",
+              "similarity": 0.590038001537323
+            }
+          ]
+        },
+        {
+          "text": "Cách xin lỗi vì vừa ngắt lời người khác.",
+          "expected": "apologize",
+          "top1_correct": true,
+          "results": [
+            {
+              "id": "apologize",
+              "text": "I'm sorry I interrupted you. Please go ahead and finish your point.",
+              "similarity": 0.7124489545822144
+            },
+            {
+              "id": "clarify",
+              "text": "Sorry, could you say that again more slowly? I didn't quite catch the last part.",
+              "similarity": 0.6655967831611633
+            },
+            {
+              "id": "refuse_rude",
+              "text": "No. Stop bothering me with your invitation.",
+              "similarity": 0.6649383306503296
+            },
+            {
+              "id": "example",
+              "text": "Let me give you a concrete example to explain what I mean.",
+              "similarity": 0.6320221424102783
+            },
+            {
+              "id": "disagree",
+              "text": "I see your point, but I look at it a little differently. May I explain why?",
+              "similarity": 0.6252413988113403
+            },
+            {
+              "id": "disagree_rude",
+              "text": "You're completely wrong. Your idea is ridiculous.",
+              "similarity": 0.6127768158912659
+            },
+            {
+              "id": "think",
+              "text": "That's an interesting question. Let me think for a moment before I answer.",
+              "similarity": 0.5898244380950928
+            },
+            {
+              "id": "decline",
+              "text": "Thank you for inviting me. I'd love to join, but I already have plans that evening.",
+              "similarity": 0.5867524147033691
+            },
+            {
+              "id": "sport",
+              "text": "The home team scored twice in the second half of the match.",
+              "similarity": 0.5663611888885498
+            },
+            {
+              "id": "shopping",
+              "text": "The supermarket sells fresh fruit, vegetables and bread.",
+              "similarity": 0.5299974083900452
+            },
+            {
+              "id": "weather",
+              "text": "The forecast says it will rain this afternoon and remain cloudy tomorrow.",
+              "similarity": 0.5108960866928101
+            },
+            {
+              "id": "technical",
+              "text": "A database index can reduce the time needed to look up a record.",
+              "similarity": 0.4979594647884369
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "sentiment": {
+          "en": {
+            "plain": {
+              "total": 16,
+              "correct": 14
+            },
+            "challenge": {
+              "total": 8,
+              "correct": 6
+            }
+          },
+          "vi": {
+            "plain": {
+              "total": 16,
+              "correct": 14
+            },
+            "challenge": {
+              "total": 8,
+              "correct": 6
+            }
+          }
+        },
+        "incorrect_answer_ranks_higher": 4,
+        "grading_pairs": 6,
+        "learning_top1_correct": 5,
+        "learning_queries": 6,
+        "learning_documents": 12
+      }
+    },
+    "bf16": {
+      "cases_sha256": "302ef3dd870e23b033ac3e6c782a8071832c49d1bc08bccc95dc32c54a372eb2",
+      "model_config_sha256": "b8f1e9931b57fbc054acdb445c41765d55b0074c58d145fa82839941ad1b5bb3",
+      "model_load_seconds": 2.969792099996994,
+      "torch": "2.14.1+cu126",
+      "dtype": "torch.bfloat16",
+      "dimension": 768,
+      "source": "Hand-authored diagnostic cases declared before the run. Not a representative or independent benchmark.",
+      "sentiment": {
+        "en": {
+          "label_definitions": {
+            "positive": "A positive opinion about a product, expressing satisfaction or praise.",
+            "negative": "A negative opinion about a product, expressing dissatisfaction or criticism.",
+            "neutral": "A neutral factual description of a product, without an evaluation.",
+            "mixed": "A mixed opinion about a product, containing both praise and criticism."
+          },
+          "groups": {
+            "plain": {
+              "total": 16,
+              "correct": 14
+            },
+            "challenge": {
+              "total": 8,
+              "correct": 6
+            }
+          },
+          "items": [
+            {
+              "id": "p1",
+              "group": "plain",
+              "label": "positive",
+              "text": "Tôi rất hài lòng với chiếc điện thoại này. Nó dùng rất tốt.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.841353714466095,
+                "negative": 0.6947466135025024,
+                "neutral": 0.705201268196106,
+                "mixed": 0.7031463980674744
+              }
+            },
+            {
+              "id": "p2",
+              "group": "plain",
+              "label": "positive",
+              "text": "Tai nghe này tuyệt vời, âm thanh rất hay.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.831669807434082,
+                "negative": 0.6534570455551147,
+                "neutral": 0.6819077730178833,
+                "mixed": 0.6712003946304321
+              }
+            },
+            {
+              "id": "p3",
+              "group": "plain",
+              "label": "positive",
+              "text": "This camera is excellent. I am very happy with my purchase.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.836495041847229,
+                "negative": 0.6375586986541748,
+                "neutral": 0.6518992781639099,
+                "mixed": 0.6423748731613159
+              }
+            },
+            {
+              "id": "p4",
+              "group": "plain",
+              "label": "positive",
+              "text": "I love this app. It works perfectly and saves me time.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.8361079692840576,
+                "negative": 0.6169785261154175,
+                "neutral": 0.6306908130645752,
+                "mixed": 0.6363412141799927
+              }
+            },
+            {
+              "id": "n1",
+              "group": "plain",
+              "label": "negative",
+              "text": "Tôi rất thất vọng với chiếc điện thoại này. Nó liên tục bị lỗi.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6265056133270264,
+                "negative": 0.8079513311386108,
+                "neutral": 0.6709710359573364,
+                "mixed": 0.6310796737670898
+              }
+            },
+            {
+              "id": "n2",
+              "group": "plain",
+              "label": "negative",
+              "text": "Tai nghe này quá tệ, tôi muốn trả lại.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6182169914245605,
+                "negative": 0.8147550821304321,
+                "neutral": 0.6698848009109497,
+                "mixed": 0.6427023410797119
+              }
+            },
+            {
+              "id": "n3",
+              "group": "plain",
+              "label": "negative",
+              "text": "This camera is terrible. I regret buying it.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.5791736841201782,
+                "negative": 0.8320777416229248,
+                "neutral": 0.6726164817810059,
+                "mixed": 0.6217828989028931
+              }
+            },
+            {
+              "id": "n4",
+              "group": "plain",
+              "label": "negative",
+              "text": "I hate this app. It keeps crashing and wasting my time.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.593323826789856,
+                "negative": 0.8546803593635559,
+                "neutral": 0.6432294249534607,
+                "mixed": 0.6153985857963562
+              }
+            },
+            {
+              "id": "z1",
+              "group": "plain",
+              "label": "neutral",
+              "text": "Điện thoại này có màn hình 6,5 inch và hai cổng kết nối.",
+              "predicted": "neutral",
+              "scores": {
+                "positive": 0.6746801137924194,
+                "negative": 0.6319015026092529,
+                "neutral": 0.7895581722259521,
+                "mixed": 0.6984562873840332
+              }
+            },
+            {
+              "id": "z2",
+              "group": "plain",
+              "label": "neutral",
+              "text": "Hộp tai nghe có một dây cáp và một tờ hướng dẫn.",
+              "predicted": "neutral",
+              "scores": {
+                "positive": 0.6741917133331299,
+                "negative": 0.6674812436103821,
+                "neutral": 0.7725573778152466,
+                "mixed": 0.6938377618789673
+              }
+            },
+            {
+              "id": "z3",
+              "group": "plain",
+              "label": "neutral",
+              "text": "The camera weighs 500 grams and uses an SD card.",
+              "predicted": "neutral",
+              "scores": {
+                "positive": 0.637071430683136,
+                "negative": 0.6183356046676636,
+                "neutral": 0.7659507393836975,
+                "mixed": 0.6686923503875732
+              }
+            },
+            {
+              "id": "z4",
+              "group": "plain",
+              "label": "neutral",
+              "text": "The application has three tabs and a settings menu.",
+              "predicted": "neutral",
+              "scores": {
+                "positive": 0.7055889368057251,
+                "negative": 0.6498647928237915,
+                "neutral": 0.7701559066772461,
+                "mixed": 0.7132303714752197
+              }
+            },
+            {
+              "id": "m1",
+              "group": "plain",
+              "label": "mixed",
+              "text": "Camera chụp rất đẹp nhưng pin quá tệ, dùng một lát đã hết.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6418977975845337,
+                "negative": 0.7403252124786377,
+                "neutral": 0.6721308827400208,
+                "mixed": 0.7027606964111328
+              }
+            },
+            {
+              "id": "m2",
+              "group": "plain",
+              "label": "mixed",
+              "text": "Tai nghe có âm thanh hay nhưng đeo rất đau tai.",
+              "predicted": "mixed",
+              "scores": {
+                "positive": 0.6733951568603516,
+                "negative": 0.7019771337509155,
+                "neutral": 0.7323406934738159,
+                "mixed": 0.7511643767356873
+              }
+            },
+            {
+              "id": "m3",
+              "group": "plain",
+              "label": "mixed",
+              "text": "The screen looks beautiful, but the battery life is awful.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6254839897155762,
+                "negative": 0.8152419328689575,
+                "neutral": 0.6979161500930786,
+                "mixed": 0.6824612021446228
+              }
+            },
+            {
+              "id": "m4",
+              "group": "plain",
+              "label": "mixed",
+              "text": "I like the app's useful features, but I dislike its confusing interface.",
+              "predicted": "mixed",
+              "scores": {
+                "positive": 0.7214704751968384,
+                "negative": 0.7264834642410278,
+                "neutral": 0.7325127720832825,
+                "mixed": 0.838692307472229
+              }
+            },
+            {
+              "id": "h1",
+              "group": "challenge",
+              "label": "negative",
+              "text": "Tuyệt vời thật, mới mua hôm qua mà hôm nay đã hỏng!",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.7108775973320007,
+                "negative": 0.7285422086715698,
+                "neutral": 0.6677452921867371,
+                "mixed": 0.6743953227996826
+              }
+            },
+            {
+              "id": "h2",
+              "group": "challenge",
+              "label": "negative",
+              "text": "Fantastic, the app deleted all my work again. Just what I needed!",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.7221966981887817,
+                "negative": 0.6686958074569702,
+                "neutral": 0.6291893720626831,
+                "mixed": 0.5834966897964478
+              }
+            },
+            {
+              "id": "h3",
+              "group": "challenge",
+              "label": "positive",
+              "text": "Tôi không hề hối hận khi mua sản phẩm này. Nó đáp ứng mọi nhu cầu của tôi.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.8140727877616882,
+                "negative": 0.7212844491004944,
+                "neutral": 0.7006051540374756,
+                "mixed": 0.6843891739845276
+              }
+            },
+            {
+              "id": "h4",
+              "group": "challenge",
+              "label": "positive",
+              "text": "I have no complaints about this product. It does everything I need.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.842115044593811,
+                "negative": 0.7008182406425476,
+                "neutral": 0.7494307160377502,
+                "mixed": 0.6976519227027893
+              }
+            },
+            {
+              "id": "h5",
+              "group": "challenge",
+              "label": "negative",
+              "text": "Không phải tôi hài lòng với chiếc máy này. Tôi muốn được hoàn tiền.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6514347791671753,
+                "negative": 0.7836790084838867,
+                "neutral": 0.6856240630149841,
+                "mixed": 0.6546555757522583
+              }
+            },
+            {
+              "id": "h6",
+              "group": "challenge",
+              "label": "negative",
+              "text": "I cannot recommend this supposedly excellent product. It failed after one day.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6327342987060547,
+                "negative": 0.8758639693260193,
+                "neutral": 0.7056779265403748,
+                "mixed": 0.6550463438034058
+              }
+            },
+            {
+              "id": "h7",
+              "group": "challenge",
+              "label": "mixed",
+              "text": "Tôi thích chất lượng ảnh, nhưng đừng hiểu nhầm: tôi ghét thời lượng pin của nó.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6621631383895874,
+                "negative": 0.7660991549491882,
+                "neutral": 0.6907086372375488,
+                "mixed": 0.7014521360397339
+              }
+            },
+            {
+              "id": "h8",
+              "group": "challenge",
+              "label": "mixed",
+              "text": "I wouldn't call it a bad camera: the pictures are great, though the battery is a disaster.",
+              "predicted": "mixed",
+              "scores": {
+                "positive": 0.6785765290260315,
+                "negative": 0.7135013937950134,
+                "neutral": 0.6918566226959229,
+                "mixed": 0.7920935153961182
+              }
+            }
+          ]
+        },
+        "vi": {
+          "label_definitions": {
+            "positive": "Ý kiến tích cực về sản phẩm, thể hiện sự hài lòng hoặc khen ngợi.",
+            "negative": "Ý kiến tiêu cực về sản phẩm, thể hiện sự không hài lòng hoặc chê bai.",
+            "neutral": "Thông tin trung lập mô tả sản phẩm, không đưa ra đánh giá.",
+            "mixed": "Ý kiến vừa tích cực vừa tiêu cực về sản phẩm, có cả khen và chê."
+          },
+          "groups": {
+            "plain": {
+              "total": 16,
+              "correct": 14
+            },
+            "challenge": {
+              "total": 8,
+              "correct": 6
+            }
+          },
+          "items": [
+            {
+              "id": "p1",
+              "group": "plain",
+              "label": "positive",
+              "text": "Tôi rất hài lòng với chiếc điện thoại này. Nó dùng rất tốt.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.8363382816314697,
+                "negative": 0.7587722539901733,
+                "neutral": 0.7312942743301392,
+                "mixed": 0.7701573371887207
+              }
+            },
+            {
+              "id": "p2",
+              "group": "plain",
+              "label": "positive",
+              "text": "Tai nghe này tuyệt vời, âm thanh rất hay.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.8199931383132935,
+                "negative": 0.7193140983581543,
+                "neutral": 0.7221438884735107,
+                "mixed": 0.7431287169456482
+              }
+            },
+            {
+              "id": "p3",
+              "group": "plain",
+              "label": "positive",
+              "text": "This camera is excellent. I am very happy with my purchase.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.7416703701019287,
+                "negative": 0.6309210062026978,
+                "neutral": 0.6331415772438049,
+                "mixed": 0.650143563747406
+              }
+            },
+            {
+              "id": "p4",
+              "group": "plain",
+              "label": "positive",
+              "text": "I love this app. It works perfectly and saves me time.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.7390718460083008,
+                "negative": 0.6181488633155823,
+                "neutral": 0.6243144273757935,
+                "mixed": 0.6505056023597717
+              }
+            },
+            {
+              "id": "n1",
+              "group": "plain",
+              "label": "negative",
+              "text": "Tôi rất thất vọng với chiếc điện thoại này. Nó liên tục bị lỗi.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.702890157699585,
+                "negative": 0.8038002252578735,
+                "neutral": 0.7394795417785645,
+                "mixed": 0.6944990158081055
+              }
+            },
+            {
+              "id": "n2",
+              "group": "plain",
+              "label": "negative",
+              "text": "Tai nghe này quá tệ, tôi muốn trả lại.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6851970553398132,
+                "negative": 0.7862405180931091,
+                "neutral": 0.7266638278961182,
+                "mixed": 0.6948446035385132
+              }
+            },
+            {
+              "id": "n3",
+              "group": "plain",
+              "label": "negative",
+              "text": "This camera is terrible. I regret buying it.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.602324366569519,
+                "negative": 0.7364461421966553,
+                "neutral": 0.6855523586273193,
+                "mixed": 0.6312202215194702
+              }
+            },
+            {
+              "id": "n4",
+              "group": "plain",
+              "label": "negative",
+              "text": "I hate this app. It keeps crashing and wasting my time.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.5945927500724792,
+                "negative": 0.7322651147842407,
+                "neutral": 0.6690995097160339,
+                "mixed": 0.6127387285232544
+              }
+            },
+            {
+              "id": "z1",
+              "group": "plain",
+              "label": "neutral",
+              "text": "Điện thoại này có màn hình 6,5 inch và hai cổng kết nối.",
+              "predicted": "neutral",
+              "scores": {
+                "positive": 0.7628861665725708,
+                "negative": 0.7350301742553711,
+                "neutral": 0.7890306115150452,
+                "mixed": 0.7779123783111572
+              }
+            },
+            {
+              "id": "z2",
+              "group": "plain",
+              "label": "neutral",
+              "text": "Hộp tai nghe có một dây cáp và một tờ hướng dẫn.",
+              "predicted": "neutral",
+              "scores": {
+                "positive": 0.7234864234924316,
+                "negative": 0.7176645398139954,
+                "neutral": 0.7647751569747925,
+                "mixed": 0.722939670085907
+              }
+            },
+            {
+              "id": "z3",
+              "group": "plain",
+              "label": "neutral",
+              "text": "The camera weighs 500 grams and uses an SD card.",
+              "predicted": "neutral",
+              "scores": {
+                "positive": 0.6658996343612671,
+                "negative": 0.6471168994903564,
+                "neutral": 0.7197514176368713,
+                "mixed": 0.6794737577438354
+              }
+            },
+            {
+              "id": "z4",
+              "group": "plain",
+              "label": "neutral",
+              "text": "The application has three tabs and a settings menu.",
+              "predicted": "neutral",
+              "scores": {
+                "positive": 0.7060729265213013,
+                "negative": 0.6651906967163086,
+                "neutral": 0.725328266620636,
+                "mixed": 0.7047992944717407
+              }
+            },
+            {
+              "id": "m1",
+              "group": "plain",
+              "label": "mixed",
+              "text": "Camera chụp rất đẹp nhưng pin quá tệ, dùng một lát đã hết.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.7102358341217041,
+                "negative": 0.7736753225326538,
+                "neutral": 0.7254133224487305,
+                "mixed": 0.7720246315002441
+              }
+            },
+            {
+              "id": "m2",
+              "group": "plain",
+              "label": "mixed",
+              "text": "Tai nghe có âm thanh hay nhưng đeo rất đau tai.",
+              "predicted": "mixed",
+              "scores": {
+                "positive": 0.7434301376342773,
+                "negative": 0.7640514373779297,
+                "neutral": 0.7598358392715454,
+                "mixed": 0.7975221872329712
+              }
+            },
+            {
+              "id": "m3",
+              "group": "plain",
+              "label": "mixed",
+              "text": "The screen looks beautiful, but the battery life is awful.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6317086815834045,
+                "negative": 0.746544599533081,
+                "neutral": 0.6839476823806763,
+                "mixed": 0.6828776001930237
+              }
+            },
+            {
+              "id": "m4",
+              "group": "plain",
+              "label": "mixed",
+              "text": "I like the app's useful features, but I dislike its confusing interface.",
+              "predicted": "mixed",
+              "scores": {
+                "positive": 0.6922218799591064,
+                "negative": 0.6968518495559692,
+                "neutral": 0.7073103785514832,
+                "mixed": 0.7730367183685303
+              }
+            },
+            {
+              "id": "h1",
+              "group": "challenge",
+              "label": "negative",
+              "text": "Tuyệt vời thật, mới mua hôm qua mà hôm nay đã hỏng!",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.7717387676239014,
+                "negative": 0.7772253155708313,
+                "neutral": 0.7283644676208496,
+                "mixed": 0.7689981460571289
+              }
+            },
+            {
+              "id": "h2",
+              "group": "challenge",
+              "label": "negative",
+              "text": "Fantastic, the app deleted all my work again. Just what I needed!",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.658430814743042,
+                "negative": 0.6355470418930054,
+                "neutral": 0.628463089466095,
+                "mixed": 0.6007512807846069
+              }
+            },
+            {
+              "id": "h3",
+              "group": "challenge",
+              "label": "positive",
+              "text": "Tôi không hề hối hận khi mua sản phẩm này. Nó đáp ứng mọi nhu cầu của tôi.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.8155474662780762,
+                "negative": 0.7622482776641846,
+                "neutral": 0.7361132502555847,
+                "mixed": 0.7502029538154602
+              }
+            },
+            {
+              "id": "h4",
+              "group": "challenge",
+              "label": "positive",
+              "text": "I have no complaints about this product. It does everything I need.",
+              "predicted": "positive",
+              "scores": {
+                "positive": 0.7801807522773743,
+                "negative": 0.7044011354446411,
+                "neutral": 0.7295737266540527,
+                "mixed": 0.7136500477790833
+              }
+            },
+            {
+              "id": "h5",
+              "group": "challenge",
+              "label": "negative",
+              "text": "Không phải tôi hài lòng với chiếc máy này. Tôi muốn được hoàn tiền.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.7263883352279663,
+                "negative": 0.7932643890380859,
+                "neutral": 0.7266596555709839,
+                "mixed": 0.7269094586372375
+              }
+            },
+            {
+              "id": "h6",
+              "group": "challenge",
+              "label": "negative",
+              "text": "I cannot recommend this supposedly excellent product. It failed after one day.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.6395895481109619,
+                "negative": 0.7746068239212036,
+                "neutral": 0.7217614054679871,
+                "mixed": 0.6575717926025391
+              }
+            },
+            {
+              "id": "h7",
+              "group": "challenge",
+              "label": "mixed",
+              "text": "Tôi thích chất lượng ảnh, nhưng đừng hiểu nhầm: tôi ghét thời lượng pin của nó.",
+              "predicted": "negative",
+              "scores": {
+                "positive": 0.7241482138633728,
+                "negative": 0.7855954170227051,
+                "neutral": 0.7393323183059692,
+                "mixed": 0.76495760679245
+              }
+            },
+            {
+              "id": "h8",
+              "group": "challenge",
+              "label": "mixed",
+              "text": "I wouldn't call it a bad camera: the pictures are great, though the battery is a disaster.",
+              "predicted": "mixed",
+              "scores": {
+                "positive": 0.6884390115737915,
+                "negative": 0.7185268402099609,
+                "neutral": 0.6787653565406799,
+                "mixed": 0.7854760885238647
+              }
+            }
+          ]
+        }
+      },
+      "grading_similarity": [
+        {
+          "id": "quantity",
+          "reference": "At standard atmospheric pressure, pure water boils at 100 degrees Celsius.",
+          "correct": "Under normal sea-level pressure, water reaches its boiling point at one hundred degrees Celsius.",
+          "incorrect": "At standard atmospheric pressure, pure water boils at 20 degrees Celsius.",
+          "correct_similarity": 0.9567364454269409,
+          "incorrect_similarity": 0.9683340787887573,
+          "incorrect_ranks_higher": true
+        },
+        {
+          "id": "relation",
+          "reference": "Plants absorb carbon dioxide during photosynthesis.",
+          "correct": "During photosynthesis, vegetation takes in CO2.",
+          "incorrect": "Plants release carbon dioxide during photosynthesis.",
+          "correct_similarity": 0.9651378989219666,
+          "incorrect_similarity": 0.9699374437332153,
+          "incorrect_ranks_higher": true
+        },
+        {
+          "id": "grammar",
+          "reference": "I went to the cinema yesterday.",
+          "correct": "Yesterday I saw a film at a movie theater.",
+          "incorrect": "I goed to the cinema yesterday.",
+          "correct_similarity": 0.9677982926368713,
+          "incorrect_similarity": 0.9698808789253235,
+          "incorrect_ranks_higher": true
+        },
+        {
+          "id": "time",
+          "reference": "The meeting starts at nine in the morning.",
+          "correct": "Our meeting begins at 9 a.m.",
+          "incorrect": "The meeting starts at nine in the evening.",
+          "correct_similarity": 0.9795560836791992,
+          "incorrect_similarity": 0.9656049609184265,
+          "incorrect_ranks_higher": false
+        },
+        {
+          "id": "direction",
+          "reference": "You should turn left after the bridge.",
+          "correct": "Once you have crossed the bridge, take the road on your left.",
+          "incorrect": "You should turn right after the bridge.",
+          "correct_similarity": 0.9602415561676025,
+          "incorrect_similarity": 0.9766263365745544,
+          "incorrect_ranks_higher": true
+        },
+        {
+          "id": "negation",
+          "reference": "Tôi không thích chiếc điện thoại này.",
+          "correct": "Chiếc điện thoại này khiến tôi không hài lòng.",
+          "incorrect": "Tôi rất thích chiếc điện thoại này.",
+          "correct_similarity": 0.9650290012359619,
+          "incorrect_similarity": 0.9013924598693848,
+          "incorrect_ranks_higher": false
+        }
+      ],
+      "learning_retrieval": [
+        {
+          "text": "Tôi muốn nhờ người đối diện nhắc lại chậm hơn vì nghe chưa rõ.",
+          "expected": "clarify",
+          "top1_correct": true,
+          "results": [
+            {
+              "id": "clarify",
+              "text": "Sorry, could you say that again more slowly? I didn't quite catch the last part.",
+              "similarity": 0.7548912763595581
+            },
+            {
+              "id": "apologize",
+              "text": "I'm sorry I interrupted you. Please go ahead and finish your point.",
+              "similarity": 0.6962199807167053
+            },
+            {
+              "id": "disagree",
+              "text": "I see your point, but I look at it a little differently. May I explain why?",
+              "similarity": 0.68754643201828
+            },
+            {
+              "id": "think",
+              "text": "That's an interesting question. Let me think for a moment before I answer.",
+              "similarity": 0.6745910048484802
+            },
+            {
+              "id": "refuse_rude",
+              "text": "No. Stop bothering me with your invitation.",
+              "similarity": 0.6688358783721924
+            },
+            {
+              "id": "decline",
+              "text": "Thank you for inviting me. I'd love to join, but I already have plans that evening.",
+              "similarity": 0.6676746606826782
+            },
+            {
+              "id": "example",
+              "text": "Let me give you a concrete example to explain what I mean.",
+              "similarity": 0.6452288031578064
+            },
+            {
+              "id": "technical",
+              "text": "A database index can reduce the time needed to look up a record.",
+              "similarity": 0.6215803623199463
+            },
+            {
+              "id": "sport",
+              "text": "The home team scored twice in the second half of the match.",
+              "similarity": 0.6044415235519409
+            },
+            {
+              "id": "weather",
+              "text": "The forecast says it will rain this afternoon and remain cloudy tomorrow.",
+              "similarity": 0.5915144681930542
+            },
+            {
+              "id": "disagree_rude",
+              "text": "You're completely wrong. Your idea is ridiculous.",
+              "similarity": 0.5883461236953735
+            },
+            {
+              "id": "shopping",
+              "text": "The supermarket sells fresh fruit, vegetables and bread.",
+              "similarity": 0.5587076544761658
+            }
+          ]
+        },
+        {
+          "text": "Tìm cách từ chối lời mời một cách lịch sự vì đã có kế hoạch khác.",
+          "expected": "decline",
+          "top1_correct": false,
+          "results": [
+            {
+              "id": "refuse_rude",
+              "text": "No. Stop bothering me with your invitation.",
+              "similarity": 0.7701500654220581
+            },
+            {
+              "id": "decline",
+              "text": "Thank you for inviting me. I'd love to join, but I already have plans that evening.",
+              "similarity": 0.7559171915054321
+            },
+            {
+              "id": "disagree",
+              "text": "I see your point, but I look at it a little differently. May I explain why?",
+              "similarity": 0.6340126395225525
+            },
+            {
+              "id": "apologize",
+              "text": "I'm sorry I interrupted you. Please go ahead and finish your point.",
+              "similarity": 0.6322692632675171
+            },
+            {
+              "id": "clarify",
+              "text": "Sorry, could you say that again more slowly? I didn't quite catch the last part.",
+              "similarity": 0.6282745599746704
+            },
+            {
+              "id": "disagree_rude",
+              "text": "You're completely wrong. Your idea is ridiculous.",
+              "similarity": 0.6138358116149902
+            },
+            {
+              "id": "think",
+              "text": "That's an interesting question. Let me think for a moment before I answer.",
+              "similarity": 0.6084067225456238
+            },
+            {
+              "id": "example",
+              "text": "Let me give you a concrete example to explain what I mean.",
+              "similarity": 0.5960758328437805
+            },
+            {
+              "id": "weather",
+              "text": "The forecast says it will rain this afternoon and remain cloudy tomorrow.",
+              "similarity": 0.5579146146774292
+            },
+            {
+              "id": "sport",
+              "text": "The home team scored twice in the second half of the match.",
+              "similarity": 0.555838942527771
+            },
+            {
+              "id": "technical",
+              "text": "A database index can reduce the time needed to look up a record.",
+              "similarity": 0.511691689491272
+            },
+            {
+              "id": "shopping",
+              "text": "The supermarket sells fresh fruit, vegetables and bread.",
+              "similarity": 0.4823031425476074
+            }
+          ]
+        },
+        {
+          "text": "Cách thể hiện bất đồng quan điểm nhẹ nhàng trong cuộc thảo luận.",
+          "expected": "disagree",
+          "top1_correct": true,
+          "results": [
+            {
+              "id": "disagree",
+              "text": "I see your point, but I look at it a little differently. May I explain why?",
+              "similarity": 0.7568144798278809
+            },
+            {
+              "id": "clarify",
+              "text": "Sorry, could you say that again more slowly? I didn't quite catch the last part.",
+              "similarity": 0.684838593006134
+            },
+            {
+              "id": "example",
+              "text": "Let me give you a concrete example to explain what I mean.",
+              "similarity": 0.6765933036804199
+            },
+            {
+              "id": "apologize",
+              "text": "I'm sorry I interrupted you. Please go ahead and finish your point.",
+              "similarity": 0.6703290939331055
+            },
+            {
+              "id": "think",
+              "text": "That's an interesting question. Let me think for a moment before I answer.",
+              "similarity": 0.6636466979980469
+            },
+            {
+              "id": "sport",
+              "text": "The home team scored twice in the second half of the match.",
+              "similarity": 0.6258577704429626
+            },
+            {
+              "id": "decline",
+              "text": "Thank you for inviting me. I'd love to join, but I already have plans that evening.",
+              "similarity": 0.6195634603500366
+            },
+            {
+              "id": "refuse_rude",
+              "text": "No. Stop bothering me with your invitation.",
+              "similarity": 0.6145338416099548
+            },
+            {
+              "id": "shopping",
+              "text": "The supermarket sells fresh fruit, vegetables and bread.",
+              "similarity": 0.5942886471748352
+            },
+            {
+              "id": "disagree_rude",
+              "text": "You're completely wrong. Your idea is ridiculous.",
+              "similarity": 0.5881524682044983
+            },
+            {
+              "id": "technical",
+              "text": "A database index can reduce the time needed to look up a record.",
+              "similarity": 0.5850156545639038
+            },
+            {
+              "id": "weather",
+              "text": "The forecast says it will rain this afternoon and remain cloudy tomorrow.",
+              "similarity": 0.5781441330909729
+            }
+          ]
+        },
+        {
+          "text": "Câu nói để xin một chút thời gian suy nghĩ trước khi trả lời.",
+          "expected": "think",
+          "top1_correct": true,
+          "results": [
+            {
+              "id": "think",
+              "text": "That's an interesting question. Let me think for a moment before I answer.",
+              "similarity": 0.8030728101730347
+            },
+            {
+              "id": "apologize",
+              "text": "I'm sorry I interrupted you. Please go ahead and finish your point.",
+              "similarity": 0.7207788228988647
+            },
+            {
+              "id": "clarify",
+              "text": "Sorry, could you say that again more slowly? I didn't quite catch the last part.",
+              "similarity": 0.7087559700012207
+            },
+            {
+              "id": "disagree",
+              "text": "I see your point, but I look at it a little differently. May I explain why?",
+              "similarity": 0.6849416494369507
+            },
+            {
+              "id": "decline",
+              "text": "Thank you for inviting me. I'd love to join, but I already have plans that evening.",
+              "similarity": 0.6805737614631653
+            },
+            {
+              "id": "example",
+              "text": "Let me give you a concrete example to explain what I mean.",
+              "similarity": 0.6771759986877441
+            },
+            {
+              "id": "refuse_rude",
+              "text": "No. Stop bothering me with your invitation.",
+              "similarity": 0.676875114440918
+            },
+            {
+              "id": "technical",
+              "text": "A database index can reduce the time needed to look up a record.",
+              "similarity": 0.6175531148910522
+            },
+            {
+              "id": "weather",
+              "text": "The forecast says it will rain this afternoon and remain cloudy tomorrow.",
+              "similarity": 0.6016057729721069
+            },
+            {
+              "id": "disagree_rude",
+              "text": "You're completely wrong. Your idea is ridiculous.",
+              "similarity": 0.5878145098686218
+            },
+            {
+              "id": "sport",
+              "text": "The home team scored twice in the second half of the match.",
+              "similarity": 0.5787361860275269
+            },
+            {
+              "id": "shopping",
+              "text": "The supermarket sells fresh fruit, vegetables and bread.",
+              "similarity": 0.5665448904037476
+            }
+          ]
+        },
+        {
+          "text": "Tôi muốn đưa ra ví dụ cụ thể để minh họa ý kiến của mình.",
+          "expected": "example",
+          "top1_correct": true,
+          "results": [
+            {
+              "id": "example",
+              "text": "Let me give you a concrete example to explain what I mean.",
+              "similarity": 0.7937732934951782
+            },
+            {
+              "id": "disagree",
+              "text": "I see your point, but I look at it a little differently. May I explain why?",
+              "similarity": 0.7525352835655212
+            },
+            {
+              "id": "apologize",
+              "text": "I'm sorry I interrupted you. Please go ahead and finish your point.",
+              "similarity": 0.6949044466018677
+            },
+            {
+              "id": "think",
+              "text": "That's an interesting question. Let me think for a moment before I answer.",
+              "similarity": 0.6921402215957642
+            },
+            {
+              "id": "clarify",
+              "text": "Sorry, could you say that again more slowly? I didn't quite catch the last part.",
+              "similarity": 0.6755037307739258
+            },
+            {
+              "id": "decline",
+              "text": "Thank you for inviting me. I'd love to join, but I already have plans that evening.",
+              "similarity": 0.619324803352356
+            },
+            {
+              "id": "shopping",
+              "text": "The supermarket sells fresh fruit, vegetables and bread.",
+              "similarity": 0.6153575778007507
+            },
+            {
+              "id": "technical",
+              "text": "A database index can reduce the time needed to look up a record.",
+              "similarity": 0.6082886457443237
+            },
+            {
+              "id": "disagree_rude",
+              "text": "You're completely wrong. Your idea is ridiculous.",
+              "similarity": 0.6074389219284058
+            },
+            {
+              "id": "sport",
+              "text": "The home team scored twice in the second half of the match.",
+              "similarity": 0.6044986248016357
+            },
+            {
+              "id": "refuse_rude",
+              "text": "No. Stop bothering me with your invitation.",
+              "similarity": 0.5948939323425293
+            },
+            {
+              "id": "weather",
+              "text": "The forecast says it will rain this afternoon and remain cloudy tomorrow.",
+              "similarity": 0.5900994539260864
+            }
+          ]
+        },
+        {
+          "text": "Cách xin lỗi vì vừa ngắt lời người khác.",
+          "expected": "apologize",
+          "top1_correct": true,
+          "results": [
+            {
+              "id": "apologize",
+              "text": "I'm sorry I interrupted you. Please go ahead and finish your point.",
+              "similarity": 0.7115097045898438
+            },
+            {
+              "id": "clarify",
+              "text": "Sorry, could you say that again more slowly? I didn't quite catch the last part.",
+              "similarity": 0.6655222177505493
+            },
+            {
+              "id": "refuse_rude",
+              "text": "No. Stop bothering me with your invitation.",
+              "similarity": 0.6642863750457764
+            },
+            {
+              "id": "example",
+              "text": "Let me give you a concrete example to explain what I mean.",
+              "similarity": 0.6326930522918701
+            },
+            {
+              "id": "disagree",
+              "text": "I see your point, but I look at it a little differently. May I explain why?",
+              "similarity": 0.6240261197090149
+            },
+            {
+              "id": "disagree_rude",
+              "text": "You're completely wrong. Your idea is ridiculous.",
+              "similarity": 0.6117541193962097
+            },
+            {
+              "id": "think",
+              "text": "That's an interesting question. Let me think for a moment before I answer.",
+              "similarity": 0.5896576642990112
+            },
+            {
+              "id": "decline",
+              "text": "Thank you for inviting me. I'd love to join, but I already have plans that evening.",
+              "similarity": 0.5860278010368347
+            },
+            {
+              "id": "sport",
+              "text": "The home team scored twice in the second half of the match.",
+              "similarity": 0.565693199634552
+            },
+            {
+              "id": "shopping",
+              "text": "The supermarket sells fresh fruit, vegetables and bread.",
+              "similarity": 0.5301070213317871
+            },
+            {
+              "id": "weather",
+              "text": "The forecast says it will rain this afternoon and remain cloudy tomorrow.",
+              "similarity": 0.5112793445587158
+            },
+            {
+              "id": "technical",
+              "text": "A database index can reduce the time needed to look up a record.",
+              "similarity": 0.49903440475463867
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "sentiment": {
+          "en": {
+            "plain": {
+              "total": 16,
+              "correct": 14
+            },
+            "challenge": {
+              "total": 8,
+              "correct": 6
+            }
+          },
+          "vi": {
+            "plain": {
+              "total": 16,
+              "correct": 14
+            },
+            "challenge": {
+              "total": 8,
+              "correct": 6
+            }
+          }
+        },
+        "incorrect_answer_ranks_higher": 4,
+        "grading_pairs": 6,
+        "learning_top1_correct": 5,
+        "learning_queries": 6,
+        "learning_documents": 12
+      }
+    }
+  },
+  "date": "2026-11-01",
+  "caveat": "Hand-authored diagnostic cases, not representative accuracy or pronunciation assessment",
+  "inspected_revision": "f9972ac22e696a105c482202646979e33e4b5a1e",
+  "model": "google/embeddinggemma-2"
+}

@@ -1,0 +1,69 @@
+{
+  "backend_tests_passed": 37,
+  "fixture_ui_flows_passed": 7,
+  "real_ui": {
+    "passed": true,
+    "query_id": "query-00-full_frame",
+    "indexed_frames": 4355,
+    "detail_results": 24,
+    "detail_elapsed_ms": 20899,
+    "similar_results": 24,
+    "text_results": 24,
+    "playback": {
+      "currentTime": 88,
+      "paused": true,
+      "width": 1920
+    },
+    "range_status": 206,
+    "saved_and_removed_temporary_moment": true,
+    "preserved_moments": 1,
+    "export_seconds_requested": 2,
+    "exported_file": "real-acceptance-1793586100096.mp4",
+    "no_horizontal_overflow": true,
+    "page_errors": [],
+    "native_window_opened": false,
+    "export_decoded_seconds": 2.0,
+    "export_decoded_width": 1920
+  },
+  "review_ui": {
+    "passed": true,
+    "states": 96,
+    "all_images_decoded": true,
+    "page_errors": [],
+    "no_horizontal_overflow": true
+  },
+  "library_integrity": {
+    "frames": 4355,
+    "unique_timestamps": 4355,
+    "outside_shot": 0,
+    "missing_details": 0,
+    "detail_bytes": 518637478,
+    "missing_thumbnails": 0,
+    "saved": 1
+  },
+  "packaged_engine": {
+    "passed": true,
+    "packaged_source_matches": true,
+    "offline": true,
+    "text_and_image_first": "flower.mp4",
+    "cold_search_ms": 102678,
+    "range_status": 206,
+    "unauthorized_status": 401,
+    "export_duration": 2.0020000000000002
+  },
+  "package": {
+    "filename": "FrameAtlas_0.1.0_20261102_windows-x64-cuda126-portable.zip",
+    "bytes": 3449246618,
+    "sha256": "bbc3c30e7c47827b9634646c7708cc912641cc0a116973c1b09bb18437637f08",
+    "crc_verified": true,
+    "engine_matches_source": true,
+    "executable_matches_tested_build": true,
+    "private_media_and_weights_excluded": true
+  },
+  "manual_review": {
+    "crop_query_00": "Repeated player-list UI matches at different timestamps; source recovery and visual similarity are distinct.",
+    "vietnamese_voting_top1": "Incorrect for voting: frame at 6670s is the role announcement/lobby.",
+    "vietnamese_green_room_top1": "At 7534s: cartoon characters in a green-lit game room, visually consistent.",
+    "vietnamese_logo_top1": "At 4558s: mostly black screen with small persistent branding and webcam; weak evidence for finding a specific logo."
+  }
+}
