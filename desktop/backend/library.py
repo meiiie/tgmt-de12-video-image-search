@@ -1,5 +1,6 @@
 import hashlib
 from bisect import bisect_left
+from concurrent.futures import ThreadPoolExecutor
 import math
 import os
 from pathlib import Path
@@ -12,7 +13,7 @@ import numpy as np
 from PIL import Image
 
 from .inference import Encoder
-from .media import EXTENSIONS, fingerprint
+from .media import EXTENSIONS, decode_batch, fingerprint
 from .store import Store
 from .sampling import frame_plan, scene_cuts, signature as index_signature
 from .verification import MAX_CANDIDATES, FrameDetails, compare_features, extract_features
@@ -27,6 +28,7 @@ class Library:
         signature = index_signature(self.encoder.signature, settings)
         with self.store.connect() as db:
             db.execute("DELETE FROM frames WHERE video_id IN (SELECT id FROM videos WHERE signature<>'' AND signature<>?)", (signature,))
+            db.execute("DELETE FROM index_metrics WHERE video_id IN (SELECT id FROM videos WHERE signature<>'' AND signature<>?)", (signature,))
             db.execute("UPDATE videos SET status='queued',frames=0,next_t=0,error='',signature='' WHERE signature<>'' AND signature<>?", (signature,))
         self.stop = threading.Event()
         self.wake = threading.Event()
@@ -75,6 +77,7 @@ class Library:
                         continue
                     if old:
                         db.execute("DELETE FROM frames WHERE video_id=?", (identity,))
+                        db.execute("DELETE FROM index_metrics WHERE video_id=?", (identity,))
                         db.execute("UPDATE videos SET fingerprint=?,status='queued',frames=0,next_t=0,error='',signature='' WHERE id=?", (stamp, identity))
                     else:
                         db.execute("INSERT INTO videos(id,path,name,fingerprint,added) VALUES(?,?,?,?,?)", (identity, canonical, path.name, stamp, time.time()))
@@ -143,6 +146,7 @@ class Library:
         if changed:
             with self.store.connect() as db:
                 db.execute("DELETE FROM frames")
+                db.execute("DELETE FROM index_metrics")
                 db.execute("UPDATE videos SET status='queued',frames=0,next_t=0,error='',signature=''")
             settings = self.store.settings()
             self.encoder = Encoder(self.root, settings["model_path"], settings["vision_tokens"])
@@ -181,7 +185,8 @@ class Library:
             self.active = identity
             with self.store.connect() as db:
                 db.execute("UPDATE videos SET status='indexing',error='' WHERE id=?", (identity,))
-        cap = None
+        cap, decoder_pool = None, None
+        checkpoint = time.perf_counter()
         try:
             settings = self.store.settings()
             signature = index_signature(self.encoder.signature, settings)
@@ -191,6 +196,7 @@ class Library:
             with self.store.connect() as db:
                 if video["signature"] and video["signature"] != signature:
                     db.execute("DELETE FROM frames WHERE video_id=?", (identity,))
+                    db.execute("DELETE FROM index_metrics WHERE video_id=?", (identity,))
                     db.execute("UPDATE videos SET next_t=0,frames=0 WHERE id=?", (identity,))
                     video["next_t"] = 0
                 db.execute("UPDATE videos SET signature=? WHERE id=? AND status='indexing'", (signature, identity))
@@ -219,38 +225,26 @@ class Library:
             cursor = bisect_left([p["frame"] for p in plan], round(video["next_t"] * native_fps))
             decoder_next = 0
             rate = None
+            def read_batch(position, next_frame):
+                begin = time.perf_counter()
+                batch = decode_batch(cap, plan, position, settings["batch_size"], native_fps, next_frame)
+                return batch, time.perf_counter() - begin
+            future = None
+            if settings["prefetch"] and cursor < total:
+                decoder_pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="frame-reader")
+                future = decoder_pool.submit(read_batch, cursor, decoder_next)
             while cursor < total and self._current(video):
                 batch_started = time.perf_counter()
-                batch, times, locations = [], [], []
-                for _ in range(settings["batch_size"]):
-                    location = plan[cursor]
-                    i = location["frame"]
-                    if i < decoder_next or i - decoder_next >= native_fps * 2:
-                        if not cap.set(cv2.CAP_PROP_POS_FRAMES, i):
-                            raise ValueError("Không thể đọc chính xác mốc video; thử mức lấy mẫu dày hơn")
-                    else:
-                        for _ in range(i - decoder_next):
-                            cap.grab()
-                    ok, frame = cap.read()
-                    if not ok:
-                        break
-                    batch.append(Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)))
-                    timestamp = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000
-                    if not math.isfinite(timestamp) or (i > 0 and timestamp <= 0):
-                        raise ValueError("Video không cung cấp mốc thời gian giải mã hợp lệ")
-                    times.append(round(timestamp, 6))
-                    if location["shot_start"] is not None and not location["shot_start"] - .05 <= timestamp < location["shot_end"] + .05:
-                        raise ValueError("Mốc chuyển cảnh và giải mã không khớp; hãy thử lấy mẫu đều")
-                    locations.append(location)
-                    decoder_next = i + 1
-                    cursor += 1
-                    if cursor >= total:
-                        break
-                if not batch:
-                    raise ValueError("Video bị ngắt hoặc lỗi giải mã giữa chừng")
+                decoded, decode_seconds = future.result() if future else read_batch(cursor, decoder_next)
+                batch, times, locations, cursor, decoder_next = decoded
+                if decoder_pool and cursor < total and self._current(video):
+                    future = decoder_pool.submit(read_batch, cursor, decoder_next)
+                encode_started = time.perf_counter()
                 vectors = self.encoder.images(batch)
+                encode_seconds = time.perf_counter() - encode_started
                 if not self._current(video):
                     break
+                write_started = time.perf_counter()
                 records = []
                 for image, t, vector, location in zip(batch, times, vectors, locations):
                     name = f"{identity}-{round(t * 1000000)}.jpg"
@@ -268,6 +262,16 @@ class Library:
                     next_frame = plan[cursor]["frame"] if cursor < total else int(count)
                     db.execute("UPDATE videos SET next_t=?,frames=(SELECT COUNT(*) FROM frames WHERE video_id=?) WHERE id=?", (next_frame / native_fps, identity, identity))
                     processed = db.execute("SELECT frames FROM videos WHERE id=?", (identity,)).fetchone()[0]
+                    now = time.perf_counter()
+                    db.execute("""INSERT INTO index_metrics
+                        (video_id,frames,wall_seconds,decode_seconds,encode_seconds,write_seconds,device,updated)
+                        VALUES(?,?,?,?,?,?,?,?) ON CONFLICT(video_id) DO UPDATE SET
+                        frames=frames+excluded.frames,wall_seconds=wall_seconds+excluded.wall_seconds,
+                        decode_seconds=decode_seconds+excluded.decode_seconds,
+                        encode_seconds=encode_seconds+excluded.encode_seconds,
+                        write_seconds=write_seconds+excluded.write_seconds,device=excluded.device,updated=excluded.updated""",
+                        (identity,len(batch),now-checkpoint,decode_seconds,encode_seconds,now-write_started,self.encoder.device,time.time()))
+                checkpoint = time.perf_counter()
                 self.revision += 1
                 batch_rate = len(batch) / max(.001, time.perf_counter() - batch_started)
                 rate = batch_rate if rate is None else rate * .8 + batch_rate * .2
@@ -282,6 +286,8 @@ class Library:
             with self.store.connect() as db:
                 db.execute("UPDATE videos SET status='error',error=? WHERE id=? AND status='indexing' AND fingerprint=?", (str(error)[-1500:], identity, video["fingerprint"]))
         finally:
+            if decoder_pool is not None:
+                decoder_pool.shutdown(wait=True, cancel_futures=True)
             if cap is not None:
                 cap.release()
             self.active = None
@@ -289,9 +295,11 @@ class Library:
 
     def search(self, text=None, image=None, video_id=None, limit=24, min_score=-1, occurrence=None, start=None, end=None, image_mode="similar"):
         started = time.perf_counter()
+        scope_video_id = video_id
         from vsearch.text import text_search
         ordinal = occurrence
         with self.search_lock:
+            locked = time.perf_counter()
             if self.snapshot_revision != self.revision:
                 revision = self.revision
                 with self.store.connect() as db:
@@ -304,13 +312,25 @@ class Library:
                 rows = [rows[i] for i in indices]
                 matrix = matrix[indices] if indices else None
             if not rows:
-                return {"results": [], "elapsed_ms": 0, "indexed_frames": 0}
+                return self._search_report([], rows, np.empty(0), min_score, video_id, started, {})
+            query_started = time.perf_counter()
             q = self.encoder.query(text=text, image=image)
+            score_started = time.perf_counter()
             scores = matrix @ q
+            ranked = time.perf_counter()
+            timings = {"wait_ms": (locked-started)*1000, "index_read_ms": (query_started-locked)*1000,
+                       "query_encode_ms": (score_started-query_started)*1000, "score_ms": (ranked-score_started)*1000}
             if image is not None and image_mode == "detail":
                 if occurrence:
                     raise ValueError("Đối chiếu chi tiết không xác nhận thứ tự xuất hiện; chọn Liên quan nhất")
-                return self._detail_search(rows, scores, image, limit, min_score, start, end, started)
+                result = self._detail_search(rows, scores, image, limit, min_score, start, end, started)
+                timings["verification_ms"] = (time.perf_counter()-ranked)*1000
+                response = self._search_report(result["results"], rows, scores, min_score, video_id, started, timings)
+                response.update(verification=result["verification"])
+                counts = {r["video_id"]: r for r in response["per_video"]}
+                for identity, audit in result["per_video"].items():
+                    counts[identity].update(audit)
+                return response
             meta = [{"video": r["video_id"], "t": r["t"], "kind": "frame"} for r in rows]
             fps = self.store.settings()["fps"]
             window = 1 if image is not None else max(1, round(fps * 3))
@@ -329,25 +349,50 @@ class Library:
             for segment in segments:
                 if segment["score"] < min_score:
                     continue
-                near = min(by_video[segment["video"]], key=lambda row: abs(row["t"] - segment["peak_t"]))
+                candidates = by_video[segment["video"]]
+                point = bisect_left(candidates, segment["peak_t"], key=lambda row: row["t"])
+                near = min(candidates[max(0, point-1):point+1], key=lambda row: abs(row["t"] - segment["peak_t"]))
                 results.append({"video_id": near["video_id"], "name": near["name"], "path": near["path"], "duration": near["duration"], "frame_id": near["id"], "start": max(start or 0, segment["start"]), "end": min(near["duration"], end if end is not None else near["duration"], segment["end"]), "peak": segment["peak_t"], "score": segment["score"]})
+            timings["segments_ms"] = (time.perf_counter()-ranked)*1000
+            response = self._search_report(results, rows, scores, min_score, scope_video_id, started, timings)
         if text:
             with self.store.connect() as db:
                 db.execute("INSERT OR REPLACE INTO history VALUES(?,?)", (text, time.time()))
                 db.execute("DELETE FROM history WHERE query NOT IN (SELECT query FROM history ORDER BY used DESC LIMIT 50)")
-        return {"results": results, "elapsed_ms": round((time.perf_counter() - started) * 1000), "indexed_frames": len(rows)}
+        return response
+
+    def _search_report(self, results, rows, scores, threshold, video_id, started, timings):
+        videos = {v["id"]: v for v in self.store.videos() if video_id is None or v["id"] == video_id}
+        videos.update({row["video_id"]: row for row in rows})
+        counts = {identity: {"video_id": identity, "name": v["name"], "indexed_frames": 0,
+                  "similar_frames": 0, "best_score": None, "returned_moments": 0,
+                  "checked_frames": 0, "matched_frames": 0}
+                  for identity, v in videos.items()}
+        for row, score in zip(rows, scores):
+            item = counts[row["video_id"]]
+            item["indexed_frames"] += 1
+            item["similar_frames"] += int(score >= threshold)
+            item["best_score"] = max(float(score), item["best_score"]) if item["best_score"] is not None else float(score)
+        for result in results:
+            counts[result["video_id"]]["returned_moments"] += 1
+        return {"results": results, "elapsed_ms": round((time.perf_counter()-started)*1000),
+                "indexed_frames": len(rows), "threshold": threshold, "per_video": list(counts.values()),
+                "timings": {key: round(value, 3) for key,value in timings.items()},
+                "strategy": "exact_matrix", "dimension": 768}
 
     def _detail_search(self, rows, scores, image, limit, min_score, start, end, started):
         query = extract_features(image)
         candidates = [int(i) for i in np.argsort(-scores, kind="stable") if scores[i] >= min_score]
         audit = {"mode": "detail", "status": "checked", "checked": 0, "matched": 0, "unavailable": 0,
                  "candidate_limit": MAX_CANDIDATES, "candidates_total": len(candidates)}
-        matches, source_states = [], {}
+        matches, source_states, counts = [], {}, {}
         if len(query.points) < 10:
             audit["status"] = "insufficient_detail"
             candidates = []
         for index in candidates[:MAX_CANDIDATES]:
             row = rows[index]
+            per_video = counts.setdefault(row["video_id"], {"checked_frames": 0, "matched_frames": 0})
+            per_video["checked_frames"] += 1
             audit["checked"] += 1
             try:
                 if row["path"] not in source_states:
@@ -362,6 +407,7 @@ class Library:
             if evidence["status"] != "matched":
                 continue
             audit["matched"] += 1
+            per_video["matched_frames"] += 1
             # A short viewing interval around the checked frame, not an occurrence boundary claim.
             begin = max(start or 0, row["shot_start"] or 0, row["t"] - 1)
             finish = min(row["duration"], end if end is not None else row["duration"],
@@ -378,7 +424,7 @@ class Library:
             if len(results) == limit:
                 break
         return {"results": results, "verification": audit, "indexed_frames": len(rows),
-                "elapsed_ms": round((time.perf_counter() - started) * 1000)}
+                "elapsed_ms": round((time.perf_counter() - started) * 1000), "per_video": counts}
 
     def save_moment(self, video_id, start, end, peak, label):
         video = self.store.video(video_id)

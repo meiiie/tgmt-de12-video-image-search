@@ -36,6 +36,7 @@ class SettingsBody(Body):
     paused: bool | None = None
     vision_tokens: Literal[70, 140, 280] | None = None
     sampling: Literal["uniform", "hybrid"] | None = None
+    prefetch: bool | None = None
 
 
 class SearchBody(Body):

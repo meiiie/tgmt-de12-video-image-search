@@ -69,6 +69,13 @@ test("image query, library filtering, settings, narrow window and keyboard", asy
   await expect(page.locator(".moment-card:visible").first()).toContainText(
     "blue-scene.avi",
   );
+  const auditTable = page.getByRole("region", { name: "Kết quả theo từng video" });
+  await expect(auditTable.getByRole("table")).toBeVisible();
+  await expect(auditTable.getByRole("row", { name: /blue-scene.avi/ })).toBeVisible();
+  await expect(auditTable.getByRole("row", { name: /red-square.avi/ })).toBeVisible();
+  await page.getByLabel("Ngưỡng tương đồng", { exact: true }).fill("1");
+  await page.getByRole("button", { name: "Tìm kiếm", exact: true }).click();
+  await expect(auditTable.getByRole("row", { name: /red-square.avi/ })).toContainText("0");
   await page.screenshot({ path: "../outputs/onboarding/ui-search.png" });
   await page.getByRole("button", { name: "Thư viện", exact: true }).click();
   await page.getByRole("textbox", { name: "Lọc tên video" }).fill("red");

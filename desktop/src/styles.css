@@ -1522,3 +1522,24 @@ progress::-webkit-progress-value {
 .path-dialog .button-row {
   justify-content: flex-end;
 }
+.search-audit {
+  margin: 8px 0 24px;
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+}
+.search-audit h3 { margin: 0 0 8px; }
+.table-scroll { overflow-x: auto; }
+.search-audit table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.search-audit th, .search-audit td { padding: 10px 12px; text-align: right; border-bottom: 1px solid var(--line); }
+.search-audit th:first-child { text-align: left; min-width: 160px; max-width: 390px; overflow-wrap: anywhere; }
+.search-audit details { margin-top: 16px; font-size: 13px; line-height: 1.7; }
+.search-audit summary { cursor: pointer; font-weight: 600; }
+.search-timings { display: flex; flex-wrap: wrap; gap: 16px 32px; }
+.search-timings dt { color: var(--muted); }
+.search-timings dd { margin: 4px 0 0; font-variant-numeric: tabular-nums; }
+.search-options input[type="number"] { width: 80px; padding: 7px; border: 1px solid var(--line); border-radius: 4px; background: white; }
+.index-timings { margin-top: 6px; color: var(--muted); font-size: 12px; }
+.index-timings summary { cursor: pointer; }
+.index-timings span, .index-timings small { display: block; margin-top: 5px; }

@@ -5,11 +5,40 @@ import subprocess
 import sys
 import threading
 import uuid
+import math
 
 import cv2
+from PIL import Image
 
 EXTENSIONS = {".mp4", ".mkv", ".mov", ".avi", ".webm", ".m4v", ".mts"}
 _preview_lock = threading.Lock()
+
+
+def decode_batch(cap, plan, cursor, batch_size, native_fps, decoder_next):
+    images, times, locations = [], [], []
+    for location in plan[cursor:cursor + batch_size]:
+        i = location["frame"]
+        if i < decoder_next or i - decoder_next >= native_fps * 2:
+            if not cap.set(cv2.CAP_PROP_POS_FRAMES, i):
+                raise ValueError("Không thể đọc chính xác mốc video; thử mức lấy mẫu dày hơn")
+        else:
+            for _ in range(i - decoder_next):
+                if not cap.grab():
+                    raise ValueError("Video bị ngắt hoặc lỗi giải mã giữa chừng")
+        ok, frame = cap.read()
+        if not ok:
+            raise ValueError("Video bị ngắt hoặc lỗi giải mã giữa chừng")
+        timestamp = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000
+        if not math.isfinite(timestamp) or (i > 0 and timestamp <= 0):
+            raise ValueError("Video không cung cấp mốc thời gian giải mã hợp lệ")
+        if location["shot_start"] is not None and not location["shot_start"] - .05 <= timestamp < location["shot_end"] + .05:
+            raise ValueError("Mốc chuyển cảnh và giải mã không khớp; hãy thử lấy mẫu đều")
+        images.append(Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)))
+        times.append(round(timestamp, 6))
+        locations.append(location)
+        decoder_next = i + 1
+        cursor += 1
+    return images, times, locations, cursor, decoder_next
 
 
 def fingerprint(path: Path):

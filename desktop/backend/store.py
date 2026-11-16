@@ -4,7 +4,7 @@ from contextlib import contextmanager
 from pathlib import Path
 
 
-DEFAULTS = {"fps": 1.0, "batch_size": 2, "model_path": "", "vision_tokens": 140, "paused": False, "sampling": "uniform"}
+DEFAULTS = {"fps": 1.0, "batch_size": 2, "model_path": "", "vision_tokens": 140, "paused": False, "sampling": "uniform", "prefetch": True}
 
 
 class Store:
@@ -39,6 +39,16 @@ class Store:
                     label TEXT NOT NULL, created REAL NOT NULL
                 );
                 CREATE TABLE IF NOT EXISTS history(query TEXT PRIMARY KEY, used REAL NOT NULL);
+                CREATE TABLE IF NOT EXISTS index_metrics(
+                    video_id TEXT PRIMARY KEY REFERENCES videos(id) ON DELETE CASCADE,
+                    frames INTEGER NOT NULL DEFAULT 0,
+                    wall_seconds REAL NOT NULL DEFAULT 0,
+                    decode_seconds REAL NOT NULL DEFAULT 0,
+                    encode_seconds REAL NOT NULL DEFAULT 0,
+                    write_seconds REAL NOT NULL DEFAULT 0,
+                    device TEXT NOT NULL,
+                    updated REAL NOT NULL
+                );
             """)
             columns = {row[1] for row in db.execute("PRAGMA table_info(frames)")}
             for name in ("shot_start", "shot_end"):
@@ -73,7 +83,12 @@ class Store:
 
     def videos(self):
         with self.connect() as db:
-            return [dict(row) for row in db.execute("SELECT v.*,(SELECT id FROM frames f WHERE f.video_id=v.id ORDER BY t LIMIT 1) AS first_frame_id FROM videos v ORDER BY added DESC")]
+            rows = db.execute("""SELECT v.*,
+                (SELECT id FROM frames f WHERE f.video_id=v.id ORDER BY t LIMIT 1) AS first_frame_id,
+                m.frames AS measured_frames,m.wall_seconds AS index_seconds,
+                m.decode_seconds,m.encode_seconds,m.write_seconds,m.device AS index_device
+                FROM videos v LEFT JOIN index_metrics m ON m.video_id=v.id ORDER BY added DESC""")
+            return [dict(row) for row in rows]
 
     def video(self, video_id):
         with self.connect() as db:

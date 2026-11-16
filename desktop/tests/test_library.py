@@ -57,6 +57,44 @@ def index_all(library, media):
         library.index_video(video)
 
 
+def test_per_video_counts_are_before_result_limit_and_include_zero(library, media):
+    index_all(library, media)
+    response = library.search(image=Image.new("RGB", (64, 64), "red"), limit=1, min_score=.9)
+    counts = {v["name"]: v for v in response["per_video"]}
+    assert len(response["results"]) == 1
+    assert counts["red.avi"]["indexed_frames"] == 6
+    assert counts["red.avi"]["similar_frames"] == 6
+    assert counts["blue.avi"]["similar_frames"] == 0
+    assert sum(v["indexed_frames"] for v in counts.values()) == response["indexed_frames"] == 12
+    assert response["timings"]["score_ms"] >= 0
+    red = next(v for v in library.store.videos() if v["name"] == "red.avi")
+    narrow = library.search(image=Image.new("RGB", (64, 64), "red"), video_id=red["id"], start=2, end=4)
+    assert len(narrow["per_video"]) == 1 and narrow["per_video"][0]["indexed_frames"] == 2
+
+
+def test_prefetch_preserves_frames_and_records_only_committed_work(tmp_path, media):
+    snapshots = []
+    for prefetch in (False, True):
+        lib = Library(tmp_path / str(prefetch), ColorEncoder(), start_worker=False)
+        lib.store.update_settings({"prefetch": prefetch, "batch_size": 2})
+        lib.import_paths([str(media[0])])
+        lib.index_video(lib.store.videos()[0])
+        with lib.store.connect() as db:
+            snapshots.append(list(map(tuple, db.execute("SELECT t,embedding FROM frames ORDER BY t"))))
+        video = lib.store.videos()[0]
+        assert video["measured_frames"] == video["frames"] == 6
+        assert video["index_seconds"] > 0 and video["decode_seconds"] > 0
+        assert video["encode_seconds"] > 0 and video["write_seconds"] > 0
+        lib.close()
+    assert snapshots[0] == snapshots[1]
+    changed_encoder = ColorEncoder()
+    changed_encoder.signature = "changed-model-for-migration-check"
+    reopened = Library(lib.root, changed_encoder, start_worker=False)
+    video = reopened.store.videos()[0]
+    assert video["frames"] == 0 and video["index_seconds"] is None
+    reopened.close()
+
+
 def test_import_deduplicates_folder_and_files(library, media):
     report = library.import_paths([str(media[0].parent), str(media[0])])
     assert report["added"] == report["discovered"] == 2

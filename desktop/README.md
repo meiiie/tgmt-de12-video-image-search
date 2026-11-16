@@ -26,6 +26,12 @@ Under **Cách lấy khung hình**, **Mốc đều + bổ sung khi chuyển cản
 
 The real-video check covers a 2-hour-11-minute 1080p recording, restart recovery, Vietnamese visual retrieval, silent seek, saved intervals and an actual 5-second export. See [the evidence and limitations](../docs/real-video-acceptance.md).
 
+## Thống kê tìm kiếm và thời gian lập chỉ mục
+
+Kết quả ảnh có bảng theo từng video: số khung đã so, số khung qua ngưỡng cosine, điểm cao nhất và, ở chế độ chi tiết, số khung đã đối chiếu/khớp. Số qua ngưỡng được đếm trước khi giới hạn danh sách kết quả; các khung liên tiếp có thể gộp thành một khoảnh khắc. Đây là số ứng viên theo cấu hình đang chọn, không phải số lần xuất hiện đã được xác nhận bằng nhãn.
+
+Thư viện hiển thị số khung được đo, tổng thời gian và thời gian đọc khung, chạy EG2, lưu chỉ mục. Cài đặt **Đọc trước một lô khung** cho phép giải mã lô kế tiếp trong khi xử lý lô hiện tại. Một worker vẫn xử lý lần lượt các video. Tìm kiếm chấm điểm trên ma trận vector đã lưu, không mở lại từng video; các yêu cầu tìm được giữ theo lượt. Xem [số liệu lịch sử ngày 14/11/2026](../results/review-20261114/README.md) để phân biệt phép đo cũ với kết quả hiện tại.
+
 ## Data and offline use
 
 The per-user data directory is shown in Settings (normally `%APPDATA%\app.frameatlas.desktop`). It contains `library.sqlite3`, thumbnails, 960-pixel detail images, completed scene-cut caches, compatible preview copies, downloaded models, `worker.log` and one previous log. Detail images add disk usage to new indexes. Old indexes can decode original frames on demand when those images are missing. Copy the whole directory with the app closed to back it up. Keep original videos at their recorded paths. The app does not upload videos, queries or usage analytics. The first model download contacts Hugging Face; subsequent automatic loads use the completed local model.

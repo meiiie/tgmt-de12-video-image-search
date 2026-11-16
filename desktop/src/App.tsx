@@ -522,6 +522,24 @@ function Workspace({ api }: { api: Api }) {
                               {library.progress?.video_id === video.id && (
                                 <IndexProgress progress={library.progress} />
                               )}
+                              {video.index_seconds !== null && video.measured_frames !== null && (
+                                <span>
+                                  Đo {video.measured_frames.toLocaleString("vi-VN")} khung trong{" "}
+                                  {video.index_seconds.toLocaleString("vi-VN", { maximumFractionDigits: 1 })} giây
+                                  {" · "}{video.index_device?.toUpperCase()}
+                                  {video.measured_frames < video.frames && " · chỉ gồm phần xử lý mới"}
+                                  {video.index_seconds > 0 && ` · ${(video.measured_frames / video.index_seconds).toLocaleString("vi-VN", { maximumFractionDigits: 2 })} khung/giây`}
+                                </span>
+                              )}
+                              {video.decode_seconds !== null && video.encode_seconds !== null && video.write_seconds !== null && (
+                                <details className="index-timings">
+                                  <summary>Thời gian từng công đoạn</summary>
+                                  <span>Đọc khung: {video.decode_seconds.toLocaleString("vi-VN", { maximumFractionDigits: 2 })} giây</span>
+                                  <span>Chạy EG2: {video.encode_seconds.toLocaleString("vi-VN", { maximumFractionDigits: 2 })} giây</span>
+                                  <span>Lưu ảnh và chỉ mục: {video.write_seconds.toLocaleString("vi-VN", { maximumFractionDigits: 2 })} giây</span>
+                                  <small>Đọc trước có thể chạy gối đầu với EG2; không cộng các công đoạn để thay cho tổng thời gian.</small>
+                                </details>
+                              )}
                               {video.error && (
                                 <p className="error-text">{video.error}</p>
                               )}
@@ -651,6 +669,7 @@ function SearchPage({
   const [image, setImage] = useState<QueryImage | null>(null);
   const [cropPending, setCropPending] = useState(false);
   const [imageMode, setImageMode] = useState<ImageMode>("similar");
+  const [threshold, setThreshold] = useState("0.70");
   const uploadRevision = useRef(0);
   const [scope, setScope] = useState("");
   const [occurrence, setOccurrence] = useState("");
@@ -688,6 +707,7 @@ function SearchPage({
         occurrence: scope && occurrence && (!image || imageMode === "similar") ? Number(occurrence) : null,
         start,
         end,
+        min_score: image ? Number(threshold) : -1,
       });
       setResult(response);
     } catch (error) {
@@ -822,6 +842,14 @@ function SearchPage({
           />
         )}
         <div className="search-options">
+          {image && (
+            <label>
+              Ngưỡng tương đồng
+              <input aria-label="Ngưỡng tương đồng" type="number" min="-1" max="1" step="0.01"
+                value={threshold} disabled={busy} required
+                onChange={(e) => { setThreshold(e.target.value); setResult(null); }} />
+            </label>
+          )}
           {image && (
             <label>
               Cách tìm ảnh{" "}
@@ -968,6 +996,45 @@ function SearchPage({
               {result.indexed_frames.toLocaleString("vi-VN")} khung
             </span>
           </div>
+          {result.per_video.length > 0 && (
+            <section className="search-audit" aria-label="Kết quả theo từng video">
+              <h3>Số khung tương tự trong từng video</h3>
+              <p className="help-text">
+                {result.indexed_frames.toLocaleString("vi-VN")} khung được chấm điểm bằng một phép nhân ma trận.
+                {image && (" Ngưỡng cosine " + result.threshold.toFixed(2) + " áp dụng trước khi giới hạn danh sách kết quả.")}
+                {" "}Các khung liền nhau có thể được gộp thành một khoảnh khắc.
+              </p>
+              <div className="table-scroll"><table>
+                <thead><tr>
+                  <th scope="col">Video</th><th scope="col">Khung đã so</th>
+                  <th scope="col">Qua ngưỡng</th><th scope="col">Điểm cao nhất</th>
+                  {result.verification && <><th scope="col">Đã đối chiếu</th><th scope="col">Chi tiết khớp</th></>}
+                </tr></thead>
+                <tbody>{result.per_video.map((v) => (
+                  <tr key={v.video_id}>
+                    <th scope="row">{v.name}</th><td>{v.indexed_frames.toLocaleString("vi-VN")}</td>
+                    <td>{v.similar_frames.toLocaleString("vi-VN")}</td>
+                    <td>{v.best_score === null ? "Chưa có khung" : v.best_score.toFixed(3)}</td>
+                    {result.verification && <><td>{v.checked_frames}</td><td>{v.matched_frames}</td></>}
+                  </tr>
+                ))}</tbody>
+              </table></div>
+              <p className="help-text">Điểm cosine đo độ gần nhau của biểu diễn ảnh. Các khung qua ngưỡng cần được xem lại để xác nhận nội dung.</p>
+              <details><summary>Thời gian và cách tìm kiếm</summary>
+                <p>Tính điểm trên vector đã lưu của toàn bộ phạm vi. Các yêu cầu tìm kiếm được xử lý lần lượt; nhánh chi tiết kiểm tra tối đa 48 ứng viên theo thứ tự.</p>
+                <dl className="search-timings">
+                  {Object.entries(result.timings).map(([key, value]) => (
+                    <div key={key}><dt>{({
+                      wait_ms: "Chờ lượt xử lý", index_read_ms: "Đọc chỉ mục",
+                      query_encode_ms: "Mã hóa truy vấn hoặc lấy từ bộ nhớ đệm",
+                      score_ms: "Nhân ma trận", segments_ms: "Gộp khoảnh khắc",
+                      verification_ms: "Đối chiếu chi tiết",
+                    }[key] ?? key)}</dt><dd>{value.toLocaleString("vi-VN", { maximumFractionDigits: 2 })} ms</dd></div>
+                  ))}
+                </dl>
+              </details>
+            </section>
+          )}
           {result.verification && (
             <p className="help-text" role="status">
               {result.verification.status === "insufficient_detail"
@@ -1552,6 +1619,7 @@ function SettingsPage({
         fps: settings.fps,
         sampling: settings.sampling,
         batch_size: settings.batch_size,
+        prefetch: settings.prefetch,
         vision_tokens: settings.vision_tokens,
         model_path: settings.model_path,
       });
@@ -1704,6 +1772,11 @@ function SettingsPage({
               Chi tiết — vật thể nhỏ và nhiều nội dung
             </option>
           </select>
+        </label>
+        <label className="field-label">
+          <span><input type="checkbox" checked={settings.prefetch}
+            onChange={(e) => setSettings((s) => ({ ...s, prefetch: e.target.checked }))} />
+            {" "}Đọc trước một lô khung trong khi mô hình xử lý lô hiện tại</span>
         </label>
         <div className="settings-grid">
           <label className="field-label">

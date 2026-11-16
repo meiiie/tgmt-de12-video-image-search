@@ -3,6 +3,8 @@
 Ứng dụng desktop Windows dùng **EmbeddingGemma 2**, Tauri và bộ xử lý cục bộ: nhập video/thư mục, lập chỉ mục có thể tiếp tục, tìm bằng văn bản hoặc ảnh, phát đúng thời điểm, lưu khoảnh khắc và xuất clip MP4. Video gốc giữ nguyên trên máy.
 
 - [Chạy ứng dụng và phát triển desktop](desktop/README.md)
+- [Hướng dẫn chạy FrameAtlas từ mã nguồn](HUONG_DAN_CHAY.txt)
+- [Báo cáo Word, PowerPoint kỹ thuật EG2 và lời thuyết trình](docs/submission/README.md)
 - [Luồng tìm bằng ảnh/crop và kiểm chứng đầu vào trên video thật](docs/image-search-practical-workflow.md)
 - [Đo bỏ sót, nhận nhầm và so sánh tiền xử lý ảnh trên bộ có nhãn](docs/image-retrieval-quality-20261101.md)
 - [Lấy mẫu theo chuyển cảnh, đối chiếu chi tiết và kiểm thử video 2 giờ](docs/sampling-and-verification-20261102.md)

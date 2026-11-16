@@ -19,6 +19,12 @@ export const Video = z.object({
   next_t: z.number().default(0),
   error: z.string(),
   first_frame_id: z.number().nullable(),
+  measured_frames: z.number().nullable().default(null),
+  index_seconds: z.number().nullable().default(null),
+  decode_seconds: z.number().nullable().default(null),
+  encode_seconds: z.number().nullable().default(null),
+  write_seconds: z.number().nullable().default(null),
+  index_device: z.string().nullable().default(null),
 });
 export type Video = z.infer<typeof Video>;
 export const Settings = z.object({
@@ -28,6 +34,7 @@ export const Settings = z.object({
   model_path: z.string(),
   paused: z.boolean(),
   sampling: z.enum(["uniform", "hybrid"]).default("uniform"),
+  prefetch: z.boolean().default(true),
 });
 export type Settings = z.infer<typeof Settings>;
 export const Library = z.object({
@@ -86,6 +93,15 @@ export const SearchResults = z.object({
   results: z.array(Result),
   elapsed_ms: z.number(),
   indexed_frames: z.number(),
+  threshold: z.number().default(-1),
+  strategy: z.literal("exact_matrix").default("exact_matrix"),
+  dimension: z.number().default(768),
+  per_video: z.array(z.object({
+    video_id: z.string(), name: z.string(), indexed_frames: z.number(),
+    similar_frames: z.number(), best_score: z.number().nullable(),
+    returned_moments: z.number(), checked_frames: z.number(), matched_frames: z.number(),
+  })).default([]),
+  timings: z.record(z.string(), z.number()).default({}),
   verification: z.object({
     mode: z.literal("detail"),
     status: z.enum(["checked", "insufficient_detail"]),
